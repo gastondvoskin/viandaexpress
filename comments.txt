@@ -10,6 +10,8 @@ https://lucid.app/lucidchart/f622be06-48f2-4028-a3e9-f537c214c329/edit?viewport_
 
 
 Cloudinary:
+https://collection.cloudinary.com/dgcmyiqup/bb507c4d9f0d844e46bb81e8bdf4ae73
+
 
 Discord: 
 https://discord.gg/33HZGyDs
@@ -28,3 +30,21 @@ github.com/josevegas
 github.com/Lemanz93
 github.com/Silrojua22
 github.com/MagnoRay
+
+
+structure1: 
+deleted rendered info in App.jsx. 
+Deleted logos. 
+index.css: deteled all
+index.css body background-color and color. 
+Added views and components folders. 
+Replaced ReactStrictMode for BrowserRouter
+
+
+structure2: 
+Added components and views to client. 
+
+
+Preguntas para Fabián: 
+- Repo en GitHub: collab o fork? 
+- Cloudinary
