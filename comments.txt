@@ -28,3 +28,12 @@ github.com/josevegas
 github.com/Lemanz93
 github.com/Silrojua22
 github.com/MagnoRay
+
+
+structure: 
+deleted rendered info in App.jsx. 
+Deleted logos. 
+index.css: deteled all
+index.css body background-color and color. 
+Added views and components folders. 
+Replaced ReactStrictMode for BrowserRouter
