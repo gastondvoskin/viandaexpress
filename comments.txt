@@ -48,3 +48,12 @@ Added components and views to client.
 Preguntas para Fabián: 
 - Repo en GitHub: collab o fork? 
 - Cloudinary
+
+
+.env para el Back:
+PORT = 3001 
+DB_USER = 
+DB_PASSWORD = 
+DB_HOST = localhost
+DB_PORT = 5432
+DB_NAME = ecommerce
