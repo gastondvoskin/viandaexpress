@@ -1,7 +1,13 @@
 /* CSS Variables */
 :root {
-  /* --colorDeFondoGeneral: blue; */
   --myBlack: black;
   --myWhite: white;
 }
 
+body {
+  background-color: var(--myBlack);
+  color: var(--myWhite);
+  /* background-color: green;
+  color: red; */
+  /* color: red; */
+}
