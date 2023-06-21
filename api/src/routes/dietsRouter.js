@@ -1,10 +1,9 @@
 const {Router} = require('express');
+const {getDietsHandler} = require('../handlers/dietHandlers')
 const dietsRouter = Router()
 
 
-dietsRouter.get('/', (req,res)=>{
-    res.status(200).send('Deberia traer todas las dietas')
-})
+dietsRouter.get('/', getDietsHandler )
 
 
 
