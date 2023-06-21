@@ -1,31 +1,24 @@
-const {getFoodController,postFoodController,putFoodController} = require('../controllers/foodControllers');
+const { getAllFoodController } = require('../controllers/allFoodControllers');
 
 
-const getFoodHandler = (req,res) => {
+const getAllFoodHandler = (req,res) => {
     try {
-        getFoodController()
-        res.status(200).send(`deberia traer todas las viandas`)
+        const allFood = getAllFoodController();
+        res.status(200).send(allFood)
     } catch (error) {
-        res.status(400).send({error: error.message})
+        res.status(400).send({error: error.message});
     }
 };
 
-const postFoodHandler = (req,res) => {
+const getFoodByNameHandler = (req, res) => {
     try {
-        postFoodController()
-        res.status(200).send('Deberia crear una nueva vianda')
+        const {name} = req.query;
+        const foodByName = getFoodByNameController(name);
+        res.status(200).send(foodByName);        
     } catch (error) {
-        res.status(400).send({error: error.message})
+        res.status(400).send({error: error.message}); 
     }
-};
+}
 
-const putFoodHandler = (req,res) =>{
-    try {
-        putFoodController()
-        res.status(200).send('Deberia modificar una vianda')
-    } catch (error) {
-        res.status(400).send({error: error.message})
-    }
-};
 
-module.exports = {getFoodHandler,postFoodHandler,putFoodHandler}
+module.exports = {getAllFoodHandler,getFoodByNameHandler,postFoodHandler,putFoodHandler}
