@@ -24,7 +24,6 @@
 .rightContainer {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
     height: 35px;
     margin-right: 30px;
     padding: 10px;
