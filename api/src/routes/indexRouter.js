@@ -1,13 +1,9 @@
 const { Router } = require('express');
-
+const {foodRouter} = require('./foodRouter');
+const {dietsRouter} = require('./dietsRouter');
 const router = Router();
 
-router.get("/", (req, res) => {
-    try {
-        console.log('SIIIII')
-    } catch (error) {
-        console.log("NOOOO")
-    }
-});
+router.use('/food',foodRouter);
+router.use('/diets',dietsRouter);
 
 module.exports = router;
