@@ -1,11 +1,12 @@
-const {getDietsController} = require('../controllers/dietsControllers');
+const { getDietsController } = require('../controllers/dietsControllers');
 
-const getDietsHandler = (req,res) =>{
+const getDietsHandler = async (req,res) =>{
     try {
-        getDietsController()
-        res.status(200).send('deberia traer todas las dietas')
+        const allDiets = getDietsController()
+        res.status(200).send(allDiets)
+        
     } catch (error) {
-        res.status(400).send({error:error.message})
+        res.status(404).send({error: error.message})   
     }
 };
 
