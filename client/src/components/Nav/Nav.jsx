@@ -1,10 +1,15 @@
 import SearchBar from "../SearchBar/SearchBar.jsx";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styles from "./Nav.module.css";
 import logo from "../../assets/logo.jpeg";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+
 
 function Nav() {
+
     return (
         <nav className={styles.mainContainer}> 
             <Link to="/home">
@@ -14,18 +19,18 @@ function Nav() {
                     alt="Home"
                 />
             </Link>
+            
 
             <div className={styles.rightContainer}>
                 <SearchBar />
 
-                <Link to="/basket">
-                    BASKET
-                </Link>
+                <NavLink to="/basket">
+                    <FontAwesomeIcon icon={faCartShopping} />
+                </NavLink>
 
-                <Link to="/myprofile">
-                    MYPROFILE
-                </Link>
-
+                <NavLink to="/myprofile">
+                    <FontAwesomeIcon icon={faUser} />
+                </NavLink>
 
             </div>
         </nav>
