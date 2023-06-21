@@ -1,4 +1,4 @@
-const { Food, Diet } = require('../db');
+const { Food, Diet } = require('../../db');
 
 const getAllFoodController = async() =>{
     const allFood = await Food.findAll({
