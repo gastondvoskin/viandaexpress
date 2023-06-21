@@ -1,11 +1,11 @@
 const {Router} = require('express');
-const {getFoodHandler,postFoodHandler,putFoodHandler} = require('../handlers/foodHandlers')
-const foodRouter = Router()
+const {getFoodHandler,postFoodHandler,putFoodHandler} = require('../handlers/foodHandlers');
+const foodRouter = Router();
 
 
-foodRouter.get('/', getFoodHandler )
-foodRouter.post('/', postFoodHandler )
-foodRouter.put('/', putFoodHandler )
+foodRouter.get('/', getFoodHandler );
+foodRouter.post('/', postFoodHandler );
+foodRouter.put('/', putFoodHandler );
 
 
 
