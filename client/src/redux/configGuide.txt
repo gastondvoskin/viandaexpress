@@ -1,0 +1,2 @@
+https://redux-toolkit.js.org/tutorials/quick-start#install-redux-toolkit-and-react-redux
+https://vimeo.com/714606554/b2f2f5b3ff

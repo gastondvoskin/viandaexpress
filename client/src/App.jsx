@@ -9,6 +9,7 @@ import Login from "./views/Login/Login.jsx";
 import NotFound from "./views/NotFound/NotFound.jsx";
 import MyProfile from "./views/MyProfile/MyProfile.jsx";
 import Footer from "./components/Footer/Footer.jsx";
+import ReduxExperiment from './views/ReduxExperiment';
 
 
 
@@ -25,6 +26,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/myprofile" element={<MyProfile />} />
         <Route path="/basket" element={<Basket />} />
+        <Route path="/reduxexperiment" element={<ReduxExperiment />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
