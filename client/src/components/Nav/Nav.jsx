@@ -1,6 +1,6 @@
 /* import { NavLink } from "react-router-dom"; */
 
-function App() {
+function Nav() {
     return (
         <div>
             NIY: THIS IS THE NAV
@@ -12,5 +12,5 @@ function App() {
     )
   };
   
-  export default App;
+  export default Nav;
   
