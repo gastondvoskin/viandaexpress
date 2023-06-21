@@ -39,8 +39,8 @@ develop: siempre vamos a mergear desde una rama secundaria hacia la rama develop
 ramas secundarias: para editar, crear una rama y pararse sobre esa rama. Al terminar de mergear, eliminar rama. Ejemplo Nav, SearchBar, getAllFoodsController, etc. 
 Comandos: 
 Actualizar nuestro repo local: pararse sobre la rama main, hacer git pull origin main (para traer los cambios del main remoto al main local). Pararse sobre la rama en la que vamos a trabajar (por ejemplo Nav), hacer git pull origin main (para tener actualizada también nuestra rama secundaria). 
-Subir nuestros cambios de local a remoto: pararse sobre la rama secundaria en la que trabajamos, hacer git add . git commit -m "nombreCommit" git push origin <nombreRamaQueEditamos> (con esto subimos los cambios para hacer un pull request, pero todavía no está hecho el pull request). Entrar a GitHub, code, branches, New pull request, modificar desde dónde hacia dónde se hace el pull request: desde rama secundaria a develop (ojo que la rama de la izquierda es hacia donde hacemos el pull request, no debe ser el main). Click en Create pull request. 
-Aceptar cambios: otro integrante debe entrar a pull requests, verificar los cambios, hacer comentarios si hay algo a modificar. Si está todo ok, aceptar cambios y hacer merge. 
+Subir nuestros cambios de local a remoto: pararse sobre la rama secundaria en la que trabajamos, hacer git add . git commit -m "nombreCommit" git push origin <nombreRamaQueEditamos> (con esto subimos los cambios para hacer un pull request, pero todavía no está hecho el pull request). Entrar a GitHub, Pull requests, New Pull request, modificar desde dónde hacia dónde se hace el pull request: desde rama secundaria a develop (ojo que la rama de la izquierda es hacia donde hacemos el pull request, no debe ser el main). Click en Create pull request. 
+Aceptar cambios: otro integrante debe entrar a pull requests, verificar los cambios, hacer comentarios si hay algo a modificar. Si está todo ok, review changes, aprove.. 
 
 
 Tutoriales: 
