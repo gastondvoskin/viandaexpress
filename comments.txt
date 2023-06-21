@@ -2,24 +2,22 @@ Trello:
 https://trello.com/b/RpmFNbrL/pf-eccomerce-viandas
 
 Maqueta Figma:
-https://www.figma.com/files/project/96306667/Team-project?fuid=1250994119128201766
-
+https://www.figma.com/file/yjbQjsLMYhz8kfdrTrifo3/Untitled?type=design&t=mSCBUNZld73hEIVl-0
 
 MER diagram: 
 https://lucid.app/lucidchart/f622be06-48f2-4028-a3e9-f537c214c329/edit?viewport_loc=-64%2C-24%2C3312%2C1434%2C0_0&invitationId=inv_92c24fa6-fd43-45e7-bead-29f12b244f7c
 
-
 Cloudinary:
 https://collection.cloudinary.com/dgcmyiqup/bb507c4d9f0d844e46bb81e8bdf4ae73
-
 
 Discord: 
 https://discord.gg/33HZGyDs
 
+Propuesta PF (nombre, descripción, requisitos, ideas extras, user stories):
+https://docs.google.com/document/d/1n4GClqN3Mcf8XwbRy6MugGFm-tt6rr3KSSwn23VAQHw/edit?pli=1
 
-Chocolatería:
+Chocolatería (ejemplo de PF):
 https://www.youtube.com/watch?v=1zpPIxta-g4&t=1s&ab_channel=Marian
-
 
 GitHubs: 
 github.com/gastondvoskin
@@ -31,29 +29,24 @@ github.com/Lemanz93
 github.com/Silrojua22
 github.com/MagnoRay
 
+GitFlow: 
+BKMAIN: rama de backup del main. Actualizarla antes de mergear hacia el main. 
+main: rama deployable. 
+develop: siempre vamos a mergear desde una rama secundaria hacia la rama develop (no mergear directo al main). 
+ramas secundarias: para editar, crear una rama y pararse sobre esa rama. Al terminar de mergear, eliminar rama. Ejemplo Nav, SearchBar, getAllFoodsController, etc. 
+Comandos: 
+Actualizar nuestro repo local: pararse sobre la rama main, hacer git pull origin main (para traer los cambios del main remoto al main local). Pararse sobre la rama en la que vamos a trabajar (por ejemplo Nav), hacer git pull origin main (para tener actualizada también nuestra rama secundaria). 
+Subir nuestros cambios de local a remoto: pararse sobre la rama secundaria en la que trabajamos, hacer git add . git commit -m "nombreCommit" git push origin develop (con esto subimos los cambios para hacer un pull request, pero todavía no está hecho el pull request). Entrar a GitHub, modificar desde dónde hacia dónde se hace el pull request: desde rama secundaria a develop (ojo que la rama de la izquierda es hacia donde hacemos el pull request, no debe ser el main). Click en Create pull request. 
+Aceptar cambios: otro integrante debe entrar a pull requests, verificar los cambios, hacer comentarios si hay algo a modificar. Si está todo ok, aceptar cambios y hacer merge. 
 
-structure1: 
-deleted rendered info in App.jsx. 
-Deleted logos. 
-index.css: deteled all
-index.css body background-color and color. 
-Added views and components folders. 
-Replaced ReactStrictMode for BrowserRouter
 
-
-structure2: 
-Added components and views to client. 
+Tutoriales: 
+Figma: https://www.youtube.com/watch?v=uIDUYPHg3XA&t=195s&ab_channel=TemplunebyDiegoVel%C3%A1zquez
 
 
 Preguntas para Fabián: 
 - Repo en GitHub: collab o fork? 
 - Cloudinary
+- styles: editar en figma?
 
 
-.env para el Back:
-PORT = 3001 
-DB_USER = 
-DB_PASSWORD = 
-DB_HOST = localhost
-DB_PORT = 5432
-DB_NAME = ecommerce
