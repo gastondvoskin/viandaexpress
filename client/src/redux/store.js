@@ -1,11 +1,11 @@
-// store
-import { configureStore } from '@reduxjs/toolkit'
-import foodsReducer from "./foodSlice"
+// store 
+import { configureStore } from '@reduxjs/toolkit';
+import foodsReducer from "./foodSlice";
 
 const store = configureStore({
   reducer: {
-    foods: foodsReducer
+    foodsReducer
   },
-})
+});
 
 export default store;

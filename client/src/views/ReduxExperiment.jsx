@@ -1,12 +1,21 @@
 // This file is created to show how to access the global state using redux toolkit. 
 
-import { useSelector, useDispatch } from 'react-redux'
-import { getAllFoods } from '../redux/foodSlice';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getFoods } from '../redux/foodActions.js';
 
 const ReduxExperiment = () => {
-    const allFoods = useSelector((state) => state.foods.allFoods);
+    const allFoods = useSelector((state) => state.foodsReducer.allFoods);
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getFoods());
+    }, []);
+
+    // console.log(allFoods.length)
+    // console.log('reduxeperiment')
+    // console.log(allFoods);
 
     return (
         <div>
@@ -19,6 +28,7 @@ const ReduxExperiment = () => {
                         <div>
                             <h1>{food.name}</h1>
                             <p>{food.description}</p>
+                            <img src={food.image} />
                         </div>
                     )
                 })
