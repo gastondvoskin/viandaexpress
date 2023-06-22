@@ -2,7 +2,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const router = require('./routes/indexRouter.js');
-const bodyParser = require('body-parser');
+
 
 /* const cors = require('cors'); */ /* new */
 
@@ -11,9 +11,8 @@ const app = express();
 
 // MIDDLEWARES
 app.use(morgan('dev'));
-// app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
-app.use(bodyParser.json({ limit: '50mb' }));
+ app.use(express.json());
+
 
 // MIDDLEWARE: CORS CONFIGURATION
 /* app.use(cors()); */ 

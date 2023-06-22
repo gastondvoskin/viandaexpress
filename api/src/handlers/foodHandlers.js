@@ -29,10 +29,9 @@ const putFoodHandler = (req,res) => {
 };
 
 const postFoodHandler = async (req, res) => {
-    const { summary } = req.body;
-    const name = req.body.name;
-    const image = req.file; // Obtener el archivo subido desde req.file
-  
+    const { summary,name } = req.body;
+    const image = req.file.buffer
+
     try {
       const newFood = await postFoodController(name, image, summary);
       res.status(200).send(newFood);
