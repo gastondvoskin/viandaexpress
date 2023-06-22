@@ -1,7 +1,5 @@
-const { log } = require('console');
 const { Food } = require('../../db');
 const cloudinary = require('cloudinary').v2;
-const fs = require('fs');
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -9,25 +7,27 @@ cloudinary.config({
   api_secret: process.env.CLOUD_API_SECRET
 });
 
-const path = require('path');
-
 const postFoodController = async (name, image, summary) => {
-    try {
-      cloudinary.uploader.upload_stream({ resource_type: 'auto'},async (error,result) => {
-      if (error) {
-        return 'Error al subir imagen a cloudinary'
-      }
-      const imageUrl = result.secure_url;
-      const product = await Food.create({ name, image: imageUrl, summary });
-      return product.dataValues
-    } ).end(image);
-    return  'Creado exitosamente'
-    } 
-    catch (error) {
-      return {error:error.message}
-    }
-  };
-  
-  
+    const uploadResult = await new Promise((resolve, reject) => {
+      cloudinary.uploader.upload_stream(
+        { 
+          resource_type: 'auto', 
+          allowed_formats: ['jpg', 'jpeg']
+        },
+        (error, result) => {
+          if (error) {
+            reject(new Error (error.message));
+          } else {
+            resolve(result);
+          }
+        }
+      ).end(image);
+    });
+
+    const imageUrl = uploadResult.secure_url;
+    const product = await Food.create({ name, image: imageUrl, summary });
+    return product.dataValues;
+
+};
 
 module.exports = { postFoodController };

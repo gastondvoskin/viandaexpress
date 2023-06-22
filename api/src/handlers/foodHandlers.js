@@ -29,13 +29,11 @@ const putFoodHandler = (req,res) => {
 };
 
 const postFoodHandler = async (req, res) => {
-    const { summary, name, ...otherProperties } = req.body;
-    const image = req.file?.buffer; 
+    const { summary, name } = req.body;
+    const image = req.file.buffer; 
 
     try {
-        const allElementsDefined = Object.values(otherProperties).every((element) => element !== undefined);
-
-        if (allElementsDefined && image) {
+        if (summary && name && image) {
             const newFood = await postFoodController(name, image, summary);
             res.status(200).send(newFood);
         } else {
