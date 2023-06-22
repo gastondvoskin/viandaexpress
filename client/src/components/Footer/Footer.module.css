@@ -1,0 +1,46 @@
+/* Estilos para el footer */
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  /* Estilos para el texto de copyright */
+  footer span {
+    font-size: 0.875rem;
+    color: #808080;
+    text-align: center;
+  }
+  
+  /* Estilos para los enlaces en el footer */
+  footer a {
+    margin-right: 0.5rem;
+    padding: 0.5rem 1rem;
+    color: #4b5563;
+    border-radius: 0.25rem;
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    background-color: #f0f0f0;
+    color: #1e40af;
+  }
+  
+  /* Estilos para los enlaces en el footer en modo oscuro */
+  footer.dark a {
+    color: #ccc;
+  }
+  
+  footer.dark a:hover {
+    background-color: #444;
+    color: #fff;
+  }
+  

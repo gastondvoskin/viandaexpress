@@ -11,9 +11,7 @@ const app = express();
 
 // MIDDLEWARES
 app.use(morgan('dev'));
- app.use(express.json());
-
-
+app.use(express.json())
 // MIDDLEWARE: CORS CONFIGURATION
 /* app.use(cors()); */ 
 
