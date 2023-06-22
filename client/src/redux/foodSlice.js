@@ -11,6 +11,7 @@ export const foodsSlice = createSlice({
   name: 'foods',
   initialState,
   reducers: {
+    /* NIY */
     /* getAllFoods: (state, action) => {
         state.allFoods = action.payload;
     }, 
