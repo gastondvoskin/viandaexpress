@@ -1,5 +1,6 @@
 const {getFoodByNameController} = require('../controllers/foodControllers/FoodByNameController')
 const { getAllFoodController } = require('../controllers/foodControllers/allFoodControllers');
+const { postFoodController } = require('../controllers/foodControllers/postFoodController');
 
 const getFoodHandler = async (req,res) => {
     const {name} = req.query;
@@ -27,13 +28,18 @@ const putFoodHandler = (req,res) => {
     }
 };
 
-const postFoodHandler = (req,res) => {
+const postFoodHandler = async (req, res) => {
+    const { summary } = req.body;
+    const name = req.body.name;
+    const image = req.file; // Obtener el archivo subido desde req.file
+  
     try {
-        res.status(200).send('Deberia crear una vianda')
-     } catch (error) {
-         res.status(400).send({error: error.message}); 
-     }
-};
-
+      const newFood = await postFoodController(name, image, summary);
+      res.status(200).send(newFood);
+    } catch (error) {
+      res.status(400).send({ error: error.message });
+    }
+  };
+  
 
 module.exports={getFoodHandler,postFoodHandler,putFoodHandler};
