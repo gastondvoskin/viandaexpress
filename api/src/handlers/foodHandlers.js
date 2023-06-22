@@ -29,16 +29,23 @@ const putFoodHandler = (req,res) => {
 };
 
 const postFoodHandler = async (req, res) => {
-    const { summary,name } = req.body;
-    const image = req.file.buffer
+    const { summary, name, ...otherProperties } = req.body;
+    const image = req.file?.buffer; 
 
     try {
-      const newFood = await postFoodController(name, image, summary);
-      res.status(200).send(newFood);
+        const allElementsDefined = Object.values(otherProperties).every((element) => element !== undefined);
+
+        if (allElementsDefined && image) {
+            const newFood = await postFoodController(name, image, summary);
+            res.status(200).send(newFood);
+        } else {
+            throw new Error('Falta información en el cuerpo de la solicitud o la imagen no es válida');
+        }
     } catch (error) {
-      res.status(400).send({ error: error.message });
-    }
-  };
+        res.status(400).send({ error: error.message });
+  }
+};
+
   
 
 module.exports={getFoodHandler,postFoodHandler,putFoodHandler};
