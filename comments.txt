@@ -19,6 +19,13 @@ https://docs.google.com/document/d/1n4GClqN3Mcf8XwbRy6MugGFm-tt6rr3KSSwn23VAQHw/
 Meet:
 meet.google.com/hpk-fbrv-uxr
 
+Back-end endpoints: 
+GET localhost:3001/api
+GET localhost:3001/food     (change to foods)
+GET localhost:3001/diets
+localhost:3001/food?name=griEga
+
+
 Chocolatería (ejemplo de PF):
 https://www.youtube.com/watch?v=1zpPIxta-g4&t=1s&ab_channel=Marian
 
@@ -74,3 +81,5 @@ Especificar tareas en Trello.
 
 API pirateada Spoonacular: 
 https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5
+
+
