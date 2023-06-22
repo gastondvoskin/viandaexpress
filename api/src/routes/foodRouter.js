@@ -1,16 +1,18 @@
 const {Router} = require('express');
+const multer = require('multer');
 const { getFoodHandler,postFoodHandler,putFoodHandler,deleteFoodHandler } = require('../handlers/foodHandlers');
-const foodRouter = Router();
 
+
+const foodRouter = Router();
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 foodRouter.get('/', getFoodHandler );
-foodRouter.post('/', postFoodHandler );
+foodRouter.post('/', upload.single('image'), postFoodHandler);
 foodRouter.put('/:id', putFoodHandler );
 foodRouter.delete('/:id', deleteFoodHandler);
-// foodRouter.put('/:id', (req, res) => {
-//     const {id} = req.params
-//     res.status(200).send(id)
-// } );
+
+
 
 
 module.exports = {foodRouter}
