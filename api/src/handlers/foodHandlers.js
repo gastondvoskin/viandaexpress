@@ -20,14 +20,7 @@ const getFoodHandler = async (req, res) => {
     }
 };
 
-/* post: WIP */
-const postFoodHandler = (req, res) => {
-    try {
-        res.status(200).send('Debería crear una vianda');
-    } catch (error) {
-        res.status(400).send({ error: error.message });
-    }
-};
+
 
 const postFoodHandler = async (req, res) => {
     const { summary, name } = req.body;
@@ -43,6 +36,7 @@ const postFoodHandler = async (req, res) => {
     } catch (error) {
         res.status(400).send({ error: error.message });
   }
+}
 
 const putFoodHandler = async (req, res) => {
     try {
