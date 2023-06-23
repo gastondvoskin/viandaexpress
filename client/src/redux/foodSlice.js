@@ -6,6 +6,7 @@ import { hardcodedFoodsArray } from "../../hardcodedFoods";
 
 const initialState = {
   allFoods: [],
+  foodDetail: [],
   // Do not delete. Uncomment foodDetail and test when the endpoint `http://localhost:3001/food/${id}` is created
   // foodDetail: {},
 
