@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import Nav from "./components/Nav/Nav.jsx";
 {/* uncomment in the future */}
@@ -20,10 +20,8 @@ function App() {
     <div className="app">
       <Nav />
       <Routes>
-        {/* uncomment in the future */}
-        {/* <Route path="/" element={<Landing />} /> */}
-        {/* <Route path="/home" element={<Home />} /> */}
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/myprofile" element={<MyProfile />} />
         <Route path="/basket" element={<Basket />} />

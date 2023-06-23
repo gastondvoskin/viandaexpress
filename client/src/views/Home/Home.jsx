@@ -4,36 +4,43 @@ import 'bootstrap/dist/css/bootstrap.css';
 import style from "./Home.module.css"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+
 import { getFoods } from '../../redux/foodActions.js';
 import CardsContainer from '../../components/CardsContainer/CardsContainer';
 import Paginado from '../../components/Paginado/Paginado';
-
-
-
+import axios from "axios";
 
 
 const Home = () => {
     const [index, setIndex] = useState(0);
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const allFoods = useSelector((state) => state.foodsReducer.allFoods);
 
-    const [orden, setOrden] = useState('')
-    const [currentPage, setCurrentPage] = useState(1)
-    const [foodsPerPage, setFoodsPerPage] = useState(10)
-    const indexOfLastFood = currentPage * foodsPerPage
-    const indexOfFirstFood = indexOfLastFood - foodsPerPage
-    const currentFoods = allFoods.slice(indexOfFirstFood, indexOfLastFood)
+    const [order, setOrder] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [foodsPerPage, setFoodsPerPage] = useState(10);
+
+    const indexOfLastFood = currentPage * foodsPerPage;
+    const indexOfFirstFood = indexOfLastFood - foodsPerPage;
+    const currentFoods = allFoods.slice(indexOfFirstFood, indexOfLastFood);
 
     const paginado = (pageNumber) => {
-        setCurrentPage(pageNumber)
-    }
+        setCurrentPage(pageNumber);
+    };
 
+    /* This implementation will change once we have a deployed DB */
     useEffect(() =>{
-        dispatch(getFoods())
-    },[dispatch])
+        !allFoods  
+        ? axios.get("http://localhost:3001/api")
+            .then(() => dispatch(getFoods()))
+        : dispatch(getFoods())
+    },[dispatch]);
+
+    useEffect(() => {
+      dispatch(getFoods());
+    },[dispatch]);
 
     const handleSelect = (selectedIndex) => {
       setIndex(selectedIndex);
@@ -49,8 +56,8 @@ const Home = () => {
                         alt="First slide"
                     />
                     <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        <h3>Promoción del mes</h3>
+                        <p>Deliciosa vianda</p>
                     </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -60,8 +67,8 @@ const Home = () => {
                     />
 
                     <Carousel.Caption>
-                        <h3>Second slide label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <h3>Especialidad de la casa</h3>
+                        <p>La más elegida por nuestros clientes</p>
                     </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -71,17 +78,15 @@ const Home = () => {
                     />
 
                     <Carousel.Caption>
-                        <h3>Third slide label</h3>
-                        <p>
-                        Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                        </p>
+                        <h3>Conocé nuestro local</h3>
+                        <p>Ituzaingó, Paseo La Plata</p>
                     </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
             </div>
 
             <div className={style.Button}>
-                <button>PASTA</button>
+                <button>PASTAS</button>
                 <button>CARNES</button>
                 <button>ENSALADAS</button>
             </div>
@@ -89,31 +94,32 @@ const Home = () => {
             <div className={style.filtros}>
                 <div className={style.filtros2}>
                     <select name="" id="">
-                        <option value="">Select Diet</option>
+                        <option value="">Dieta</option>
                         <option value="">Vegana</option>
-                        <option value="">Sin Tacc</option>
+                        <option value="">Vegetariana</option>
+                        <option value="">Sin tacc</option>
+                        <option value="">Sin lactosa</option>
                     </select>
 
                     <select name="" id="">
-                        <option value="">Ordenamiento</option>
+                        <option value="">Orden</option>
                         <option value="">Precio</option>
-                        <option value="">Valoracion</option>
+                        <option value="">Popularidad</option>
                     </select>
                 </div>
             </div>
-            <Link to="/dashboard"><button>Dashboard</button></Link>
-            <div className={style.asereje}>
-
-            <Paginado 
-              foodsPerPage={foodsPerPage}
-              foods={allFoods.length}
-              paginado={paginado} />
-            <CardsContainer currentFoods={currentFoods}/>
-            </div>
-
             
+            <div className={style.asereje}>
+                <Paginado 
+                    foodsPerPage={foodsPerPage}
+                    foods={allFoods.length}
+                    paginado={paginado} 
+                />
 
+                <CardsContainer currentFoods={currentFoods}/>
+            </div>
         </div>
     );
 };
+
 export default Home;
