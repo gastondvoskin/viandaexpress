@@ -101,7 +101,7 @@ const Home = () => {
                     </select>
                 </div>
             </div>
-
+            <Link to="/dashboard"><button>Dashboard</button></Link>
             <div className={style.asereje}>
 
             <Paginado 
@@ -112,6 +112,7 @@ const Home = () => {
             </div>
 
             
+
         </div>
     );
 };

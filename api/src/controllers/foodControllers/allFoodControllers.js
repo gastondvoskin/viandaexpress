@@ -1,15 +1,7 @@
-const { Food, Diet } = require('../../db');
+const { Food } = require('../../db');
 
 const getAllFoodController = async() =>{
-    const allFood = await Food.findAll({
-        include:{
-            model: Diet,
-            attributes: ['name'],
-            through: {
-                attributes: [],
-            },
-        }
-    });
+    const allFood = await Food.findAll();
     return allFood;
 };
 
