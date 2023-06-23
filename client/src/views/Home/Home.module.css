@@ -1,5 +1,7 @@
 .mainContainer {
     background-color: var(--myWhite);
+    background-color: var(--myBlack);   /* just for develop */
+
     display: flex;
     flex-direction: column;
     justify-content: center;
