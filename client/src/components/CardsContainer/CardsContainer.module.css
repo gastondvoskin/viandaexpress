@@ -1,0 +1,15 @@
+.cardsContainer{
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+    flex-wrap: wrap;
+    gap: 3em;
+    width: 1200px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    padding-bottom: 30px;
+}
+.link{
+    text-decoration: none;
+}
