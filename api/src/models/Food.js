@@ -23,27 +23,32 @@ module.exports = (sequelize) => {
       },
       initial_price: {
         type: DataTypes.FLOAT,
-        allowNull: true,
+        allowNull: false,
       },
       discount: {
         type: DataTypes.FLOAT,
-        allowNull: true,
+        allowNull: false,
       },
       final_price: {
         type: DataTypes.FLOAT,
-        allowNull: true,
+        allowNull: false,
       },
       status: {
         type: DataTypes.BOOLEAN,
-        allowNull: true,
+        allowNull: false,
       },
       total_score: {
         type: DataTypes.FLOAT,
-        allowNull: true,
+        allowNull: false,
       },
       category: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: false,
+      },
+      diet: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: false,
+        
       }
 
     },
