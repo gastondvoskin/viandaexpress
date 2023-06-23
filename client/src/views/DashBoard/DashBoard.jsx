@@ -7,10 +7,12 @@ import style from './DashBoard.module.css'
 export default function DashBoard(){
     const dispatch = useDispatch();
     const diets=useSelector(state=>state.foodsReducer.diets)
-    console.log(diets)
+    const allFoods=useSelector(state=>state.foodsReducer.allFoods)
+    const categories=useSelector(state=>state.foodsReducer.categories)
+    console.log(categories)
     const [input,setInput]=useState({
         name: "",
-        summary: "",
+        description: "",
         diets: [],
         category: "",
         price: 0,
@@ -19,7 +21,7 @@ export default function DashBoard(){
     })
     const [errors,setErrors]=useState({
         name: "",
-        summary: "",
+        description: "",
         diets: "",
         category: "",
         price: "",
@@ -32,14 +34,15 @@ export default function DashBoard(){
             ...input,
             [name]: value,
         })
-        setErrors(validation({
-            ...input,
-            [name]: value,
-        }))
+        // setErrors(validation({
+        //     ...input,
+        //     [name]: value,
+        // }))
     }
     const handleSubmit=(e)=>{
         e.preventDefault();
-        if(!input.name||!input.summary||!input.diets.length||!input.image){
+        setErrors(validation(input))
+        if(!input.name||!input.description||!input.category||!input.diets.length||!input.image||!input.price||!input.discount){
             alert(`Llena todos los campos para crear la vianda`);
         }else{
             console.log(input);
@@ -55,6 +58,18 @@ export default function DashBoard(){
                 image: "",
             });
         }
+    }
+    const handleCheck=(e)=>{
+        setInput({
+            ...input,
+            diets: [...input.diets,e.target.value],
+        })
+    }
+    const handleSelect=(e)=>{
+        setInput({
+            ...input,
+            category: e.target.value,
+        })
     }
     return(
         <div>
@@ -73,14 +88,31 @@ export default function DashBoard(){
                             </div>
                             <div>
                                 <label><h3>Descripción:</h3></label>
-                                <textarea type='text' name='summary' value={input.summary}  onChange={handleChange} />
-                                {errors.summary?(
-                                        <p>{errors.summary}</p>
+                                <textarea type='text' name='description' value={input.description}  onChange={handleChange} />
+                                {errors.description?(
+                                        <p>{errors.description}</p>
+                                    ):null}
+                            </div>
+                            <div>
+                                <label><h3>Categoría</h3></label>
+                                <select onChange={handleSelect} value={input.category}>
+                                    <option value="">--Seleccionar--</option>
+                                    {categories.map(ca=>{
+                                        return <option value={ca}>{ca}</option>
+                                    })}
+                                </select>
+                                {errors.category?(
+                                        <p>{errors.category}</p>
                                     ):null}
                             </div>
                             <div>
                                 <label><h3>Dietas:</h3></label>
-                                <label><input type='checkbox' name='dietadeDB'  />Dietas traídas de DB</label>
+                                {diets.map(di=>{
+                                    return(<div ><label><input type='checkbox' name={di} value={di} onChange={e=>handleCheck(e)} defaultChecked={false} />{di}</label></div>)
+                                })}
+                                {errors.diets?(
+                                        <p>{errors.diets}</p>
+                                    ):null}
                             </div>
                         </div>
                         <div className={style.SubSectionDB}>
@@ -88,10 +120,16 @@ export default function DashBoard(){
                                 <div className={style.NumberDB}>
                                     <label><h3>Precio de Vianda:</h3></label>
                                     <input type='number' name='price' value={input.price} onChange={handleChange} className={style.InputNumberDB} />
+                                    {errors.price?(
+                                            <p>{errors.price}</p>
+                                        ):null}
                                 </div>
                                 <div className={style.NumberDB}>
                                     <label><h3>Descuento de Vianda:</h3></label>
                                     <input type='number' name='discount' value={input.discount} onChange={handleChange} className={style.InputNumberDB} />
+                                    {errors.discount?(
+                                            <p>{errors.discount}</p>
+                                        ):null}
                                 </div>
                             </div>
                             <div>

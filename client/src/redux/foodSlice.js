@@ -5,9 +5,10 @@ import { hardcodedFoodsArray } from "../../hardcodedFoods";
 // console.log(createSlice) // function
 
 const initialState = {
-  allFoods: [],
+  allFoods: hardcodedFoodsArray,
   foodDetail: [],
-  diets: [],
+  diets: ['no_tacc','vegetarian','vegan','without_lactose'],
+  categories:['pasta','ensalada','carne'],
   // Do not delete. Uncomment foodDetail and test when the endpoint `http://localhost:3001/food/${id}` is created
   // foodDetail: {},
 
