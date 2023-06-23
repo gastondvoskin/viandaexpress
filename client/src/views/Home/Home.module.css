@@ -1,0 +1,53 @@
+.mainContainer {
+    background-color: var(--myWhite);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
+.Carousel{
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--myWhite);
+}
+
+.Carousel img {
+    width: 200px;
+    height: 300px;
+    
+ }
+
+.Button {
+    padding-top: 20px;
+    padding-bottom: 40px;
+    width: 1000px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.Button button {
+    height: 120px;
+    width: 120px;
+}
+
+.filtros {
+    width: 450px;
+    height: 100px;
+}
+
+.filtros2 {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+}
+
+.asereje {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
