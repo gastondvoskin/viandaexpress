@@ -1,8 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import Nav from "./components/Nav/Nav.jsx";
-{/* uncomment in the future */}
-/* import Landing from "./views/Landing/Landing.jsx"; */
+import Detail from './views/Detail/Detail.jsx';
 import Home from "./views/Home/Home.jsx";
 import Basket from "./views/Basket/Basket.jsx";
 import Login from "./views/Login/Login.jsx";
@@ -15,6 +14,7 @@ import DashBoard from './views/DashBoard/DashBoard.jsx';
 
 
 function App() {
+  // console.log(Detail)
 
   return (
     <div className="app">
@@ -26,6 +26,8 @@ function App() {
         <Route path="/myprofile" element={<MyProfile />} />
         <Route path="/basket" element={<Basket />} />
         <Route path='/dashboard' element={<DashBoard />} />
+        <Route path='/detail/:id' element={<Detail />} />
+
         <Route path="/reduxexperiment" element={<ReduxExperiment />} />
 
         <Route path="*" element={<NotFound />} />
