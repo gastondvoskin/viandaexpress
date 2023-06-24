@@ -35,18 +35,18 @@ module.exports = (sequelize) => {
       },
       status: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
+        allowNull: true,
       },
       total_score: {
         type: DataTypes.FLOAT,
-        allowNull: false,
+        allowNull: true,
       },
       category: {
         type: DataTypes.STRING,
         allowNull: false,
       },
       diet: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.STRING,
         allowNull: false,
         
       }

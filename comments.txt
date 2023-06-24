@@ -82,6 +82,7 @@ Especificar tareas en Trello.
 API pirateada Spoonacular: 
 https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5
 
+https://www.passportjs.org/
 
 
 
