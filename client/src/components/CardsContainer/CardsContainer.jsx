@@ -9,7 +9,7 @@ export default function CardsContainer({currentFoods}) {
         currentFoods?.map((c) => {
           return (
               <Link key={c.id} to={`/detail/${c.id}`} className={style.link}>
-                <Card name={c.name} image={c.image} final_price={c.final_price} id={c.id} category={c.category} diet={c.diet} status={c.status}/>
+                <Card name={c.name} image={c.image} final_price={c.final_price} id={c.id} category={c.category} diets={c.diets} status={c.status}/>
               </Link>
           );
         })

@@ -5,8 +5,8 @@ import { hardcodedFoodsArray } from "../../hardcodedFoods";
 const initialState = {
   allFoods: [],
   foodDetail: [],
-  diets: ['no_tacc','vegetarian','vegan','without_lactose'],
-  categories:['pasta','ensalada','carne'],
+  diets: ['no_tacc','vegetarian','vegan','without_lactose'],    /* TONO: why is there a diets property in redux? */
+  categories:['pasta','ensalada','carne'],      /* TONO: why is there a categories property in redux? */
   filteredByName: [],
   // filteredByDiet: [],
   // filteredByCategory: []

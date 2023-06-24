@@ -9,25 +9,20 @@ export default function Detail() {
   const dispatch = useDispatch();
 
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
-  console.log("aca");
 
   /* The useEffect implementation will change once we have a deployed DB */
   useEffect(() => {
-    console.log("antes del if");
+    // console.log("antes del if");
     if (!allFoods.length) {
-      console.log("if");
+      // console.log("if");
       axios.get("http://localhost:3001/api").then(() => dispatch(getFoods()));
     } else {
-      console.log("else");
+      // console.log("else");
       dispatch(getFoods());
     }
   }, [dispatch]);
 
   const foodDetail = allFoods.find((food) => food.id === id);
-  console.log("id: ", id);
-  console.log("allFoods: ", allFoods);
-  console.log("foodDetail: ", foodDetail);
-  // const { name, diet, description, image, final_price, status, total_score, category } = foodDetail;
 
   return (
     <main>
@@ -42,11 +37,11 @@ export default function Detail() {
           <p>Categoría: {foodDetail?.category}</p>
           <p>
             Dietas:{" "}
-            {!foodDetail?.diet.length ? (
+            {!foodDetail?.diets.length ? (
               <span>Esta vianda no sigue ninguna dieta específica</span>
             ) : (
-              foodDetail?.diet.map((plaftorm, index) => {
-                return foodDetail?.diet.length - 1 === index ? (
+              foodDetail?.diets.map((plaftorm, index) => {
+                return foodDetail?.diets.length - 1 === index ? (
                   <span key={index}>{plaftorm}</span>
                 ) : (
                   <span key={index}>{`${plaftorm} | `}</span>
@@ -55,7 +50,7 @@ export default function Detail() {
             )}
           </p>
 
-          {foodDetail?.status && <p>Estado: activo</p>}
+          {foodDetail?.status ? <p>Estado: disponible</p> : <p>Estado: no disponible</p>}
 
           {foodDetail?.total_score > 4 && (
             <p>
