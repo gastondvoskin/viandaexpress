@@ -349,7 +349,6 @@ const foods = [
     status: true,
     total_score: 0,
   },
-
   {
     name: "Bistec a la parrilla",
     diets: ["Sin TACC", "Sin Lactosa"],
