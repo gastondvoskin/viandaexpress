@@ -1,55 +1,55 @@
 .mainContainer {
-    background-color: var(--myWhite);
-    background-color: var(--myBlack);   /* just for develop */
+  background-color: var(--myWhite);
+  background-color: var(--myBlack); /* just for develop */
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
 }
 
-.Carousel{
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--myWhite);
+.Carousel {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--myWhite);
+  width: 100%;
 }
 
 .Carousel img {
-    width: 200px;
-    height: 300px;
-    
- }
+  width: 100%;
+  height: auto;
+}
 
 .Button {
-    padding-top: 20px;
-    padding-bottom: 40px;
-    width: 1000px;
-    display: flex;
-    justify-content: space-around;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  width: 1000px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .Button button {
-    height: 120px;
-    width: 120px;
+  height: 120px;
+  width: 120px;
 }
 
 .filtros {
-    width: 450px;
-    height: 100px;
+  width: 450px;
+  height: 100px;
 }
 
 .filtros2 {
-    display: flex;
-    justify-content: space-between;
-    height: 50px;
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
 }
 
 .asereje {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
