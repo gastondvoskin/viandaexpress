@@ -20,23 +20,23 @@ const getFoodHandler = async (req, res) => {
     }
 };
 
-
-
 const postFoodHandler = async (req, res) => {
-    const { summary, name } = req.body;
-    const image = req.file.buffer; 
-
+    const { description, name, initial_price, discount, diet, category, total_score, status } = req.body;
+    const image = req.file.buffer;
+    const final_price = initial_price * (1 - (discount / 100));
+    // console.log(image);
+    console.log(diet);
     try {
-        if (summary && name && image) {
-            const newFood = await postFoodController(name, image, summary);
+        if (description && name && image && initial_price && discount && final_price && category && diet) {
+            const newFood = await postFoodController(name, image, description, category, initial_price, discount, final_price, total_score, diet, status);
             res.status(200).send(newFood);
         } else {
             throw new Error('Falta información en el cuerpo de la solicitud o la imagen no es válida');
         }
     } catch (error) {
         res.status(400).send({ error: error.message });
-  }
-}
+    }
+};
 
 const putFoodHandler = async (req, res) => {
     try {
