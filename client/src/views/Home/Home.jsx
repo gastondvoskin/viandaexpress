@@ -16,7 +16,22 @@ const Home = () => {
 
     const dispatch = useDispatch();
 
-    const allFoods = useSelector((state) => state.foodsReducer.allFoods);
+    let allFoods = [];
+    allFoods = useSelector((state) => state.foodsReducer.allFoods);
+    console.log(allFoods);
+
+    /* This implementation will change once we have a deployed DB */
+    useEffect(() =>{
+        if (!allFoods.length) {
+            console.log('if');
+            axios.get("http://localhost:3001/api")
+            .then(() => dispatch(getFoods()))
+        }
+        else {
+            console.log('else');
+            dispatch(getFoods());
+        }
+    },[dispatch]);
 
     const [order, setOrder] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
@@ -30,17 +45,7 @@ const Home = () => {
         setCurrentPage(pageNumber);
     };
 
-    /* This implementation will change once we have a deployed DB */
-    useEffect(() =>{
-        !allFoods.length  
-        ? axios.get("http://localhost:3001/api")
-            .then(() => dispatch(getFoods()))
-        : dispatch(getFoods())
-    },[dispatch]);
 
-    useEffect(() => {
-      dispatch(getFoods());
-    },[dispatch]);
 
     const handleSelect = (selectedIndex) => {
       setIndex(selectedIndex);
@@ -48,7 +53,8 @@ const Home = () => {
 
     return (
         <div className={style.mainContainer}>
-            <div className={style.Carousel}>
+            {/* Carousel commented for develop */}
+            {/* <div className={style.Carousel}>
                 <Carousel activeIndex={index} onSelect={handleSelect}>
                     <Carousel.Item>
                     <img
@@ -83,7 +89,7 @@ const Home = () => {
                     </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
-            </div>
+            </div> */}
 
             <div className={style.Button}>
                 <button>PASTAS</button>
