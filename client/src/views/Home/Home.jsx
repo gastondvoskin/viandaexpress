@@ -32,7 +32,7 @@ const Home = () => {
 
     /* This implementation will change once we have a deployed DB */
     useEffect(() =>{
-        !allFoods  
+        !allFoods.length  
         ? axios.get("http://localhost:3001/api")
             .then(() => dispatch(getFoods()))
         : dispatch(getFoods())
