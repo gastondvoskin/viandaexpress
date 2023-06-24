@@ -6,7 +6,7 @@ const foods = [
       "https://content-cocina.lecturas.com/medio/2023/04/24/cintas_de_garbanzo_con_espinacas_y_salsa_de_setas_portobello_7f4208fc_1200x1200.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "Pasta",
+    category: "pasta",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -86,7 +86,8 @@ const foods = [
   {
     name: "Pasta con atún en salsa de chipotle",
     diets: ["Sin TACC", "Sin Lactosa"],
-    image:"https://www.lucchetti.com.mx/wp-content/uploads/2019/03/DESKTOP_MOBILE_imagenes_de_1024x683-5.png",
+    image:
+      "https://www.lucchetti.com.mx/wp-content/uploads/2019/03/DESKTOP_MOBILE_imagenes_de_1024x683-5.png",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
     category: "pasta",
@@ -348,7 +349,6 @@ const foods = [
     status: true,
     total_score: 0,
   },
-
   {
     name: "Bistec a la parrilla",
     diets: ["Sin TACC", "Sin Lactosa"],
