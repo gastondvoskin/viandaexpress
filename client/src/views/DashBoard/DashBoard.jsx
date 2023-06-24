@@ -3,19 +3,21 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import validation from './validation.jsx'
 import style from './DashBoard.module.css'
+// import { postFood } from "../../redux/foodSlice.js";
+import axios from "axios";
 
 export default function DashBoard(){
     const dispatch = useDispatch();
-    const diets=useSelector(state=>state.foodsReducer.diets)
+    const diets =useSelector(state=>state.foodsReducer.diets)
     const allFoods=useSelector(state=>state.foodsReducer.allFoods)
     const categories=useSelector(state=>state.foodsReducer.categories)
-    console.log(categories)
+    // console.log(allFoods)
     const [input,setInput]=useState({
         name: "",
         description: "",
         diets: [],
         category: "",
-        price: 0,
+        initial_price: 0,
         discount: 0,
         image: "",
     })
@@ -24,7 +26,7 @@ export default function DashBoard(){
         description: "",
         diets: "",
         category: "",
-        price: "",
+        initial_price: "",
         discount: "",
         image: "",
     })
@@ -34,37 +36,70 @@ export default function DashBoard(){
             ...input,
             [name]: value,
         })
-        // setErrors(validation({
-        //     ...input,
-        //     [name]: value,
-        // }))
     }
-    const handleSubmit=(e)=>{
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        setInput({
+          ...input,
+          image: file,
+        });
+      };
+    const handleSubmit= async (e)=>{
         e.preventDefault();
         setErrors(validation(input))
-        if(!input.name||!input.description||!input.category||!input.diets.length||!input.image||!input.price||!input.discount){
+        if(!input.name||!input.description||!input.category||!input.diets.length||!input.image||input.initial_price<0||input.discount<0||input.discount>100){
             alert(`Llena todos los campos para crear la vianda`);
         }else{
-            console.log(input);
-            // dispatch(postRecipes(input));
-            alert(`Receta de ${input.name} creada`);
-            setInput({
-                name: "",
-                summary: "",
-                diets: [],
-                category: "",
-                    price: 0,
-                discount: 0,
-                image: "",
-            });
+            try {
+                const formData = new FormData();
+                formData.append("name", input.name);
+                formData.append("description", input.description);
+                formData.append("category", input.category);
+                formData.append("diet", input.diets);
+                formData.append("initial_price", input.initial_price);
+                formData.append("discount", input.discount);
+                formData.append("image", input.image);
+                console.log(formData);
+                await axios.post("http://localhost:3001/food", formData, {
+                    headers: {
+                      "Content-Type": "multipart/form-data",
+                    },
+                  });
+                alert(`Receta de ${input.name} creada`);
+                setInput({
+                    name: "",
+                    description: "",
+                    diets: [],
+                    category: "",
+                    initial_price: 0,
+                    discount: 0,
+                    image: "",
+                });
+            } catch (error) {
+                alert (error.message)
+            }
+            
+            // dispatch(postFood(input));
+           
         }
     }
-    const handleCheck=(e)=>{
+    const handleCheck = (e) => {
+        const { value, checked } = e.target;
+        let updatedDiets = [...input.diets];
+      
+        if (checked) {
+          updatedDiets.push(value); // Agregar al array si está seleccionado
+        } else {
+          updatedDiets = updatedDiets.filter((diet) => diet !== value); // Eliminar del array si está deseleccionado
+        }
+      
         setInput({
-            ...input,
-            diets: [...input.diets,e.target.value],
-        })
-    }
+          ...input,
+          diets: updatedDiets,
+        });
+      };
+      
     const handleSelect=(e)=>{
         setInput({
             ...input,
@@ -105,23 +140,28 @@ export default function DashBoard(){
                                         <p>{errors.category}</p>
                                     ):null}
                             </div>
-                            <div>
-                                <label><h3>Dietas:</h3></label>
-                                {diets.map(di=>{
-                                    return(<div ><label><input type='checkbox' name={di} value={di} onChange={e=>handleCheck(e)} defaultChecked={false} />{di}</label></div>)
-                                })}
-                                {errors.diets?(
-                                        <p>{errors.diets}</p>
-                                    ):null}
-                            </div>
+                            {diets.map((di) => (
+                                <div key={di}>
+                                    <label>
+                                    <input
+                                        type="checkbox"
+                                        name="diet"
+                                        value={di}
+                                        checked={input.diets.includes(di)}
+                                        onChange={handleCheck}
+                                    />
+                                    {di}
+                                    </label>
+                                </div>
+                            ))}
                         </div>
                         <div className={style.SubSectionDB}>
                             <div className={style.SectionDB}>
                                 <div className={style.NumberDB}>
                                     <label><h3>Precio de Vianda:</h3></label>
-                                    <input type='number' name='price' value={input.price} onChange={handleChange} className={style.InputNumberDB} />
-                                    {errors.price?(
-                                            <p>{errors.price}</p>
+                                    <input type='number' name='initial_price' value={input.initial_price} onChange={handleChange} className={style.InputNumberDB} />
+                                    {errors.initial_price?(
+                                            <p>{errors.initial_price}</p>
                                         ):null}
                                 </div>
                                 <div className={style.NumberDB}>
@@ -135,7 +175,7 @@ export default function DashBoard(){
                             <div>
                                 <label><h3>Imagen:</h3></label>
                                 <label>podemos implementar cloudinary, sino usamos un input text</label>
-                                <input type='text' name='image' value={input.image}  onChange={handleChange} />
+                                <input type="file" name="image" onChange={handleImageChange} />
                                 {errors.image?(
                                         <p>{errors.image}</p>
                                     ):null}
