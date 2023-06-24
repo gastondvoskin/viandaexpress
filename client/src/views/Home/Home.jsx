@@ -114,6 +114,7 @@ const Home = () => {
                     foodsPerPage={foodsPerPage}
                     foods={allFoods.length}
                     paginado={paginado} 
+                    currentPage={currentPage}
                 />
 
                 <CardsContainer currentFoods={currentFoods}/>
