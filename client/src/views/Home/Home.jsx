@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import style from "./Home.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import SearchBar from "../../components/SearchBar/SearchBar";
 import { getFoods } from "../../redux/foodActions.js";
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import Paginado from "../../components/Paginado/Paginado";
@@ -21,13 +21,10 @@ const Home = () => {
 
   /* This implementation will change once we have a deployed DB */
   useEffect(() => {
-    if (!allFoods.length) {
-      console.log("if");
-      axios.get("http://localhost:3001/api").then(() => dispatch(getFoods()));
-    } else {
+    
       console.log("else");
       dispatch(getFoods());
-    }
+    
   }, [dispatch]);
 
   const [order, setOrder] = useState("");
@@ -102,6 +99,9 @@ const Home = () => {
       </div>
 
       <div className={style.asereje}>
+
+        <SearchBar setCurrentPage={setCurrentPage}/>
+
         <Paginado
           foodsPerPage={foodsPerPage}
           foods={allFoods.length}
