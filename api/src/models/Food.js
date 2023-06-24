@@ -46,7 +46,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       diet: {
-        type: DataTypes.STRING,
+        type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false,
         
       }
