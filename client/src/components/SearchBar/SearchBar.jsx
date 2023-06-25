@@ -15,7 +15,7 @@ function SearchBar({ setCurrentPage }) {
   function handleInputChange(event) {
     const updatedName = event.target.value;
     setName(updatedName);
-    dispatch(getNameFood(updatedName));
+    dispatch(getFoodByName(updatedName));
     setCurrentPage(1);
   }
 
