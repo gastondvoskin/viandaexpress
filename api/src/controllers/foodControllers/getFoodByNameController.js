@@ -1,4 +1,4 @@
-const { getAllFoodController } = require("./allFoodControllers");
+const { getAllFoodController } = require("./getAllFoodsController");
 
 
 function removeAccents(str) {
