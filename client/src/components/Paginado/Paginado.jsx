@@ -19,10 +19,16 @@ export default function Paginado({foodsPerPage, foods, paginado,currentPage}){
                                 <button className={styles.numbersActive} onClick={() => paginado(number)}>{number}</button>
                             </li>
                         )
-                    }else{
-                        return (
+                    }else if(number===1||number===pageNumbers.length||number===(currentPage-1)||number===(currentPage+1)){
+                        {return (
                             <li className="number" key={number}>
                                 <button className={styles.numbers} onClick={() => paginado(number)}>{number}</button>
+                            </li>
+                        )}
+                    }else  if(number===(currentPage-2)||number===(currentPage+2)){
+                        return (
+                            <li className="number" key={number}>
+                                <button className={styles.numbers} >...</button>
                             </li>
                         )
                     }
