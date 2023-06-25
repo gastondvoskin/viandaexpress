@@ -1,8 +1,8 @@
-const { getFoodByNameController } = require('../controllers/foodControllers/FoodByNameController');
-const { getAllFoodController } = require('../controllers/foodControllers/allFoodControllers');
+const { getFoodByNameController } = require('../controllers/foodControllers/getFoodByNameController');
+const { getAllFoodController } = require('../controllers/foodControllers/getAllFoodsController');
 const { postFoodController } = require('../controllers/foodControllers/postFoodController');
-const { deleteFoodControllers } = require('../controllers/foodControllers/deleteFoodControllers');
-const { putFoodController } = require('../controllers/foodControllers/putFoodControllers');
+const { deleteFoodController } = require('../controllers/foodControllers/deleteFoodController');
+const { putFoodController } = require('../controllers/foodControllers/putFoodController');
 
 
 const getFoodHandler = async (req, res) => {
@@ -56,7 +56,7 @@ const putFoodHandler = async (req, res) => {
 const deleteFoodHandler = async (req, res) => {
     try {
         const { id } = req.params;
-        await deleteFoodControllers(id);
+        await deleteFoodController(id);
         res.status(200).send("Se eliminó con éxito");
     } catch (error) {
         res.status(400).send({ error: error.message });
