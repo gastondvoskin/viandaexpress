@@ -21,14 +21,17 @@ const getFoodHandler = async (req, res) => {
 };
 
 const postFoodHandler = async (req, res) => {
-    const { description, name, initial_price, discount, diet, category, total_score, status } = req.body;
+    const { description, name, initial_price, discount, diets, category } = req.body;
     const image = req.file.buffer;
     const final_price = initial_price * (1 - (discount / 100));
     // console.log(image);
+    // convierto en array 'diets' que llega como string
+    const diet=diets.split(',');
+    const total_score=0;
     console.log(diet);
     try {
         if (description && name && image && initial_price && discount && final_price && category && diet) {
-            const newFood = await postFoodController(name, image, description, category, initial_price, discount, final_price, total_score, diet, status);
+            const newFood = await postFoodController(name, image, description, category, initial_price, discount, final_price, total_score, diet);
             res.status(200).send(newFood);
         } else {
             throw new Error('Falta información en el cuerpo de la solicitud o la imagen no es válida');
@@ -37,6 +40,7 @@ const postFoodHandler = async (req, res) => {
         res.status(400).send({ error: error.message });
     }
 };
+
 
 const putFoodHandler = async (req, res) => {
     try {
@@ -59,6 +63,6 @@ const deleteFoodHandler = async (req, res) => {
     }
 };
 
-  
+
 
 module.exports = { getFoodHandler, postFoodHandler, putFoodHandler, deleteFoodHandler };

@@ -39,6 +39,27 @@ export const filterFoodByOrder = (payload) => async (dispatch) => {
     }
 };
 
+export const postFood=(input)=>async (dispatch)=> {
+    try {
+        const formData = new FormData();
+        formData.append("name", input.name);
+        formData.append("description", input.description);
+        formData.append("category", input.category);
+        formData.append("diet", input.diets);
+        formData.append("initial_price", input.initial_price);
+        formData.append("discount", input.discount);
+        formData.append("image", input.image);
+        console.log(formData);
+        await axios.post("http://localhost:3001/food", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+        });
+        dispatch(postFoods());
+        } catch (error) {
+            alert (error.message)
+        }
+}
 
 // Do not delete. Uncomment and test when the endpoint `http://localhost:3001/food/${id}` is created
 // export const getFood = (id) => async (dispatch) => {

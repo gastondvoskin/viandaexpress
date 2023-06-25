@@ -39,6 +39,7 @@ const Home = () => {
   const indexOfLastFood = currentPage * foodsPerPage;
   const indexOfFirstFood = indexOfLastFood - foodsPerPage;
   const currentFoods = allFoods.slice(indexOfFirstFood, indexOfLastFood);
+  console.log('currentFoods: ', currentFoods);
 
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -62,7 +63,7 @@ const Home = () => {
   return (
     <div className={style.mainContainer}>
       {/* Comment carousel for develop */}
-      <div className={style.Carousel}>
+
       {/* <div className={style.Carousel}>
         <Carousel activeIndex={index} onSelect={handleSelect}>
           <Carousel.Item>
@@ -87,9 +88,8 @@ const Home = () => {
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
-      </div>
+
       </div> */}
-      </div>
 
       <div className={style.Button}>
         <button onClick={e => handleFilterByCategory(e)} value="pasta">PASTAS</button>

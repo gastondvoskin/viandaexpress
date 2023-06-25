@@ -34,6 +34,7 @@ export const foodsSlice = createSlice({
         state.allFoods
       }
     },
+    
     filteredFoodByCategory: (state, action) => {
       const foodByCategory = state.filteredByCategory
       console.log(foodByCategory)
@@ -105,6 +106,10 @@ export const foodsSlice = createSlice({
 
       
     },
+    postFoods: (state)=>{
+      state.allFoods
+    }
+
     // WIP
   }
 })

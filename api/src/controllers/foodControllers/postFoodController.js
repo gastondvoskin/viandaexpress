@@ -7,7 +7,7 @@ cloudinary.config({
   api_secret: process.env.CLOUD_API_SECRET
 });
 
-const postFoodController = async (name, image, description, category, initial_price, discount, final_price, total_score, diet, status) => {
+const postFoodController = async (name, image, description, category, initial_price, discount, final_price, total_score, diet) => {
   console.log(diet);
   const uploadResult = await new Promise((resolve, reject) => {
       cloudinary.uploader.upload_stream(
@@ -26,7 +26,8 @@ const postFoodController = async (name, image, description, category, initial_pr
   });
 
   const imageUrl = uploadResult.secure_url;
-  const product = await Food.create({ name, image: imageUrl, description, category, initial_price, discount, final_price, total_score, diet, status });
+  // Paso diets, con el valor de diet(que es el array que hacemos en handler)
+  const product = await Food.create({ name, image: imageUrl, description, category, initial_price, discount, final_price, total_score, diets:diet  });
   return product.dataValues;
 };
 

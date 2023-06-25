@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import validation from './validation.jsx'
 import style from './DashBoard.module.css'
-// import { postFood } from "../../redux/foodSlice.js";
+import { postFood } from "../../redux/foodActions.js";
 import axios from "axios";
 
 export default function DashBoard(){
@@ -45,43 +45,44 @@ export default function DashBoard(){
           image: file,
         });
       };
-    const handleSubmit= async (e)=>{
+    const handleSubmit= async  (e)=>{
+    // const handleSubmit= async (e)=>{
         e.preventDefault();
         setErrors(validation(input))
+        console.log(input)
         if(!input.name||!input.description||!input.category||!input.diets.length||!input.image||input.initial_price<0||input.discount<0||input.discount>100){
             alert(`Llena todos los campos para crear la vianda`);
         }else{
-            try {
-                const formData = new FormData();
-                formData.append("name", input.name);
-                formData.append("description", input.description);
-                formData.append("category", input.category);
-                formData.append("diet", input.diets);
-                formData.append("initial_price", input.initial_price);
-                formData.append("discount", input.discount);
-                formData.append("image", input.image);
-                console.log(formData);
-                await axios.post("http://localhost:3001/food", formData, {
-                    headers: {
-                      "Content-Type": "multipart/form-data",
-                    },
-                  });
-                alert(`Receta de ${input.name} creada`);
-                setInput({
+             try {
+                 const formData = new FormData();
+                 formData.append("name", input.name);
+                 formData.append("description", input.description);
+                 formData.append("category", input.category);
+                 formData.append("diets", input.diets);
+                 formData.append("initial_price", input.initial_price);
+                 formData.append("discount", input.discount);
+                 formData.append("image", input.image);
+                 console.log(formData);
+                 // dispatch(postFood(input));
+                 await axios.post("http://localhost:3001/food", formData, {
+                     headers: {
+                       "Content-Type": "multipart/form-data",
+                     },
+                   });
+                  alert(`Receta de ${input.name} creada`);
+                  setInput({
                     name: "",
                     description: "",
                     diets: [],
                     category: "",
-                    initial_price: 0,
-                    discount: 0,
-                    image: "",
-                });
-            } catch (error) {
-                alert (error.message)
-            }
-            
-            // dispatch(postFood(input));
-           
+                  initial_price: 0,
+                discount: 0,
+                  image: "",
+                  });
+              
+             } catch (error) {
+                 alert (error.message)
+             }        
         }
     }
     const handleCheck = (e) => {
@@ -174,7 +175,6 @@ export default function DashBoard(){
                             </div>
                             <div>
                                 <label><h3>Imagen:</h3></label>
-                                <label>podemos implementar cloudinary, sino usamos un input text</label>
                                 <input type="file" name="image" onChange={handleImageChange} />
                                 {errors.image?(
                                         <p>{errors.image}</p>
