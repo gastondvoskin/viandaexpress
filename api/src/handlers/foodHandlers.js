@@ -21,10 +21,13 @@ const getFoodHandler = async (req, res) => {
 };
 
 const postFoodHandler = async (req, res) => {
-    const { description, name, initial_price, discount, diet, category, total_score, status } = req.body;
+    const { description, name, initial_price, discount, diets, category } = req.body;
     const image = req.file.buffer;
     const final_price = initial_price * (1 - (discount / 100));
     // console.log(image);
+    const diet=diets.split(',');
+    const status=true;
+    const total_score=0;
     console.log(diet);
     try {
         if (description && name && image && initial_price && discount && final_price && category && diet) {
