@@ -1,9 +1,9 @@
 const { Food } = require('../../db');
 
-const deleteFoodControllers = async (foodId) => {
+const deleteFoodController = async (foodId) => {
     await Food.destroy({
         where: { id: foodId }
     });
 };
 
-module.exports = { deleteFoodControllers };
+module.exports = { deleteFoodController };
