@@ -41,6 +41,7 @@ const postFoodHandler = async (req, res) => {
     }
 };
 
+
 const putFoodHandler = async (req, res) => {
     try {
         const { id } = req.params;
@@ -62,6 +63,6 @@ const deleteFoodHandler = async (req, res) => {
     }
 };
 
-  
+
 
 module.exports = { getFoodHandler, postFoodHandler, putFoodHandler, deleteFoodHandler };

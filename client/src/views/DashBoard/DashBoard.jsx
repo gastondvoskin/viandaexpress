@@ -6,45 +6,46 @@ import style from './DashBoard.module.css'
 import { postFood } from "../../redux/foodActions.js";
 // import axios from "axios";
 
-export default function DashBoard(){
-    const dispatch = useDispatch();
-    const diets =useSelector(state=>state.foodsReducer.diets)
-    const allFoods=useSelector(state=>state.foodsReducer.allFoods)
-    const categories=useSelector(state=>state.foodsReducer.categories)
-    // console.log(allFoods)
-    const [input,setInput]=useState({
-        name: "",
-        description: "",
-        diets: [],
-        category: "",
-        initial_price: 0,
-        discount: 0,
-        image: "",
-    })
-    const [errors,setErrors]=useState({
-        name: "",
-        description: "",
-        diets: "",
-        category: "",
-        initial_price: "",
-        discount: "",
-        image: "",
-    })
-    const handleChange=(e)=>{
-        let {name,value}=e.target;
-        setInput({
-            ...input,
-            [name]: value,
-        })
-    }
+export default function DashBoard() {
+  const dispatch = useDispatch();
+  const diets = useSelector((state) => state.foodsReducer.diets);
+  const allFoods = useSelector((state) => state.foodsReducer.allFoods);
+  const categories = useSelector((state) => state.foodsReducer.categories);
+  // console.log(allFoods)
+  const [input, setInput] = useState({
+    name: "",
+    description: "",
+    diets: [],
+    category: "",
+    initial_price: 0,
+    discount: 0,
+    image: "",
+  });
+  const [errors, setErrors] = useState({
+    name: "",
+    description: "",
+    diets: "",
+    category: "",
+    initial_price: "",
+    discount: "",
+    image: "",
+  });
+  const handleChange = (e) => {
+    let { name, value } = e.target;
+    setInput({
+      ...input,
+      [name]: value,
+    });
+  };
 
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        setInput({
-          ...input,
-          image: file,
-        });
-      };
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setInput({
+      ...input,
+      image: file,
+    });
+  };
+ 
     const handleSubmit= (e)=>{
     // const handleSubmit= async (e)=>{
         e.preventDefault();
@@ -97,17 +98,21 @@ export default function DashBoard(){
         }
       
         setInput({
-          ...input,
-          diets: updatedDiets,
+          name: "",
+          description: "",
+          diets: [],
+          category: "",
+          initial_price: 0,
+          discount: 0,
+          image: "",
         });
-      };
-      
-    const handleSelect=(e)=>{
-        setInput({
-            ...input,
-            category: e.target.value,
-        })
+      } catch (error) {
+        alert(error.message);
+      }
+
+      // dispatch(postFood(input));
     }
+
     return(
         <div>
             <Link to='/'><button className={style.ButtonDB}>Home</button></Link>
@@ -187,6 +192,9 @@ export default function DashBoard(){
                         
                 </form>
             </div>
-        </div>
-    )
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 }
