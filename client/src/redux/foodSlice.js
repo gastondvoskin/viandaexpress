@@ -6,7 +6,7 @@ const initialState = {
   allFoods: [],
   foodDetail: [],
   diets: ['Sin TACC','Vegetariano','Vegano','Sin Lactosa'],    /* TONO: why is there a diets property in redux? */
-  categories:['pastas','ensaladas','carnes'],      /* TONO: why is there a categories property in redux? */
+  categories:['Pastas','Ensaladas','Carnes'],      /* TONO: why is there a categories property in redux? */
   filteredByName: [],
   filteredByCategory: [],
   filteredByOrder: [],

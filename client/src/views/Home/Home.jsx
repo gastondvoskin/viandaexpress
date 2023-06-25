@@ -92,9 +92,9 @@ const Home = () => {
       </div> */}
 
       <div className={style.Button}>
-        <button onClick={e => handleFilterByCategory(e)} value="pasta">PASTAS</button>
-        <button onClick={e => handleFilterByCategory(e)} value="carnes">CARNES</button>
-        <button onClick={e => handleFilterByCategory(e)} value="ensalada">ENSALADAS</button>
+        <button onClick={e => handleFilterByCategory(e)} value="Pastas">PASTAS</button>
+        <button onClick={e => handleFilterByCategory(e)} value="Carnes">CARNES</button>
+        <button onClick={e => handleFilterByCategory(e)} value="Ensaladas">ENSALADAS</button>
       </div>
 
       <div className={style.filtros}>
