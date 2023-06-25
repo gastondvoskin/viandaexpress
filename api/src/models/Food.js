@@ -35,6 +35,7 @@ module.exports = (sequelize) => {
       },
       status: {
         type: DataTypes.BOOLEAN,
+        defaultValue:true,
         allowNull: true,
       },
       total_score: {
