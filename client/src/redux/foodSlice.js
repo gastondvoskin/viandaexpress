@@ -30,6 +30,9 @@ export const foodsSlice = createSlice({
       }else{
         state.allFoods
       }
+    },
+    postFoods: (state)=>{
+      state.allFoods
     }
     // WIP
   }
@@ -37,6 +40,6 @@ export const foodsSlice = createSlice({
 
 
 
-export const { getAllFoods, getAllFoodsByName } = foodsSlice.actions
+export const { getAllFoods, getAllFoodsByName, postFoods } = foodsSlice.actions
 
 export default foodsSlice.reducer; /* it will be imported in the store */
