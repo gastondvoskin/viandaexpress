@@ -5,7 +5,7 @@ import style from "./Home.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import { getFoods } from "../../redux/foodActions.js";
+import { getFoods, filterFoodByCategory, filterFoodByOrder } from "../../redux/foodActions.js";
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import Paginado from "../../components/Paginado/Paginado";
 import axios from "axios";
@@ -30,6 +30,8 @@ const Home = () => {
     }
   }, [dispatch]);
 
+
+
   const [order, setOrder] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [foodsPerPage, setFoodsPerPage] = useState(10);
@@ -46,10 +48,22 @@ const Home = () => {
     setIndex(selectedIndex);
   };
 
+  function handleFilterByCategory(e){
+    e.preventDefault()
+    dispatch(filterFoodByCategory(e.target.value))
+  }
+
+  function handleFilterByOrder(e){
+    e.preventDefault()
+    dispatch(filterFoodByOrder(e.target.value))
+    setOrder(`Odenado ${e.target.value}`)
+  }
+
   return (
     <div className={style.mainContainer}>
       {/* Comment carousel for develop */}
       <div className={style.Carousel}>
+      {/* <div className={style.Carousel}>
         <Carousel activeIndex={index} onSelect={handleSelect}>
           <Carousel.Item>
             <img src="../src/assets/viandas_2.jpeg" alt="First slide" />
@@ -60,7 +74,6 @@ const Home = () => {
           </Carousel.Item>
           <Carousel.Item>
             <img src="../src/assets/viandas_3.jpeg" alt="Second slide" />
-
             <Carousel.Caption>
               <h3>VERDURAS HERVIDAS</h3>
               <p>PAPA, ZANAHORIA, CHAUCHA</p>
@@ -68,7 +81,6 @@ const Home = () => {
           </Carousel.Item>
           <Carousel.Item>
             <img src="../src/assets/viandas_4.jpeg" alt="Third slide" />
-
             <Carousel.Caption>
               <h3>LA MEJOR VARIEDAD</h3>
               <p>TODAS PREPARADAS CON ALIMENTOS SALUDABLES</p>
@@ -76,11 +88,13 @@ const Home = () => {
           </Carousel.Item>
         </Carousel>
       </div>
+      </div> */}
+      </div>
 
       <div className={style.Button}>
-        <button>PASTAS</button>
-        <button>CARNES</button>
-        <button>ENSALADAS</button>
+        <button onClick={e => handleFilterByCategory(e)} value="pasta">PASTAS</button>
+        <button onClick={e => handleFilterByCategory(e)} value="carnes">CARNES</button>
+        <button onClick={e => handleFilterByCategory(e)} value="ensalada">ENSALADAS</button>
       </div>
 
       <div className={style.filtros}>
@@ -93,10 +107,13 @@ const Home = () => {
             <option value="">Sin lactosa</option>
           </select>
 
-          <select name="" id="">
-            <option value="">Orden</option>
-            <option value="">Precio</option>
-            <option value="">Popularidad</option>
+          <select onChange={e => handleFilterByOrder(e)}>
+            <option value="">Ordenar</option>
+              <option value="expensive">Costosa</option>
+              <option value="cheap">Barata</option>
+              <option value="atoz"> A to Z</option>
+              <option value="ztoa">Z to A</option>
+              
           </select>
         </div>
       </div>
@@ -119,3 +136,12 @@ const Home = () => {
 };
 
 export default Home;
+
+/**
+ *option y valores para ordernar por Popularidad 
+ *<option value="asc">Más Popular</option>
+  <option value="desc">Menos Popular</option>
+ * 
+ * 
+ * 
+ */
