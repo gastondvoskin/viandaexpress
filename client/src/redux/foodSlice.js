@@ -5,6 +5,7 @@ import { hardcodedFoodsArray } from "../../hardcodedFoods";
 const initialState = {
   allFoods: [],
   foodDetail: [],
+
   diets: ['Sin TACC','Vegetariano','Vegano','Sin Lactosa'],    /* TONO: why is there a diets property in redux? */
   categories:['Pastas','Ensaladas','Carnes'],      /* TONO: why is there a categories property in redux? */
   filteredByName: [],
@@ -25,15 +26,18 @@ export const foodsSlice = createSlice({
       state.filteredByCategory = allFoods;
       state.filteredByOrder = allFoods;
     },
+
     getFoodsByName: (state, action) => {
       const foodByName = action.payload
       state.filteredByName = foodByName
       if(foodByName !== ""){
+
         state.allFoods = state.filteredByName
-      }else{
+      } else {
         state.allFoods
       }
     },
+
     
     filteredFoodByCategory: (state, action) => {
       const foodByCategory = state.filteredByCategory
@@ -107,6 +111,7 @@ export const foodsSlice = createSlice({
       
     },
     postFoods: (state)=>{
+
       state.allFoods
     }
 

@@ -119,8 +119,7 @@ const Home = () => {
       </div>
 
       <div className={style.asereje}>
-
-        <SearchBar setCurrentPage={setCurrentPage}/>
+        <SearchBar setCurrentPage={setCurrentPage} />
 
         <Paginado
           foodsPerPage={foodsPerPage}
