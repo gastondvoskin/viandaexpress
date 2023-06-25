@@ -32,6 +32,8 @@ function Nav() {
                     <FontAwesomeIcon icon={faUser} />
                 </NavLink>
 
+                <Link to="/dashboard"><button>Dashboard</button></Link>
+
             </div>
         </nav>
         

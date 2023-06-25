@@ -1,0 +1,35 @@
+.ButtonDB:hover{
+    transform: scale(0.95);
+}
+.DivDB{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* width: 80%;
+    height: 50%; */
+    margin: 5px 5px 10px 5px;
+    padding-bottom: 10px;
+}
+.SectionDB{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+    margin: 5px;
+}
+.SubSectionDB{
+    display:flex;
+    flex-direction: column;
+    align-items: left;
+    background-color: #9c9c9c;
+    width: 50%;
+    border-radius: 10px;
+    margin: 15px;
+    padding: 15px;
+}
+.InputNumberDB{
+    width: 50px;
+}
+.NumberDB{
+    margin: 0 5px 0 5px;
+}
