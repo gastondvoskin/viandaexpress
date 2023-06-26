@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { activeFilteredFoodsAction, filterByCategoryAction, setCurrentPageAction, setOrderAction } from '../../redux/foodActions';
+import styles from "./categoryButtons.module.css";
 
 const CategoryButtons = () => {
     const allFoods  = useSelector((state) => state.foodsReducer.allFoods);
@@ -34,29 +35,29 @@ const CategoryButtons = () => {
 
 
   return (
-    <div>
+    <div className={styles.buttonsContainer}>
         <button
-            // className={style.pastas}
+            className={styles.pastas}
             onClick={(e) => handleClick(e)}
             value="Pastas"
         >
-            Pastas
+            {/* Pastas */}
         </button>
 
         <button
-            // className={style.meat}
+            className={styles.meat}
             onClick={(e) => handleClick(e)}
             value="Carnes"
         >
-            Carnes
+            {/* Carnes */}
         </button>
 
         <button
-            // className={style.salads}
+            className={styles.salads}
             onClick={(e) => handleClick(e)}
             value="Ensaladas"
         >
-            Ensaladas
+            {/* Ensaladas */}
         </button>
   </div>
   )
