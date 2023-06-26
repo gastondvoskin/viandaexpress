@@ -10,7 +10,7 @@
 
 /* BODY */
 body {
-  background-color: var(--myWhite);
-  color: var(--myBlack);
+  background-color: var(--myBlack);
+  color: var(--myWhite);
   font-family: var(--fontFamily);
 }
