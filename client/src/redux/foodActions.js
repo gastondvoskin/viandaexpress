@@ -3,6 +3,7 @@
 import axios from "axios";
 import { getAllFoods, getFoodsByName,orderFoods,activeFilteredFood,setOrder,setCurrentPage,filterByCategory/* , getFoodById */ } from "./foodSlice.js";
 
+
 export const getFoods = () => async (dispatch) => {
     try {
         const response = await axios.get("http://localhost:3001/food"); 
@@ -85,6 +86,7 @@ export const postFood=(input)=>async (dispatch)=> {
             alert (error.message)
         }
 }
+
 
 // Do not delete. Uncomment and test when the endpoint `http://localhost:3001/food/${id}` is created
 // export const getFood = (id) => async (dispatch) => {

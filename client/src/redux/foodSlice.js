@@ -69,10 +69,18 @@ export const foodsSlice = createSlice({
       const filteredByCategory = action.payload
       state.filteredFoods = filteredByCategory
     },
+
     postFoods: (state) => {
       state.allFoods;
     },
 
+    editFoods: (state)=>{
+      state.allFoods
+    },
+
+    deletFoods: (state)=>{
+      state.allFoods
+    }
     // WIP
   },
 });
@@ -84,8 +92,11 @@ export const {
   orderFoods,
   setOrder,
   setCurrentPage,
-  filterByCategory
+  filterByCategory,
+  editFoods,
+  deleteFoods
 } = foodsSlice.actions;
+
 
 export default foodsSlice.reducer; /* it will be imported in the store */
 
