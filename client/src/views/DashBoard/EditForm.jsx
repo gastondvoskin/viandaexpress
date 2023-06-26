@@ -11,11 +11,13 @@ export default function EditForm(setEdited){
     console.log(toEdit.name)
     const input=[]
     const [select,setSelect]=useState({
+        name: toEdit.name,
         initial_price: toEdit.initial_price,
         discount: toEdit.discount,
         status: toEdit.status,
     })
     const [editable,setEditable]=useState({
+        name: true,
         initial_price: true,
         discount: true,
         status: true,
@@ -58,7 +60,7 @@ export default function EditForm(setEdited){
       }
     return (
         <div>
-            <h1>{toEdit.name}</h1>
+            <input className={style.diets} type='checkbox' name='name' onChange={handleCheck}/><input type='text' name='name' value={select.name} disabled={editable.name} onChange={handleChange} className={style.inputTitle}/>
             <input className={style.diets} type='checkbox' name='initial_price' onChange={handleCheck}/><label><h3 className={style["h3-title"]}>Precio Inicial: </h3></label>
             <input type='number' name='initial_price' value={select.initial_price} disabled={editable.initial_price} onChange={handleChange}/>
             <input className={style.diets} type='checkbox' name='discount' onChange={handleCheck}/><label><h3 className={style["h3-title"]}>Descuento: </h3></label>
