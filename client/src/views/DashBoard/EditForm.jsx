@@ -45,10 +45,6 @@ export default function EditForm(setEdited){
     }
     const handleSelect = (e) => {
         const {name,value}=e.target
-        setInput({
-          ...input,
-          [name]: value,
-        });
         setSelect({
             ...select,
             status:value,
