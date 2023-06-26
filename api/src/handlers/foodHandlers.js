@@ -45,9 +45,12 @@ const postFoodHandler = async (req, res) => {
 const putFoodHandler = async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, diet, description, image, initial_price, discount, final_price, status, category } = req.body;
-        const food = await putFoodController(id, name, diet, description, image, initial_price, discount, final_price, status, category);
-        res.status(200).send(food);
+        const { name, diet, description, initial_price, discount, final_price, status, category } = req.body;
+        const image = req.file ? req.file.buffer : null;
+        console.log(image);
+        console.log(req.body);
+        await putFoodController(id, name, diet, description, image, initial_price, discount, final_price, status, category);
+        res.status(200).send('Modificacion exitosa');
     } catch (error) {
         res.status(400).send({ error: error.message });
     }
