@@ -86,3 +86,12 @@ https://www.passportjs.org/
 
 
 
+Changed background-image. 
+Home.jsx. Deleted unnecessary event.preventDefault. 
+Replaced Foods for food. 
+Created diets.js and categories.js. 
+Added setCurrentPage(1) to filters in Home. 
+Deleted unncessary orderLocalState in Home. 
+
+Home was rendering allFoods, instead of currentFoods. 
+Filters in Home are not modularized. 

@@ -9,7 +9,7 @@ const upload = multer({ storage: storage });
 
 foodRouter.get('/', getFoodHandler );
 foodRouter.post('/', upload.single('image'), postFoodHandler);
-foodRouter.put('/:id', putFoodHandler );
+foodRouter.put('/:id', upload.single('image'), putFoodHandler);
 foodRouter.delete('/:id', deleteFoodHandler);
 
 
