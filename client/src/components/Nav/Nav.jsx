@@ -1,7 +1,7 @@
 import SearchBar from "../SearchBar/SearchBar.jsx";
 import { Link /* NavLink */ } from "react-router-dom";
 import styles from "./Nav.module.css";
-import logo from "../../assets/LogoViandaExpress.jpeg";
+import logo from "../../assets/logo/LogoViandaExpress.jpeg";
 
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
@@ -15,7 +15,8 @@ function Nav() {
       </Link>
 
       <div className={styles.rightContainer}>
-        <SearchBar />
+        {/* Comentario TONO: El Searchbar está comentado hasta que el estado global tenga una propiedad currentPage */}
+        {/* <SearchBar /> */}
 
         {/* No borrar, lo vamos a usar en el futuro */}
 

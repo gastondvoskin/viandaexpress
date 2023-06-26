@@ -4,8 +4,6 @@
   flex-direction: row;
   justify-content: space-between;
   height: 100px;
-  margin-bottom: 50px;
-  padding: 10px;
   align-items: center;
   background-color: var(--myWhite);
   color: black;
