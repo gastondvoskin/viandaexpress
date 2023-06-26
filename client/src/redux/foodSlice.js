@@ -7,6 +7,7 @@ const initialState = {
   foodDetail: [],
   filteredFoods:[],
   activeFilteredFoods:false,
+  orderBy:'',
   diets: [
     "Sin TACC",
     "Vegetariano",
@@ -47,7 +48,19 @@ export const foodsSlice = createSlice({
         state.allFoods;
       }
     },
+    orderFoods:(state,action) =>{
+      const orderedFoods = action.payload;
+      state.filteredFoods = orderedFoods
+    },
 
+    activeFilteredFood:(state,action) =>{
+      const bolean = action.payload;
+      state.activeFilteredFoods = bolean
+    },
+    setOrder:(state,action) =>{
+      const order = action.payload;
+      state.orderBy = order
+    },
     filteredFoodByCategory: (state, action) => {
       const selectedCategory = action.payload; 
       if (selectedCategory === "Todas") {
@@ -136,6 +149,9 @@ export const {
   getFoodsByName,
   filteredFoodByCategory,
   filteredFoodByOrder,
+  activeFilteredFood,
+  orderFoods,
+  setOrder
 } = foodsSlice.actions;
 
 export default foodsSlice.reducer; /* it will be imported in the store */

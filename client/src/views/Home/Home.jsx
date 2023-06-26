@@ -12,15 +12,15 @@ import {
 } from "../../redux/foodActions.js";
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import Paginado from "../../components/Paginado/Paginado";
+import  OrderOptions  from "../../components/orderOptions/orderOptions";
 import axios from "axios";
 
 const Home = () => {
   const [index, setIndex] = useState(0);
-
   const dispatch = useDispatch();
-
-  let allFoods = [];
-  allFoods = useSelector((state) => state.foodsReducer.allFoods);
+  const allFoods  = useSelector((state) => state.foodsReducer.allFoods);
+  const filteredFoods  = useSelector((state) => state.foodsReducer.filteredFoods);
+  console.log(filteredFoods)
   console.log(allFoods);
 
   /* This implementation will change once we have a deployed DB */
@@ -127,7 +127,7 @@ const Home = () => {
             <option value="">Sin tacc</option>
             <option value="">Sin lactosa</option>
           </select>
-
+          <OrderOptions/>
           <select onChange={(e) => handleFilterByOrder(e)}>
             <option value="">Ordenar</option>
             <option value="expensive">Costosa</option>
@@ -140,7 +140,7 @@ const Home = () => {
 
       <div className={style.asereje}>
         <SearchBar setCurrentPage={setCurrentPage} />
-
+        
         <Paginado
           foodsPerPage={foodsPerPage}
           foods={allFoods.length}
