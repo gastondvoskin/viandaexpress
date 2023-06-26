@@ -1,3 +1,5 @@
+/* Comentario TONO: Modificar para que sea responsive. */
+
 .cardsContainer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -6,6 +8,7 @@
   align-items: center;
   padding: 10px 60px;
 }
+
 .link {
   text-decoration: none;
 }

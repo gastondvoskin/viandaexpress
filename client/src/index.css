@@ -4,13 +4,18 @@
 :root {
   --myBlack: black;
   --myWhite: white;
+  --text: black;
   --accentColor: #426b1f;
+  --backgroundColor: rgb(202, 196, 196);
   --fontFamily: "Poppins", sans-serif;
 }
 
 /* BODY */
 body {
-  background-color: var(--myBlack);
-  color: var(--myWhite);
+  /* background-color: var(--backgroundColor); */
+  /* background-image: url("./assets/background.jpg"); */
+  background-image: url("./assets/choppingBoard.jpg");
+  background-size: cover;
+  color: var(--text);
   font-family: var(--fontFamily);
 }

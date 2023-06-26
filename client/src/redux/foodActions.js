@@ -15,9 +15,9 @@ export const getFoods = () => async (dispatch) => {
 
 export const getFoodByName = (name) => async (dispatch) => {
     try {
-        const foodByName = await axios.get("http://localhost:3001/food?name=" + name); 
-        const Foods = foodByName.data;
-        dispatch(getFoodsByName(Foods));
+        const response = await axios.get("http://localhost:3001/food?name=" + name); 
+        const foodsByName = response.data;
+        dispatch(getFoodsByName(foodsByName));
     } catch (error) {
         console.log(error);
     }
