@@ -113,15 +113,22 @@ export const foodsSlice = createSlice({
     postFoods: (state)=>{
 
       state.allFoods
-    }
+    },
 
+    editFoods: (state)=>{
+      state.allFoods
+    },
+
+    deletFoods: (state)=>{
+      state.allFoods
+    }
     // WIP
   }
 })
 
 
 
-export const { getAllFoods, getFoodsByName, filteredFoodByCategory, filteredFoodByOrder } = foodsSlice.actions
+export const { getAllFoods, getFoodsByName, filteredFoodByCategory, filteredFoodByOrder, editFoods, deletFoods } = foodsSlice.actions
 
 export default foodsSlice.reducer; /* it will be imported in the store */
 

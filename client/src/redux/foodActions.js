@@ -1,7 +1,7 @@
 // actions (these are the actions that will be imported in React components)
 
 import axios from "axios";
-import { getAllFoods, getFoodsByName, filteredFoodByCategory, filteredFoodByOrder,/* , getFoodById */ } from "./foodSlice.js";
+import { getAllFoods, getFoodsByName, filteredFoodByCategory, filteredFoodByOrder, editFoods, deletFoods/* , getFoodById */ } from "./foodSlice.js";
 
 export const getFoods = () => async (dispatch) => {
     try {
@@ -60,6 +60,7 @@ export const postFood=(input)=>async (dispatch)=> {
             alert (error.message)
         }
 }
+
 
 // Do not delete. Uncomment and test when the endpoint `http://localhost:3001/food/${id}` is created
 // export const getFood = (id) => async (dispatch) => {
