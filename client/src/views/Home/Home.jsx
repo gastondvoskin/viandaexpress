@@ -33,7 +33,8 @@ const Home = () => {
   }, [dispatch]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [foodsPerPage, setFoodsPerPage] = useState(8);
+  const foodsPerPage = 8;
+
 
   const indexOfLastFood = currentPage * foodsPerPage;
   const indexOfFirstFood = indexOfLastFood - foodsPerPage;

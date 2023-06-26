@@ -1,11 +1,12 @@
-// reducer (foodsSlice.reducer is by now the only reducer)
+ // reducer (foodsSlice.reducer is by now the only reducer)
 import { createSlice } from "@reduxjs/toolkit";
 import { hardcodedFoodsArray } from "../../hardcodedFoods";
 
 const initialState = {
   allFoods: [],
   foodDetail: [],
-
+  filteredFoods:[],
+  activeFilteredFoods:false,
   diets: [
     "Sin TACC",
     "Vegetariano",
