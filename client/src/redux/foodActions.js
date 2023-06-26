@@ -1,7 +1,7 @@
 // actions (these are the actions that will be imported in React components)
 
 import axios from "axios";
-import { getAllFoods, getAllFoodsByName, postFoods/* , getFoodById */ } from "./foodSlice.js";
+import { getAllFoods, getFoodsByName, filteredFoodByCategory, filteredFoodByOrder,/* , getFoodById */ } from "./foodSlice.js";
 
 export const getFoods = () => async (dispatch) => {
     try {
@@ -13,12 +13,27 @@ export const getFoods = () => async (dispatch) => {
     }
 };
 
-export const getNameFood = (name) => async (dispatch) => {
+export const getFoodByName = (name) => async (dispatch) => {
     try {
-        const nameFood = await axios.get("http://localhost:3001/food?name=" + name); 
-        const allNameFoods = nameFood.data;
-        console.log(getAllFoodsByName(allNameFoods))
-        dispatch(getAllFoodsByName(allNameFoods));
+        const foodByName = await axios.get("http://localhost:3001/food?name=" + name); 
+        const Foods = foodByName.data;
+        dispatch(getFoodsByName(Foods));
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const filterFoodByCategory = (payload) => async (dispatch) => {
+    try {
+        dispatch(filteredFoodByCategory(payload));
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const filterFoodByOrder = (payload) => async (dispatch) => {
+    try {
+        dispatch(filteredFoodByOrder(payload));
     } catch (error) {
         console.log(error);
     }

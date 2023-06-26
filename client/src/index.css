@@ -1,12 +1,16 @@
 /* CSS Variables */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
 :root {
   --myBlack: black;
   --myWhite: white;
   --accentColor: #426b1f;
+  --fontFamily: "Poppins", sans-serif;
 }
 
 /* BODY */
 body {
   background-color: var(--myBlack);
   color: var(--myWhite);
+  font-family: var(--fontFamily);
 }

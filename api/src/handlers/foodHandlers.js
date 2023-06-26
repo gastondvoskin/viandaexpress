@@ -1,8 +1,8 @@
-const { getFoodByNameController } = require('../controllers/foodControllers/FoodByNameController');
-const { getAllFoodController } = require('../controllers/foodControllers/allFoodControllers');
+const { getFoodByNameController } = require('../controllers/foodControllers/getFoodByNameController');
+const { getAllFoodController } = require('../controllers/foodControllers/getAllFoodsController');
 const { postFoodController } = require('../controllers/foodControllers/postFoodController');
-const { deleteFoodControllers } = require('../controllers/foodControllers/deleteFoodControllers');
-const { putFoodController } = require('../controllers/foodControllers/putFoodControllers');
+const { deleteFoodController } = require('../controllers/foodControllers/deleteFoodController');
+const { putFoodController } = require('../controllers/foodControllers/putFoodController');
 
 
 const getFoodHandler = async (req, res) => {
@@ -45,9 +45,12 @@ const postFoodHandler = async (req, res) => {
 const putFoodHandler = async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, diet, description, image, initial_price, discount, final_price, status, category } = req.body;
-        const food = await putFoodController(id, name, diet, description, image, initial_price, discount, final_price, status, category);
-        res.status(200).send(food);
+        const { name, diet, description, initial_price, discount, final_price, status, category } = req.body;
+        const image = req.file ? req.file.buffer : null;
+        console.log(image);
+        console.log(req.body);
+        await putFoodController(id, name, diet, description, image, initial_price, discount, final_price, status, category);
+        res.status(200).send('Modificacion exitosa');
     } catch (error) {
         res.status(400).send({ error: error.message });
     }
@@ -56,7 +59,7 @@ const putFoodHandler = async (req, res) => {
 const deleteFoodHandler = async (req, res) => {
     try {
         const { id } = req.params;
-        await deleteFoodControllers(id);
+        await deleteFoodController(id);
         res.status(200).send("Se eliminó con éxito");
     } catch (error) {
         res.status(400).send({ error: error.message });

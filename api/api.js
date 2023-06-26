@@ -6,7 +6,7 @@ const foods = [
       "https://content-cocina.lecturas.com/medio/2023/04/24/cintas_de_garbanzo_con_espinacas_y_salsa_de_setas_portobello_7f4208fc_1200x1200.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -20,7 +20,7 @@ const foods = [
       "https://www.cuerpomente.com/medio/2023/06/01/delicias-de-raviolis-de-maiz-con-relleno-de-setas-portobello-y-boletus-a-la-trufa_00000000_230601170012_1063x718.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -34,7 +34,7 @@ const foods = [
       "https://www.cuerpomente.com/medio/2023/06/01/panzerotti-o-medialunas-de-arroz-con-relleno-de-pera-y-ricotta_00000000_230601103938_1063x717.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -48,7 +48,7 @@ const foods = [
       "https://www.cuerpomente.com/medio/2023/06/01/tallarines-de-trigo-sarraceno-integral-con-salsa-arrabbiata_00000000_230601103730_1063x718.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -62,7 +62,7 @@ const foods = [
       "https://www.cuerpomente.com/medio/2023/06/01/noquis-de-patata-y-trigo-sarraceno-con-salsa-pesto-de-rucula-y-nueces_00000000_230601103837_1063x717.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -76,7 +76,7 @@ const foods = [
       "https://www.cuerpomente.com/medio/2023/06/01/noquis-de-patata-y-trigo-sarraceno-con-salsa-pesto-de-rucula-y-nueces_00000000_230601103837_1063x717.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -90,7 +90,7 @@ const foods = [
       "https://www.lucchetti.com.mx/wp-content/uploads/2019/03/DESKTOP_MOBILE_imagenes_de_1024x683-5.png",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -104,7 +104,7 @@ const foods = [
       "https://img-global.cpcdn.com/recipes/7041b21955686cf2/1360x964cq70/pasta-rellenas-sin-tacc-sin-gluten-vegan-foto-principal.webp",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -118,7 +118,7 @@ const foods = [
       "https://img-global.cpcdn.com/recipes/6e877bb633a841aa/1360x964cq70/pastas-con-salteado-de-verduras-sin-gluten-foto-principal.webp",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -132,7 +132,7 @@ const foods = [
       "https://img-global.cpcdn.com/recipes/bcf9698a5a0fdeb4/1360x964cq70/fideos-de-arroz-con-vegetales-horneados-pasta-apta-celiacos-foto-principal.webp",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -146,7 +146,7 @@ const foods = [
       "https://saborgourmet.com/wp-content/uploads/recetas-de-pasta-vegana-Tagliatelle-con-salsa-de-seit%C3%A1n-con-manzanas-istock-600x294.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -160,7 +160,7 @@ const foods = [
       "https://saborgourmet.com/wp-content/uploads/recetas-de-pasta-vegana-Tagliatelle-con-t%C3%A9-matcha-y-ragu-de-zanahoria-dulce-istock.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -174,7 +174,7 @@ const foods = [
       "https://saborgourmet.com/wp-content/uploads/recetas-de-pasta-vegana-Penne-con-pesto-de-tomate-seco-istock-600x323.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -188,7 +188,7 @@ const foods = [
       "https://saborgourmet.com/wp-content/uploads/recetas-de-pasta-vegana-Tortiglioni-con-uvas-y-pan-rallado-istock-600x289.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -202,7 +202,7 @@ const foods = [
       "https://saborgourmet.com/wp-content/uploads/recetas-de-pasta-vegana-Tortiglioni-con-brotes-y-col-negra-istock-600x288.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -216,7 +216,7 @@ const foods = [
       "https://saborgourmet.com/wp-content/uploads/recetas-de-pasta-vegana-Pasta-con-pesto-de-pistachos-istock-600x294.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -230,7 +230,7 @@ const foods = [
       "https://saborgourmet.com/wp-content/uploads/recetas-de-pasta-vegana-Pasta-con-aceitunas-y-tomates-secos-y-pi%C3%B1ones-istock-600x280.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -244,7 +244,7 @@ const foods = [
       "https://danzadefogones.com/wp-content/uploads/2014/04/Pasta-Alfredo-vegana-danzadefogones.com-vegan-pasta-alfredo-gf.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -258,7 +258,7 @@ const foods = [
       "https://danzadefogones.com/wp-content/uploads/2017/06/BoloC3B1esa-de-lentejas-4.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -272,7 +272,7 @@ const foods = [
       "https://danzadefogones.com/wp-content/uploads/2018/07/Espaguetis-con-salsa-verde-de-coco.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -286,7 +286,7 @@ const foods = [
       "https://danzadefogones.com/wp-content/uploads/2015/02/Pasta-con-salsa-de-pimientos-del-Piquillo-2.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -300,7 +300,7 @@ const foods = [
       "https://danzadefogones.com/wp-content/uploads/2017/08/Pasta-arrabiata-3.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -314,7 +314,7 @@ const foods = [
       "https://danzadefogones.com/wp-content/uploads/2018/03/Pasta-primavera-2.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -328,7 +328,7 @@ const foods = [
       "https://www.recetassinlactosa.com/wp-content/uploads/2015/06/Espaguetis-Carbonara-1.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -342,7 +342,7 @@ const foods = [
       "https://kaikusinlactosa.com/blog/wp-content/uploads/2016/06/Kaiku-Sin-Lactosa-Cocina-Facil-Sin-Lactosa.jpg",
     description:
       "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
-    category: "pasta",
+    category: "Pastas",
     initial_price: 50,
     discount: 0,
     final_price: 50,
@@ -361,7 +361,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Chuletas de cerdo al horno",
@@ -375,7 +375,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Filete mignon con salsa de champiñones",
@@ -389,7 +389,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Albóndigas en salsa de tomate",
@@ -403,7 +403,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Lomo de res a la provenzal",
@@ -417,7 +417,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Costillas de cerdo BBQ",
@@ -431,7 +431,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Pollo a la parrilla con limón y hierbas",
@@ -445,7 +445,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Carne asada estilo argentino",
@@ -459,7 +459,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Estofado de ternera con verduras",
@@ -473,7 +473,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Tacos de carne al pastor",
@@ -487,7 +487,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Fajitas de carne con pimientos y cebolla",
@@ -501,7 +501,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Pechuga de pollo rellena de jamón y queso",
@@ -514,7 +514,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Asado de tira al chimichurri",
@@ -528,7 +528,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Cordero al horno con hierbas",
@@ -542,7 +542,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Pollo al curry con arroz",
@@ -556,7 +556,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Tacos de carne deshebrada",
@@ -570,7 +570,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Pavo asado con relleno de hierbas",
@@ -583,7 +583,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Carne guisada con patatas",
@@ -597,7 +597,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Lomo de cerdo a la mostaza",
@@ -611,7 +611,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Pechuga de pollo a la plancha con ensalada",
@@ -625,7 +625,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Empanadas de carne argentinas",
@@ -639,7 +639,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Shawarma de carne de cordero",
@@ -653,7 +653,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "carnes",
+    category: "Carnes",
   },
   {
     name: "Ensalada de espinacas",
@@ -667,7 +667,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
   {
     name: "Ensalada César",
@@ -681,7 +681,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
   {
     name: "Ensalada de quinoa",
@@ -695,7 +695,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
   {
     name: "Ensalada Caprese",
@@ -709,7 +709,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
   {
     name: "Ensalada de frutas",
@@ -723,7 +723,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
   {
     name: "Ensalada de garbanzos",
@@ -737,7 +737,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
   {
     name: "Ensalada de aguacate",
@@ -751,7 +751,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
   {
     name: "Ensalada mixta",
@@ -764,7 +764,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
   {
     name: "Ensalada de zanahoria rallada",
@@ -778,7 +778,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
   {
     name: "Ensalada de tomate y mozzarella",
@@ -792,7 +792,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
   {
     name: "Ensalada Waldorf",
@@ -806,7 +806,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
   {
     name: "Ensalada de pepino y yogur",
@@ -820,7 +820,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
   {
     name: "Ensalada de remolacha",
@@ -834,7 +834,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
   {
     name: "Ensalada de pasta",
@@ -848,7 +848,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
   {
     name: "Ensalada griega",
@@ -862,7 +862,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
   {
     name: "Ensalada de col rizada",
@@ -876,7 +876,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
   {
     name: "Ensalada de lentejas",
@@ -890,7 +890,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
   {
     name: "Ensalada de garbanzos y aguacate",
@@ -904,7 +904,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
   {
     name: "Ensalada de patatas",
@@ -917,7 +917,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
   {
     name: "Ensalada de rúcula y parmesano",
@@ -930,7 +930,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
   {
     name: "Ensalada de naranja y aguacate",
@@ -944,7 +944,7 @@ const foods = [
     final_price: 10,
     status: true,
     total_score: 0,
-    category: "ensalada",
+    category: "Ensaladas",
   },
 ];
 

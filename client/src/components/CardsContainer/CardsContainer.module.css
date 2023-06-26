@@ -1,15 +1,11 @@
-.cardsContainer{
-    display: flex;
-    flex-direction: row;
-    border-radius: 15px;
-    flex-wrap: wrap;
-    gap: 3em;
-    width: 1200px;
-    align-items: center;
-    justify-content: center;
-    margin-top: 30px;
-    padding-bottom: 30px;
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 35px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 60px;
 }
-.link{
-    text-decoration: none;
+.link {
+  text-decoration: none;
 }
