@@ -9,6 +9,7 @@ import {
   getFoods,
   filterFoodByCategory,
   filterFoodByOrder,
+  setCurrentPageAction,
 } from "../../redux/foodActions.js";
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import Paginado from "../../components/Paginado/Paginado";
@@ -20,6 +21,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const allFoods  = useSelector((state) => state.foodsReducer.allFoods);
   const filteredFoods  = useSelector((state) => state.foodsReducer.filteredFoods);
+  const currentPage = useSelector((state) => state.foodsReducer.currentPage)
   console.log(filteredFoods)
   console.log(allFoods);
 
@@ -32,7 +34,6 @@ const Home = () => {
     }
   }, [dispatch]);
 
-  const [currentPage, setCurrentPage] = useState(1);
   const foodsPerPage = 8;
 
 
@@ -41,7 +42,7 @@ const Home = () => {
   const currentFoods = allFoods.slice(indexOfFirstFood, indexOfLastFood);
 
   const paginado = (pageNumber) => {
-    setCurrentPage(pageNumber);
+    dispatch(setCurrentPageAction(pageNumber));
   };
 
   const handleSelect = (selectedIndex) => {
@@ -50,12 +51,12 @@ const Home = () => {
 
   const handleFilterByCategory = (event) => {
     dispatch(filterFoodByCategory(event.target.value));
-    setCurrentPage(1);
+    dispatch(setCurrentPageAction(1))
   };
 
   const handleFilterByOrder = (event) => {
     dispatch(filterFoodByOrder(event.target.value));
-    setCurrentPage(1);
+    dispatch(setCurrentPageAction(1))
   };
 
   console.log('currentFoods: ', currentFoods);
@@ -139,7 +140,7 @@ const Home = () => {
       </div>
 
       <div className={style.asereje}>
-        <SearchBar setCurrentPage={setCurrentPage} />
+        <SearchBar />
         
         <Paginado
           foodsPerPage={foodsPerPage}
