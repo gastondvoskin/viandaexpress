@@ -1,6 +1,6 @@
 .mainContainer {
-  background-color: var(--myBlack);
-  background-color: var(--myWhite); /* just for develop */
+  /* background-color: var(--myWhite); */
+  background-color: var(-myBlack); /* just for develop */
 
   display: flex;
   flex-direction: column;
