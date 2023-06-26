@@ -63,19 +63,19 @@ const Home = () => {
       <div className={style.Carousel}>
         <Carousel activeIndex={index} onSelect={handleSelect} interval="9000">
           <Carousel.Item>
-            <img src="../src/assets/variety.jpg" alt="Variadadas" />
+            <img src="../src/assets/carousel/variety.jpg" alt="Variadadas" />
             <Carousel.Caption>
               <div className={style.CarouselText}>Viandas para toda la familia</div>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <img src="../src/assets/healthy.jpeg" alt="Saludables" />
+            <img src="../src/assets/carousel/healthy.jpeg" alt="Saludables" />
             <Carousel.Caption>
               <div className={style.CarouselText}>Saludables y nutritivas</div>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <img src="../src/assets/withLove.jpeg" alt="Caseras" />
+            <img src="../src/assets/carousel/withLove.jpeg" alt="Caseras" />
             <Carousel.Caption>
               <div className={style.CarouselText}>Caseras y con amor</div>
             </Carousel.Caption>
@@ -163,38 +163,5 @@ export default Home;
  *option y valores para ordernar por Popularidad 
  *<option value="asc">Más Popular</option>
   <option value="desc">Menos Popular</option>
- * 
- * 
- * 
  */
 
-{
-  /* Carousel commented until styles are fixed */
-}
-{
-  /* <div className={style.Carousel}>
-        <Carousel activeIndex={index} onSelect={handleSelect}>
-          <Carousel.Item>
-            <img src="../src/assets/viandas_2.jpeg" alt="First slide" />
-            <Carousel.Caption>
-              <h3>ENSALADAS</h3>
-              <p>VARIEDAD DE ENSALADAS</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img src="../src/assets/viandas_3.jpeg" alt="Second slide" />
-            <Carousel.Caption>
-              <h3>VERDURAS HERVIDAS</h3>
-              <p>PAPA, ZANAHORIA, CHAUCHA</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img src="../src/assets/viandas_4.jpeg" alt="Third slide" />
-            <Carousel.Caption>
-              <h3>LA MEJOR VARIEDAD</h3>
-              <p>TODAS PREPARADAS CON ALIMENTOS SALUDABLES</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
-      </div> */
-}
