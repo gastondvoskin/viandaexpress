@@ -1,15 +1,18 @@
 import React from "react";
 import styles from "../Paginado/Paginado.module.css";
+import { useSelector } from "react-redux";
 
 export default function Paginado({
   foodsPerPage,
   foods,
   paginado,
   currentPage,
+  filterFoods
 }) {
+  const active = useSelector((state)=> state.foodsReducer.activeFilteredFoods)
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(foods / foodsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(active ? filterFoods / foodsPerPage :foods / foodsPerPage); i++) {
     pageNumbers.push(i);
   }
 

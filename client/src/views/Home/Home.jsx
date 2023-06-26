@@ -7,13 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import {
   getFoods,
-  filterFoodByCategory,
-  filterFoodByOrder,
   setCurrentPageAction,
 } from "../../redux/foodActions.js";
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import Paginado from "../../components/Paginado/Paginado";
 import  OrderOptions  from "../../components/orderOptions/orderOptions";
+import CategoryButtons from "../../components/categoryButtons/categoryButtons";
 import axios from "axios";
 
 const Home = () => {
@@ -22,8 +21,7 @@ const Home = () => {
   const allFoods  = useSelector((state) => state.foodsReducer.allFoods);
   const filteredFoods  = useSelector((state) => state.foodsReducer.filteredFoods);
   const currentPage = useSelector((state) => state.foodsReducer.currentPage)
-  console.log(filteredFoods)
-  console.log(allFoods);
+  const active = useSelector((state) => state.foodsReducer.activeFilteredFoods)
 
   /* This implementation will change once we have a deployed DB */
   useEffect(() => {
@@ -35,11 +33,9 @@ const Home = () => {
   }, [dispatch]);
 
   const foodsPerPage = 8;
-
-
   const indexOfLastFood = currentPage * foodsPerPage;
   const indexOfFirstFood = indexOfLastFood - foodsPerPage;
-  const currentFoods = allFoods.slice(indexOfFirstFood, indexOfLastFood);
+  const currentFoods = active ? filteredFoods.slice(indexOfFirstFood, indexOfLastFood) :allFoods.slice(indexOfFirstFood, indexOfLastFood);
 
   const paginado = (pageNumber) => {
     dispatch(setCurrentPageAction(pageNumber));
@@ -49,17 +45,7 @@ const Home = () => {
     setIndex(selectedIndex);
   };
 
-  const handleFilterByCategory = (event) => {
-    dispatch(filterFoodByCategory(event.target.value));
-    dispatch(setCurrentPageAction(1))
-  };
-
-  const handleFilterByOrder = (event) => {
-    dispatch(filterFoodByOrder(event.target.value));
-    dispatch(setCurrentPageAction(1))
-  };
-
-  console.log('currentFoods: ', currentFoods);
+  // console.log('currentFoods: ', currentFoods);
   return (
     <div className={style.mainContainer}>
       <div className={style.Carousel}>
@@ -83,7 +69,6 @@ const Home = () => {
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
-
       </div>
 
       <div className={style.buttonsContainer}>
@@ -92,35 +77,13 @@ const Home = () => {
           Todas
         </button> */}
         {/* Comentatario TONO: los botones se deberían refactorizar: deberían mapear un array de diets para no repetir código. */}
-        <button
-          className={style.pastas}
-          onClick={(e) => handleFilterByCategory(e)}
-          value="Pastas"
-        >
-          {/* Pastas */}
-        </button>
-
-        <button
-          className={style.meat}
-          onClick={(e) => handleFilterByCategory(e)}
-          value="Carnes"
-        >
-          {/* Carnes */}
-        </button>
-
-        <button
-          className={style.salads}
-          onClick={(e) => handleFilterByCategory(e)}
-          value="Ensaladas"
-        >
-          {/* Ensaladas */}
-        </button>
-
+        <CategoryButtons/>
       </div>
 
       <div className={style.filtros}>
         {/* Comentario TONO: El filtro de dieta no está implementado. */}
         <div className={style.filtros2}>
+        
           <select name="" id="">
             <option value="">Dieta</option>
             <option value="">Vegana</option>
@@ -129,13 +92,6 @@ const Home = () => {
             <option value="">Sin lactosa</option>
           </select>
           <OrderOptions/>
-          <select onChange={(e) => handleFilterByOrder(e)}>
-            <option value="">Ordenar</option>
-            <option value="expensive">Costosa</option>
-            <option value="cheap">Barata</option>
-            <option value="atoz"> A to Z</option>
-            <option value="ztoa">Z to A</option>
-          </select>
         </div>
       </div>
 
@@ -145,13 +101,14 @@ const Home = () => {
         <Paginado
           foodsPerPage={foodsPerPage}
           foods={allFoods.length}
+          filterFoods={filteredFoods.length}
           paginado={paginado}
           currentPage={currentPage}
         />
 
         
         {!currentFoods.length 
-          ? <p>Cargando comidas...</p>
+          ? <p>No se enconraron resultados</p>
           : <CardsContainer currentFoods={currentFoods} />
         }
       </div>

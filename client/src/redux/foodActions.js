@@ -1,7 +1,7 @@
 // actions (these are the actions that will be imported in React components)
 
 import axios from "axios";
-import { getAllFoods, getFoodsByName, filteredFoodByCategory, filteredFoodByOrder,orderFoods,activeFilteredFood,setOrder,setCurrentPage/* , getFoodById */ } from "./foodSlice.js";
+import { getAllFoods, getFoodsByName,orderFoods,activeFilteredFood,setOrder,setCurrentPage,filterByCategory/* , getFoodById */ } from "./foodSlice.js";
 
 export const getFoods = () => async (dispatch) => {
     try {
@@ -13,7 +13,7 @@ export const getFoods = () => async (dispatch) => {
     }
 };
 
-export const getFoodByName = (name) => async (dispatch) => {
+export const getFoodsByNameAction = (name) => async (dispatch) => {
     try {
         const response = await axios.get("http://localhost:3001/food?name=" + name); 
         const foodsByName = response.data;
@@ -23,21 +23,6 @@ export const getFoodByName = (name) => async (dispatch) => {
     }
 };
 
-export const filterFoodByCategory = (payload) => async (dispatch) => {
-    try {
-        dispatch(filteredFoodByCategory(payload));
-    } catch (error) {
-        console.log(error);
-    }
-};
-
-export const filterFoodByOrder = (payload) => async (dispatch) => {
-    try {
-        dispatch(filteredFoodByOrder(payload));
-    } catch (error) {
-        console.log(error);
-    }
-};
 export const orderFoodsAction = (payload) => async (dispatch) => {
     try {
         console.log('action')
@@ -68,6 +53,14 @@ export const setCurrentPageAction = (payload) => async (dispatch) => {
         console.log(error);
     }
 };
+export const filterByCategoryAction = (payload) => async (dispatch) => {
+    try {
+        dispatch(filterByCategory(payload));
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 
 
 
