@@ -5,7 +5,7 @@ import validation from "./validation.jsx";
 import style from "./DashBoard.module.css";
 import { postFood } from "../../redux/foodActions.js";
 import axios from "axios";
-//import logoViandaExpress from "../../assets/logoViandaExpress.jpeg";
+import logoViandaExpress from "../../assets/logoViandaExpress.jpeg";
 
 export default function DashBoard() {
   const dispatch = useDispatch();
@@ -119,75 +119,80 @@ export default function DashBoard() {
   return (
     <div className={style.formContainer}>
       {/* Dejo logica para agregar logo */}
-      {/* <Link to="/">
-        <button className={style.ButtonDB}>Home</button>
-      </Link> */}
+
       <h1 className={style.title}>Agregar Vianda</h1>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className={style.SectionDB}>
           <div>
-            <div className={style.h3}>
-              <label>
-                <h3 className={style["h3-title"]}>Nombre de Vianda:</h3>
-              </label>
-              <input
-                type="text"
-                name="name"
-                value={input.name}
-                onChange={handleChange}
+            <Link to="/">
+              <img
+                className={style.logo}
+                src={logoViandaExpress}
+                alt="logo Viandas Express"
               />
-              {errors.name ? (
-                <p className={style.errorMessage}>{errors.name}</p>
-              ) : null}
-            </div>
-            <div className={style.h3}>
-              <label>
-                <h3 className={style["h3-title"]}>Descripción:</h3>
-              </label>
-              <textarea
-                type="text"
-                name="description"
-                value={input.description}
-                onChange={handleChange}
-              />
-              {errors.description ? (
-                <p className={style.errorMessage}>{errors.description}</p>
-              ) : null}
-            </div>
-            <div className={style.h3}>
-              <label>
-                <h3 className={style["h3-title"]}>Categoría</h3>
-              </label>
-              <select onChange={handleSelect} value={input.category}>
-                <option value="">--Seleccionar--</option>
-                {categories.map((ca) => {
-                  return <option value={ca}>{ca}</option>;
-                })}
-              </select>
-              {errors.category ? (
-                <p className={style.errorMessage}>{errors.category}</p>
-              ) : null}
-            </div>
-            <div className={style.h3}>
-              <h3 className={style["h3-title"]}>Dietas: </h3>
-              {diets.map((diet) => (
-                <div key={diet} className={style.diets}>
-                  <div className={style["diets-container"]}>
-                    <span>{diet}</span>
-                    <input
-                      value={diet}
-                      checked={input.diets.includes(diet)}
-                      onChange={handleCheck}
-                      type="checkbox"
-                      name="diet"
-                    />
-                  </div>
+            </Link>
+          </div>
+          <div className={style.h3}>
+            <label>
+              <h3 className={style["h3-title"]}>Nombre de Vianda:</h3>
+            </label>
+            <input
+              type="text"
+              name="name"
+              value={input.name}
+              onChange={handleChange}
+            />
+            {errors.name ? (
+              <p className={style.errorMessage}>{errors.name}</p>
+            ) : null}
+          </div>
+          <div className={style.h3}>
+            <label>
+              <h3 className={style["h3-title"]}>Descripción:</h3>
+            </label>
+            <textarea
+              type="text"
+              name="description"
+              value={input.description}
+              onChange={handleChange}
+            />
+            {errors.description ? (
+              <p className={style.errorMessage}>{errors.description}</p>
+            ) : null}
+          </div>
+          <div className={style.h3}>
+            <label>
+              <h3 className={style["h3-title"]}>Categoría</h3>
+            </label>
+            <select onChange={handleSelect} value={input.category}>
+              <option value="">--Seleccionar--</option>
+              {categories.map((ca) => {
+                return <option value={ca}>{ca}</option>;
+              })}
+            </select>
+            {errors.category ? (
+              <p className={style.errorMessage}>{errors.category}</p>
+            ) : null}
+          </div>
+          <div className={style.h3}>
+            <h3 className={style["h3-title"]}>Dietas: </h3>
+            {diets.map((diet) => (
+              <div key={diet} className={style.diets}>
+                <div className={style["diets-container"]}>
+                  <span>{diet}</span>
+                  <input
+                    value={diet}
+                    checked={input.diets.includes(diet)}
+                    onChange={handleCheck}
+                    type="checkbox"
+                    name="diet"
+                  />
                 </div>
-              ))}
-              {errors.diets ? (
-                <p className={style.errorMessage}>{errors.diets}</p>
-              ) : null}
-            </div>
+              </div>
+            ))}
+            {errors.diets ? (
+              <p className={style.errorMessage}>{errors.diets}</p>
+            ) : null}
           </div>
 
           <div>

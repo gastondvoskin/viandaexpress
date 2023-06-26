@@ -77,3 +77,9 @@
   margin-top: 15px;
   font-size: 10px;
 }
+
+.logo {
+  position: absolute;
+  left: 60%;
+  top: 55%;
+}

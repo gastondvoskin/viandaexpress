@@ -5,7 +5,11 @@ import style from "./Home.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import { getFoods, filterFoodByCategory, filterFoodByOrder } from "../../redux/foodActions.js";
+import {
+  getFoods,
+  filterFoodByCategory,
+  filterFoodByOrder,
+} from "../../redux/foodActions.js";
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import Paginado from "../../components/Paginado/Paginado";
 import axios from "axios";
@@ -30,16 +34,14 @@ const Home = () => {
     }
   }, [dispatch]);
 
-
-
   const [order, setOrder] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [foodsPerPage, setFoodsPerPage] = useState(10);
+  const [foodsPerPage, setFoodsPerPage] = useState(8);
 
   const indexOfLastFood = currentPage * foodsPerPage;
   const indexOfFirstFood = indexOfLastFood - foodsPerPage;
   const currentFoods = allFoods.slice(indexOfFirstFood, indexOfLastFood);
-  console.log('currentFoods: ', currentFoods);
+  console.log("currentFoods: ", currentFoods);
 
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -49,15 +51,15 @@ const Home = () => {
     setIndex(selectedIndex);
   };
 
-  function handleFilterByCategory(e){
-    e.preventDefault()
-    dispatch(filterFoodByCategory(e.target.value))
+  function handleFilterByCategory(e) {
+    e.preventDefault();
+    dispatch(filterFoodByCategory(e.target.value));
   }
 
-  function handleFilterByOrder(e){
-    e.preventDefault()
-    dispatch(filterFoodByOrder(e.target.value))
-    setOrder(`Odenado ${e.target.value}`)
+  function handleFilterByOrder(e) {
+    e.preventDefault();
+    dispatch(filterFoodByOrder(e.target.value));
+    setOrder(`Odenado ${e.target.value}`);
   }
 
   return (
@@ -92,9 +94,15 @@ const Home = () => {
       </div> */}
 
       <div className={style.Button}>
-        <button onClick={e => handleFilterByCategory(e)} value="Pastas">PASTAS</button>
-        <button onClick={e => handleFilterByCategory(e)} value="Carnes">CARNES</button>
-        <button onClick={e => handleFilterByCategory(e)} value="Ensaladas">ENSALADAS</button>
+        <button onClick={(e) => handleFilterByCategory(e)} value="Pastas">
+          PASTAS
+        </button>
+        <button onClick={(e) => handleFilterByCategory(e)} value="Carnes">
+          CARNES
+        </button>
+        <button onClick={(e) => handleFilterByCategory(e)} value="Ensaladas">
+          ENSALADAS
+        </button>
       </div>
 
       <div className={style.filtros}>
@@ -107,13 +115,12 @@ const Home = () => {
             <option value="">Sin lactosa</option>
           </select>
 
-          <select onChange={e => handleFilterByOrder(e)}>
+          <select onChange={(e) => handleFilterByOrder(e)}>
             <option value="">Ordenar</option>
-              <option value="expensive">Costosa</option>
-              <option value="cheap">Barata</option>
-              <option value="atoz"> A to Z</option>
-              <option value="ztoa">Z to A</option>
-              
+            <option value="expensive">Costosa</option>
+            <option value="cheap">Barata</option>
+            <option value="atoz"> A to Z</option>
+            <option value="ztoa">Z to A</option>
           </select>
         </div>
       </div>
