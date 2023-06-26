@@ -73,4 +73,4 @@ const putFoodController = async (id, name, diet, description, image, initial_pri
   
   
 
-module.exports = { putFoodController };
+module.exports = { putFoodController,getPublicIdFromImageUrl};
