@@ -75,6 +75,7 @@ const Home = () => {
       </div>
       <div className={style.asereje}>
         <SearchBar setCurrentPage={setCurrentPage}/>
+        <Link to='/dashboard/create'><button>Crear Vianda</button></Link>
         <Paginado
           foodsPerPage={foodsPerPage}
           foods={allFoods.length}
