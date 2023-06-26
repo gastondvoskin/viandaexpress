@@ -1,10 +1,10 @@
 .card {
     width: 190px;
-    height: 400px;      /* modified temporarily to render more info and check filters */
+    height: 250px;      /* modified temporarily to render more info and check filters */
     background: rgb(40,40,55);
     background: linear-gradient(344deg, rgba(40,40,55,1) 0%, rgba(16,16,18,1) 50%);
     box-shadow: 4px 6px 14px #00000036;
-    border-radius: 3px;
+    border-radius: 5px;
     color: #F9F9F9;
     padding: 16px;
     transition: all .3s;
@@ -72,4 +72,19 @@
     border-radius: 50%;
     width: 35px;
     height: 35px;
+}
+.cardsContainer{
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+    flex-wrap: wrap;
+    gap: 3em;
+    width: 1200px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    padding-bottom: 30px;
+}
+.link{
+    text-decoration: none;
 }

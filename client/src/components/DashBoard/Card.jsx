@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom"
 import style from "./Dashboard.module.css"
 
-export default function Card({id,name, initial_price, final_price, discount, status, editRequire}){  
+export default function Card({id,name, initial_price, final_price, discount, status}){  
+   
     return (
         <div 
             className={style.card}>
@@ -9,7 +11,7 @@ export default function Card({id,name, initial_price, final_price, discount, sta
             <h3>${discount}</h3>
             <h3>${final_price}</h3>
             <h3>{status}</h3>
-            <button onClick={editRequire(id)}>Editar</button>
+            <Link to={`/dashboard/edit/${id}`}><button>Editar</button></Link>
         </div>
     )
 }
