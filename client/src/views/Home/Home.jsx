@@ -14,14 +14,13 @@ import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import Paginado from "../../components/Paginado/Paginado";
 import axios from "axios";
 
+
 const Home = () => {
-  const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState(0);
 
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  let allFoods = [];
-  allFoods = useSelector((state) => state.foodsReducer.allFoods);
-  console.log(allFoods);
+    const allFoods = useSelector((state) => state.foodsReducer.allFoods);
 
   /* This implementation will change once we have a deployed DB */
   useEffect(() => {
@@ -39,9 +38,9 @@ const Home = () => {
   const indexOfFirstFood = indexOfLastFood - foodsPerPage;
   const currentFoods = allFoods.slice(indexOfFirstFood, indexOfLastFood);
 
-  const paginado = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
+    const paginado = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
 
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
@@ -62,6 +61,7 @@ const Home = () => {
     <div className={style.mainContainer}>
       <div className={style.Carousel}>
         <Carousel activeIndex={index} onSelect={handleSelect} interval="9000">
+
           <Carousel.Item>
             <img src="../src/assets/carousel/variety.jpg" alt="Variadadas" />
             <Carousel.Caption>
@@ -69,18 +69,24 @@ const Home = () => {
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
+
             <img src="../src/assets/carousel/healthy.jpeg" alt="Saludables" />
+
             <Carousel.Caption>
               <div className={style.CarouselText}>Saludables y nutritivas</div>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
+
             <img src="../src/assets/carousel/withLove.jpeg" alt="Caseras" />
+
             <Carousel.Caption>
               <div className={style.CarouselText}>Caseras y con amor</div>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
+
+
 
       </div>
 
