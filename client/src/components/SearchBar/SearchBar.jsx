@@ -24,10 +24,11 @@ function SearchBar({ setCurrentPage }) {
       <input
         className={styles.searchBar}
         type="text"
-        placeholder="Buscar por nombre..."
+        /* placeholder={`${magnifyingGlass} Buscar por nombre...`} */
+        placeholder=" 🔍 Buscar por nombre..."
         onChange={(e) => handleInputChange(e)}
       />
-      <button className={styles.magnifyingGlass}>{magnifyingGlass}</button>
+      {/* <button className={styles.magnifyingGlass}>{magnifyingGlass}</button> */}
     </div>
   );
 }
