@@ -52,17 +52,17 @@
 }
 
 .pastas {
-  background-image: url("../../assets/pastas.jpg");
+  background-image: url("../../assets/categories/pastas.jpg");
   background-size: cover;
 }
 
 .meat {
-  background-image: url("../../assets/meat.jpg");
+  background-image: url("../../assets/categories/meat.jpg");
   background-size: cover;
 }
 
 .salads {
-  background-image: url("../../assets/salad.jpeg");
+  background-image: url("../../assets/categories/salad.jpeg");
   background-size: cover;
 }
 
