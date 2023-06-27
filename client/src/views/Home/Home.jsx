@@ -87,12 +87,12 @@ const Home = () => {
       <div className={style.filtros}>
         {/* Comentario TONO: El filtro de dieta no está implementado. */}
         <div className={style.filtros2}>
-        
+          
           <FilterDietsOptions/>
           <OrderOptions/>
         </div>
       </div>
-
+        <button>Elimiaar Filtros</button>
       <div className={style.asereje}>
         <SearchBar />
         
