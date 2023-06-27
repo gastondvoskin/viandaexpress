@@ -4,7 +4,7 @@ import styles from "./Home.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import { getFoods } from "../../redux/foodActions.js";
+import { getFoods,setCurrentPageAction } from "../../redux/foodActions.js";
 import CardsContainer from "../../components/DashBoard/CardsContainer";
 import Paginado from "../../components/DashBoard/Paginado";
 // import EditForm from "./EditForm";
@@ -38,7 +38,7 @@ const HomeDB = () => {
     : allFoods.slice(indexOfFirstFood, indexOfLastFood);
 
   const paginado = (pageNumber) => {
-    (setCurrentPageAction(pageNumber));
+    dispatch(setCurrentPageAction(pageNumber));
   };
 
   const handleSelect = (selected) => {
