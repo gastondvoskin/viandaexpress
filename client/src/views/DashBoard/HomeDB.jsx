@@ -1,17 +1,17 @@
 import React from "react";
 
-import style from "./Home.module.css";
+import styles from "./Home.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { getFoods } from "../../redux/foodActions.js";
 import CardsContainer from "../../components/DashBoard/CardsContainer";
 import Paginado from "../../components/DashBoard/Paginado";
-import EditForm from "./EditForm";
+// import EditForm from "./EditForm";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const Home = () => {
+const HomeDB = () => {
   const [index, setIndex] = useState(false);
   const dispatch = useDispatch();
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
@@ -38,7 +38,7 @@ const Home = () => {
     : allFoods.slice(indexOfFirstFood, indexOfLastFood);
 
   const paginado = (pageNumber) => {
-    dispatch(setCurrentPageAction(pageNumber));
+    (setCurrentPageAction(pageNumber));
   };
 
   const handleSelect = (selected) => {
@@ -73,4 +73,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeDB;
