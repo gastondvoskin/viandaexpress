@@ -49,3 +49,6 @@
   align-items: center;
 }
 
+.notFoundMessage {
+  color: var(--alertColor);
+}

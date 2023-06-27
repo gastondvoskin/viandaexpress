@@ -15,9 +15,9 @@ function Nav() {
       </Link>
 
       <div className={styles.rightContainer}>
-        <SearchBar />
 
         {/* No borrar, lo vamos a usar en el futuro */}
+        {/* <SearchBar /> */}
 
         {/* <NavLink to="/basket">
           <FontAwesomeIcon icon={faCartShopping} />
