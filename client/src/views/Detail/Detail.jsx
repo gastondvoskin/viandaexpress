@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFoods } from "../../redux/foodActions.js";
 import axios from "axios";
+import styles from "../Detail/Detail.module.css";
 
 export default function Detail() {
   const { id } = useParams();
@@ -25,17 +26,23 @@ export default function Detail() {
   const foodDetail = allFoods.find((food) => food.id === id);
 
   return (
-    <main>
+    <main className={styles.main}>
       {!foodDetail ? (
         <p>"Cargando..."</p>
       ) : (
-        <div>
-          <h1>{foodDetail?.name}</h1>
-          <img src={foodDetail?.image} alt="img not found" />
-          <p>{foodDetail?.description}</p>
-          <p>Precio: ${foodDetail?.final_price}</p>
-          <p>Categoría: {foodDetail?.category}</p>
-          <p>
+        <div className={styles.container}>
+          <h1 className={styles.title}>{foodDetail?.name}</h1>
+          <img
+            className={styles.image}
+            src={foodDetail?.image}
+            alt="img not found"
+          />
+          <p className={styles.description}>
+            Descripción: {foodDetail?.description}
+          </p>
+          <p className={styles.price}>Precio: ${foodDetail?.final_price}</p>
+          <p className={styles.category}>Categoría: {foodDetail?.category}</p>
+          <p className={styles.diets}>
             Dietas:{" "}
             {!foodDetail?.diets.length ? (
               <span>Esta vianda no sigue ninguna dieta específica</span>
@@ -50,10 +57,14 @@ export default function Detail() {
             )}
           </p>
 
-          {foodDetail?.status ? <p>Estado: disponible</p> : <p>Estado: no disponible</p>}
+          {foodDetail?.status ? (
+            <p className={styles.status}>Estado: disponible</p>
+          ) : (
+            <p className={styles.status}>Estado: no disponible</p>
+          )}
 
           {foodDetail?.total_score > 4 && (
-            <p>
+            <p className={styles.popular}>
               Ésta es una de nuestras comidas más elegidas por los usuarios!
             </p>
           )}
