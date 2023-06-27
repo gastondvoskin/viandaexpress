@@ -80,10 +80,18 @@ export const foodsSlice = createSlice({
       const diet = action.payload;
       state.foodsDiet = diet
     },
+
     postFoods: (state) => {
       state.allFoods;
     },
 
+    editFoods: (state)=>{
+      state.allFoods
+    },
+
+    deletFoods: (state)=>{
+      state.allFoods
+    }
     // WIP
   },
 });
@@ -99,7 +107,10 @@ export const {
   filterByDiet,
   setCategory,
   setDiet
+  editFoods,
+  deleteFoods
 } = foodsSlice.actions;
+
 
 export default foodsSlice.reducer; /* it will be imported in the store */
 
