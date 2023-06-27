@@ -123,15 +123,6 @@ export default function DashBoard() {
       <h1 className={style.title}>Agregar Vianda</h1>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className={style.SectionDB}>
-          <div>
-            <Link to="/">
-              <img
-                className={style.logo}
-                src={logoViandaExpress}
-                alt="logo Viandas Express"
-              />
-            </Link>
-          </div>
           <div className={style.h3}>
             <label>
               <h3 className={style["h3-title"]}>Nombre de Vianda:</h3>
@@ -245,6 +236,20 @@ export default function DashBoard() {
             <div className={style.ButtonDB}>
               <button type="submit">Crear Vianda</button>
             </div>
+            {/* <div>
+                <Link to="/">
+                  <img
+                    className={style.logo}
+                    src={logoViandaExpress}
+                    alt="logo Vianda Express"
+                  />
+                </Link>
+              </div> */}
+              <div className={style.ButtonDB}>
+
+                <Link to='/home'><button>Home</button></Link>
+
+              </div>
           </div>
         </div>
       </form>
