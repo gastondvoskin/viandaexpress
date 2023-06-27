@@ -323,7 +323,7 @@ const foods = [
   },
   {
     name: "Espaguetis a la carbonada",
-    diets: ["Sin Lactoda"],
+    diets: ["Sin Lactosa"],
     image:
       "https://www.recetassinlactosa.com/wp-content/uploads/2015/06/Espaguetis-Carbonara-1.jpg",
     description:
