@@ -1,7 +1,7 @@
 // actions (these are the actions that will be imported in React components)
 
 import axios from "axios";
-import { getAllFoods, getFoodsByName, filteredFoodByCategory, filteredFoodByOrder, editFoods, deletFoods/* , getFoodById */ } from "./foodSlice.js";
+import { getAllFoods, getFoodsByName, filteredFoodByCategory, filteredFoodByOrder, editFoods, deleteFoods /* , getFoodById */ } from "./foodSlice.js";
 
 export const getFoods = () => async (dispatch) => {
     try {
@@ -61,7 +61,24 @@ export const postFood=(input)=>async (dispatch)=> {
         }
 }
 
-
+export const putFoods=(input)=>async (dispatch)=>{
+    try{
+        const formData = new FormData();
+        formData.append("name", input.name);
+        formData.append("description", input.description);
+        formData.append("status", input.status);
+        formData.append("initial_price", input.initial_price);
+        formData.append("discount", input.discount);
+        formData.append("image", input.image);
+        console.log(formData);
+        await axios.put(`http://localhost:3001/${input.id}`,formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },})
+    }catch(error){
+        alert (error.message)
+    }
+}
 // Do not delete. Uncomment and test when the endpoint `http://localhost:3001/food/${id}` is created
 // export const getFood = (id) => async (dispatch) => {
 //     try {
