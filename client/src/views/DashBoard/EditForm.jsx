@@ -70,30 +70,35 @@ export default function EditForm() {
 
   const handleEdit = async (e) => {
     e.preventDefault();
-    const form = new FormData();
-    for (let key in formData) {
-      form.append(key, formData[key]);
+    var verificar= window.confirm(`Está a punto de modificar la vianda`)
+    if(verificar){
+      const form = new FormData();
+      for (let key in formData) {
+        form.append(key, formData[key]);
+      }
+      try {
+          await axios.put(`http://localhost:3001/food/${id}`, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+          alert(`Receta de ${formData.name} modificada`);  
+      } catch (error) {
+          alert(error.message)
+      }
     }
-    try {
-        await axios.put(`http://localhost:3001/food/${id}`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        alert(`Receta de ${formData.name} modificada`);  
-    } catch (error) {
-        alert(error.message)
-    }
-    
   };
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    try {
-      await axios.delete(`http://localhost:3001/food/${id}`);
-      alert(`Vianda: '${formData.name}' eliminada`);
-    } catch (error) {
-      alert(`Receta de ${formData.name} modificada`);
+    var verificar= window.confirm(`Está a punto de eliminar la vianda`)
+    if(verificar){
+      try {
+        await axios.delete(`http://localhost:3001/food/${id}`);
+        alert(`Vianda: '${formData.name}' eliminada`);
+      } catch (error) {
+        alert(`Receta de ${formData.name} modificada`);
+      }
     }
   };
 
