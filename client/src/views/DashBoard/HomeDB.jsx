@@ -56,13 +56,14 @@ const HomeDB = () => {
         <Link to="/dashboard/create">
           <button>Crear Vianda</button>
         </Link>
-        <Paginado
+        {/* Tono: Comentado. Después de la primera demo, el estilo del HomeDashboard va a cambiar a un listado.  */}
+        {/* <Paginado
           foodsPerPage={foodsPerPage}
           foods={allFoods.length}
           filterFoods={filteredFoods.length}
           paginado={paginado}
           currentPage={currentPage}
-        />
+        /> */}
         {!currentFoods.length ? (
           <p>No se enconraron resultados</p>
         ) : (
