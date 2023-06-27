@@ -21,11 +21,10 @@ const FilterDietsOptions = () => {
                     results = allFoods.filter(e => e.diets.includes('Vegetariano') && e.category === category )
                     break;
                 case 'Sin TACC':
-                    console.log('SINTACC')
                     results = allFoods.filter(e => e.diets.includes('Sin TACC') && e.category === category)
                     break;
                 case 'Sin Lactosa':
-                    results = allFoods.filter(e => e.diets.includes('Vegano') && e.category === category)
+                    results = allFoods.filter(e => e.diets.includes('Sin Lactosa') && e.category === category)
                     break;
                 default:
                     break;
@@ -39,11 +38,10 @@ const FilterDietsOptions = () => {
                     results = allFoods.filter(e => e.diets.includes('Vegetariano') )
                     break;
                 case 'Sin TACC':
-                    console.log('SINTACC')
                     results = allFoods.filter(e => e.diets.includes('Sin TACC'))
                     break;
                 case 'Sin Lactosa':
-                    results = allFoods.filter(e => e.diets.includes('Vegano'))
+                    results = allFoods.filter(e => e.diets.includes('Sin Lactosa'))
                     break;
                 default:
                     break;
