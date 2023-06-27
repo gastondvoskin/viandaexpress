@@ -8,6 +8,8 @@ const initialState = {
   filteredFoods:[],
   activeFilteredFoods:false,
   orderBy:'',
+  foodsCategory:'',
+  foodsDiet:'',
   currentPage:1,
   diets: [
     "Sin TACC",
@@ -20,9 +22,6 @@ const initialState = {
     "Ensaladas",
     "Carnes",
   ] /* TONO: why is there a categories property in redux? */,
-  filteredByName: [],
-  filteredByCategory: [],
-  filteredByOrder: [],
   // filteredByDiet: [],
 };
 
@@ -69,6 +68,18 @@ export const foodsSlice = createSlice({
       const filteredByCategory = action.payload
       state.filteredFoods = filteredByCategory
     },
+    filterByDiet:(state,action) => {
+      const filteredByDiet = action.payload;
+      state.filteredFoods = filteredByDiet
+    },
+    setCategory:(state,action) => {
+      const category = action.payload;
+      state.foodsCategory = category
+    },
+    setDiet:(state,action) => {
+      const diet = action.payload;
+      state.foodsDiet = diet
+    },
 
     postFoods: (state) => {
       state.allFoods;
@@ -93,6 +104,9 @@ export const {
   setOrder,
   setCurrentPage,
   filterByCategory,
+  filterByDiet,
+  setCategory,
+  setDiet
   editFoods,
   deleteFoods
 } = foodsSlice.actions;

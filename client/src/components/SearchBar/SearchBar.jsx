@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux"
 import styles from "../SearchBar/SearchBar.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { activeFilteredFoodsAction, getFoodsByNameAction, setCurrentPageAction, setOrderAction } from "../../redux/foodActions";
+import { activeFilteredFoodsAction, getFoodsByNameAction, setCurrentPageAction, setOrderAction,setCategoryAction, setDietAction } from "../../redux/foodActions";
 
 const magnifyingGlass = <FontAwesomeIcon icon={faMagnifyingGlass} />;
 
@@ -20,6 +20,8 @@ function SearchBar() {
     dispatch(setCurrentPageAction(1))
     dispatch(activeFilteredFoodsAction(true))
     dispatch(setOrderAction(''))
+    dispatch(setCategoryAction(''))
+    dispatch(setDietAction(''))
   }
 
   return (

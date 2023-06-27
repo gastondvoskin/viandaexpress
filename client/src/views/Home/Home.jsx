@@ -14,6 +14,8 @@ import Paginado from "../../components/Paginado/Paginado";
 import  OrderOptions  from "../../components/orderOptions/orderOptions";
 import CategoryButtons from "../../components/categoryButtons/categoryButtons";
 import axios from "axios";
+import FilterDietsOptions from "../../components/filtersDietsOptions/filterDietsOptions";
+
 
 
 const Home = () => {
@@ -22,8 +24,10 @@ const Home = () => {
   const dispatch = useDispatch();
   const allFoods  = useSelector((state) => state.foodsReducer.allFoods);
   const filteredFoods  = useSelector((state) => state.foodsReducer.filteredFoods);
-  const currentPage = useSelector((state) => state.foodsReducer.currentPage)
-  const active = useSelector((state) => state.foodsReducer.activeFilteredFoods)
+  const currentPage = useSelector((state) => state.foodsReducer.currentPage);
+  const active = useSelector((state) => state.foodsReducer.activeFilteredFoods);
+  const diet = useSelector((state) => state.foodsReducer.foodsDiet)
+  const category = useSelector((state) => state.foodsReducer.category)
 
 
   /* This implementation will change once we have a deployed DB */
@@ -92,18 +96,12 @@ const Home = () => {
       <div className={style.filtros}>
         {/* Comentario TONO: El filtro de dieta no está implementado. */}
         <div className={style.filtros2}>
-        
-          <select name="" id="">
-            <option value="">Dieta</option>
-            <option value="">Vegana</option>
-            <option value="">Vegetariana</option>
-            <option value="">Sin tacc</option>
-            <option value="">Sin lactosa</option>
-          </select>
+          
+          <FilterDietsOptions/>
           <OrderOptions/>
         </div>
       </div>
-
+        <button>Elimiaar Filtros</button>
       <div className={style.asereje}>
         <SearchBar />
         
