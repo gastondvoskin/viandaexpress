@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { activeFilteredFoodsAction, filterByCategoryAction, setCurrentPageAction, setOrderAction } from '../../redux/foodActions';
+import { activeFilteredFoodsAction, filterByCategoryAction, setCategoryAction, setCurrentPageAction, setDietAction, setOrderAction } from '../../redux/foodActions';
 
 const CategoryButtons = () => {
     const allFoods  = useSelector((state) => state.foodsReducer.allFoods);
@@ -13,10 +13,13 @@ const CategoryButtons = () => {
         dispatch(setOrderAction(''))
         dispatch(activeFilteredFoodsAction(true))
         dispatch(setCurrentPageAction(1))
+        dispatch(setCategoryAction(value))
+        dispatch(setDietAction(''))
     }
-    const handlerFilterCategory = (category) => {
+    
+    const handlerFilterCategory = (value) => {
         let filteredCategoryFoods;
-        switch (category) {
+        switch (value) {
             case 'Pastas':
                 filteredCategoryFoods = allFoods.filter(e => e.category === 'Pastas')
                 break;
