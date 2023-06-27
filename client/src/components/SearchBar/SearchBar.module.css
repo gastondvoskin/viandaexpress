@@ -7,7 +7,7 @@
   line-height: 45px;
   transition: 0.3s ease all;
   font-size: 15px;
-  margin-bottom: 15px;
+  margin: 15px;
 }
 
 .searchBar:focus {
