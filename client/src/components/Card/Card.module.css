@@ -6,6 +6,8 @@
   background: #fafaf5;
   box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.25);
   padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .card:hover {
@@ -18,18 +20,14 @@
   height: 50%;
 }
 
-.txt {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-}
-
 .card h2 {
   text-align: start;
   font-size: 15px;
   padding: 10px;
   font-weight: bold;
   color: #000;
+  height: 60px;
+  margin-top: 20px;
 }
 
 .card p {
