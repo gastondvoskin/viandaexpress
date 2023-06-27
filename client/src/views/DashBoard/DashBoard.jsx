@@ -9,7 +9,7 @@ import logoViandaExpress from "../../assets/logo/logoViandaExpress.jpeg";
 
 export default function DashBoard() {
   const dispatch = useDispatch();
-  const diets = ["Sin TACC", "Vegetariana", "Vegana", "Sin Lactosa"];
+  const diets = ["Sin TACC", "Vegetariano", "Vegano", "Sin Lactosa"];
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
   const categories = ["Carnes", "Pastas", "Ensaladas"];
   // console.log(allFoods)
