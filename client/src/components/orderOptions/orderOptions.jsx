@@ -19,18 +19,7 @@ export default function OrderOptions () {
 
         switch (value) {
             case 'expensive':
-                orderFoods.sort(function (a, b) {
-                    if (a.final_price > b.final_price) {
-                      return 1;
-                    }
-                    if (b.final_price > a.final_price) {
-                      return -1;
-                    }
-                    return 0;
-                  });
-                break;
-            case 'cheap':
-                orderFoods.sort(function (a, b) {
+               orderFoods.sort(function (a, b) {
                     if (a.final_price > b.final_price) {
                         return -1;
                       }
@@ -39,6 +28,17 @@ export default function OrderOptions () {
                       }
                     return 0;
                   });
+                break;
+            case 'cheap':
+              orderFoods.sort(function (a, b) {
+                if (a.final_price > b.final_price) {
+                  return 1;
+                }
+                if (b.final_price > a.final_price) {
+                  return -1;
+                }
+                return 0;
+              });
                 break;
             case 'atoz':
                 orderFoods.sort(function (a, b) {
