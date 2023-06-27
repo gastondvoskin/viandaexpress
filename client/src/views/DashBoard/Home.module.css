@@ -1,39 +1,12 @@
 .mainContainer {
-  background-color: var(--myWhite);
-  background-color: var(--myBlack); /* just for develop */
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: black;
 }
 
-.Carousel {
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--myWhite);
-  width: 100%;
-}
-
-.Carousel img {
-  width: 100%;
-  height: auto;
-}
-
-.Button {
-  padding-top: 20px;
-  padding-bottom: 40px;
-  width: 1000px;
-  display: flex;
-  justify-content: space-around;
-}
-
-.Button button {
-  height: 120px;
-  width: 120px;
+.backHome {
+  margin: 15px;
 }
 
 .filtros {
@@ -53,3 +26,4 @@
   justify-content: center;
   align-items: center;
 }
+

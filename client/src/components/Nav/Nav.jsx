@@ -15,8 +15,7 @@ function Nav() {
       </Link>
 
       <div className={styles.rightContainer}>
-        {/* Comentario TONO: El Searchbar está comentado hasta que el estado global tenga una propiedad currentPage */}
-        {/* <SearchBar /> */}
+        <SearchBar />
 
         {/* No borrar, lo vamos a usar en el futuro */}
 

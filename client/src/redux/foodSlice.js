@@ -1,11 +1,16 @@
-// reducer (foodsSlice.reducer is by now the only reducer)
+ // reducer (foodsSlice.reducer is by now the only reducer)
 import { createSlice } from "@reduxjs/toolkit";
 import { hardcodedFoodsArray } from "../../hardcodedFoods";
 
 const initialState = {
   allFoods: [],
   foodDetail: [],
-
+  filteredFoods:[],
+  activeFilteredFoods:false,
+  orderBy:'',
+  foodsCategory:'',
+  foodsDiet:'',
+  currentPage:1,
   diets: [
     "Sin TACC",
     "Vegetariano",
@@ -17,9 +22,6 @@ const initialState = {
     "Ensaladas",
     "Carnes",
   ] /* TONO: why is there a categories property in redux? */,
-  filteredByName: [],
-  filteredByCategory: [],
-  filteredByOrder: [],
   // filteredByDiet: [],
 };
 
@@ -38,89 +40,45 @@ export const foodsSlice = createSlice({
     },
 
     getFoodsByName: (state, action) => {
-      const foodByName = action.payload;
-      state.filteredByName = foodByName;
-      if (foodByName !== "") {
-        state.allFoods = state.filteredByName;
+      if (action.payload !== "") {
+        state.filteredFoods = action.payload
       } else {
         state.allFoods;
       }
     },
 
-    filteredFoodByCategory: (state, action) => {
-      const selectedCategory = action.payload; 
-      if (selectedCategory === "Todas") {
-        // Resetear filtros. 
-        // TONO comment: No se puede resetar porque se está usando allFoods en vez de currentFoods. Hay que reimplementarlo. 
-      }
-      const foodsByCategory = state.filteredByCategory;
-      const foodFiltered = foodsByCategory.filter(
-        (el) => el.category === selectedCategory
-      );
-      state.allFoods = foodFiltered;
+    orderFoods:(state,action) =>{
+      const orderedFoods = action.payload;
+      state.filteredFoods = orderedFoods
     },
 
-    filteredFoodByOrder: (state, action) => {
+    activeFilteredFood:(state,action) =>{
+      const bolean = action.payload;
+      state.activeFilteredFoods = bolean
+    },
+    setOrder:(state,action) =>{
       const order = action.payload;
-      const orderedFoods = state.filteredByOrder;
-      switch (order) {
-        case "cheap":
-          state.allFoods.sort(function (a, b) {
-            if (a.final_price > b.final_price) {
-              return 1;
-            }
-            if (b.final_price > a.final_price) {
-              return -1;
-            }
-            return 0;
-          });
-          state.allFoods;
-
-          break;
-
-        case "expensive":
-          state.allFoods.sort(function (a, b) {
-            if (a.final_price > b.final_price) {
-              return -1;
-            }
-            if (b.final_price > a.final_price) {
-              return 1;
-            }
-            return 0;
-          });
-          state.allFoods;
-
-          break;
-
-        case "atoz":
-          state.allFoods.sort(function (a, b) {
-            if (a.name > b.name) {
-              return 1;
-            }
-            if (b.name > a.name) {
-              return -1;
-            }
-            return 0;
-          });
-          state.allFoods;
-          break;
-
-        case "ztoa":
-          state.allFoods.sort(function (a, b) {
-            if (a.name > b.name) {
-              return -1;
-            }
-            if (b.name > a.name) {
-              return 1;
-            }
-            return 0;
-          });
-          state.allFoods;
-          break;
-
-        default:
-          state.allFoods;
-      }
+      state.orderBy = order
+    },
+    setCurrentPage:(state,action) => {
+      const page = action.payload
+      state.currentPage = page
+    },
+    filterByCategory:(state,action) => {
+      const filteredByCategory = action.payload
+      state.filteredFoods = filteredByCategory
+    },
+    filterByDiet:(state,action) => {
+      const filteredByDiet = action.payload;
+      state.filteredFoods = filteredByDiet
+    },
+    setCategory:(state,action) => {
+      const category = action.payload;
+      state.foodsCategory = category
+    },
+    setDiet:(state,action) => {
+      const diet = action.payload;
+      state.foodsDiet = diet
     },
 
     postFoods: (state) => {
@@ -141,8 +99,14 @@ export const foodsSlice = createSlice({
 export const {
   getAllFoods,
   getFoodsByName,
-  filteredFoodByCategory,
-  filteredFoodByOrder,
+  activeFilteredFood,
+  orderFoods,
+  setOrder,
+  setCurrentPage,
+  filterByCategory,
+  filterByDiet,
+  setCategory,
+  setDiet
   editFoods,
   deleteFoods
 } = foodsSlice.actions;

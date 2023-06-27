@@ -1,0 +1,66 @@
+.main {
+  font-family: "Poppins", sans-serif;
+  color: black;
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 28px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.image {
+  width: 498px;
+  height: 324px;
+  background: lightgray 50% / cover no-repeat;
+  border-radius: 24px;
+}
+
+.image:hover {
+  box-shadow: 0 0 25px var(--accentColor);
+  background: lightgray 50% / cover no-repeat;
+}
+
+/* .description {
+  margin-bottom: 10px;
+  font-size: 30px;
+} */
+
+.price,
+.category,
+.diets,
+.status,
+.popular {
+  margin-top: 10px;
+}
+
+.rightAlign {
+  position: relative;
+  left: 20px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image {
+    width: 100%;
+    height: auto;
+  }
+
+  .rightAlign {
+    position: static;
+    margin-top: 10px;
+  }
+}
