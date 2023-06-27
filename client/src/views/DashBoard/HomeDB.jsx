@@ -1,7 +1,6 @@
 import React from "react";
-// import Carousel from "react-bootstrap/Carousel";
-// import "bootstrap/dist/css/bootstrap.css";
-import styles from "./Home.module.css";
+
+import style from "./Home.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../../components/SearchBar/SearchBar";
