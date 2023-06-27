@@ -10,7 +10,7 @@ import MyProfile from "./views/MyProfile/MyProfile.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import ReduxExperiment from './views/ReduxExperiment';
 import DashBoard from './views/DashBoard/DashBoard.jsx';
-import HomeDB from './views/DashBoard/HomeDB';
+import HomeDB from './views/DashBoard/HomeDB.jsx';
 import EditForm from './views/DashBoard/EditForm';
 
 
