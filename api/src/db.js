@@ -32,13 +32,13 @@ User.belongsToMany(Food, {through: "Favorite"});
 Food.belongsToMany(User, {through: "Favorite"});
 
 
-User.hasMany(Order);
+User.hasMany(Order,{foreignKey:'user_id'});
 Order.belongsTo(User);
 
-Order.hasMany(Detail);
+Order.hasMany(Detail,{foreignKey:'order_id'});
 Detail.belongsTo(Order);
 
-Food.hasMany(Detail);
+Food.hasMany(Detail,{foreignKey:'food_id'});
 Detail.belongsTo(Food);
 
 // EXPORTS
