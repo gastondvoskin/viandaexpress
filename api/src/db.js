@@ -31,7 +31,6 @@ Review.belongsTo(Food);
 User.belongsToMany(Food, {through: "Favorite"});
 Food.belongsToMany(User, {through: "Favorite"});
 
-
 User.hasMany(Order,{foreignKey:'user_id'});
 Order.belongsTo(User);
 
