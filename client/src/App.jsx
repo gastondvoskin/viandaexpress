@@ -10,6 +10,8 @@ import MyProfile from "./views/MyProfile/MyProfile.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import ReduxExperiment from './views/ReduxExperiment';
 import DashBoard from './views/DashBoard/DashBoard.jsx';
+import HomeDB from './views/DashBoard/HomeDB.jsx';
+import EditForm from './views/DashBoard/EditForm';
 
 
 
@@ -25,7 +27,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/myprofile" element={<MyProfile />} />
         <Route path="/basket" element={<Basket />} />
-        <Route path='/dashboard' element={<DashBoard />} />
+        <Route path='/dashboard' element={<HomeDB />} />
+        <Route path='/dashboard/create' element={<DashBoard />} />
+        <Route path='/dashboard/edit/:id' element={<EditForm />} />
         <Route path='/detail/:id' element={<Detail />} />
 
         <Route path="/reduxexperiment" element={<ReduxExperiment />} />

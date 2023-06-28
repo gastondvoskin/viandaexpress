@@ -1,121 +1,136 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "bootstrap/dist/css/bootstrap.css";
-import style from "./Home.module.css";
+import styles from "./Home.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import { getFoods } from "../../redux/foodActions.js";
+import {
+  getFoods,
+  setCurrentPageAction,
+} from "../../redux/foodActions.js";
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import Paginado from "../../components/Paginado/Paginado";
+import  OrderOptions  from "../../components/orderOptions/orderOptions";
+import CategoryButtons from "../../components/categoryButtons/categoryButtons";
 import axios from "axios";
+import FilterDietsOptions from "../../components/filtersDietsOptions/filterDietsOptions";
+
+
 
 const Home = () => {
+
   const [index, setIndex] = useState(0);
-
   const dispatch = useDispatch();
+  const allFoods  = useSelector((state) => state.foodsReducer.allFoods);
+  const filteredFoods  = useSelector((state) => state.foodsReducer.filteredFoods);
+  const currentPage = useSelector((state) => state.foodsReducer.currentPage);
+  const active = useSelector((state) => state.foodsReducer.activeFilteredFoods);
+  /* Comentario TONO: diet y category no se tienen que traer del estado global. A futuro eliminar.  */
+  const diet = useSelector((state) => state.foodsReducer.foodsDiet)
+  const category = useSelector((state) => state.foodsReducer.category)
 
-  let allFoods = [];
-  allFoods = useSelector((state) => state.foodsReducer.allFoods);
-  console.log(allFoods);
 
   /* This implementation will change once we have a deployed DB */
   useEffect(() => {
     if (!allFoods.length) {
-      console.log("if");
       axios.get("http://localhost:3001/api").then(() => dispatch(getFoods()));
     } else {
-      console.log("else");
       dispatch(getFoods());
     }
   }, [dispatch]);
 
-  const [order, setOrder] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [foodsPerPage, setFoodsPerPage] = useState(10);
-
+  const foodsPerPage = 8;
   const indexOfLastFood = currentPage * foodsPerPage;
   const indexOfFirstFood = indexOfLastFood - foodsPerPage;
-  const currentFoods = allFoods.slice(indexOfFirstFood, indexOfLastFood);
+  const currentFoods = active ? filteredFoods.slice(indexOfFirstFood, indexOfLastFood) :allFoods.slice(indexOfFirstFood, indexOfLastFood);
 
   const paginado = (pageNumber) => {
-    setCurrentPage(pageNumber);
+    dispatch(setCurrentPageAction(pageNumber));
   };
+
 
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
 
+  // console.log('currentFoods: ', currentFoods);
   return (
-    <div className={style.mainContainer}>
-      {/* Comment carousel for develop */}
-      <div className={style.Carousel}>
-        <Carousel activeIndex={index} onSelect={handleSelect}>
+    <div className={styles.mainContainer}>
+      {/* Comentario TONO: A futuro modularizar el carousel */}
+      <div className={styles.Carousel}>
+        <Carousel activeIndex={index} onSelect={handleSelect} interval="9000">
+
           <Carousel.Item>
-            <img src="../src/assets/viandas_2.jpeg" alt="First slide" />
+            <img src="../src/assets/carousel/variety.jpg" alt="Variadadas" />
             <Carousel.Caption>
-              <h3>ENSALADAS</h3>
-              <p>VARIEDAD DE ENSALADAS</p>
+              <div className={styles.CarouselText}>Viandas para toda la familia</div>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <img src="../src/assets/viandas_3.jpeg" alt="Second slide" />
+
+            <img src="../src/assets/carousel/healthy.jpeg" alt="Saludables" />
 
             <Carousel.Caption>
-              <h3>VERDURAS HERVIDAS</h3>
-              <p>PAPA, ZANAHORIA, CHAUCHA</p>
+              <div className={styles.CarouselText}>Saludables y nutritivas</div>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <img src="../src/assets/viandas_4.jpeg" alt="Third slide" />
+
+            <img src="../src/assets/carousel/withLove.jpeg" alt="Caseras" />
 
             <Carousel.Caption>
-              <h3>LA MEJOR VARIEDAD</h3>
-              <p>TODAS PREPARADAS CON ALIMENTOS SALUDABLES</p>
+              <div className={styles.CarouselText}>Caseras y con amor</div>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
       </div>
 
-      <div className={style.Button}>
-        <button>PASTAS</button>
-        <button>CARNES</button>
-        <button>ENSALADAS</button>
+      <div className={styles.buttonsContainer}>
+        {/* Comentario TONO: No se puede implementar el reset hasta que se corrija la implementación de los filtros en redux */}
+        {/* <button className={styles.all} onClick={(e) => handleFilterByCategory(e)} value="Todas">
+          Todas
+        </button> */}
+        {/* Comentatario TONO: los botones se deberían refactorizar: deberían mapear un array de diets para no repetir código. */}
+        <CategoryButtons/>
       </div>
 
-      <div className={style.filtros}>
-        <div className={style.filtros2}>
-          <select name="" id="">
-            <option value="">Dieta</option>
-            <option value="">Vegana</option>
-            <option value="">Vegetariana</option>
-            <option value="">Sin tacc</option>
-            <option value="">Sin lactosa</option>
-          </select>
-
-          <select name="" id="">
-            <option value="">Orden</option>
-            <option value="">Precio</option>
-            <option value="">Popularidad</option>
-          </select>
+      <div className={styles.filtros}>
+        {/* Comentario TONO: El filtro de dieta no está implementado. */}
+        <div className={styles.filtros2}>
+          
+          <FilterDietsOptions/>
+          <OrderOptions/>
         </div>
       </div>
-
-      <div className={style.asereje}>
-
-        <SearchBar setCurrentPage={setCurrentPage}/>
-
+      {/* A futuro implementar Eliminar filtros */}
+      {/* <button>Eliminar Filtros</button> */}
+      <div className={styles.asereje}>
+        <SearchBar />
+        
         <Paginado
           foodsPerPage={foodsPerPage}
           foods={allFoods.length}
+          filterFoods={filteredFoods.length}
           paginado={paginado}
           currentPage={currentPage}
         />
 
-        <CardsContainer currentFoods={currentFoods} />
+        
+        {!currentFoods.length 
+          ? <h1 className={styles.notFoundMessage}>No se encontraron resultados</h1>
+          : <CardsContainer currentFoods={currentFoods} />
+        }
       </div>
     </div>
   );
 };
 
 export default Home;
+
+/**
+ *option y valores para ordernar por Popularidad 
+ *<option value="asc">Más Popular</option>
+  <option value="desc">Menos Popular</option>
+ */
+
