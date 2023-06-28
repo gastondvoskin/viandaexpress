@@ -3,9 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import validation from "./validation.jsx";
 import style from "./DashBoard.module.css";
-import { postFood } from "../../redux/foodActions.js";
 import axios from "axios";
-import logoViandaExpress from "../../assets/logo/logoViandaExpress.jpeg";
 
 export default function DashBoard() {
   const dispatch = useDispatch();
