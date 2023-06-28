@@ -4,17 +4,17 @@ import "bootstrap/dist/css/bootstrap.css";
 import styles from "./Home.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SearchBar from "../../components/SearchBar/SearchBar";
+import SearchBar from "../../clientComponents/SearchBar/SearchBar";
 import {
   getFoods,
   setCurrentPageAction,
 } from "../../redux/foodActions.js";
-import CardsContainer from "../../components/CardsContainer/CardsContainer";
-import Paginado from "../../components/Paginado/Paginado";
-import  OrderOptions  from "../../components/orderOptions/orderOptions";
-import CategoryButtons from "../../components/categoryButtons/categoryButtons";
+import CardsContainer from "../../clientComponents/CardsContainer/CardsContainer";
+import Paginado from "../../clientComponents/Paginado/Paginado";
+import OrderOptions  from "../../clientComponents/orderOptions/orderOptions";
+import CategoryButtons from "../../clientComponents/categoryButtons/categoryButtons";
 import axios from "axios";
-import FilterDietsOptions from "../../components/filtersDietsOptions/filterDietsOptions";
+import FilterDietsOptions from "../../clientComponents/filtersDietsOptions/filterDietsOptions";
 
 
 

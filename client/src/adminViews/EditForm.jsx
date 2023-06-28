@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import style from "./DashBoard.module.css";
 import axios from "axios";
-import { getFoods, putFoods } from "../../redux/foodActions.js";
+import { getFoods, putFoods } from "../redux/foodActions.js";
 
 export default function EditForm() {
   const dispatch = useDispatch();
