@@ -11,6 +11,6 @@ const userRouter = Router();
 userRouter.get("/", getUserHandler);
 userRouter.post("/", postUserHandler);
 userRouter.put("/:id", putUserHandler);
-userRouter.delete("/:id", deleteUserHandler);
-
+// Esta ruta podria no hacer falta, queda comentada en caso de que se la necesite.
+// userRouter.delete("/:id", deleteUserHandler); 
 module.exports = { userRouter };
