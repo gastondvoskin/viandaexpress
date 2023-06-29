@@ -10,6 +10,7 @@ import Footer from "./clientComponents/Footer/Footer.jsx";
 import EditForm from './adminViews/EditFood/EditFood';
 import AdminPanel from './adminViews/AdminPanel/AdminPanel';
 import CreateFood from './adminViews/CreateFood/CreateFood';
+import ShoppingCar from './clientViews/ShoppingCar/ShoppingCar';
 
 
 
@@ -27,7 +28,8 @@ function App() {
         <Route path='/detail/:id' element={<Detail />} />
         <Route path="/admin/*" element={<AdminPanel />} />
         <Route path='/admin/create' element={<CreateFood/>} /> 
-        <Route path='/admin/edit/:id' element={<EditForm />} /> 
+        <Route path='/admin/edit/:id' element={<EditForm />} />
+        <Route path='/shoppingcar' element={<ShoppingCar />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {!location.pathname.includes('/admin') && <Footer/> }
