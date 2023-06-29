@@ -2,7 +2,7 @@ const { getUserByNameController } = require('../controllers/userControllers/getU
 const { getAllUsersController } = require('../controllers/userControllers/getAllUsersController');
 const { postUserController } = require('../controllers/userControllers/postUserController');
 const { putUserController } = require('../controllers/userControllers/putUserController');
-const { deleteUserController } = require('../controllers/userControllers/deleteUserController');
+
 
 
 const getUserHandler = async (req, res) => {
@@ -49,16 +49,8 @@ const putUserHandler = async (req, res) => {
     }
 };
 
-const deleteUserHandler = async (req, res) => {
-    try {
-        const { id } = req.params;
-        await deleteUserController(id);
-        res.status(200).send("Se eliminó con éxito");
-    } catch (error) {
-        res.status(400).send({ error: error.message });
-    }
-};
 
 
 
-module.exports = { getUserHandler, postUserHandler, putUserHandler, deleteUserHandler };
+
+module.exports = { getUserHandler, postUserHandler, putUserHandler };
