@@ -4,14 +4,14 @@ const logo = require("../../../client/src/assets/logo/LogoViandaExpress.jpeg")
 const transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
-        user: "viandaexpress84@gmail.com",
+        user: "",
         pass: "",
     }
 })
 
 const mailSend = {
-    from: "viandaexpress84@gmail.com",
-    to: "gabriel.682681@gmail.com",
+    from: "",
+    to: "",
     subject: "Vianda Express",
     text: "Bienvenido a Vianda Express",
     attachments: [
