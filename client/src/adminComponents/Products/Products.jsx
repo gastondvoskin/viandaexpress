@@ -1,70 +1,74 @@
-// VIEW PRODUCTS
-import React from "react";
-import styles from "./Products.module.css"
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import SearchBar from "../../clientComponents/SearchBar/SearchBar";
-import { getFoods,setCurrentPageAction } from "../../redux/foodActions.js";
-import CardsContainer from "./CardsContainer";
-import Paginado from "./Paginado";
-// import EditForm from "./EditForm";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import ListProductsItem from '../ListProductsItam/ListProductsItem.jsx';
+import styles from './products.module.css'; // Importa el archivo CSS
+import { Link } from 'react-router-dom';
 
 const Products = () => {
-  const [index, setIndex] = useState(false);
-  const dispatch = useDispatch();
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
-  const filteredFoods = useSelector(
-    (state) => state.foodsReducer.filteredFoods
-  );
-  const currentPage = useSelector((state) => state.foodsReducer.currentPage);
-  const active = useSelector((state) => state.foodsReducer.activeFilteredFoods);
+  const [localFoods, setLocalFoods] = useState(allFoods);
+  const [category, setCategory] = useState('todas');
 
-  /* This implementation will change once we have a deployed DB */
-  useEffect(() => {
-    if (!allFoods.length) {
-      axios.get("http://localhost:3001/api").then(() => dispatch(getFoods()));
-    } else {
-      dispatch(getFoods());
+  const handlerCategoryFilter = (category) => {
+    let filterfoods = [];
+    switch (category) {
+      case 'todas':
+        filterfoods = allFoods;
+        break;
+      case 'carnes':
+        filterfoods = allFoods.filter(e => e.category === 'Carnes');
+        break;
+      case 'pastas':
+        filterfoods = allFoods.filter(e => e.category === 'Pastas');
+        break;
+      case 'ensaladas':
+        filterfoods = allFoods.filter(e => e.category === 'Ensaladas');
+        break;
+      default:
+        break;
     }
-  }, [dispatch]);
 
-  const foodsPerPage = 8;
-  const indexOfLastFood = currentPage * foodsPerPage;
-  const indexOfFirstFood = indexOfLastFood - foodsPerPage;
-  const currentFoods = active
-    ? filteredFoods.slice(indexOfFirstFood, indexOfLastFood)
-    : allFoods.slice(indexOfFirstFood, indexOfLastFood);
-
-  const paginado = (pageNumber) => {
-    dispatch(setCurrentPageAction(pageNumber));
+    setLocalFoods(filterfoods);
   };
 
-  const handleSelect = (selected) => {
-    setIndex(selected);
+  const handlerChange = (event) => {
+    const { value } = event.target;
+    setCategory(value);
+    handlerCategoryFilter(value);
   };
 
   return (
-    <div className={styles.mainContainer}>
-      <SearchBar />
-      <div className={styles.asereje}>
-        <Link to="/admin/create">
-          <button>Crear Vianda</button>
+    <div className={styles.productos}> {/* Aplica la clase CSS utilizando la variable styles */}
+      <div>
+        <h1>Nuestras Viandas</h1>
+        
+      </div>
+      <div className={styles.addFood}>
+        <Link to={'/admin/create'}>
+          <button>Agregar Vianda</button>
         </Link>
-        {/* Tono: Comentado. Después de la primera demo, el estilo del HomeDashboard va a cambiar a un listado.  */}
-        {/* <Paginado
-          foodsPerPage={foodsPerPage}
-          foods={allFoods.length}
-          filterFoods={filteredFoods.length}
-          paginado={paginado}
-          currentPage={currentPage}
-        /> */}
-        {!currentFoods.length ? (
-          <p>No se enconraron resultados</p>
-        ) : (
-          <CardsContainer currentFoods={currentFoods} />
-        )}
+        <select value={category} onChange={handlerChange}>
+          <option value="todas">Todas</option>
+          <option value="carnes">Carnes</option>
+          <option value="pastas">Pastas</option>
+          <option value="ensaladas">Ensaladas</option>
+        </select>
+      </div>
+      <div>
+        <ul>
+          {localFoods.length > 0 &&
+            localFoods.map(e => (
+              <ListProductsItem
+                key={e.id}
+                id={e.id}
+                name={e.name}
+                final_price={e.final_price}
+                status={e.status}
+                localFoods={localFoods} // Agrega esta línea
+                setLocalFoods={setLocalFoods}
+              />
+            ))}
+        </ul>
       </div>
     </div>
   );

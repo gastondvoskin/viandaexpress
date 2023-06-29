@@ -1,29 +1,14 @@
-.mainContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.productos {
+  /* Agrega los estilos para el componente Productos */
+  /* Por ejemplo: */
+  background-color: #f2f2f2;
+  padding: 20px;
 }
-
-.backHome {
-  margin: 15px;
-}
-
-.filtros {
-  width: 450px;
-  height: 100px;
-}
-
-.filtros2 {
-  display: flex;
+  
+  /* Puedes definir más estilos aquí */
+.addFood{
+  margin: 20px;
+  display:flex;
   justify-content: space-between;
-  height: 50px;
-}
-
-.asereje {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
-
