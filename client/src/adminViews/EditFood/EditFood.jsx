@@ -1,11 +1,12 @@
+// VIEW EDIT
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import style from "./DashBoard.module.css";
+import style from "../CreateFood/DashBoard.module.css";
 import axios from "axios";
-import { getFoods, putFoods } from "../redux/foodActions.js";
+import { getFoods, putFoods } from "../../redux/foodActions.js";
 
-export default function EditForm() {
+export default function EditFood() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
@@ -216,7 +217,7 @@ export default function EditForm() {
       <br />
       <button onClick={handleEdit}>Guardar</button>
       <button onClick={handleDelete}>Eliminar</button>
-      <Link to="/dashboard">
+      <Link to="/admin">
         <button>Cancelar</button>
       </Link>
     </div>

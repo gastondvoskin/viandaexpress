@@ -1,8 +1,6 @@
 import Card from "./Card.jsx"
-import style from "./DashBoard.module.css"
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import EditForm from '../adminViews/EditForm.jsx'
+import style from "./CardsContainer.module.css"
+
 
 export default function CardsContainer({currentFoods,handleSelect}) {
   

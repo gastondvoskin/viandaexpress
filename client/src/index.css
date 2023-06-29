@@ -15,7 +15,7 @@
 body {
   /* background-color: var(--backgroundColor); */
   /* background-image: url("./assets/background.jpg"); */
-  background-image: url("./assets/backgroundImage/choppingBoard.jpg");
+  /* background-image: url("./assets/backgroundImage/choppingBoard.jpg"); */
   background-size: cover;
   color: var(--text);
   font-family: var(--fontFamily);

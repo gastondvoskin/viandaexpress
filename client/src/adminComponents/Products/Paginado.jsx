@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./DashBoard.module.css"
+import styles from "./Products.module.css"
 
 export default function Paginado({foodsPerPage, foods, paginado,currentPage}){
     const pageNumbers = []
