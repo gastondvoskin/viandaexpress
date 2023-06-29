@@ -4,7 +4,7 @@ import ListProductsItem from '../ListProductsItam/ListProductsItem.jsx';
 import styles from './products.module.css'; // Importa el archivo CSS
 import { Link } from 'react-router-dom';
 
-const Productos = () => {
+const Products = () => {
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
   const [localFoods, setLocalFoods] = useState(allFoods);
   const [category, setCategory] = useState('todas');
@@ -74,4 +74,4 @@ const Productos = () => {
   );
 };
 
-export default Productos;
+export default Products;

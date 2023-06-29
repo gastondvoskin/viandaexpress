@@ -4,7 +4,7 @@ import { getFoods } from "../../redux/foodActions.js";
 import style from './adminPanel.module.css';
 import Users from '../../adminComponents/Users/Users';
 import Reviews from '../../adminComponents/Reviews/Reviews';
-import Productos from '../../adminComponents/Products/Products';
+import Products from '../../adminComponents/Products/Products';
 import Dashboard from '../../adminComponents/DashBoard/DashBoard';
 import { useDispatch,useSelector } from 'react-redux';
 import axios from 'axios';
@@ -31,7 +31,7 @@ const AdminPanel = () => {
             return <Dashboard />;
         case 'products':
             // return <Products />;
-          return <Productos/>
+          return <Products/>
         case 'users':
             return <Users/>
         case 'reviews':
