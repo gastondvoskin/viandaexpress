@@ -1,3 +1,4 @@
+// VIEW CREATE PRODUCT
 import { Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -5,7 +6,7 @@ import validation from "./validation.jsx";
 import style from "./DashBoard.module.css";
 import axios from "axios";
 
-export default function DashBoard() {
+export default function CreateFood() {
   const dispatch = useDispatch();
   const diets = ["Sin TACC", "Vegetariano", "Vegano", "Sin Lactosa"];
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
@@ -245,7 +246,7 @@ export default function DashBoard() {
               </div> */}
               <div className={style.ButtonDB}>
 
-                <Link to='/home'><button>Home</button></Link>
+                <Link to='/admin'><button>Home</button></Link>
 
               </div>
           </div>

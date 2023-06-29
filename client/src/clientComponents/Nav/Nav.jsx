@@ -27,8 +27,8 @@ function Nav() {
           <FontAwesomeIcon icon={faUser} />
         </NavLink> */}
 
-        <Link to="/dashboard">
-          <button className={styles.dashBoard}>Dashboard</button>
+        <Link to="/admin">
+          <button className={styles.dashBoard}>Admin</button>
         </Link>
       </div>
     </nav>
