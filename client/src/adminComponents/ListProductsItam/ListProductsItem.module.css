@@ -1,4 +1,5 @@
 .listProductsItem {
+  justify-content: space-between;
   align-items: center;
     display: flex;
     /* Agrega los estilos para el componente ListProductsItem */

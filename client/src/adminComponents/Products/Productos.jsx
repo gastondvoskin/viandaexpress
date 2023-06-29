@@ -64,6 +64,8 @@ const Productos = () => {
                 name={e.name}
                 final_price={e.final_price}
                 status={e.status}
+                localFoods={localFoods} // Agrega esta línea
+                setLocalFoods={setLocalFoods}
               />
             ))}
         </ul>

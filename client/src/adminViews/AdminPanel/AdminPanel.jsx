@@ -1,9 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import Sidebar from '../../adminComponents/SideBar/SideBar';
-import Products from '../../adminComponents/Products/Products';
 import { getFoods } from "../../redux/foodActions.js";
-// import Users from './Users';
-// import Reviews from './Reviews';
 import style from './adminPanel.module.css';
 import Users from '../../adminComponents/Users/Users';
 import Reviews from '../../adminComponents/Reviews/Reviews';

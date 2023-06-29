@@ -5,9 +5,11 @@ import { Link, useParams } from "react-router-dom";
 import style from "../CreateFood/DashBoard.module.css";
 import axios from "axios";
 import { getFoods, putFoods } from "../../redux/foodActions.js";
+import { useNavigate } from 'react-router-dom';
 
 export default function EditFood() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
 
@@ -83,7 +85,8 @@ export default function EditFood() {
               "Content-Type": "multipart/form-data",
             },
           });
-          alert(`Receta de ${formData.name} modificada`);  
+          alert(`Receta de ${formData.name} modificada`); 
+          navigate('/admin');
       } catch (error) {
           alert(error.message)
       }
@@ -97,8 +100,9 @@ export default function EditFood() {
       try {
         await axios.delete(`http://localhost:3001/food/${id}`);
         alert(`Vianda: '${formData.name}' eliminada`);
+        navigate('/admin');
       } catch (error) {
-        alert(`Receta de ${formData.name} modificada`);
+        alert(error.message);
       }
     }
   };
