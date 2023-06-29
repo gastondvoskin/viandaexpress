@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import './App.css';
 import Nav from "./clientComponents/Nav/Nav.jsx";
 import Detail from './clientViews/Detail/Detail.jsx';
@@ -7,30 +7,30 @@ import Login from "./clientViews/Login/Login.jsx";
 import NotFound from "./clientViews/NotFound/NotFound.jsx";
 import MyProfile from "./clientViews/MyProfile/MyProfile.jsx";
 import Footer from "./clientComponents/Footer/Footer.jsx";
-import DashBoard from './adminViews/DashBoard.jsx';
-import HomeDB from './adminViews/HomeDB.jsx';
-import EditForm from './adminViews/EditForm';
+import EditForm from './adminViews/EditFood/EditFood';
+import AdminPanel from './adminViews/AdminPanel/AdminPanel';
+import CreateFood from './adminViews/CreateFood/CreateFood';
 
 
 
 function App() {
   // console.log(Detail)
-
+  const location = useLocation()
   return (
     <div className="app">
-      <Nav />
+      {!location.pathname.includes('/admin') && <Nav /> }
       <Routes>
-        <Route path="/home" element={<Home />} />
         <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/myprofile" element={<MyProfile />} />
-        <Route path='/dashboard' element={<HomeDB />} />
-        <Route path='/dashboard/create' element={<DashBoard />} />
-        <Route path='/dashboard/edit/:id' element={<EditForm />} />
         <Route path='/detail/:id' element={<Detail />} />
+        <Route path="/admin/*" element={<AdminPanel />} />
+        <Route path='/admin/create' element={<CreateFood/>} /> 
+        <Route path='/admin/edit/:id' element={<EditForm />} /> 
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer />
+      {!location.pathname.includes('/admin') && <Footer/> }
     </div>
   )
 };

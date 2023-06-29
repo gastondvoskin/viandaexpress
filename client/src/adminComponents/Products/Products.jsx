@@ -1,17 +1,17 @@
+// VIEW PRODUCTS
 import React from "react";
-
-import styles from "./Home.module.css";
+import styles from "./Products.module.css"
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SearchBar from "../clientComponents/SearchBar/SearchBar";
-import { getFoods,setCurrentPageAction } from "../redux/foodActions.js";
-import CardsContainer from "../adminComponents/CardsContainer";
-import Paginado from "../adminComponents/Paginado";
+import SearchBar from "../../clientComponents/SearchBar/SearchBar";
+import { getFoods,setCurrentPageAction } from "../../redux/foodActions.js";
+import CardsContainer from "./CardsContainer";
+import Paginado from "./Paginado";
 // import EditForm from "./EditForm";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const HomeDB = () => {
+const Products = () => {
   const [index, setIndex] = useState(false);
   const dispatch = useDispatch();
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
@@ -47,13 +47,9 @@ const HomeDB = () => {
 
   return (
     <div className={styles.mainContainer}>
-      <Link to="/home">
-        <button className={styles.backHome}>Home</button>
-      </Link>
       <SearchBar />
-
       <div className={styles.asereje}>
-        <Link to="/dashboard/create">
+        <Link to="/admin/create">
           <button>Crear Vianda</button>
         </Link>
         {/* Tono: Comentado. Después de la primera demo, el estilo del HomeDashboard va a cambiar a un listado.  */}
@@ -74,4 +70,4 @@ const HomeDB = () => {
   );
 };
 
-export default HomeDB;
+export default Products;
