@@ -3,7 +3,6 @@ import './App.css';
 import Nav from "./clientComponents/Nav/Nav.jsx";
 import Detail from './clientViews/Detail/Detail.jsx';
 import Home from "./clientViews/Home/Home.jsx";
-import Login from "./clientViews/Login/Login.jsx";
 import NotFound from "./clientViews/NotFound/NotFound.jsx";
 import MyProfile from "./clientViews/MyProfile/MyProfile.jsx";
 import Footer from "./clientComponents/Footer/Footer.jsx";
@@ -13,17 +12,15 @@ import CreateFood from './adminViews/CreateFood/CreateFood';
 import ShoppingCar from './clientViews/ShoppingCar/ShoppingCar';
 
 
-
 function App() {
-  // console.log(Detail)
   const location = useLocation()
   return (
     <div className="app">
       {!location.pathname.includes('/admin') && <Nav /> }
       <Routes>
+        <Route path="/" element={<Nav />} />
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/myprofile" element={<MyProfile />} />
         <Route path='/detail/:id' element={<Detail />} />
         <Route path="/admin/*" element={<AdminPanel />} />
