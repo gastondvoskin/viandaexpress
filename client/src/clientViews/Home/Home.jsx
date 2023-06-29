@@ -16,22 +16,19 @@ import CategoryButtons from "../../clientComponents/categoryButtons/categoryButt
 import axios from "axios";
 import FilterDietsOptions from "../../clientComponents/filtersDietsOptions/filterDietsOptions";
 
+import LoginButton from "../../LoginComponents/LoginButton/LoginButton";
+import { useAuth0 } from "@auth0/auth0-react"
 
 
 const Home = () => {
-
   const [index, setIndex] = useState(0);
   const dispatch = useDispatch();
   const allFoods  = useSelector((state) => state.foodsReducer.allFoods);
   const filteredFoods  = useSelector((state) => state.foodsReducer.filteredFoods);
   const currentPage = useSelector((state) => state.foodsReducer.currentPage);
   const active = useSelector((state) => state.foodsReducer.activeFilteredFoods);
-  /* Comentario TONO: diet y category no se tienen que traer del estado global. A futuro eliminar.  */
-  const diet = useSelector((state) => state.foodsReducer.foodsDiet)
-  const category = useSelector((state) => state.foodsReducer.category)
+  const { isLoading } = useAuth0();
 
-
-  /* This implementation will change once we have a deployed DB */
   useEffect(() => {
     if (!allFoods.length) {
       axios.get("http://localhost:3001/api").then(() => dispatch(getFoods()));
@@ -54,7 +51,8 @@ const Home = () => {
     setIndex(selectedIndex);
   };
 
-  // console.log('currentFoods: ', currentFoods);
+  if (isLoading) return <h1>Iniciando sesión...</h1>
+
   return (
     <div className={styles.mainContainer}>
       {/* Comentario TONO: A futuro modularizar el carousel */}

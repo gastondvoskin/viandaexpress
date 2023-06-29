@@ -84,3 +84,7 @@ https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5
 
 https://www.passportjs.org/
 
+
+Auth0
+Para ingresar como cliente: http://localhost:5173/home
+Para ingresar como admin: iniciar sesión, por ejemplo con Gmail, y dirigirse manualmente a http://localhost:5173/home (esto es sólo temporal hasta que terminada la implementación de Auth0). 
