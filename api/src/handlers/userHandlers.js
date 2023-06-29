@@ -41,8 +41,8 @@ const postUserHandler = async (req, res) => {
 const putUserHandler = async (req, res) => {
     try {
         const { id } = req.params;
-        const { name /* add attributes from User model */ } = req.body;
-        await putUserController(id, name /* add attributes from User model */);
+        const { name, email, type, status, adress } = req.body;
+        await putUserController(id, name, email, type, status, adress);
         res.status(200).send('Modificación exitosa');
     } catch (error) {
         res.status(400).send({ error: error.message });
