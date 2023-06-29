@@ -1,22 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Sidebar from '../../adminComponents/SideBar/SideBar';
-import Dashboard from '../../adminComponents/DashBoard/DashBoard';
 import Products from '../../adminComponents/Products/Products';
+import { getFoods } from "../../redux/foodActions.js";
 // import Users from './Users';
 // import Reviews from './Reviews';
 import style from './adminPanel.module.css';
 import Users from '../../adminComponents/Users/Users';
 import Reviews from '../../adminComponents/Reviews/Reviews';
+import Productos from '../../adminComponents/Products/Productos';
+import Dashboard from '../../adminComponents/DashBoard/DashBoard';
+import { useDispatch,useSelector } from 'react-redux';
+import axios from 'axios';
+
+
+
 
 const AdminPanel = () => {
+
   const [selectedOption, setSelectedOption] = useState('dashboard');
+  const allFoods = useSelector((state) => state.foodsReducer.allFoods);
+  const dispatch = useDispatch()
+  useEffect(() => {
+    if (!allFoods.length) {
+      axios.get("http://localhost:3001/api").then(() => dispatch(getFoods()));
+    } else {
+      dispatch(getFoods());
+    }
+  }, [dispatch]);
 
   const renderSelectedOption = () => {
     switch (selectedOption) {
         case 'dashboard':
             return <Dashboard />;
         case 'products':
-            return <Products />;
+            // return <Products />;
+          return <Productos/>
         case 'users':
             return <Users/>
         case 'reviews':
