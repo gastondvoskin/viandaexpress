@@ -19,4 +19,7 @@ body {
   background-size: cover;
   color: var(--text);
   font-family: var(--fontFamily);
+  height: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
