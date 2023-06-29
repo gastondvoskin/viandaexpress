@@ -19,7 +19,9 @@ const Checkout = ({ onClick }) => {
     const amount = parseInt(orderData.price) * parseInt(quantity);
     setOrderData({ ...orderData, quantity, amount });
   }
-  
+  const image="../img/product.png";
+  const name="nombre de vianda";
+  const price=10;
   return (
     <section className={shoppingCartClass}>
       <div className="container" id="container">
@@ -39,20 +41,15 @@ const Checkout = ({ onClick }) => {
                           <img
                             className="img-fluid mx-auto d-block image"
                             alt="Image of a product"
-                            src="../img/product.png"
+                            src={image}
                           />
                         </div>
                         <div className="col-md-4 product-detail">
-                          <h5>Product</h5>
+                          <h5>Producto</h5>
                           <div className="product-info">
-                            <b>Description: </b>
-                            <span id="product-description">Some book</span>
+                            <b>{name}</b>
                             <br />
-                            <b>Author: </b>Dale Carnegie
-                            <br />
-                            <b>Number of pages: </b>336
-                            <br />
-                            <b>Price:</b> $ <span id="unit-price">10</span>
+                            <b>Precio:</b> $ <span id="unit-price">{price}</span>
                             <br />
                           </div>
                         </div>
@@ -77,7 +74,7 @@ const Checkout = ({ onClick }) => {
             </div>
             <div className="col-md-12 col-lg-4">
               <div className="summary">
-                <h3>Cart</h3>
+                <h3>Carrito</h3>
                 <div className="summary-item">
                   <span className="text">Subtotal</span>
                   <span className="price" id="cart-total">${orderData.amount}</span>
