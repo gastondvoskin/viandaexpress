@@ -37,9 +37,7 @@ export default function Paginado({
               );
             } else if (
               number === 1 ||
-              number === pageNumbers.length ||
-              number === currentPage - 1 ||
-              number === currentPage + 1
+              number === pageNumbers.length
             ) {
               {
                 return (
@@ -53,9 +51,23 @@ export default function Paginado({
                   </li>
                 );
               }
+            }else if(
+              number>(currentPage-4) &&
+              number<(currentPage+4)
+            ){
+              return (
+                <li className="number" key={number}>
+                  <button
+                    className={styles.numbers}
+                    onClick={() => paginado(number)}
+                  >
+                    {number}
+                  </button>
+                </li>
+              );
             } else if (
-              number === currentPage - 2 ||
-              number === currentPage + 2
+              number === currentPage - 4 ||
+              number === currentPage + 4
             ) {
               return (
                 <li className="number" key={number}>
