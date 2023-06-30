@@ -5,6 +5,8 @@ const { putUserController } = require('../controllers/userControllers/putUserCon
 
 
 
+
+
 const getUserHandler = async (req, res) => {
 
     const { name } = req.query;
@@ -23,11 +25,11 @@ const getUserHandler = async (req, res) => {
 
 const postUserHandler = async (req, res) => {
     const { name, email, type, status, adress } = req.body;
-    console.log(req.body)
     try {
         if (name && email && type && status && adress) {
 
             const newUser = await postUserController(name, email, type, status, adress);
+
             res.status(201).send(newUser);
         } else {
             throw new Error('Falta información en el cuerpo de la solicitud');
