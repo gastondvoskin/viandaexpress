@@ -1,27 +1,30 @@
 import style from "./Card.module.css";
 import shopping from '../../assets/carrito de compras/Rectangle 1.png'
 import {NavLink} from 'react-router-dom';
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import {addItemsActions, deleteItemActions} from '../../redux/foodActions.js'
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Card({ id,name, image, final_price }) {
   const [isItem,setIsItem]=useState(false);
+  const allItems=useSelector((state)=>state.foodsReducer.orderItems);
+  const dispatch=useDispatch();
   useEffect(()=>{
-    state.orderItems.forEach((it)=>{
-      if(it.id===id){
-        setIsItem(true);
+    allItems.forEach((item)=>{
+      if(item.id===id){
+        setIsItem(true)
       }
     });
-  },[orderItems])
+  },[])
   const handleClick=(e)=>{
-    if(isShop){
+    if(isItem){
       setIsItem(false),
-      deleteItemActions(id);
+      dispatch(deleteItemActions(id));
     }else{
       setIsItem(true);
-      addItemsActions({id,name,image,final_price})
+      dispatch(addItemsActions({id,name,image,final_price}))
     }
-    
+    console.log(allItems)
   }
   return (
     <div className={style.card}>
@@ -34,7 +37,7 @@ export default function Card({ id,name, image, final_price }) {
       <div className={style.p}>
         <p>${final_price}</p>
       </div>
-      <button onClick={handleClick(e)}><img src={shopping} alt='carrito de compras' className={style.shopping} /></button>
+      <button onClick={handleClick}>{isItem? 'Agregado':'Agregar'}</button>
       {/* <p>
         Dietas:{" "}
         {diets.map((diet) => (
