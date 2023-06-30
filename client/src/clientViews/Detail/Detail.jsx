@@ -4,9 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFoods } from "../../redux/foodActions.js";
 import axios from "axios";
 import styles from "../Detail/Detail.module.css";
+import {addItemsActions, deleteItemActions} from '../../redux/foodActions.js';
 
 export default function Detail() {
   const { id } = useParams();
+  const [isItem,setIsItem]=useState(false);
+  const allItems=useSelector((state)=>state.foodsReducer.orderItems);
   const dispatch = useDispatch();
 
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
@@ -22,8 +25,27 @@ export default function Detail() {
       dispatch(getFoods());
     }
   }, [dispatch]);
+  /*To identify if it's an item*/
+  useEffect(()=>{
+    allItems.forEach((item)=>{
+      if(item.id===id){
+        setIsItem(true)
+      }
+    });
+  },[])
 
   const foodDetail = allFoods.find((food) => food.id === id);
+  /*To add a new item or delete an item */
+  const handleClick=(e)=>{
+    if(isItem){
+      setIsItem(false),
+      dispatch(deleteItemActions(id));
+    }else{
+      setIsItem(true);
+      dispatch(addItemsActions({id,name,image,final_price}))
+    }
+    console.log(allItems)
+  }
 
   return (
     <main className={styles.main}>
@@ -70,6 +92,7 @@ export default function Detail() {
           )}
         </div>
       )}
+      <button onClick={handleClick}>{isItem? 'Agregado':'Agregar'}</button>
     </main>
   );
 }
