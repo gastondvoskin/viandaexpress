@@ -86,6 +86,4 @@ https://www.passportjs.org/
 
 
 Auth0
-Para ingresar como cliente: http://localhost:5173/home
-Para ingresar como admin: iniciar sesión, por ejemplo con Gmail, y dirigirse manualmente a http://localhost:5173/home (esto es sólo temporal hasta que terminada la implementación de Auth0). 
 https://www.youtube.com/watch?v=sTJaHQINpTc&ab_channel=CarlosAzaustre-AprendeJavaScript

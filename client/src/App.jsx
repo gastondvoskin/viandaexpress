@@ -10,15 +10,9 @@ import EditForm from './adminViews/EditFood/EditFood';
 import AdminPanel from './adminViews/AdminPanel/AdminPanel';
 import CreateFood from './adminViews/CreateFood/CreateFood';
 import ShoppingCar from './clientViews/ShoppingCar/ShoppingCar';
-import LoginButton from './LoginComponents/LoginButton/LoginButton';
-import LogoutButton from './LoginComponents/LogoutButton/LogoutButton';
-import { useAuth0 } from "@auth0/auth0-react";
-import { Link } from 'react-router-dom';
-import Login from './LoginComponents/Login'
 
 function App() {
   const location = useLocation()
-  const { isAuthenticated } = useAuth0();
 
   return (
     <div className="app">
