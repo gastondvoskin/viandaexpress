@@ -24,7 +24,6 @@ const initialState = {
     "Carnes",
   ] /* TONO: why is there a categories property in redux? Cause don't a categories' table*/,
   // filteredByDiet: [],
-  orderItems:[],
 };
 
 export const foodsSlice = createSlice({

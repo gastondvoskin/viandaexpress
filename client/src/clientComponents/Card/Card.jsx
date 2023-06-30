@@ -2,19 +2,24 @@ import style from "./Card.module.css";
 import shopping from '../../assets/carrito de compras/Rectangle 1.png'
 import {NavLink} from 'react-router-dom';
 import { useState, useEffect } from "react";
+import {addItemsActions, deleteItemActions} from '../../redux/foodActions.js'
 
 export default function Card({ id,name, image, final_price }) {
   const [isItem,setIsItem]=useState(false);
   useEffect(()=>{
-    state.orderItems.forEach()
-  })
+    state.orderItems.forEach((it)=>{
+      if(it.id===id){
+        setIsItem(true);
+      }
+    });
+  },[orderItems])
   const handleClick=(e)=>{
     if(isShop){
       setIsItem(false),
-      delete(id);
+      deleteItemActions(id);
     }else{
       setIsItem(true);
-      addItemsactions({id,name,image,final_price})
+      addItemsActions({id,name,image,final_price})
     }
     
   }
