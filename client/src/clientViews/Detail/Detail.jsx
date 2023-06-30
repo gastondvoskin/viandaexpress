@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFoods } from "../../redux/foodActions.js";
 import axios from "axios";
@@ -42,11 +42,11 @@ export default function Detail() {
       dispatch(deleteItemActions(id));
     }else{
       setIsItem(true);
-      dispatch(addItemsActions({id,name,image,final_price}))
+      dispatch(addItemsActions({id,name:foodDetail?.name,image:foodDetail?.image,final_price:foodDetail?.final_price}))
     }
-    console.log(allItems)
+    
   }
-
+  console.log(allItems)
   return (
     <main className={styles.main}>
       {!foodDetail ? (
@@ -90,9 +90,10 @@ export default function Detail() {
               Ésta es una de nuestras comidas más elegidas por los usuarios!
             </p>
           )}
+          <button onClick={handleClick}>{isItem? 'Agregado':'Agregar'}</button>
         </div>
       )}
-      <button onClick={handleClick}>{isItem? 'Agregado':'Agregar'}</button>
+      
     </main>
   );
 }
