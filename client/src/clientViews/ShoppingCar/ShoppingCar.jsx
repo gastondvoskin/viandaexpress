@@ -7,7 +7,7 @@ import InternalProvider from "../../clientComponents/ShoppingCar/ContextProvider
 import { SpinnerCircular } from 'spinners-react';
 
 // REPLACE WITH YOUR PUBLIC KEY AVAILABLE IN: https://developers.mercadopago.com/panel
-initMercadoPago(1409945839);
+initMercadoPago('APP_USR-8e95f5fd-f2e0-4982-8ac8-27b1f1b175bb');
 
 
 const ShoppingCar = () => {

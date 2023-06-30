@@ -17,12 +17,12 @@ const initialState = {
     "Vegetariano",
     "Vegano",
     "Sin Lactosa",
-  ] /* TONO: why is there a diets property in redux? */,
+  ] /* TONO: why is there a diets property in redux? Cause don´t a diets' table*/,
   categories: [
     "Pastas",
     "Ensaladas",
     "Carnes",
-  ] /* TONO: why is there a categories property in redux? */,
+  ] /* TONO: why is there a categories property in redux? Cause don't a categories' table*/,
   // filteredByDiet: [],
 };
 
