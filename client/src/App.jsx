@@ -14,6 +14,7 @@ import LoginButton from './LoginComponents/LoginButton/LoginButton';
 import LogoutButton from './LoginComponents/LogoutButton/LogoutButton';
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from 'react-router-dom';
+import Login from './LoginComponents/Login'
 
 function App() {
   const location = useLocation()
@@ -22,20 +23,15 @@ function App() {
   return (
     <div className="app">
       {!location.pathname.includes('/admin') && <Nav /> }
-      {isAuthenticated ? <LogoutButton /> : <LoginButton />}
-      <Link to="/home">IR AL HOME</Link>
       <Routes>
-        
-
-        {/* <Route path="/" element={<Navigate to="/home" />} /> */}
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/myprofile" element={<MyProfile />} />
         <Route path='/detail/:id' element={<Detail />} />
         <Route path="/admin/*" element={<AdminPanel />} />
         <Route path='/admin/create' element={<CreateFood/>} /> 
         <Route path='/admin/edit/:id' element={<EditForm />} />
         <Route path='/shoppingcar' element={<ShoppingCar />} />
-        {/* <Route path="*" element={<NotFound />} /> */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
       {!location.pathname.includes('/admin') && <Footer/> }
     </div>
