@@ -6,6 +6,7 @@ const initialState = {
   allFoods: [],
   foodDetail: [],
   filteredFoods:[],
+  orderItems:[],
   activeFilteredFoods:false,
   orderBy:'',
   foodsCategory:'',
@@ -91,8 +92,17 @@ export const foodsSlice = createSlice({
 
     deletFoods: (state)=>{
       state.allFoods
-    }
+    },
     // WIP
+    // ORDER ITEMS
+    addItems: (state, action) => {
+      const newItem = action.payload;
+      state.orderItems = [...state.orderItems, newItem];
+    },
+    deleteItems: (state, action)=>{
+      const deleteId = action.payload;
+      state.orderItems = state.orderItems.filter((it)=>it.id!==deleteId);
+    }
   },
 });
 
@@ -108,7 +118,9 @@ export const {
   setCategory,
   setDiet,
   editFoods,
-  deleteFoods
+  deleteFoods,
+  addItems,
+  deleteItems
 } = foodsSlice.actions;
 
 
