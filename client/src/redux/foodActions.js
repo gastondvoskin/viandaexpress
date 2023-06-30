@@ -2,7 +2,8 @@
 
 import axios from "axios";
 
-import { getAllFoods, getFoodsByName,orderFoods,activeFilteredFood,setOrder,setCurrentPage,filterByCategory,setCategory,setDiet,filterByDiet/* , getFoodById */ } from "./foodSlice.js";
+import { getAllFoods, getFoodsByName,orderFoods,activeFilteredFood,setOrder,setCurrentPage,filterByCategory,setCategory,setDiet,filterByDiet, addItems, deleteItems/* , getFoodById */ } from "./foodSlice.js";
+import { Alert } from "bootstrap";
 
 
 export const getFoods = () => async (dispatch) => {
@@ -125,7 +126,24 @@ export const putFoods=(input)=>async (dispatch)=>{
     }catch(error){
         alert (error.message)
     }
+};
+// ORDER ITEMS
+export const addItemsActions = (id, name, image,  final_price, quantity=1) => (dispatch) => {
+    try {
+        dispatch(addItems(id, name, image, final_price, quantity));
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const deleteItemActions = (id) => (dispatch) => {
+    try {
+        dispatch(deleteItems(id));
+    } catch (error) {
+        console.log(error);
+    }
 }
+
 // Do not delete. Uncomment and test when the endpoint `http://localhost:3001/food/${id}` is created
 // export const getFood = (id) => async (dispatch) => {
 //     try {
