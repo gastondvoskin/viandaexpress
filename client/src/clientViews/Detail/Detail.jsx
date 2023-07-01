@@ -5,7 +5,7 @@ import { getFoods } from "../../redux/foodActions.js";
 import axios from "axios";
 import styles from "../Detail/Detail.module.css";
 import {addItemsActions, deleteItemActions} from '../../redux/foodActions.js';
-import { useState } from "react";
+
 
 export default function Detail() {
   const { id } = useParams();
