@@ -1,12 +1,12 @@
 const { User } = require("../../db");
 const { Op } = require("sequelize");
 
-const getUserByNameController = async (name) => {
-  const userByname = await User.findAll({
-    where: { name: { [Op.iLike]: `%${name}%` } },
+const getUserByEmailController = async (email) => {
+  const userByEmail = await User.findAll({
+    where: { email: { [Op.iLike]: `%${email}%` } },
   });
 
-  return userByname;
+  return userByEmail;
 };
 
-module.exports = { getUserByNameController };
+module.exports = { getUserByEmailController };
