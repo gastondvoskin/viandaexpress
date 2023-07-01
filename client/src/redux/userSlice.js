@@ -5,7 +5,7 @@ export const userSlice = createSlice({
     name: "users",
     initialState:{
         allUsers: [],
-        userDetail: []
+        userDetail: {}
     },
     reducers: {
         getAllUsersCase: (state, action) => {
