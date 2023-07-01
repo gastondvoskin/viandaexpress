@@ -20,7 +20,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/myprofile/:email" element={<MyProfile />} />
+        <Route path="/myprofile" element={<MyProfile />} />
         <Route path='/detail/:id' element={<Detail />} />
         <Route path="/admin/*" element={<AdminPanel />} />
         <Route path='/admin/create' element={<CreateFood/>} /> 
