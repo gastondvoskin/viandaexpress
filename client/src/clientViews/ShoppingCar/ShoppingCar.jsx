@@ -15,17 +15,18 @@ const ShoppingCar = () => {
   const [preferenceId, setPreferenceId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [orderData, setOrderData] = useState([]);
-  const allItems=useSelector((state)=>state.foodsReducer.orderItems);
-  
+  //const allItems=useSelector((state)=>state.foodsReducer.orderItems);
+  const allItems=[
+    {id:1,name:'producto1',image:'img1',final_price:10,quantity:1},
+    {id:2,name:'producto2',image:'img2',final_price:10,quantity:1},
+    {id:3,name:'producto3',image:'img3',final_price:10,quantity:1},
+  ]
   useEffect(()=>{
-    allItems.forEach((item)=>{
-      setOrderData([
-        ...orderData,
-        item,
-      ])
+    allItems.map((item)=>{
+      orderData.push(item)
     });
   },[])
-
+  
   const handleClick = () => {
     setIsLoading(true);
     fetch("http://localhost:8080/create_preference", {
