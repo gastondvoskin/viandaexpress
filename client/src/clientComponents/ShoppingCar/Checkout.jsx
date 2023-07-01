@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import classnames from 'classnames'
 import { Context } from "./ContextProvider";
+import Item from './Item.jsx'
 
 const Checkout = ({ onClick }) => {
   const [isVisible, setIsVisible] = React.useState(true);
@@ -8,7 +9,7 @@ const Checkout = ({ onClick }) => {
   const shoppingCartClass = classnames('shopping-cart dark', {
     'shopping-cart--hidden': !isVisible,
   })
-
+console.log(orderData)
   useEffect(() => {
     if (preferenceId) setIsVisible(false);
   }, [preferenceId])
@@ -27,69 +28,15 @@ const Checkout = ({ onClick }) => {
       <div className="container" id="container">
         <div className="block-heading">
           <h2>Shopping Cart</h2>
-          <p>This is an example of Checkout Pro integration of Mercado Pago</p>
+          {/* <p>This is an example of Checkout Pro integration of Mercado Pago</p> */}
         </div>
         <div className="content">
-          <div className="row">
-            <div className="col-md-12 col-lg-8">
-              <div className="items">
-                <div className="product">
-                  <div className="info">
-                    <div className="product-details">
-                      <div className="row justify-content-md-center">
-                        <div className="col-md-3">
-                          <img
-                            className="img-fluid mx-auto d-block image"
-                            alt="Image of a product"
-                            src={image}
-                          />
-                        </div>
-                        <div className="col-md-4 product-detail">
-                          <h5>Producto</h5>
-                          <div className="product-info">
-                            <b>{name}</b>
-                            <br />
-                            <b>Precio:</b> $ <span id="unit-price">{price}</span>
-                            <br />
-                          </div>
-                        </div>
-                        <div className="col-md-3 product-detail">
-                          <label htmlFor="quantity">
-                            <b>Quantity</b>
-                          </label>
-                          <input
-                           onChange={updatePrice}
-                            type="number"
-                            id="quantity"
-                            value={orderData.quantity}
-                            min="1"
-                            className="form-control"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-12 col-lg-4">
-              <div className="summary">
-                <h3>Carrito</h3>
-                <div className="summary-item">
-                  <span className="text">Subtotal</span>
-                  <span className="price" id="cart-total">${orderData.amount}</span>
-                </div>
-                <button
-                  className="btn btn-primary btn-lg btn-block"
-                  onClick={onClick}
-                  id="checkout-btn"
-                  disabled={disabled}
-                >
-                  Checkout
-                </button>
-              </div>
-            </div>
-          </div>
+          {orderData.forEach(item=>{
+            return(
+              <Item updatePrice={updatePrice} name={item.name} image={item.image} finaly_price={item.finaly_price} amount={item.amount} quantity={item.quantity}/>
+            )
+          })}
+            
         </div>
       </div>
     </section>
