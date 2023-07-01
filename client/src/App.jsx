@@ -19,7 +19,7 @@ function App() {
       {!location.pathname.includes('/admin') && <Nav /> }
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/myprofile/:name" element={<MyProfile />} />
+        <Route path="/myprofile/:email" element={<MyProfile />} />
         <Route path='/detail/:id' element={<Detail />} />
         <Route path="/admin/*" element={<AdminPanel />} />
         <Route path='/admin/create' element={<CreateFood/>} /> 
