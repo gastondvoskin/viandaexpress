@@ -1,4 +1,4 @@
-const { getUserByEmailController } = require('../controllers/userControllers/getUserByNameController');
+const { getUserByEmailController } = require('../controllers/userControllers/getUserByEmailController');
 const { getAllUsersController } = require('../controllers/userControllers/getAllUsersController');
 const { postUserController } = require('../controllers/userControllers/postUserController');
 const { putUserController } = require('../controllers/userControllers/putUserController');
@@ -12,7 +12,7 @@ const getUserHandler = async (req, res) => {
     const { email } = req.query;
     try {
         if (email) {
-            const userByEmail = await getUserByEmailController(email);
+            const userByEmail = await getUserByEmailController(email);      /* ir returns null in case the email doesn't exist in the DB */
             res.status(200).send(userByEmail);
         } else {
             const allUsers = await getAllUsersController();
