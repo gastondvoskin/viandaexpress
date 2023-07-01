@@ -9,6 +9,7 @@ const Checkout = ({ onClick }) => {
   const shoppingCartClass = classnames('shopping-cart dark', {
     'shopping-cart--hidden': !isVisible,
   })
+  
 console.log(orderData)
   useEffect(() => {
     if (preferenceId) setIsVisible(false);
@@ -17,9 +18,10 @@ console.log(orderData)
 
   const updatePrice = (event) => {
     const quantity = event.target.value;
-    const amount = parseInt(orderData.price) * parseInt(quantity);
+    const amount = parseInt(orderData.finaly_price) * parseInt(quantity);
     setOrderData({ ...orderData, quantity, amount });
   }
+  console.log("order data",orderData.finaly_price);
   const image="../img/product.png";
   const name="nombre de vianda";
   const price=10;
@@ -31,11 +33,19 @@ console.log(orderData)
           {/* <p>This is an example of Checkout Pro integration of Mercado Pago</p> */}
         </div>
         <div className="content">
-          {orderData.forEach(item=>{
-            return(
-              <Item updatePrice={updatePrice} name={item.name} image={item.image} finaly_price={item.finaly_price} amount={item.amount} quantity={item.quantity}/>
-            )
-          })}
+          {orderData.map(item=>(
+              <Item
+                updatePrice={updatePrice}
+                onClick = {onClick}
+                disabled = {disabled}
+                name={item.name}
+                image={item.image}
+                finaly_price={item.finaly_price}
+                amount={item.amount}
+                quantity={item.quantity}
+              />
+            
+          ))}
             
         </div>
       </div>

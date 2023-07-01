@@ -17,9 +17,9 @@ const ShoppingCar = () => {
   const [orderData, setOrderData] = useState([]);
   //const allItems=useSelector((state)=>state.foodsReducer.orderItems);
   const allItems=[
-    {id:1,name:'producto1',image:'img1',final_price:10,quantity:1},
-    {id:2,name:'producto2',image:'img2',final_price:10,quantity:1},
-    {id:3,name:'producto3',image:'img3',final_price:10,quantity:1},
+    {id:1,name:'producto1',image:'img1',finaly_price:10,quantity:1},
+    {id:2,name:'producto2',image:'img2',finaly_price:10,quantity:1},
+    {id:3,name:'producto3',image:'img3',finaly_price:10,quantity:1},
   ]
   useEffect(()=>{
     allItems.map((item)=>{

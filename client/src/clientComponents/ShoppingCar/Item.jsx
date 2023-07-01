@@ -1,5 +1,6 @@
-export default function Item(updatePrice, name, image, final_price,amount, quantity ){
-    return(
+export default function Item({updatePrice, name, image, finaly_price,amount, quantity, onClick,disabled}){
+  console.log('aqui estoy name',amount);
+  return(
         <div className="row">
             <div className="col-md-12 col-lg-8">
                   <div className="items">
@@ -19,7 +20,7 @@ export default function Item(updatePrice, name, image, final_price,amount, quant
                               <div className="product-info">
                                 <b>{name}</b>
                                 <br />
-                                <b>Precio:</b> $ <span id="unit-price">{final_price}</span>
+                                <b>Precio:</b> $ <span id="unit-price">{finaly_price}</span>
                                 <br />
                               </div>
                             </div>
@@ -49,6 +50,7 @@ export default function Item(updatePrice, name, image, final_price,amount, quant
                   <span className="text">Subtotal</span>
                   <span className="price" id="cart-total">${amount}</span>
                 </div>
+                {/*
                 <button
                   className="btn btn-primary btn-lg btn-block"
                   onClick={onClick}
@@ -57,6 +59,7 @@ export default function Item(updatePrice, name, image, final_price,amount, quant
                 >
                   Checkout
                 </button>
+                */}
               </div>
             </div>
         </div>
