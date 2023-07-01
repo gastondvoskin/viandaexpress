@@ -26,12 +26,8 @@ const getUserHandler = async (req, res) => {
 const postUserHandler = async (req, res) => {
     const { name, email, type, status, adress } = req.body;
     try {
-        if (email) {
-            const newUser = await postUserController(name, email, type, status, adress);
-            res.status(201).send(newUser);
-        } else {
-            throw new Error('Falta información en el cuerpo de la solicitud');
-        }
+        const newUser = await postUserController(name, email, type, status, adress);
+        res.status(201).send(newUser);
     } catch (error) {
         res.status(400).send({ error: error.message });
     }
