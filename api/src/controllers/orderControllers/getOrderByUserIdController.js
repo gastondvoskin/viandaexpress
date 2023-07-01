@@ -1,4 +1,5 @@
-const {Order,Item,Food} = require("../../db")
+const {Order,Item,Food} = require("../../db");
+
 const getOrderByUserIdController = async (userId) =>{
     const cart = await Order.findOne({
         where: {
