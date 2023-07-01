@@ -16,7 +16,8 @@ function App() {
 
   return (
     <div className="app">
-      {!location.pathname.includes('/admin') && <Nav /> }
+      {/* {!location.pathname.includes('/admin') && <Nav /> } */} 
+      <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/myprofile/:email" element={<MyProfile />} />
