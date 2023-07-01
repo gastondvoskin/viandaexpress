@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       email: {
         type: DataTypes.STRING,
@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
       },
       type: {
         type: DataTypes.STRING,
-        allowNull: true,
+        defaultValue: "guest",
       },
       status: {
         type: DataTypes.BOOLEAN,

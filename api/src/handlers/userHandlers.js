@@ -1,4 +1,4 @@
-const { getUserByNameController } = require('../controllers/userControllers/getUserByNameController');
+const { getUserByEmailController } = require('../controllers/userControllers/getUserByNameController');
 const { getAllUsersController } = require('../controllers/userControllers/getAllUsersController');
 const { postUserController } = require('../controllers/userControllers/postUserController');
 const { putUserController } = require('../controllers/userControllers/putUserController');
@@ -9,11 +9,11 @@ const { putUserController } = require('../controllers/userControllers/putUserCon
 
 const getUserHandler = async (req, res) => {
 
-    const { name } = req.query;
+    const { email } = req.query;
     try {
-        if (name) {
-            const userByName = await getUserByNameController(name);
-            res.status(200).send(userByName);
+        if (email) {
+            const userByEmail = await getUserByEmailController(email);
+            res.status(200).send(userByEmail);
         } else {
             const allUsers = await getAllUsersController();
             res.status(200).send(allUsers);
@@ -26,10 +26,8 @@ const getUserHandler = async (req, res) => {
 const postUserHandler = async (req, res) => {
     const { name, email, type, status, adress } = req.body;
     try {
-        if (name && email && type && status && adress) {
-
+        if (email) {
             const newUser = await postUserController(name, email, type, status, adress);
-
             res.status(201).send(newUser);
         } else {
             throw new Error('Falta información en el cuerpo de la solicitud');
