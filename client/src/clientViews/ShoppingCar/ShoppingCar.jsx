@@ -13,12 +13,20 @@ initMercadoPago('APP_USR-8e95f5fd-f2e0-4982-8ac8-27b1f1b175bb');
 const ShoppingCar = () => {
   const [preferenceId, setPreferenceId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [orderData, setOrderData] = useState({ 
-    quantity: "1",
-    price: "10", 
-    amount: 10, 
-    name: "akjsdh" 
-});
+  const [orderData, setOrderData] = useState([
+    { 
+      quantity: 1,
+      price: 10, 
+      amount: 10, 
+      name: "product 1" 
+    },
+    {
+      quantity: 1,
+      price: 15,
+      amount: 15,
+      name: "product 2" 
+    }
+  ]);
   
   const handleClick = () => {
     setIsLoading(true);
