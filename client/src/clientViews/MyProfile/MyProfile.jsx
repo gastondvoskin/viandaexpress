@@ -1,6 +1,6 @@
 import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserDetail } from "../../redux/userSlice";
+import { getUserDetailAction } from "../../redux/userSlice";
 import { useParams } from "react-router-dom";
 
 
@@ -10,13 +10,13 @@ const MyProfile = () => {
     const { name } = useParams()
     const dispatch = useDispatch()
     useEffect(() =>{
-        dispatch(fetchUserDetail(name))
+        dispatch(getUserDetailAction(email))
     }, [name, dispatch])
     return (
+
         <div>
-            {userDetail.map((user) => (
-                <h1>Nombre: {user.name}</h1>
-            ))}
+            <h1>hola!!</h1>
+            
         </div>
     )
 };
