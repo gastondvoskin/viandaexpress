@@ -11,7 +11,7 @@ export default function Card({ id,name, image, final_price,allItems }) {
   console.log(allItems)
   const dispatch=useDispatch();
   useEffect(()=>{
-    allItems.forEach((item)=>{
+    allItems.map((item)=>{
       if(item.name==name){
         setIsItem(true)
       }
