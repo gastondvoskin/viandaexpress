@@ -18,12 +18,7 @@ const putItemController = async (itemId, quantity) => {
         }
       );
   
-      // Obtener el ID del carrito asociado al artículo
-
-      const cartId = item.OrderId;
-  
-      // Actualizar el total_price del carrito
-      await updateCartTotalPrice(cartId);
+      await updateCartTotalPrice(item.OrderId);
       return 'Actualizado correctamente'
 
 }

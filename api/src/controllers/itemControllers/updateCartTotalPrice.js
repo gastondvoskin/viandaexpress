@@ -7,12 +7,12 @@ const updateCartTotalPrice = async (orderId) => {
       },
     });
   
-    // Calcular el nuevo total_price
+
     const total_price = cart.Items.reduce((total, item) => {
       return total + item.amount;
     }, 0);
   
-    // Actualizar el total_price en la base de datos
+
     await Order.update(
       { total_price },
       {
