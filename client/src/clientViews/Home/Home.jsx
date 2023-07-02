@@ -41,13 +41,13 @@ const Home = () => {
         type: "guest"
       };
     };
-    axios.post("http://localhost:3001/user", body).catch((error) => console.log(error))
+    axios.post("/user", body).catch((error) => console.log(error))
   }, [isAuthenticated, user]);
 
 
   useEffect(() => {
     if (!allFoods.length) {
-      axios.get("http://localhost:3001/api").then(() => dispatch(getFoods()));
+      axios.get("/api").then(() => dispatch(getFoods()));
     } else {
       dispatch(getFoods());
     }

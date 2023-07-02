@@ -8,7 +8,7 @@ import { Alert } from "bootstrap";
 
 export const getFoods = () => async (dispatch) => {
     try {
-        const response = await axios.get("http://localhost:3001/food"); 
+        const response = await axios.get("/food"); 
         const allFoods = response.data;
         dispatch(getAllFoods(allFoods));
     } catch (error) {
@@ -18,7 +18,7 @@ export const getFoods = () => async (dispatch) => {
 
 export const getFoodsByNameAction = (name) => async (dispatch) => {
     try {
-        const response = await axios.get("http://localhost:3001/food?name=" + name); 
+        const response = await axios.get("/food?name=" + name); 
         const foodsByName = response.data;
         dispatch(getFoodsByName(foodsByName));
     } catch (error) {
@@ -98,7 +98,7 @@ export const postFood=(input)=>async (dispatch)=> {
         formData.append("discount", input.discount);
         formData.append("image", input.image);
         console.log(formData);
-        await axios.post("http://localhost:3001/food", formData, {
+        await axios.post("/food", formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
@@ -119,7 +119,7 @@ export const putFoods=(input)=>async (dispatch)=>{
         formData.append("discount", input.discount);
         formData.append("image", input.image);
         console.log(formData);
-        await axios.put(`http://localhost:3001/${input.id}`,formData, {
+        await axios.put(`/${input.id}`,formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },})
@@ -145,10 +145,10 @@ export const deleteItemActions = (id) => (dispatch) => {
     }
 }
 
-// Do not delete. Uncomment and test when the endpoint `http://localhost:3001/food/${id}` is created
+// Do not delete. Uncomment and test when the endpoint `/food/${id}` is created
 // export const getFood = (id) => async (dispatch) => {
 //     try {
-//         const response = await axios.get(`http://localhost:3001/food/${id}`); 
+//         const response = await axios.get(`/food/${id}`); 
 //         const foodById = response.data;
 //         dispatch(getFoodById(foodById));
 //     } catch (error) {
