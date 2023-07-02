@@ -11,12 +11,10 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 function Nav() {
-  
-  const [ displayProfileOptions, setDisplayProfileOptions ] = useState(false);
+  const [displayProfileOptions, setDisplayProfileOptions] = useState(false);
   const { user, isAuthenticated } = useAuth0();
-  console.log('displayProfileOptions: ', displayProfileOptions)
-  console.log('isAuthenticated: ', isAuthenticated)
-  /* console.log("user: ", user); */
+  console.log("displayProfileOptions: ", displayProfileOptions);
+  console.log("isAuthenticated: ", isAuthenticated);
 
   return (
     <nav className={styles.mainContainer}>
@@ -25,37 +23,55 @@ function Nav() {
       </Link>
 
       <div className={styles.rightContainer}>
-        <NavLink to="/">HOME</NavLink>{" "}
-        {/* Change content of home, add offers.  */}
-        <NavLink to="/">VIANDAS</NavLink>{" "}
-        {/* Move content from home to viandas. */}
-        <NavLink to="/shoppingcart">
-          <FontAwesomeIcon icon={faCartShopping} />
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? styles.activeLink : styles.normalLink
+          }
+        >
+          HOME
         </NavLink>
 
-        <Link to="/admin">
-          <button className={styles.admin}>Admin</button>
-        </Link>
-        {/* {isAuthenticated && (
-          <Link to="/admin">
-            <button className={styles.dashBoard}>Admin</button>
-          </Link>
-        )} */}
-
-
-        <div className={styles.userContainer}
-          onMouseOver={() => setDisplayProfileOptions(true)}
-          onMouseOut={() => setDisplayProfileOptions(false)}
+        <NavLink
+          to="/viandas"
+          className={({ isActive }) =>
+            isActive ? styles.activeLink : styles.normalLink
+          }
         >
-          <FontAwesomeIcon icon={faUser} />
-          {displayProfileOptions && isAuthenticated && <LogoutButton />}
-          {displayProfileOptions && isAuthenticated && <NavLink to="/myprofile">MI CUENTA</NavLink>}
-          {displayProfileOptions && !isAuthenticated && <LoginButton />}
+          VIANDAS
+        </NavLink>
+
+        <NavLink
+          to="/admin"
+          className={({ isActive }) =>
+            isActive ? styles.activeLink : styles.normalLink
+          }
+        >
+          ADMIN
+        </NavLink>
+
+        <NavLink
+          to="/shoppingcart"
+          className={({ isActive }) =>
+            isActive ? styles.activeLink : styles.normalLink
+          }
+        >
+          <FontAwesomeIcon icon={faCartShopping} /> PAGAR 
+        </NavLink>
+
+      <div
+          className={styles.userContainer}
+          onMouseEnter={() => setDisplayProfileOptions(true)}
+          onMouseLeave={() => setDisplayProfileOptions(false)}
+        >
+          <div className={styles.user}><FontAwesomeIcon icon={faUser} /> USUARIO</div>
+          {displayProfileOptions && isAuthenticated && <div className={styles.options}>
+            <LogoutButton />
+            <NavLink className={styles.option} to="/myprofile">MI CUENTA</NavLink>
+          </div> }
+          {displayProfileOptions && !isAuthenticated && <div><LoginButton /></div>}
         </div>
-
       </div>
-
-      
 
     </nav>
   );
