@@ -23,7 +23,9 @@ export default function Card({ id,name, image, final_price,allItems }) {
       dispatch(deleteItemActions(id));
     }else{
       setIsItem(true);
-      dispatch(addItemsActions({id,name,image,final_price}))
+      const quantity=1;
+      const amount=final_price*quantity
+      dispatch(addItemsActions({id,name,image,final_price,quantity,amount}))
     }
   }
   return (
