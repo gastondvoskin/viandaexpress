@@ -8,7 +8,7 @@ import SearchBar from "../../clientComponents/SearchBar/SearchBar";
 import { getFoods, setCurrentPageAction } from "../../redux/foodActions.js";
 import CardsContainer from "../../clientComponents/CardsContainer/CardsContainer";
 import Paginado from "../../clientComponents/Paginado/Paginado";
-import OrderOptions from "../../clientComponents/OrderOptions/OrderOptions";
+import OrderOptions from "../..clientComponents/OrderOptions/OrderOptions.jsx"
 import CategoryButtons from "../../clientComponents/CategoryButtons/CategoryButtons";
 import axios from "axios";
 import FilterDietsOptions from "../../clientComponents/FilterDietsOptions/FilterDietsOptions";
@@ -16,6 +16,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 // comment. 
 // comment 2. 
 // comment 3. 
+// comment 4. 
 
 const Home = () => {
   const [index, setIndex] = useState(0);
