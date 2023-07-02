@@ -6,9 +6,13 @@ import store from "./redux/store";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
+import axios from "axios";
 
 const domain = import.meta.env.VITE_AUTH0_DOMAIN;
 const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
+
+// axios.defaults.baseURL = "https://pfecommerce11b-production-177a.up.railway.app/";
+// axios.defaults.baseURL = "http://localhost:3001";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(

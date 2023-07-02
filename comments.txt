@@ -87,3 +87,7 @@ https://www.passportjs.org/
 
 Auth0
 https://www.youtube.com/watch?v=sTJaHQINpTc&ab_channel=CarlosAzaustre-AprendeJavaScript
+
+
+
+USER ID 7ab6ab3c-11bb-4085-8e0d-8fca7ba4f5be
