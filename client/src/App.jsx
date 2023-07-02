@@ -16,7 +16,8 @@ function App() {
 
   return (
     <div className="app">
-      {!location.pathname.includes('/admin') && <Nav /> }
+      {/* {!location.pathname.includes('/admin') && <Nav /> } */} 
+      <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/myprofile" element={<MyProfile />} />
@@ -24,7 +25,7 @@ function App() {
         <Route path="/admin/*" element={<AdminPanel />} />
         <Route path='/admin/create' element={<CreateFood/>} /> 
         <Route path='/admin/edit/:id' element={<EditForm />} />
-        <Route path='/shoppingcar' element={<ShoppingCar />} />
+        <Route path='/shoppingcart' element={<ShoppingCar />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {!location.pathname.includes('/admin') && <Footer/> }
