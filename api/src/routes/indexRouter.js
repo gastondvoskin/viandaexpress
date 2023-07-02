@@ -2,6 +2,7 @@ const { Router } = require("express");
 const { foodRouter } = require("./foodRouter");
 const { userRouter } = require("./userRouter");
 const { orderRouter } = require("./orderRouter");
+const { itemRouter } = require("./itemRouter");
 const { shoppingCartRouter } = require("../routes/shoppingCartRouter");
 
 const { foods } = require("../../api");
@@ -12,6 +13,7 @@ const router = Router();
 router.use("/food", foodRouter);
 router.use("/user", userRouter);
 router.use("/order", orderRouter);
+router.use("/item", itemRouter);
 router.use("/shopping-cart", shoppingCartRouter);
 
 // Tono comment: this route may be modularized
