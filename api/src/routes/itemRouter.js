@@ -1,15 +1,12 @@
 const { Router } = require("express");
-const {
-  getItemByOrderIdHandlers,
-  postItemHandler,
-  putItemHandler,
-  delItemHandler,
-} = require("../handlers/itemHandlers");
+const { postItemHandler, putItemHandler, deleteItemHandler } = require("../handlers/itemHandlers")
 const itemRouter = Router();
 
-itemRouter.get("/", getItemByOrderIdHandlers);
-itemRouter.post("/", postItemHandler);
-itemRouter.put("/:id", putItemHandler);
-itemRouter.delete("/:id", delItemHandler);
+itemRouter.post("/:userId", postItemHandler );
+itemRouter.put("/:itemId", putItemHandler );
+itemRouter.delete("/:itemId", deleteItemHandler );
 
-module.exports = { itemRouter };
+
+
+module.exports = {itemRouter}
+
