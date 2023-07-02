@@ -91,3 +91,11 @@ https://www.youtube.com/watch?v=sTJaHQINpTc&ab_channel=CarlosAzaustre-AprendeJav
 
 
 USER ID 7ab6ab3c-11bb-4085-8e0d-8fca7ba4f5be
+
+user ID d5403ffd-b2e7-4a26-aafc-9d721a773115
+foodID 162868a9-6d5b-47bd-9a5e-42122881d196 2600
+orderId 007cc15c-d399-468a-b68a-cb913261382e
+foodId 2 939d6c9a-7afc-4856-8750-1f35af366686 2440
+
+item1 8562e255-e663-4499-b0d0-56c0e4b7b23e
+item2 4b5631ab-675e-48eb-8c00-f9bb862ff1a1

@@ -28,6 +28,7 @@ const postItemController = async (userId,foodId,quantity,price) => {
         FoodId: foodId,
         quantity,
         price,
+        amount: price * quantity,
       });
 
       console.log("cread")

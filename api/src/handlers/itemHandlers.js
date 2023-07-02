@@ -15,7 +15,8 @@ const postItemHandler = async (req,res) => {
 const deleteItemHandler = async (req,res) => {
     try {
         const {itemId} = req.params
-        await deleteItemController(itemId)
+        const {orderId} = req.body
+        await deleteItemController(itemId,orderId)
     } catch (error) {
         res.status(400).send({ error: error.message });
     }
