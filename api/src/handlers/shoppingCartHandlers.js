@@ -1,10 +1,10 @@
 require("dotenv").config();
-const { ACCES_TOKEN_MP } = process.env;
+const { ACCESS_TOKEN_MP } = process.env;
 const mercadopago = require("mercadopago");
 
 // REPLACE WITH YOUR ACCESS TOKEN AVAILABLE IN: https://developers.mercadopago.com/panel
 mercadopago.configure({
-  access_token: ACCES_TOKEN_MP,
+  access_token: ACCESS_TOKEN_MP,
 });
 
 const createPreferenceHandler = async (req, res) => {
