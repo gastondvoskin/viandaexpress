@@ -8,22 +8,22 @@ module.exports = (sequelize) => {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
-      name: {
+      email: { 
         type: DataTypes.STRING,
-        allowNull: false,
-      },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         validate: {
           isEmail: {
             msg: "Debe proporcionar una dirección de correo electrónico válida",
           },
         },
       },
-      type: {
+      name: {
         type: DataTypes.STRING,
         allowNull: true,
+      },
+      type: {
+        type: DataTypes.STRING,
+        defaultValue: "client",
       },
       status: {
         type: DataTypes.BOOLEAN,

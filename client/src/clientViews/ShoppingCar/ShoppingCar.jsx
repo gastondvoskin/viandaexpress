@@ -1,25 +1,23 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import { initMercadoPago } from "@mercadopago/sdk-react";
 import Payment from "../../clientComponents/ShoppingCar/Payment";
 import Checkout from "../../clientComponents/ShoppingCar/Checkout.jsx";
 import Footer from "../../clientComponents/ShoppingCar/Footer.jsx";
 import InternalProvider from "../../clientComponents/ShoppingCar/ContextProvider.jsx";
 import { SpinnerCircular } from 'spinners-react';
+import { useDispatch, useSelector } from "react-redux";
 
 // REPLACE WITH YOUR PUBLIC KEY AVAILABLE IN: https://developers.mercadopago.com/panel
 initMercadoPago('APP_USR-8e95f5fd-f2e0-4982-8ac8-27b1f1b175bb');
 
-
 const ShoppingCar = () => {
+
+  const allItems=useSelector((state)=>state.foodsReducer.orderItems);
+  console.log(allItems)
   const [preferenceId, setPreferenceId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [orderData, setOrderData] = useState({ 
-    quantity: "1",
-    price: "10", 
-    amount: 10, 
-    name: "akjsdh" 
-});
-  
+  const [orderData, setOrderData] = useState(allItems);
+    
   const handleClick = () => {
     setIsLoading(true);
     fetch("http://localhost:8080/create_preference", {
@@ -40,6 +38,7 @@ const ShoppingCar = () => {
       }).finally(() => {
         setIsLoading(false);
       })
+      
   };
 
   const renderSpinner = () => {

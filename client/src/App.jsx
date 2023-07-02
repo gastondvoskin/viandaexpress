@@ -10,13 +10,19 @@ import EditForm from './adminViews/EditFood/EditFood';
 import AdminPanel from './adminViews/AdminPanel/AdminPanel';
 import CreateFood from './adminViews/CreateFood/CreateFood';
 import ShoppingCar from './clientViews/ShoppingCar/ShoppingCar';
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:3001";
+// axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
+
 
 function App() {
   const location = useLocation()
 
   return (
     <div className="app">
-      {!location.pathname.includes('/admin') && <Nav /> }
+      {/* {!location.pathname.includes('/admin') && <Nav /> } */} 
+      <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/myprofile" element={<MyProfile />} />
@@ -24,7 +30,7 @@ function App() {
         <Route path="/admin/*" element={<AdminPanel />} />
         <Route path='/admin/create' element={<CreateFood/>} /> 
         <Route path='/admin/edit/:id' element={<EditForm />} />
-        <Route path='/shoppingcar' element={<ShoppingCar />} />
+        <Route path='/shoppingcart' element={<ShoppingCar />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {!location.pathname.includes('/admin') && <Footer/> }

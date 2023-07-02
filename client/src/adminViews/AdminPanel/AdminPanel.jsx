@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import Sidebar from '../../adminComponents/SideBar/SideBar';
 import { getFoods } from "../../redux/foodActions.js";
-import style from './adminPanel.module.css';
+import style from './AdminPanel.module.css';
 import Users from '../../adminComponents/Users/Users';
 import Reviews from '../../adminComponents/Reviews/Reviews';
 import Products from '../../adminComponents/Products/Products';

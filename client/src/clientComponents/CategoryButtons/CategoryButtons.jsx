@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { activeFilteredFoodsAction, filterByCategoryAction, setCategoryAction, setCurrentPageAction, setDietAction, setOrderAction } from '../../redux/foodActions';
-import styles from "./categoryButtons.module.css";
+import styles from "./CategoryButtons.module.css";
 
 
 const CategoryButtons = () => {
