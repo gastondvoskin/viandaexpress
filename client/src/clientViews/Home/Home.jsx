@@ -5,29 +5,45 @@ import styles from "./Home.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../../clientComponents/SearchBar/SearchBar";
-import {
-  getFoods,
-  setCurrentPageAction,
-} from "../../redux/foodActions.js";
+import { getFoods, setCurrentPageAction } from "../../redux/foodActions.js";
 import CardsContainer from "../../clientComponents/CardsContainer/CardsContainer";
 import Paginado from "../../clientComponents/Paginado/Paginado";
-import OrderOptions  from "../../clientComponents/orderOptions/orderOptions";
+import OrderOptions from "../../clientComponents/orderOptions/orderOptions";
 import CategoryButtons from "../../clientComponents/categoryButtons/categoryButtons";
 import axios from "axios";
 import FilterDietsOptions from "../../clientComponents/filtersDietsOptions/filterDietsOptions";
 
 import LoginButton from "../../LoginComponents/LoginButton/LoginButton";
-import { useAuth0 } from "@auth0/auth0-react"
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Home = () => {
   const [index, setIndex] = useState(0);
   const dispatch = useDispatch();
-  const allFoods  = useSelector((state) => state.foodsReducer.allFoods);
-  const filteredFoods  = useSelector((state) => state.foodsReducer.filteredFoods);
+  const allFoods = useSelector((state) => state.foodsReducer.allFoods);
+  const filteredFoods = useSelector(
+    (state) => state.foodsReducer.filteredFoods
+  );
   const currentPage = useSelector((state) => state.foodsReducer.currentPage);
   const active = useSelector((state) => state.foodsReducer.activeFilteredFoods);
-  const { isLoading } = useAuth0();
+  const { isLoading, user, isAuthenticated } = useAuth0();
+  const allItems=useSelector((state)=>state.foodsReducer.orderItems)
+
+
+  useEffect(() => {
+    let body = {};
+    if (isAuthenticated) {
+      body = {
+        name: user?.name,
+        email: user?.email,
+      };
+    } else {
+      body = {
+        type: "guest"
+      };
+    };
+    axios.post("http://localhost:3001/user", body).catch((error) => console.log(error))
+  }, [isAuthenticated, user]);
+
 
   useEffect(() => {
     if (!allFoods.length) {
@@ -40,33 +56,34 @@ const Home = () => {
   const foodsPerPage = 8;
   const indexOfLastFood = currentPage * foodsPerPage;
   const indexOfFirstFood = indexOfLastFood - foodsPerPage;
-  const currentFoods = active ? filteredFoods.slice(indexOfFirstFood, indexOfLastFood) :allFoods.slice(indexOfFirstFood, indexOfLastFood);
+  const currentFoods = active
+    ? filteredFoods.slice(indexOfFirstFood, indexOfLastFood)
+    : allFoods.slice(indexOfFirstFood, indexOfLastFood);
 
   const paginado = (pageNumber) => {
     dispatch(setCurrentPageAction(pageNumber));
   };
 
-
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
 
-  if (isLoading) return <h1>Iniciando sesión...</h1>
+  if (isLoading) return <h1>Iniciando sesión...</h1>;
 
   return (
     <div className={styles.mainContainer}>
       {/* Comentario TONO: A futuro modularizar el carousel */}
       <div className={styles.Carousel}>
         <Carousel activeIndex={index} onSelect={handleSelect} interval="9000">
-
           <Carousel.Item>
             <img src="../src/assets/carousel/variety.jpg" alt="Variadadas" />
             <Carousel.Caption>
-              <div className={styles.CarouselText}>Viandas para toda la familia</div>
+              <div className={styles.CarouselText}>
+                Viandas para toda la familia
+              </div>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-
             <img src="../src/assets/carousel/healthy.jpeg" alt="Saludables" />
 
             <Carousel.Caption>
@@ -74,7 +91,6 @@ const Home = () => {
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-
             <img src="../src/assets/carousel/withLove.jpeg" alt="Caseras" />
 
             <Carousel.Caption>
@@ -90,22 +106,21 @@ const Home = () => {
           Todas
         </button> */}
         {/* Comentatario TONO: los botones se deberían refactorizar: deberían mapear un array de diets para no repetir código. */}
-        <CategoryButtons/>
+        <CategoryButtons />
       </div>
 
       <div className={styles.filtros}>
         {/* Comentario TONO: El filtro de dieta no está implementado. */}
         <div className={styles.filtros2}>
-          
-          <FilterDietsOptions/>
-          <OrderOptions/>
+          <FilterDietsOptions />
+          <OrderOptions />
         </div>
       </div>
       {/* A futuro implementar Eliminar filtros */}
       {/* <button>Eliminar Filtros</button> */}
       <div className={styles.asereje}>
         <SearchBar />
-        
+
         <Paginado
           foodsPerPage={foodsPerPage}
           foods={allFoods.length}
@@ -114,11 +129,13 @@ const Home = () => {
           currentPage={currentPage}
         />
 
-        
-        {!currentFoods.length 
-          ? <h1 className={styles.notFoundMessage}>No se encontraron resultados</h1>
-          : <CardsContainer currentFoods={currentFoods} />
-        }
+        {!currentFoods.length ? (
+          <h1 className={styles.notFoundMessage}>
+            No se encontraron resultados
+          </h1>
+        ) : (
+          <CardsContainer currentFoods={currentFoods} allItems={allItems} />
+        )}
       </div>
     </div>
   );
@@ -131,4 +148,3 @@ export default Home;
  *<option value="asc">Más Popular</option>
   <option value="desc">Menos Popular</option>
  */
-

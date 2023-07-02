@@ -5,13 +5,14 @@ import { useEffect, useState } from "react";
 import {addItemsActions, deleteItemActions} from '../../redux/foodActions.js'
 import { useSelector, useDispatch } from "react-redux";
 
-export default function Card({ id,name, image, final_price }) {
+export default function Card({ id,name, image, final_price,allItems }) {
   const [isItem,setIsItem]=useState(false);
-  const allItems=useSelector((state)=>state.foodsReducer.orderItems);
+  
+  console.log(allItems)
   const dispatch=useDispatch();
   useEffect(()=>{
-    allItems.forEach((item)=>{
-      if(item.id===id){
+    allItems.map((item)=>{
+      if(item.name==name){
         setIsItem(true)
       }
     });

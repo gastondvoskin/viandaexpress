@@ -6,6 +6,7 @@ import axios from "axios";
 import styles from "../Detail/Detail.module.css";
 import {addItemsActions, deleteItemActions} from '../../redux/foodActions.js';
 
+
 export default function Detail() {
   const { id } = useParams();
   const [isItem,setIsItem]=useState(false);
@@ -27,8 +28,8 @@ export default function Detail() {
   }, [dispatch]);
   /*To identify if it's an item*/
   useEffect(()=>{
-    allItems.forEach((item)=>{
-      if(item.id===id){
+    allItems.map((item)=>{
+      if(item.name===foodDetail.name){
         setIsItem(true)
       }
     });
