@@ -27,17 +27,22 @@ const Home = () => {
   const active = useSelector((state) => state.foodsReducer.activeFilteredFoods);
   const { isLoading, user, isAuthenticated } = useAuth0();
 
+
   useEffect(() => {
+    let body = {};
     if (isAuthenticated) {
-      const body = {
+      body = {
         name: user?.name,
         email: user?.email,
       };
-      axios.post("http://localhost:3001/user", body).catch((error) => {
-        console.log(error);
-      });
-    }
+    } else {
+      body = {
+        type: "guest"
+      };
+    };
+    axios.post("http://localhost:3001/user", body).catch((error) => console.log(error))
   }, [isAuthenticated, user]);
+
 
   useEffect(() => {
     if (!allFoods.length) {

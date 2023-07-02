@@ -3,15 +3,14 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   sequelize.define('User',
     {
-      /* id: {
+      id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
-      }, */
+      },
       email: { 
         type: DataTypes.STRING,
-        primaryKey: true,
-        allowNull: false,
+        allowNull: true,
         validate: {
           isEmail: {
             msg: "Debe proporcionar una dirección de correo electrónico válida",
@@ -24,7 +23,7 @@ module.exports = (sequelize) => {
       },
       type: {
         type: DataTypes.STRING,
-        defaultValue: "guest",
+        defaultValue: "client",
       },
       status: {
         type: DataTypes.BOOLEAN,
