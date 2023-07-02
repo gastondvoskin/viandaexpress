@@ -15,6 +15,7 @@ import FilterDietsOptions from "../../clientComponents/FilterDietsOptions/Filter
 import { useAuth0 } from "@auth0/auth0-react";
 // comment. 
 // comment 2. 
+// comment 3. 
 
 const Home = () => {
   const [index, setIndex] = useState(0);
