@@ -25,7 +25,6 @@ export default function Card({ id,name, image, final_price,allItems }) {
       setIsItem(true);
       dispatch(addItemsActions({id,name,image,final_price}))
     }
-    console.log(allItems)
   }
   return (
     <div className={style.card}>

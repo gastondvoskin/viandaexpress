@@ -13,14 +13,7 @@ export default function EditFood() {
   const { id } = useParams();
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
 
-  const [editableFields, setEditableFields] = useState({
-    name: false,
-    initial_price: false,
-    discount: false,
-    status: false,
-    description: false,
-    image: false,
-  });
+  const [editableFields, setEditableFields] = useState(false);
 
   const [formData, setFormData] = useState({
     id: "",
@@ -49,10 +42,7 @@ export default function EditFood() {
 
   const handleCheck = (e) => {
     const { name, checked } = e.target;
-    setEditableFields({
-      ...editableFields,
-      [name]: checked,
-    });
+    setEditableFields(!editableFields);
   };
 
   const handleChange = (e) => {
@@ -117,6 +107,7 @@ export default function EditFood() {
 
   return (
     <div>
+      <label>Habilitar edición</label>
       <input
         className={style.diets}
         type="checkbox"
@@ -128,16 +119,9 @@ export default function EditFood() {
         type="text"
         name="name"
         value={formData.name}
-        disabled={!editableFields.name}
+        disabled={!editableFields}
         onChange={handleChange}
         className={style.inputTitle}
-      />
-      <input
-        className={style.diets}
-        type="checkbox"
-        name="image"
-        onChange={handleCheck}
-        value="image"
       />
       <img src={formData.image} alt="img not found" className={style.card} />
       <input
@@ -145,14 +129,7 @@ export default function EditFood() {
         accept="image/*"
         name="image"
         onChange={handleImageChange}
-        disabled={!editableFields.image}
-      />
-      <input
-        className={style.diets}
-        type="checkbox"
-        name="description"
-        onChange={handleCheck}
-        value="description"
+        disabled={!editableFields}
       />
       <label>
         <h3 className={style["h3-title"]}>Descripción: </h3>
@@ -161,15 +138,8 @@ export default function EditFood() {
         type="text"
         name="description"
         value={formData.description}
-        disabled={!editableFields.description}
+        disabled={!editableFields}
         onChange={handleChange}
-      />
-      <input
-        className={style.diets}
-        type="checkbox"
-        name="initial_price"
-        onChange={handleCheck}
-        value="initial_price"
       />
       <label>
         <h3 className={style["h3-title"]}>Precio Inicial: </h3>
@@ -178,15 +148,8 @@ export default function EditFood() {
         type="number"
         name="initial_price"
         value={formData.initial_price}
-        disabled={!editableFields.initial_price}
+        disabled={!editableFields}
         onChange={handleChange}
-      />
-      <input
-        className={style.diets}
-        type="checkbox"
-        name="discount"
-        onChange={handleCheck}
-        value="discount"
       />
       <label>
         <h3 className={style["h3-title"]}>Descuento: </h3>
@@ -195,15 +158,8 @@ export default function EditFood() {
         type="number"
         name="discount"
         value={formData.discount}
-        disabled={!editableFields.discount}
+        disabled={!editableFields}
         onChange={handleChange}
-      />
-      <input
-        className={style.diets}
-        type="checkbox"
-        name="status"
-        onChange={handleCheck}
-        value="status"
       />
       <label>
         <h3 className={style["h3-title"]}>Estado: </h3>
@@ -212,7 +168,7 @@ export default function EditFood() {
         type="text"
         name="status"
         value={formData.status}
-        disabled={!editableFields.status}
+        disabled={!editableFields}
         onChange={handleSelect}
       >
         <option value={true}>Habilitado</option>
