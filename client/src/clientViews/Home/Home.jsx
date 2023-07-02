@@ -8,12 +8,10 @@ import SearchBar from "../../clientComponents/SearchBar/SearchBar";
 import { getFoods, setCurrentPageAction } from "../../redux/foodActions.js";
 import CardsContainer from "../../clientComponents/CardsContainer/CardsContainer";
 import Paginado from "../../clientComponents/Paginado/Paginado";
-import OrderOptions from "../../clientComponents/orderOptions/orderOptions";
-import CategoryButtons from "../../clientComponents/categoryButtons/categoryButtons";
+import OrderOptions from "../../clientComponents/OrderOptions/OrderOptions";
+import CategoryButtons from "../../clientComponents/CategoryButtons/CategoryButtons";
 import axios from "axios";
-import FilterDietsOptions from "../../clientComponents/filtersDietsOptions/filterDietsOptions";
-
-import LoginButton from "../../LoginComponents/LoginButton/LoginButton";
+import FilterDietsOptions from "../../clientComponents/FilterDietsOptions/FilterDietsOptions";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Home = () => {
