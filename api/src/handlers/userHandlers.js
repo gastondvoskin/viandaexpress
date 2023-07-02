@@ -1,7 +1,8 @@
 const { getUserByEmailController } = require('../controllers/userControllers/getUserByEmailController');
-const { getAllUsersController } = require('../controllers/userControllers/getAllUsersController');
+const { getAllUsersController } = require('../controllers/userControllers/getAllUsersController.js');
 const { postUserController } = require('../controllers/userControllers/postUserController');
 const { putUserController } = require('../controllers/userControllers/putUserController');
+
 
 
 
