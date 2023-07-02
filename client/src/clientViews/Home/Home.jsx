@@ -26,6 +26,7 @@ const Home = () => {
   const currentPage = useSelector((state) => state.foodsReducer.currentPage);
   const active = useSelector((state) => state.foodsReducer.activeFilteredFoods);
   const { isLoading, user, isAuthenticated } = useAuth0();
+  const allItems=useSelector((state)=>state.foodsReducer.orderItems)
 
 
   useEffect(() => {
@@ -133,7 +134,7 @@ const Home = () => {
             No se encontraron resultados
           </h1>
         ) : (
-          <CardsContainer currentFoods={currentFoods} />
+          <CardsContainer currentFoods={currentFoods} allItems={allItems} />
         )}
       </div>
     </div>

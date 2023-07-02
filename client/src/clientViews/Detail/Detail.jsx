@@ -28,8 +28,8 @@ export default function Detail() {
   }, [dispatch]);
   /*To identify if it's an item*/
   useEffect(()=>{
-    allItems.forEach((item)=>{
-      if(item.id===id){
+    allItems.map((item)=>{
+      if(item.name===foodDetail.name){
         setIsItem(true)
       }
     });
