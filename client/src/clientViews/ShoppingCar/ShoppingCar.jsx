@@ -10,15 +10,13 @@ import { useDispatch, useSelector } from "react-redux";
 // REPLACE WITH YOUR PUBLIC KEY AVAILABLE IN: https://developers.mercadopago.com/panel
 initMercadoPago('APP_USR-8e95f5fd-f2e0-4982-8ac8-27b1f1b175bb');
 
-
 const ShoppingCar = () => {
+
+  const allItems=useSelector((state)=>state.foodsReducer.orderItems);
+  console.log(allItems)
   const [preferenceId, setPreferenceId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [orderData, setOrderData] = useState([
-    {id:1,name:'producto1',image:'img1',finaly_price:10,quantity:1,amount:10},
-    {id:2,name:'producto2',image:'img2',finaly_price:10,quantity:1,amount:10},
-    {id:3,name:'producto3',image:'img3',finaly_price:10,quantity:1,amount:10},
-  ]);
+  const [orderData, setOrderData] = useState(allItems);
     
   const handleClick = () => {
     setIsLoading(true);

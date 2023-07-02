@@ -10,6 +10,11 @@ import EditForm from './adminViews/EditFood/EditFood';
 import AdminPanel from './adminViews/AdminPanel/AdminPanel';
 import CreateFood from './adminViews/CreateFood/CreateFood';
 import ShoppingCar from './clientViews/ShoppingCar/ShoppingCar';
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:3001";
+// axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
+
 
 function App() {
   const location = useLocation()

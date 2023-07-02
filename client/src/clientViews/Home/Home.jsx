@@ -26,6 +26,7 @@ const Home = () => {
   const currentPage = useSelector((state) => state.foodsReducer.currentPage);
   const active = useSelector((state) => state.foodsReducer.activeFilteredFoods);
   const { isLoading, user, isAuthenticated } = useAuth0();
+  const allItems=useSelector((state)=>state.foodsReducer.orderItems)
 
 
   useEffect(() => {
@@ -40,13 +41,13 @@ const Home = () => {
         type: "guest"
       };
     };
-    axios.post("http://localhost:3001/user", body).catch((error) => console.log(error))
+    axios.post("/user", body).catch((error) => console.log(error))
   }, [isAuthenticated, user]);
 
 
   useEffect(() => {
     if (!allFoods.length) {
-      axios.get("http://localhost:3001/api").then(() => dispatch(getFoods()));
+      axios.get("/api").then(() => dispatch(getFoods()));
     } else {
       dispatch(getFoods());
     }
@@ -133,7 +134,7 @@ const Home = () => {
             No se encontraron resultados
           </h1>
         ) : (
-          <CardsContainer currentFoods={currentFoods} />
+          <CardsContainer currentFoods={currentFoods} allItems={allItems} />
         )}
       </div>
     </div>

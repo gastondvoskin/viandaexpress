@@ -1,7 +1,7 @@
 import Card from "../Card/Card";
 import style from "./CardsContainer.module.css";
 
-export default function CardsContainer({ currentFoods }) {
+export default function CardsContainer({ currentFoods, allItems}) {
   return (
     <div className={style.cardsContainer}>
       {currentFoods.length === 0 ? (
@@ -16,6 +16,7 @@ export default function CardsContainer({ currentFoods }) {
               final_price={final_price}
               category={category}
               diets={diets}
+              allItems={allItems}
             />
           );
         })
