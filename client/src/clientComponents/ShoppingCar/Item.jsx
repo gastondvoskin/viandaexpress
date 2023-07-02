@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 
 export default function Item({name,orderData}){
   const [item,setItem]=useState(orderData.filter(od=>od.name===name)[0])
-  console.log(item)
+  console.log("item",item)
   const updatePrice = (event) => {
     const quantity = event.target.value;
-    const amount= parseInt(item.finaly_price) * parseInt(quantity);
+    const amount= parseInt(item.final_price) * parseInt(quantity);
     orderData.map(it=>{if(it.name===name){
         it.quantity=parseInt(quantity)
         it.amount=parseInt(amount)
@@ -31,7 +31,7 @@ export default function Item({name,orderData}){
                   <div className="col-md-4 product-detail">
                     <div className="product-info">
                       <b>{name}</b><br></br>
-                      <b>Price:</b> $ <span id="unit-price">{item.finaly_price}</span>
+                      <b>Price:</b> $ <span id="unit-price">{item.final_price}</span>
                       <br />
                     </div>
                   </div>
