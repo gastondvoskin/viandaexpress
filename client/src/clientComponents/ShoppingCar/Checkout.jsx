@@ -10,21 +10,18 @@ const Checkout = ({ onClick }) => {
     'shopping-cart--hidden': !isVisible,
   })
   
-console.log(orderData)
+
   useEffect(() => {
     if (preferenceId) setIsVisible(false);
   }, [preferenceId])
 
 
-  const updatePrice = (event) => {
-    const quantity = event.target.value;
-    const amount = parseInt(orderData.finaly_price) * parseInt(quantity);
-    setOrderData({ ...orderData, quantity, amount });
-  }
-  console.log(orderData.finaly_price);
-  const image="../img/product.png";
-  const name="nombre de vianda";
-  const price=10;
+  // const updatePrice = (event) => {
+  //   const quantity = event.target.value;
+  //   const amount = parseInt(orderData.finaly_price) * parseInt(quantity);
+  //   setOrderData({ ...orderData, quantity, amount });
+  // }
+  
   return (
     <section className={shoppingCartClass}>
       <div className="container" id="container">
@@ -34,57 +31,94 @@ console.log(orderData)
         </div>
         <div className="content">
         <div className="row">
-          <div className="col-md-12 col-lg-8">
-                <div className="items">
-                  <div className="product">
-                    <div className="info">
-                      <div className="product-details">
-                      {orderData.map(item=>{
-                        return(
-                          <Item
-                            updatePrice={updatePrice}
-                            // onClick = {onClick}
-                            // disabled = {disabled}
-                            name={item.name}
-                            image={item.image}
-                            finaly_price={item.finaly_price}
-                            amount={item.amount}
-                            quantity={item.quantity}
-                          />
-                        )
-                      })}
+            <div className="col-md-12 col-lg-8">
+              <div className="items">
+                <div className="product">
+                  <div className="info">
+                    <div className="product-details">
+                      <div className="row justify-content-md-center">
+                        <div className="col-md-3">
+                          {/* espacio para la imagen*/}
+                        </div>
+                        <div className="col-md-4 product-detail">
+                          <h5>Product</h5>
+                          {/* columna de producto*/}
+                        </div>
+                        <div className="col-md-3 product-detail">
+                          <label htmlFor="quantity">
+                            <b>Quantity</b>
+                          </label>
+                          {/*espacio para la cantidad*/}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-          </div>
-          <div className="col-md-12 col-lg-4">
-            <div className="summary">
-              <h3>Carrito</h3>
-              
-                
-                {orderData.map(item=>{return(
-                  <div className="summary-item">
-                    <span className="text">Subtotal</span>
-                    <span className="price" id="cart-total">${item.amount}</span>
-                    </div>
-                )})}
-            
-              <button
-                className="btn btn-primary btn-lg btn-block"
-                onClick={onClick}
-                id="checkout-btn"
-                disabled={disabled}
-              >
-                Checkout
-              </button>
-             
+              </div>
+            </div>
+            <div className="col-md-12 col-lg-4">
+              <div className="summary">
+                <h3>Cart</h3>
+                <div className="summary-item">
+                  <span className="text">Subtotal</span>
+                  {/*espacio para el subtotal*/}
+                </div>
+                {/*espacio del button*/}
+              </div>
             </div>
           </div>
-        </div>
+
+          {orderData.map(item=>{
+            return(
+              <Item
+                orderData = {orderData}
+                name={item.name}
+              />
+            )
+          })}
+
+          <div className="row">
+            <div className="col-md-12 col-lg-8">
+              <div className="items">
+                <div className="product">
+                  <div className="info">
+                    <div className="product-details">
+                      <div className="row justify-content-md-center">
+                        <div className="col-md-3">
+                          {/* espacio para la imagen*/}
+                        </div>
+                        <div className="col-md-4 product-detail">
+                          {/* columna de producto*/}
+                        </div>
+                        <div className="col-md-3 product-detail">
+                          {/*espacio para la cantidad*/}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-12 col-lg-4">
+              <div className="summary">
+                <div className="summary-item">
+                  {/*espacio para el subtotal*/}
+                </div>
+                <button
+                  className="btn btn-primary btn-lg btn-block"
+                  onClick={onClick}
+                  id="checkout-btn"
+                  disabled={disabled}
+                >
+                  Checkout
+                </button>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-    
+      
     </section>
   );
 };
