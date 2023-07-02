@@ -2,14 +2,12 @@ require("dotenv").config();
 const { ACCESS_TOKEN_MP } = process.env;
 const mercadopago = require("mercadopago");
 
-console.log('1')
-console.log('variable', ACCESS_TOKEN_MP)
 // REPLACE WITH YOUR ACCESS TOKEN AVAILABLE IN: https://developers.mercadopago.com/panel
 mercadopago.configure({
   /* access_token: ACCESS_TOKEN_MP, */
-  access_token: "TEST-6319556541633434-063018-8336b2baf04fa2a889127d4915096375-1412025676"
+  /* access_token: "TEST-6319556541633434-063018-8336b2baf04fa2a889127d4915096375-1412025676" */
+  access_token: process.env.ACCESS_TOKEN_MP
 });
-console.log('2')
 
 
 const createPreferenceHandler = async (req, res) => {
