@@ -10,12 +10,13 @@ const MyProfile = () => {
   const { user, isAuthenticated } = useAuth0();
 
   const [ enableEdition, setEnableEdition ] = useState(false);
-
   const email = user.email;
-
   useEffect(() => {
     dispatch(getUserDetailAction(email));
   }, [email, dispatch]);
+  
+  
+ 
 
   return (
     <main>
@@ -36,7 +37,7 @@ const MyProfile = () => {
           </div>
 
           <div>
-            <label htmlFor="surname">Apellido:</label>
+            <label htmlFor="surname">Apellido: {userDetail.name}</label>
           </div>
           <div>
             <label htmlFor="adress">Domicilio:</label>
