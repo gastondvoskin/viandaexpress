@@ -4,7 +4,6 @@ const morgan = require("morgan");
 const cors = require("cors");
 const router = require("./routes/indexRouter.js");
 
-/* const cors = require('cors'); */ /* new */
 
 // EXPRESS()
 const app = express();
@@ -17,11 +16,7 @@ app.use(cors());
 /* app.use(cors()); */
 
 app.use((req, res, next) => {
-  /* res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); */ /* old */
-  res.header(
-    "Access-Control-Allow-Origin",
-    "*"
-  ); /* new. In the future, replace * with the production URL */
+  res.header('Access-Control-Allow-Origin', '*' ); /* https://viandaexpress.vercel.app/ http://localhost:3000 */
   res.header("Access-Control-Allow-Credentials", "true"); /* ?? */
   res.header(
     "Access-Control-Allow-Headers",
