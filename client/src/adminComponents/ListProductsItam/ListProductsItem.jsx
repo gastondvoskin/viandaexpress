@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './listProductsItem.module.css'; // Importa el archivo CSS
+import styles from './ListProductsItem.module.css'; // Importa el archivo CSS
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
