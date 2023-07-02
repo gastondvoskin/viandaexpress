@@ -14,6 +14,7 @@ import axios from "axios";
 import FilterDietsOptions from "../../clientComponents/FilterDietsOptions/FilterDietsOptions";
 import { useAuth0 } from "@auth0/auth0-react";
 // comment. 
+// comment 2. 
 
 const Home = () => {
   const [index, setIndex] = useState(0);
