@@ -6,6 +6,7 @@ export default function Item({name,orderData}){
   const updatePrice = (event) => {
     const quantity = event.target.value;
     const amount= parseInt(item.final_price) * parseInt(quantity);
+    setItem({...item,quantity,amount})
     orderData.map(it=>{if(it.name===name){
         it.quantity=parseInt(quantity)
         it.amount=parseInt(amount)

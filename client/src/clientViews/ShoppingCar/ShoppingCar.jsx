@@ -6,7 +6,6 @@ import Footer from "../../clientComponents/ShoppingCar/Footer.jsx";
 import InternalProvider from "../../clientComponents/ShoppingCar/ContextProvider.jsx";
 import { SpinnerCircular } from 'spinners-react';
 import { useDispatch, useSelector } from "react-redux";
-import { addItemsActions, deleteItemActions } from "../../redux/foodActions";
 
 // REPLACE WITH YOUR PUBLIC KEY AVAILABLE IN: https://developers.mercadopago.com/panel
 initMercadoPago('APP_USR-8e95f5fd-f2e0-4982-8ac8-27b1f1b175bb');
@@ -14,7 +13,7 @@ initMercadoPago('APP_USR-8e95f5fd-f2e0-4982-8ac8-27b1f1b175bb');
 const ShoppingCar = () => {
 
   const allItems=useSelector((state)=>state.foodsReducer.orderItems);
-
+  console.log(allItems)
   const [preferenceId, setPreferenceId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [orderData, setOrderData] = useState(allItems);
