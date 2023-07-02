@@ -9,7 +9,7 @@ const ListProductsItem = ({ name, final_price, status,id,localFoods, setLocalFoo
         var verificar= window.confirm(`Está a punto de eliminar la vianda`)
         if(verificar){
           try {
-            await axios.delete(`http://localhost:3001/food/${id}`);
+            await axios.delete(`/food/${id}`);
             alert(`Vianda: '${name}' eliminada`);
             const updatedFoods = localFoods.filter(e => e.id !== id);
             setLocalFoods(updatedFoods);

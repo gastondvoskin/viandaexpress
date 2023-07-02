@@ -23,7 +23,7 @@ export default userSlice.reducer;
 
 export const getAllUsersAction = () => async (dispatch) => {
     try {
-        const allUsers =  await axios.get("http://localhost:3001/user")
+        const allUsers =  await axios.get("/user")
         const usersData = allUsers.data
         dispatch(getAllUsersCase(usersData))
     }catch(error){
@@ -33,7 +33,7 @@ export const getAllUsersAction = () => async (dispatch) => {
 
 export const getUserDetailAction = (email) => async (dispatch) => {
     try {
-        const userById = await axios.get("http://localhost:3001/user?email=" + email)
+        const userById = await axios.get("/user?email=" + email)
         const userData = userById.data
         dispatch(getUserByNameCase(userData))
     } catch (error) {
