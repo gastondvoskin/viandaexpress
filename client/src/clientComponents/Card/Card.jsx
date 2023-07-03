@@ -19,9 +19,9 @@ export default function Card({ id,name, image, final_price,allItems }) {
     });
   },[])
   const handleClick=(e)=>{
-    if(!isAuthenticated){
-      alert('¡Cuidado! Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!')
-    }else{
+    // if(!isAuthenticated){
+    //   alert('¡Cuidado! Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!')
+    // }else{
       if(isItem){
         setIsItem(false),
         dispatch(deleteItemActions(id));
@@ -31,7 +31,7 @@ export default function Card({ id,name, image, final_price,allItems }) {
         const amount=final_price*quantity
         dispatch(addItemsActions({id,name,image,final_price,quantity,amount}))
       }
-    }
+    // }
   }
   return (
     <div className={style.card}>
