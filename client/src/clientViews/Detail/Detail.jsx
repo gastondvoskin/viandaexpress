@@ -59,6 +59,7 @@ export default function Detail() {
         <p>"Cargando..."</p>
       ) : (
         <div className={styles.container}>
+          <div className={styles.container1}>
           <h1 className={styles.title}>{foodDetail?.name}</h1>
           <img
             className={styles.image}
@@ -68,6 +69,9 @@ export default function Detail() {
           <p className={styles.description}>
             Descripción: {foodDetail?.description}
           </p>
+          </div>
+          <div className={styles.container2}>
+          <h2 className={styles.caract}>Características Principales</h2>
           <p className={styles.price}>Precio: ${foodDetail?.final_price}</p>
           <p className={styles.category}>Categoría: {foodDetail?.category}</p>
           <p className={styles.diets}>
@@ -96,7 +100,8 @@ export default function Detail() {
               Ésta es una de nuestras comidas más elegidas por los usuarios!
             </p>
           )}
-          <button onClick={handleClick}>{isItem? 'Agregado':'Agregar'}</button>
+          <button className={styles.butagregar} onClick={handleClick}>{isItem? 'Agregado':'Agregar'}</button>
+          </div>
         </div>
       )}
       
