@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import classnames from 'classnames'
 import { Context } from "./ContextProvider";
+import { deleteItemActions } from "../../redux/foodActions";
+import { useDispatch, useSelector } from "react-redux";;
 
 const Checkout = ({ onClick }) => {
   const [isVisible, setIsVisible] = React.useState(true);
@@ -8,23 +10,28 @@ const Checkout = ({ onClick }) => {
   const shoppingCartClass = classnames('shopping-cart dark', {
     'shopping-cart--hidden': !isVisible,
   })
+  const dispatch=useDispatch();
   
   const updatePrice = (event) => {
     const quantity = event.target.value;
-    const variation=quantity-orderData.quantity;
     const name=event.target.name;
-    const item=orderData.filter(it=>it.name===name)[0]
-    const amount= parseInt(item.final_price) * parseInt(quantity);
-    console.log(amount)
-    const actual=[]
-    orderData.map(it=>{if(it.name===name){
-        actual.push({'id':it.id,'name':it.name,'image':it.image,'final_price':it.final_price,quantity:parseInt(quantity),amount:amount})
-      }else{actual.push(it)}
-    })
-    setOrderData(actual)
-    console.log(orderData)
-    total=total+variation*orderData.final_price;
-  }
+    if(quantity===0){
+      const id=orderData.filter(it=>it.name===name)[0].id;
+      dispatch(deleteItemActions(id));
+    }else{
+      const variation=quantity-orderData.quantity;
+      const item=orderData.filter(it=>it.name===name)[0]
+      const amount= parseInt(item.final_price) * parseInt(quantity);
+      
+      const actual=[]
+      orderData.map(it=>{if(it.name===name){
+          actual.push({'id':it.id,'name':it.name,'image':it.image,'final_price':it.final_price,quantity:parseInt(quantity),amount:amount})
+        }else{actual.push(it)}
+      })
+      setOrderData(actual)
+      console.log(orderData)
+      total=total+variation*orderData.final_price;
+  }}
 
   useEffect(() => {
     if (preferenceId) setIsVisible(false);
@@ -33,6 +40,16 @@ const Checkout = ({ onClick }) => {
 orderData.forEach(item=>{
   total=total+item.amount;
 })
+
+const handleDelete=(event)=>{
+  const name=event.target.name
+  const id=orderData.filter(it=>it.name===name)[0].id
+  console.log(id)
+  dispatch(deleteItemActions(id))
+  const refresh=useSelector(state=>state.foodsReducer.allItems)
+  setOrderData(refresh)
+}
+
 
   
   return (
@@ -112,7 +129,7 @@ orderData.forEach(item=>{
                       id="quantity"
                       name={item.name}
                       value={item.quantity}
-                      min="1"
+                      min="0"
                       className="form-control"
                     />
                   </div>
@@ -126,6 +143,7 @@ orderData.forEach(item=>{
         <div className="summary">
           <div className="summary-item">
             <span className="price" id="cart-total">${item.amount}</span>
+            <button  name={item.name} className="btn btn-primary btn-lg btn-block" onClick={handleDelete} >Eliminar</button>
           </div>
         </div>
       </div>
