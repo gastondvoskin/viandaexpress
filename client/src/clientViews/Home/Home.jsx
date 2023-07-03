@@ -8,17 +8,12 @@ import SearchBar from "../../clientComponents/SearchBar/SearchBar";
 import { getFoods, setCurrentPageAction } from "../../redux/foodActions.js";
 import CardsContainer from "../../clientComponents/CardsContainer/CardsContainer";
 import Paginado from "../../clientComponents/Paginado/Paginado";
-import OrderOptions from "../../clientComponents/orderOptions/orderOptions.jsx"
+import OrderOptions from "../../clientComponents/orderOptions/orderOptions.jsx";
 import CategoryButtons from "../../clientComponents/CategoryButtons/CategoryButtons";
 import axios from "axios";
 import FilterDietsOptions from "../../clientComponents/FilterDietsOptions/FilterDietsOptions";
 import { useAuth0 } from "@auth0/auth0-react";
-// comment. 
-// comment 2. 
-// comment 3. 
-// comment 4. 
-// coment 5
-// comment 6
+import Card from "../../clientComponents/Card/Card";
 
 const Home = () => {
   const [index, setIndex] = useState(0);
@@ -30,8 +25,7 @@ const Home = () => {
   const currentPage = useSelector((state) => state.foodsReducer.currentPage);
   const active = useSelector((state) => state.foodsReducer.activeFilteredFoods);
   const { isLoading, user, isAuthenticated } = useAuth0();
-  const allItems=useSelector((state)=>state.foodsReducer.orderItems)
-
+  const allItems = useSelector((state) => state.foodsReducer.orderItems);
 
   useEffect(() => {
     let body = {};
@@ -42,12 +36,11 @@ const Home = () => {
       };
     } else {
       body = {
-        type: "guest"
+        type: "guest",
       };
-    };
-    axios.post("/user", body).catch((error) => console.log(error))
+    }
+    axios.post("/user", body).catch((error) => console.log(error));
   }, [isAuthenticated, user]);
-
 
   useEffect(() => {
     if (!allFoods.length) {
@@ -73,6 +66,51 @@ const Home = () => {
   };
 
   if (isLoading) return <h1>Iniciando sesión...</h1>;
+
+  const foodsWithDiscounts = [
+    /* hardcoded. In the future, implement logic */
+    {
+      name: "Pasta rellena",
+      diets: ["Vegetariano"],
+      image:
+        "https://img-global.cpcdn.com/recipes/7041b21955686cf2/1360x964cq70/pasta-rellenas-sin-tacc-sin-gluten-vegan-foto-principal.webp",
+      description:
+        "Este plato, está cocinado con una base de Pastas y pertenece a los platos de la cocina Tradicional. Por regla general se consume, principalmente, durante Todo el año, y se suele servir a los comensales como Primer plato.",
+      category: "Pastas",
+      initial_price: 2600,
+      discount: 0,
+      final_price: 2600,
+      status: true,
+      total_score: 0,
+    },
+    {
+      name: "Ensalada mixta",
+      diets: ["Sin TACC", "Vegetariano", "Vegano", "Sin Lactosa"],
+      description:
+        "Una ensalada mixta clásica con lechuga, tomate, zanahoria, pepino y aderezo de vinagreta casera.",
+      image: "https://imag.bonviveur.com/imagen-de-la-ensalada-mixta.jpg",
+      initial_price: 1370,
+      discount: 0,
+      final_price: 1370,
+      status: true,
+      total_score: 0,
+      category: "Ensaladas",
+    }, 
+    {
+      name: "Carne guisada con patatas",
+      diets: ["Sin TACC", "Sin Lactosa"],
+      description:
+        "Carne tierna y jugosa guisada a fuego lento con patatas, cebolla, zanahorias y especias, un plato reconfortante.",
+      image:
+        "https://www.cocinatis.com/archivos/202207/CTIS0210-Receta-carne-guisada-con-patatas_large_16x9.jpg",
+      initial_price: 3000,
+      discount: 0,
+      final_price: 3000,
+      status: true,
+      total_score: 0,
+      category: "Carnes",
+    }
+  ];
 
   return (
     <div className={styles.mainContainer}>
@@ -104,43 +142,22 @@ const Home = () => {
         </Carousel>
       </div>
 
-      <div className={styles.buttonsContainer}>
-        {/* Comentario TONO: No se puede implementar el reset hasta que se corrija la implementación de los filtros en redux */}
-        {/* <button className={styles.all} onClick={(e) => handleFilterByCategory(e)} value="Todas">
-          Todas
-        </button> */}
-        {/* Comentatario TONO: los botones se deberían refactorizar: deberían mapear un array de diets para no repetir código. */}
-        <CategoryButtons />
-      </div>
+      <section>
 
-      <div className={styles.filtros}>
-        {/* Comentario TONO: El filtro de dieta no está implementado. */}
-        <div className={styles.filtros2}>
-          <FilterDietsOptions />
-          <OrderOptions />
-        </div>
-      </div>
-      {/* A futuro implementar Eliminar filtros */}
-      {/* <button>Eliminar Filtros</button> */}
-      <div className={styles.asereje}>
-        <SearchBar />
-
-        <Paginado
-          foodsPerPage={foodsPerPage}
-          foods={allFoods.length}
-          filterFoods={filteredFoods.length}
-          paginado={paginado}
-          currentPage={currentPage}
-        />
-
-        {!currentFoods.length ? (
-          <h1 className={styles.notFoundMessage}>
-            No se encontraron resultados
-          </h1>
-        ) : (
-          <CardsContainer currentFoods={currentFoods} allItems={allItems} />
-        )}
-      </div>
+      {foodsWithDiscounts.map(({id, name, image, final_price, category, diets}) => {
+          return (
+            <Card
+              id={id}
+              name={name}
+              image={image}
+              final_price={final_price}
+              category={category}
+              diets={diets}
+              allItems={allItems}
+            />
+          );
+        })}
+      </section>
     </div>
   );
 };
