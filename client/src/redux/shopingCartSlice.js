@@ -10,6 +10,9 @@ export const shopingCartSlice = createSlice({
     reducers: {
         getPendingOrderCase:(state,action)=>{
             state.pendingOrder = action.payload
+        },
+        getIteminOrderCase:()=>{
+            
         }
     }
 })
