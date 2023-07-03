@@ -4,7 +4,7 @@ import { Context } from "./ContextProvider";
 
 const Checkout = ({ onClick }) => {
   const [isVisible, setIsVisible] = React.useState(true);
-  const { preferenceId, isLoading: disabled, orderData, setOrderData } = React.useContext(Context);
+  const { preferenceId, isLoading: disabled, orderData, setOrderData,total } = React.useContext(Context);
   const shoppingCartClass = classnames('shopping-cart dark', {
     'shopping-cart--hidden': !isVisible,
   })
@@ -30,7 +30,6 @@ const Checkout = ({ onClick }) => {
     if (preferenceId) setIsVisible(false);
   }, [preferenceId])
 
-let total=0
 orderData.forEach(item=>{
   total=total+item.amount;
 })

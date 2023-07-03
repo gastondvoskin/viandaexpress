@@ -5,10 +5,12 @@ import { getFoods } from "../../redux/foodActions.js";
 import axios from "axios";
 import styles from "../Detail/Detail.module.css";
 import {addItemsActions, deleteItemActions} from '../../redux/foodActions.js';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 export default function Detail() {
   const { id } = useParams();
+  const {isAuthenticated } = useAuth0();
   const [isItem,setIsItem]=useState(false);
   const allItems=useSelector((state)=>state.foodsReducer.orderItems);
   const dispatch = useDispatch();
@@ -38,14 +40,17 @@ export default function Detail() {
   const foodDetail = allFoods.find((food) => food.id === id);
   /*To add a new item or delete an item */
   const handleClick=(e)=>{
-    if(isItem){
-      setIsItem(false),
-      dispatch(deleteItemActions(id));
+    if(!isAuthenticated){
+      alert('¡Cuidado! Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!')
     }else{
-      setIsItem(true);
-      dispatch(addItemsActions({id,name:foodDetail?.name,image:foodDetail?.image,final_price:foodDetail?.final_price}))
+      if(isItem){
+        setIsItem(false),
+        dispatch(deleteItemActions(id));
+      }else{
+        setIsItem(true);
+        dispatch(addItemsActions({id,name:foodDetail?.name,image:foodDetail?.image,final_price:foodDetail?.final_price}))
+      }
     }
-    
   }
   console.log(allItems)
   return (
