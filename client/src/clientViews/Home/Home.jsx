@@ -32,11 +32,11 @@ const Home = () => {
     if (isAuthenticated) {
       body = {
         name: user?.name,
-        email: user?.email,
+        email: user?.email
       };
     } else {
       body = {
-        type: "guest",
+        type: "guest"
       };
     }
     axios.post("/user", body).catch((error) => console.log(error));
@@ -67,6 +67,7 @@ const Home = () => {
 
   if (isLoading) return <h1>Iniciando sesión...</h1>;
 
+  // Definición del array foodsWithDiscounts fuera del componente JSX
   const foodsWithDiscounts = [
     /* hardcoded. In the future, implement logic */
     {
@@ -81,7 +82,7 @@ const Home = () => {
       discount: 0,
       final_price: 2600,
       status: true,
-      total_score: 0,
+      total_score: 0
     },
     {
       name: "Ensalada mixta",
@@ -94,8 +95,8 @@ const Home = () => {
       final_price: 1370,
       status: true,
       total_score: 0,
-      category: "Ensaladas",
-    }, 
+      category: "Ensaladas"
+    },
     {
       name: "Carne guisada con patatas",
       diets: ["Sin TACC", "Sin Lactosa"],
@@ -108,9 +109,17 @@ const Home = () => {
       final_price: 3000,
       status: true,
       total_score: 0,
-      category: "Carnes",
+      category: "Carnes"
     }
   ];
+
+  <div className={styles.container}>
+    {foodsWithDiscounts.map((food, index) => (
+      <div key={index} className={styles.card}>
+        {/* Contenido de la card */}
+      </div>
+    ))}
+  </div>;
 
   return (
     <div className={styles.mainContainer}>
@@ -142,22 +151,25 @@ const Home = () => {
         </Carousel>
       </div>
 
-      <section>
-
-      {foodsWithDiscounts.map(({id, name, image, final_price, category, diets}) => {
+      <div className={styles.cardsContiner}>
+        {foodsWithDiscounts.map((food) => {
           return (
-            <Card
-              id={id}
-              name={name}
-              image={image}
-              final_price={final_price}
-              category={category}
-              diets={diets}
-              allItems={allItems}
-            />
+            <div className={styles.card}>
+              <div>
+                <img
+                  src={food.image}
+                  alt="img not found"
+                  className={styles.card_img}
+                />
+              </div>
+              <h2>{food.name}</h2>
+              <div className={styles.p}>
+                <p>${food.final_price}</p>
+              </div>
+            </div>
           );
         })}
-      </section>
+      </div>
     </div>
   );
 };
