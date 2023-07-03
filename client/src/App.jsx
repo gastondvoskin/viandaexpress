@@ -11,9 +11,10 @@ import AdminPanel from './adminViews/AdminPanel/AdminPanel';
 import CreateFood from './adminViews/CreateFood/CreateFood';
 import ShoppingCar from './clientViews/ShoppingCar/ShoppingCar';
 import axios from "axios";
+import Viandas from './clientViews/Viandas/Viandas'
 
-axios.defaults.baseURL = "https://pfecommerce11b-production-177a.up.railway.app";
-// axios.defaults.baseURL = "http://localhost:3001";
+// axios.defaults.baseURL = "https://pfecommerce11b-production-177a.up.railway.app";
+axios.defaults.baseURL = "http://localhost:3001";
 // axios.defaults.baseURL = process.env.VITE_APP_API || "http://localhost:3001";
 
 
@@ -26,6 +27,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path='/viandas' element={<Viandas />} />
         <Route path="/myprofile" element={<MyProfile />} />
         <Route path='/detail/:id' element={<Detail />} />
         <Route path="/admin/*" element={<AdminPanel />} />
