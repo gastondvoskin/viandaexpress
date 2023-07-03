@@ -45,6 +45,11 @@
   border: solid 3px white;
 }
 
+.butagregar:hover{
+  background-color: var(--accentColor2);
+  transition: 0.5s;
+}
+
 .container2 {
   width: 30%;
   height: 100%;
