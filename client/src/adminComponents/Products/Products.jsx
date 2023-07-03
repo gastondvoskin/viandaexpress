@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import ListProductsItem from '../ListProductsItam/ListProductsItem.jsx';
-import styles from './products.module.css'; // Importa el archivo CSS
+import styles from './Products.module.css'; // Importa el archivo CSS
 import { Link } from 'react-router-dom';
 
 const Products = () => {

@@ -1,11 +1,13 @@
 const { Router } = require("express");
-const { getOrdersHandlers, postOrderHandler, putOrderHandler } = require("../handlers/orderHandlers");
+const { getOrdersHandler, postOrderHandler, putOrderHandler, getOrderByUserIdHandler } = require("../handlers/orderHandlers");
 const orderRouter = Router();
 
 
-orderRouter.get("/", getOrdersHandlers )
+orderRouter.get("/", getOrdersHandler )
+orderRouter.get("/:userId",getOrderByUserIdHandler)
 orderRouter.post("/", postOrderHandler )
 orderRouter.put("/", putOrderHandler )
+
 
 
 module.exports = {orderRouter}

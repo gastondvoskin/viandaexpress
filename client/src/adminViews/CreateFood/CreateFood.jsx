@@ -73,7 +73,7 @@ export default function CreateFood() {
         formData.append("image", input.image);
         console.log(formData);
         // dispatch(postFood(input));
-        await axios.post("http://localhost:3001/food", formData, {
+        await axios.post("/food", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

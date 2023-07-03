@@ -27,7 +27,7 @@ export default function EditFood() {
 
   useEffect(() => {
     if (!allFoods.length) {
-      axios.get("http://localhost:3001/api").then(() => dispatch(getFoods()));
+      axios.get("/api").then(() => dispatch(getFoods()));
     } else {
       dispatch(getFoods());
     }
@@ -88,7 +88,7 @@ export default function EditFood() {
     var verificar= window.confirm(`Está a punto de eliminar la vianda`)
     if(verificar){
       try {
-        await axios.delete(`http://localhost:3001/food/${id}`);
+        await axios.delete(`/food/${id}`);
         alert(`Vianda: '${formData.name}' eliminada`);
         navigate('/admin');
       } catch (error) {

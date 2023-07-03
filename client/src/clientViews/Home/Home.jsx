@@ -8,13 +8,17 @@ import SearchBar from "../../clientComponents/SearchBar/SearchBar";
 import { getFoods, setCurrentPageAction } from "../../redux/foodActions.js";
 import CardsContainer from "../../clientComponents/CardsContainer/CardsContainer";
 import Paginado from "../../clientComponents/Paginado/Paginado";
-import OrderOptions from "../../clientComponents/orderOptions/orderOptions";
-import CategoryButtons from "../../clientComponents/categoryButtons/categoryButtons";
+import OrderOptions from "../../clientComponents/orderOptions/orderOptions.jsx"
+import CategoryButtons from "../../clientComponents/CategoryButtons/CategoryButtons";
 import axios from "axios";
-import FilterDietsOptions from "../../clientComponents/filtersDietsOptions/filterDietsOptions";
-
-import LoginButton from "../../LoginComponents/LoginButton/LoginButton";
+import FilterDietsOptions from "../../clientComponents/FilterDietsOptions/FilterDietsOptions";
 import { useAuth0 } from "@auth0/auth0-react";
+// comment. 
+// comment 2. 
+// comment 3. 
+// comment 4. 
+// coment 5
+// comment 6
 
 const Home = () => {
   const [index, setIndex] = useState(0);
@@ -41,13 +45,13 @@ const Home = () => {
         type: "guest"
       };
     };
-    axios.post("http://localhost:3001/user", body).catch((error) => console.log(error))
+    axios.post("/user", body).catch((error) => console.log(error))
   }, [isAuthenticated, user]);
 
 
   useEffect(() => {
     if (!allFoods.length) {
-      axios.get("http://localhost:3001/api").then(() => dispatch(getFoods()));
+      axios.get("/api").then(() => dispatch(getFoods()));
     } else {
       dispatch(getFoods());
     }
