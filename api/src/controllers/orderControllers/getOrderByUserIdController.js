@@ -11,7 +11,8 @@ const getOrderByUserIdController = async (userId) =>{
           include: Food,
         },
       });
-      return cart
+      console.log("nada", cart.dataValues);
+      return cart.dataValues
 }
 
 module.exports = {getOrderByUserIdController}

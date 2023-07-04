@@ -21,19 +21,37 @@ const Home = () => {
   const { isLoading, user, isAuthenticated } = useAuth0();
   const allItems = useSelector((state) => state.foodsReducer.orderItems);
 
+  // useEffect(() => {
+  //   let body = {};
+  //   if (isAuthenticated) {
+  //     body = {
+  //       name: user?.name,
+  //       email: user?.email
+  //     };
+  //   } else {
+  //     body = {
+  //       type: "guest"
+  //     };
+  //   }
+  //   axios.post("/user", body).catch((error) => console.log(error));
+  // }, [isAuthenticated, user]);
+
   useEffect(() => {
-    let body = {};
     if (isAuthenticated) {
-      body = {
+      const body = {
         name: user?.name,
-        email: user?.email
+        email: user?.email,
       };
-    } else {
-      body = {
-        type: "guest"
-      };
+      axios
+        .post("/user", body)
+        .then(() => {
+          return axios.post("/order", body);
+        })
+        .then(() => {
+          console.log("Usuario y Order enviados a DB");
+        })
+        .catch((error) => console.log(error));
     }
-    axios.post("/user", body).catch((error) => console.log(error));
   }, [isAuthenticated, user]);
 
   useEffect(() => {
@@ -50,7 +68,6 @@ const Home = () => {
   const currentFoods = active
     ? filteredFoods.slice(indexOfFirstFood, indexOfLastFood)
     : allFoods.slice(indexOfFirstFood, indexOfLastFood);
-
 
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
@@ -73,7 +90,7 @@ const Home = () => {
       discount: 0,
       final_price: 2600,
       status: true,
-      total_score: 0
+      total_score: 0,
     },
     {
       name: "Ensalada mixta",
@@ -86,7 +103,7 @@ const Home = () => {
       final_price: 1370,
       status: true,
       total_score: 0,
-      category: "Ensaladas"
+      category: "Ensaladas",
     },
     {
       name: "Carne guisada con patatas",
@@ -100,8 +117,8 @@ const Home = () => {
       final_price: 3000,
       status: true,
       total_score: 0,
-      category: "Carnes"
-    }
+      category: "Carnes",
+    },
   ];
 
   <div className={styles.container}>
@@ -126,7 +143,10 @@ const Home = () => {
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <img src="../../src/assets/carousel/healthy.jpeg" alt="Saludables" />
+            <img
+              src="../../src/assets/carousel/healthy.jpeg"
+              alt="Saludables"
+            />
 
             <Carousel.Caption>
               <div className={styles.CarouselText}>Saludables y nutritivas</div>

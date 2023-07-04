@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import { addItemsActions, deleteItemActions } from "../../redux/foodActions.js";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
 
 export default function Card({ id, name, image, final_price, allItems }) {
   const [isItem, setIsItem] = useState(false);
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
   const [quantity,setQuantity]=useState(1)
 
   console.log(allItems);
@@ -26,13 +27,31 @@ export default function Card({ id, name, image, final_price, allItems }) {
       );
     } else {
       if (isItem) {
-        setIsItem(false), dispatch(deleteItemActions(id));
+        setIsItem(false);
+        dispatch(deleteItemActions(id));
+        //-------------------------
+        const bodyDelete = {
+          userEmail: user?.email,
+          FoodId: id,
+        };
+        console.log("DeleteAction", bodyDelete);
+        axios.delete("/item", {data: bodyDelete}).catch((error) => console.log(error));
+        //-------------------------
       } else {
         setIsItem(true);
         const amount = final_price * parseInt(quantity);
         dispatch(
           addItemsActions({ id, name, image, final_price, quantity, amount })
         );
+        //-------------------------
+        const bodyAdd = {
+          userEmail: user?.email,
+          FoodId: id,
+          quantity,
+          final_price,
+        };
+        axios.post("/item", bodyAdd).catch((error) => console.log(error));
+        //-------------------------
       }
     }
   };
@@ -56,6 +75,7 @@ export default function Card({ id, name, image, final_price, allItems }) {
       <div className={style.p}>
         <p>${final_price}</p>
       </div>
+
       <div className={style.divbtndet}>
       <button className={style.btncar} onClick={handleClick}>{isItem ? "Agregado" : "Agregar"}</button>
       {isItem?<input className={style.detailinput} type="number" min='1' value={quantity} onChange={updateQuantity}/>:null}

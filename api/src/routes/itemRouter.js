@@ -4,7 +4,7 @@ const itemRouter = Router();
 
 itemRouter.post("/", postItemHandler);
 itemRouter.put("/:itemId", putItemHandler);
-itemRouter.delete("/:itemId", deleteItemHandler);
+itemRouter.delete("/", deleteItemHandler);
 
 
 

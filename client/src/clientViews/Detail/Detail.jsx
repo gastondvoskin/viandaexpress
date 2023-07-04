@@ -10,7 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Detail() {
   const { id } = useParams();
-  const {isAuthenticated } = useAuth0();
+  const {isAuthenticated, user } = useAuth0();
   const [isItem,setIsItem]=useState(false);
   const allItems=useSelector((state)=>state.foodsReducer.orderItems);
   const dispatch = useDispatch();
@@ -45,12 +45,33 @@ export default function Detail() {
       alert('¡Cuidado! Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!')
     }else{
       if(isItem){
-        setIsItem(false),
+        setIsItem(false);
         dispatch(deleteItemActions(id));
+        //-------------------------
+        const bodyDelete = {
+          userEmail: user?.email,
+          FoodId: id,
+        };
+        console.log("DeleteAction", bodyDelete);
+        axios
+          .delete("/item", { data: bodyDelete })
+          .catch((error) => console.log(error));
+        //-------------------------
       }else{
         setIsItem(true);
+
         const amount = foodDetail?.final_price * quantity;
         dispatch(addItemsActions({id,name:foodDetail?.name,image:foodDetail?.image,final_price:foodDetail?.final_price,quantity:quantity,amount:amount}))
+        //-------------------------
+        const bodyAdd = {
+          userEmail: user?.email,
+          FoodId: id,
+          quantity: 1,
+          final_price: foodDetail?.final_price,
+        };
+        axios.post("/item", bodyAdd).catch((error) => console.log(error));
+        //-------------------------
+
       }
     }
   }
