@@ -4,14 +4,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import styles from "./Home.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SearchBar from "../../clientComponents/SearchBar/SearchBar";
 import { getFoods, setCurrentPageAction } from "../../redux/foodActions.js";
-import CardsContainer from "../../clientComponents/CardsContainer/CardsContainer";
-import Paginado from "../../clientComponents/Paginado/Paginado";
-import OrderOptions from "../../clientComponents/orderOptions/orderOptions.jsx";
-import CategoryButtons from "../../clientComponents/CategoryButtons/CategoryButtons";
 import axios from "axios";
-import FilterDietsOptions from "../../clientComponents/FilterDietsOptions/FilterDietsOptions";
 import { useAuth0 } from "@auth0/auth0-react";
 import Card from "../../clientComponents/Card/Card";
 
@@ -57,9 +51,6 @@ const Home = () => {
     ? filteredFoods.slice(indexOfFirstFood, indexOfLastFood)
     : allFoods.slice(indexOfFirstFood, indexOfLastFood);
 
-  const paginado = (pageNumber) => {
-    dispatch(setCurrentPageAction(pageNumber));
-  };
 
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
@@ -127,7 +118,7 @@ const Home = () => {
       <div className={styles.Carousel}>
         <Carousel activeIndex={index} onSelect={handleSelect} interval="9000">
           <Carousel.Item>
-            <img src="../src/assets/carousel/variety.jpg" alt="Variadadas" />
+            <img src="../../src/assets/carousel/variety.jpg" alt="Variadadas" />
             <Carousel.Caption>
               <div className={styles.CarouselText}>
                 Viandas para toda la familia
@@ -135,14 +126,14 @@ const Home = () => {
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <img src="../src/assets/carousel/healthy.jpeg" alt="Saludables" />
+            <img src="../../src/assets/carousel/healthy.jpeg" alt="Saludables" />
 
             <Carousel.Caption>
               <div className={styles.CarouselText}>Saludables y nutritivas</div>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <img src="../src/assets/carousel/withLove.jpeg" alt="Caseras" />
+            <img src="../../src/assets/carousel/withLove.jpeg" alt="Caseras" />
 
             <Carousel.Caption>
               <div className={styles.CarouselText}>Caseras y con amor</div>
