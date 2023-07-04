@@ -43,3 +43,17 @@
   height: 24px;
   margin: 0px;
 }
+
+.btncar{
+  background-color: var(--accentColor);
+  margin-left: -12px;
+  border-radius: 0px 0px 15px 15px;
+  width: 269px;
+  border: none;
+  color: white;
+}
+
+.btncar:hover{
+  background-color: var(--accentColor2);
+  transition: 0.5s;
+}
