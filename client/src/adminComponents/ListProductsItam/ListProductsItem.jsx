@@ -20,24 +20,46 @@ const ListProductsItem = ({ name, final_price, status,id,localFoods, setLocalFoo
       };
 
     return (
-        <div className={styles.listProductsItem}> {/* Aplica la clase CSS utilizando la variable styles */}
-            <div className={styles.left}>
-                <p>{name}</p>
-                <p> $ {final_price} </p>
-                <select onChange={console.log('Implementar /putFood ')} value={status ? 'Disponible' : 'Suspendido'}>
-                    <option value="Disponible">Disponible</option>
-                    <option value="Suspendido">Suspendido</option>
-                </select>
-            </div>
-            <div>
-                <Link to={`/admin/edit/${id}`}>
+        <tr className={styles.tds}> {/* Aplica la clase CSS utilizando la variable styles */}
+            <td className={styles.tbodys}>{name}</td>
+            <td className={styles.tbodys}>${final_price}</td>
+            <td className={styles.tbodys}>
+            < select onChange={console.log('Implementar /putFood ')} value={status ? 'Disponible' : 'Suspendido'}>
+                <option value="Disponible">Disponible</option>
+                <option value="Suspendido">Suspendido</option>
+              </select>
+            </td>
+            <td className={styles.tbodys}>
+              <Link to={`/admin/edit/${id}`}>
                     <button>Editar</button>
-                </Link>
-                <button onClick={handleDelete}>ELIMINAR</button>
-            </div>
-            
-        </div>
+              </Link>
+            </td>
+            <td className={styles.tbodys}>
+            <button onClick={handleDelete}>ELIMINAR</button>
+            </td>  
+        </tr>
     );
+    {/*
+      return (
+        <div className={styles.listProductsItem}> {/* Aplica la clase CSS utilizando la variable styles 
+        <div className={styles.left}>
+        <p>{name}</p>
+        <p> $ {final_price} </p>
+        <select onChange={console.log('Implementar /putFood ')} value={status ? 'Disponible' : 'Suspendido'}>
+            <option value="Disponible">Disponible</option>
+            <option value="Suspendido">Suspendido</option>
+        </select>
+    </div>
+    <div>
+        <Link to={`/admin/edit/${id}`}>
+            <button>Editar</button>
+        </Link>
+        <button onClick={handleDelete}>ELIMINAR</button>
+    </div>
+    
+</div>
+);
+  */}
 };
 
 export default ListProductsItem;
