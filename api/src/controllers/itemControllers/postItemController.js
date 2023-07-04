@@ -1,10 +1,9 @@
 const { Item, Order } = require("../../db")
 const { updateCartTotalPrice } = require("./updateCartTotalPrice")
 
-const postItemController = async (orderId, foodId, quantity, final_price) => {
+const postItemController = async (userId, orderId, foodId, quantity, final_price) => {
   // Buscar el carrito del usuario con estado "PENDIENTE"
   const itemAmount = final_price * quantity;
-
   let userOrder = await Order.findOne({
     where: {
       UserId: userId,
@@ -29,16 +28,17 @@ const postItemController = async (orderId, foodId, quantity, final_price) => {
     amount: itemAmount,
   });
 
-  await Order.update(
-    // { total_price: Sequelize.literal(`total_price + ${amount}`) },
-    { total_price: userOrder.dataValues.total_price + itemAmount },
-    {
-      where: {
-        id: userOrder.dataValues.id,
-      },
-    }
-  );
-  // await updateCartTotalPrice(cart.id);
+  // await Order.update(
+  //   // { total_price: Sequelize.literal(`total_price + ${amount}`) },
+  //   { total_price: userOrder.dataValues.total_price + itemAmount },
+  //   {
+  //     where: {
+  //       id: userOrder.dataValues.id,
+  //     },
+  //   }
+  // );
+  console.log("conroller", userOrder.dataValues.id);
+  await updateCartTotalPrice(userOrder.dataValues.id);
 
   return newItem;
 };

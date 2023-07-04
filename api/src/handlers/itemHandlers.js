@@ -6,8 +6,8 @@ const { deleteItemController } = require("../controllers/itemControllers/deleteI
 const postItemHandler = async (req, res) => {
     try {
         // const {userId} = req.params
-        const { orderId, foodId, quantity, price } = req.body;
-        const addItem = await postItemController(orderId, foodId, quantity, price);
+        const { userId, orderId, foodId, quantity, final_price } = req.body;
+        const addItem = await postItemController(userId, orderId, foodId, quantity, final_price);
         res.status(200).send(addItem)
     } catch (error) {
         res.status(400).send({ error: error.message });
