@@ -4,7 +4,7 @@ const orderRouter = Router();
 
 
 orderRouter.get("/", getOrdersHandler )
-orderRouter.get("/:userId",getOrderByUserIdHandler)
+orderRouter.get("/order",getOrderByUserIdHandler)
 orderRouter.post("/", postOrderHandler )
 orderRouter.put("/", putOrderHandler )
 

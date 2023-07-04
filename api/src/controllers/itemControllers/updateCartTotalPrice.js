@@ -1,18 +1,17 @@
-const { Item, Order } = require("../../db")
+const { Item, Order } = require("../../db");
+
 const updateCartTotalPrice = async (orderId) => {
-  const cart = await Order.findByPk(orderId, {
+  const orderById = await Order.findByPk(orderId, {
     include: {
       model: Item,
-      attributes: ['amount'],
+      attributes: ["amount"],
     },
   });
-  console.log("cart", cart);
 
-  const total_price = cart.Items.reduce((total, item) => {
+  const total_price = orderById.Items.reduce((total, item) => {
     return total + item.amount;
   }, 0);
 
-  console.log("uspdate", total_price, cart.dataValues.Items);
   await Order.update(
     { total_price },
     {
@@ -23,4 +22,4 @@ const updateCartTotalPrice = async (orderId) => {
   );
 };
 
-module.exports = { updateCartTotalPrice }
+module.exports = { updateCartTotalPrice };
