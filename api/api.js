@@ -513,7 +513,7 @@ const foods = [
     discount: 20,
     final_price: 2450,
     status: true,
-    total_score: 0,
+    total_score: 4.5,
     category: "Carnes",
   },
   {
@@ -596,7 +596,7 @@ const foods = [
     discount: 0,
     final_price: 3000,
     status: true,
-    total_score: 0,
+    total_score: 4.5,
     category: "Carnes",
   },
   {
@@ -652,7 +652,7 @@ const foods = [
     discount: 0,
     final_price: 2680,
     status: true,
-    total_score: 0,
+    total_score: 4.8,
     category: "Carnes",
   },
   {
@@ -875,7 +875,7 @@ const foods = [
     discount: 0,
     final_price: 2300,
     status: true,
-    total_score: 0,
+    total_score: 4.2,
     category: "Ensaladas",
   },
   {

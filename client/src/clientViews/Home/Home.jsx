@@ -15,7 +15,10 @@ const Home = () => {
   const allItems = useSelector((state) => state.foodsReducer.orderItems);
   const foodsWithDiscounts = allFoods.filter(
     (food) => food.discount > 0
-  ); /* .slice(0, 2); */
+  ); /* .slice(0, 4) */ /* uncomment slice(0,4) to render only the first 4 */
+  const foodsWithScoreHigherThan4 = allFoods.filter(
+    (food) => food.total_score > 4
+  );
 
   const { isLoading, user, isAuthenticated } = useAuth0();
 
@@ -50,12 +53,13 @@ const Home = () => {
   return (
     <div className={styles.mainContainer}>
       <CarouselContainer />
-      <br />
+
+      <section>
+        <button className={styles.viewAllButton}>VER TODAS LAS VIANDAS</button>
+      </section>
+
       <section className={styles.sectionContainer}>
         <h1>Ofertas de la semana</h1>
-        {/* foodsWithDiscounts is a hardcoded array with chosen nice images. To add a dynamic logic, following these steps:  
-        
-        */}
         <div className={styles.cardsContainer}>
           {foodsWithDiscounts &&
             foodsWithDiscounts.map(
@@ -75,29 +79,33 @@ const Home = () => {
             )}
         </div>
         <br />
+        <br />
+      </section>
 
-        <section>
-          <button className={styles.viewAllButton}>Ver todas las viandas</button>
-        </section>
+      <section className={styles.sectionContainer}>
+        <h1>Mejor rankeados</h1>
+        <div className={styles.cardsContainer}>
+          {foodsWithScoreHigherThan4 &&
+            foodsWithScoreHigherThan4.map(
+              ({ id, name, image, final_price, category, diets }) => {
+                return (
+                  <Card
+                    id={id}
+                    name={name}
+                    image={image}
+                    final_price={final_price}
+                    category={category}
+                    diets={diets}
+                    allItems={allItems}
+                  />
+                );
+              }
+            )}
+        </div>
+        <br />
       </section>
     </div>
   );
 };
 
 export default Home;
-
-{
-  /* <div className={styles.card}>
-              <div>
-                <img
-                  src={food.image}
-                  alt="img not found"
-                  className={styles.card_img}
-                />
-              </div>
-              <h2>{food.name}</h2>
-              <div className={styles.p}>
-                <p>${food.final_price}</p>
-              </div>
-            </div> */
-}
