@@ -48,7 +48,7 @@ const Home = () => {
           return axios.post("/order", body);
         })
         .then(() => {
-          console.log("Las dos peticiones se han completado correctamente");
+          console.log("Usuario y Order enviados a DB");
         })
         .catch((error) => console.log(error));
     }

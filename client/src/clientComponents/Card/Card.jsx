@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import { addItemsActions, deleteItemActions } from "../../redux/foodActions.js";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
 
 export default function Card({ id, name, image, final_price, allItems }) {
   const [isItem, setIsItem] = useState(false);
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
 
   console.log(allItems);
   const dispatch = useDispatch();
@@ -33,6 +34,15 @@ export default function Card({ id, name, image, final_price, allItems }) {
         dispatch(
           addItemsActions({ id, name, image, final_price, quantity, amount })
         );
+        //-------------------------
+        const body = {
+          userEmail: user?.email,
+          FoodId: id,
+          quantity,
+          final_price,
+        };
+        axios.post("/item", body).catch((error) => console.log(error));
+        //-------------------------
       }
     }
   };
@@ -49,7 +59,9 @@ export default function Card({ id, name, image, final_price, allItems }) {
       <div className={style.p}>
         <p>${final_price}</p>
       </div>
-      <button className={style.btncar} onClick={handleClick}>{isItem ? "Agregado" : "Agregar"}</button>
+      <button className={style.btncar} onClick={handleClick}>
+        {isItem ? "Agregado" : "Agregar"}
+      </button>
       {/* <p>
         Dietas:{" "}
         {diets.map((diet) => (
