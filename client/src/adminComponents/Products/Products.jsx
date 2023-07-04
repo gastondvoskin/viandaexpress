@@ -54,8 +54,17 @@ const Products = () => {
           <option value="ensaladas">Ensaladas</option>
         </select>
       </div>
-      <div>
-        <ul>
+      <table className={styles.destable}>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio Final</th>
+            <th>Estado</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+          <tbody>
           {localFoods.length > 0 &&
             localFoods.map(e => (
               <ListProductsItem
@@ -68,8 +77,8 @@ const Products = () => {
                 setLocalFoods={setLocalFoods}
               />
             ))}
-        </ul>
-      </div>
+        </tbody>
+      </table>
     </div>
   );
 };
