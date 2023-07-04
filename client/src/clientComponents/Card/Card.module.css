@@ -5,9 +5,13 @@
   border: 2px solid #e6e6e6;
   background: #fafaf5;
   box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.25);
-  padding: 10px;
+  padding: 10px 0px ;
   display: flex;
   flex-direction: column;
+}
+
+.movlef{
+  margin-left: 11px;
 }
 
 .card:hover {
@@ -46,14 +50,29 @@
 
 .btncar{
   background-color: var(--accentColor);
-  margin-left: -12px;
   border-radius: 0px 0px 15px 15px;
   width: 269px;
   border: none;
   color: white;
+  
 }
 
 .btncar:hover{
   background-color: var(--accentColor2);
   transition: 0.5s;
+}
+
+.divbtndet{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+}
+
+.detailinput{
+  width: 60px;
+  height: 26px;
+  border-radius: 0px 0px 15px 0px;
+  border-left: none;
+  text-align: center;
 }

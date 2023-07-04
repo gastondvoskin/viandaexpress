@@ -3,8 +3,8 @@ const { postItemHandler, putItemHandler, deleteItemHandler } = require("../handl
 const itemRouter = Router();
 
 itemRouter.post("/", postItemHandler);
-itemRouter.put("/:itemId", putItemHandler);
-itemRouter.delete("/:itemId", deleteItemHandler);
+itemRouter.put("/", putItemHandler);
+itemRouter.delete("/", deleteItemHandler);
 
 
 
