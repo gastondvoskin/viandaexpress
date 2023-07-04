@@ -2,6 +2,9 @@ import React from 'react';
 import styles from './ListProductsItem.module.css'; // Importa el archivo CSS
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import {faTrashCan} from "@fortawesome/free-solid-svg-icons";
 
 const ListProductsItem = ({ name, final_price, status,id,localFoods, setLocalFoods }) => {
     const handleDelete = async (e) => {
@@ -48,18 +51,18 @@ const ListProductsItem = ({ name, final_price, status,id,localFoods, setLocalFoo
             <td className={styles.tbodys}>{name}</td>
             <td className={styles.tbodys}>${final_price}</td>
             <td className={styles.tbodys}>
-            < select onChange={handleStatus} value={status}>
+            < select className={styles.viewAllButton} onChange={handleStatus} value={status}>
                 <option value={true}>Habilitado</option>
                 <option value={false}>Deshabilitado</option>
               </select>
             </td>
             <td className={styles.tbodys}>
               <Link to={`/admin/edit/${id}`}>
-                    <button>Editar</button>
+                    <button><FontAwesomeIcon icon={faEdit} /></button>
               </Link>
             </td>
             <td className={styles.tbodys}>
-            <button onClick={handleDelete}>ELIMINAR</button>
+            <button onClick={handleDelete}><FontAwesomeIcon icon={faTrashCan} /></button>
             </td>  
         </tr>
     );
