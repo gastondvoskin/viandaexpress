@@ -3,32 +3,32 @@ const { putItemController } = require("../controllers/itemControllers/putItemCon
 const { deleteItemController } = require("../controllers/itemControllers/deleteItemController")
 
 
-const postItemHandler = async (req,res) => {
+const postItemHandler = async (req, res) => {
     try {
-        const {userId} = req.params
-        const { foodId, quantity, price } = req.body;
-        const addItem = await postItemController(userId,foodId,quantity,price);
+        // const {userId} = req.params
+        const { userId, orderId, foodId, quantity, final_price } = req.body;
+        const addItem = await postItemController(userId, orderId, foodId, quantity, final_price);
         res.status(200).send(addItem)
     } catch (error) {
         res.status(400).send({ error: error.message });
     }
 }
 
-const deleteItemHandler = async (req,res) => {
+const deleteItemHandler = async (req, res) => {
     try {
-        const {itemId} = req.params
-        const {orderId} = req.body
-        await deleteItemController(itemId,orderId)
+        const { itemId } = req.params
+        const { orderId } = req.body
+        await deleteItemController(itemId, orderId)
     } catch (error) {
         res.status(400).send({ error: error.message });
     }
 }
 
-const putItemHandler = async (req,res) => {
+const putItemHandler = async (req, res) => {
     try {
-        const {itemId} = req.params
+        const { itemId } = req.params
         const { quantity } = req.body;
-        const response = await putItemController(itemId,quantity);
+        const response = await putItemController(itemId, quantity);
         res.status(200).send(response)
     } catch (error) {
         res.status(400).send({ error: error.message });
