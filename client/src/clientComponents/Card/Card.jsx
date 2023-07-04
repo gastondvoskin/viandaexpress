@@ -16,6 +16,7 @@ export default function Card({ id, name, image, final_price, allItems }) {
     allItems.map((item) => {
       if (item.name == name) {
         setIsItem(true);
+        setQuantity(item.quantity)
       }
     });
   }, []);
