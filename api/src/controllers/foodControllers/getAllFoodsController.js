@@ -10,7 +10,7 @@ const getAllFoodController = async () => {
     [enabledFood[i], enabledFood[j]] = [enabledFood[j], enabledFood[i]];
   }
 
-  return eneableFood;
+  return enabledFood;
 };
 
 module.exports = { getAllFoodController };
