@@ -35,8 +35,8 @@ const getOrderByUserIdHandler = async (req, res) => {
 };
 
 const postOrderHandler = async (req, res) => {
-  const { email } = req.body;
   try {
+    const { email } = req.body;
     const newOrder = await postOrderController(email);
     res.status(200).send(newOrder);
   } catch (error) {
