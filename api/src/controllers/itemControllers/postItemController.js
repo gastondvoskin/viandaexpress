@@ -1,39 +1,48 @@
-const {Item,Order} = require("../../db")
-const {updateCartTotalPrice} = require("./updateCartTotalPrice")
+const { Item, Order } = require("../../db")
+const { updateCartTotalPrice } = require("./updateCartTotalPrice")
 
-const postItemController = async (userId,foodId,quantity,price) => {
-    // Buscar el carrito del usuario con estado "PENDIENTE"
+const postItemController = async (orderId, foodId, quantity, final_price) => {
+  // Buscar el carrito del usuario con estado "PENDIENTE"
+  const itemAmount = final_price * quantity;
 
-    let cart = await Order.findOne({
-        where: {
-          UserId: userId,
-          status: 'PENDIENTE',
-        },
-      });
-  
-      // Si no existe un carrito, se crea uno nuevo
-      if (!cart) {
-        cart = await Order.create({
-          UserId: userId,
-          total_price: 0,
-          status: 'PENDIENTE',
-        });
-      }
-  
-      // Crear el nuevo artículo y asociarlo al carrito
-      const item = await Item.create({
-        OrderId: cart.id,
-        FoodId: foodId,
-        quantity,
-        price,
-        amount: price * quantity,
-      });
+  let userOrder = await Order.findOne({
+    where: {
+      UserId: userId,
+      status: 'PENDIENTE',
+    },
+  });
+  //   // Si no existe un carrito, se crea uno nuevo
+  //   if (!cart) {
+  //     cart = await Order.create({
+  //       UserId: userId,
+  //       total_price: 0,
+  //       status: 'PENDIENTE',
+  //     });
+  //   }
 
-      await updateCartTotalPrice(cart.id);
+  // Crear el nuevo artículo y asociarlo al carrito
+  const newItem = await Item.create({
+    OrderId: orderId,
+    FoodId: foodId,
+    quantity,
+    final_price,
+    amount: itemAmount,
+  });
 
-      return item;
-}
+  await Order.update(
+    // { total_price: Sequelize.literal(`total_price + ${amount}`) },
+    { total_price: userOrder.dataValues.total_price + itemAmount },
+    {
+      where: {
+        id: userOrder.dataValues.id,
+      },
+    }
+  );
+  // await updateCartTotalPrice(cart.id);
+
+  return newItem;
+};
 
 
-module.exports = {postItemController}
+module.exports = { postItemController }
 

@@ -7,7 +7,8 @@ const { getOrderByUserIdController } = require("../controllers/orderControllers/
 //Esta ruta trae todas las ordenes cerradas (sirve para el admin)
 const getOrdersHandler = async (req, res) => {
     try {
-        const orders = await getOrdersController();
+        const { id } = req.body;
+        const orders = await getOrdersController(id);
         res.status(200).send(orders)
     } catch (error) {
         res.status(400).send({ error: error.message })

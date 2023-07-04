@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
                 type: DataTypes.STRING,
                 allowNull: true,
             },
-            bill: {
+            payment_id: {
                 type: DataTypes.STRING,
                 allowNull: true,
             },
