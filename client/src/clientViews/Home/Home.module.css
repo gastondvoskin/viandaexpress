@@ -1,8 +1,32 @@
 .mainContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
+.sectionContainer {
+  width: 100%;
+}
 
+.cardsContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: flex;
+  width: 100%;
+}
+
+.viewAllButton {
+  background-color: var(--accentColor);
+  border-radius: 15px;
+  width: 269px;
+  border: none;
+  color: white;
+}
+
+.viewAllButton:hover {
+  background-color: var(--accentColor2);
+  transition: 0.5s;
+}
