@@ -139,12 +139,10 @@ export const putFoods = (input) => async (dispatch) => {
   }
 };
 // ORDER ITEMS
-export const addItemsActions =
-  (id, name, image, final_price, quantity = 1) =>
-  (dispatch) => {
+export const addItemsActions = (id, name, image,  final_price, quantity,amount) => (dispatch) => {
     try {
-      const amount = quantity * final_price;
-      dispatch(addItems(id, name, image, final_price, quantity, amount));
+        amount=quantity*final_price
+        dispatch(addItems(id, name, image, final_price, quantity,amount));
     } catch (error) {
       console.log(error);
     }

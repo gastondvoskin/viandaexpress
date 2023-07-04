@@ -16,6 +16,7 @@ export default function Detail() {
   const dispatch = useDispatch();
 
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
+  const [quantity,setQuantity]=useState(1);
 
   /* The useEffect implementation will change once we have a deployed DB */
   useEffect(() => {
@@ -58,14 +59,9 @@ export default function Detail() {
         //-------------------------
       }else{
         setIsItem(true);
-        dispatch(
-          addItemsActions({
-            id,
-            name: foodDetail?.name,
-            image: foodDetail?.image,
-            final_price: foodDetail?.final_price,
-          })
-        );
+
+        const amount = foodDetail?.final_price * quantity;
+        dispatch(addItemsActions({id,name:foodDetail?.name,image:foodDetail?.image,final_price:foodDetail?.final_price,quantity:quantity,amount:amount}))
         //-------------------------
         const bodyAdd = {
           userEmail: user?.email,
@@ -75,8 +71,16 @@ export default function Detail() {
         };
         axios.post("/item", bodyAdd).catch((error) => console.log(error));
         //-------------------------
+
       }
     }
+  }
+  const updateQuantity=(e)=>{
+    const quantity=parseInt(e.target.value);
+    const amount = foodDetail?.final_price * quantity;
+    setQuantity(quantity)
+    dispatch(deleteItemActions(id))
+    dispatch(addItemsActions({id,name:foodDetail?.name,image:foodDetail?.image,final_price:foodDetail?.final_price,quantity:quantity,amount:amount}))
   }
   console.log(allItems)
   return (
@@ -126,7 +130,11 @@ export default function Detail() {
               Ésta es una de nuestras comidas más elegidas por los usuarios!
             </p>
           )}
+          {isItem?
+            <input className={styles.detailinput} type="number" min='1' value={quantity} onChange={updateQuantity}/>:null
+          }
           <button className={styles.butagregar} onClick={handleClick}>{isItem? 'Agregado':'Agregar'}</button>
+          
           </div>
         </div>
       )}
