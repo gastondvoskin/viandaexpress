@@ -30,13 +30,12 @@ export default function Card({ id, name, image, final_price, allItems }) {
         setIsItem(false);
         dispatch(deleteItemActions(id));
         //-------------------------
-        const bodyDelete = {
+        const bodyDeleteItem = {
           userEmail: user?.email,
           FoodId: id,
         };
-        console.log("DeleteAction", bodyDelete);
         axios
-          .delete("/item", { data: bodyDelete })
+          .delete("/item", { data: bodyDeleteItem })
           .catch((error) => console.log(error));
         //-------------------------
       } else {
@@ -46,13 +45,13 @@ export default function Card({ id, name, image, final_price, allItems }) {
           addItemsActions({ id, name, image, final_price, quantity, amount })
         );
         //-------------------------
-        const bodyAdd = {
+        const bodyAddItem = {
           userEmail: user?.email,
           FoodId: id,
           quantity,
           final_price,
         };
-        axios.post("/item", bodyAdd).catch((error) => console.log(error));
+        axios.post("/item", bodyAddItem).catch((error) => console.log(error));
         //-------------------------
       }
     }
@@ -73,13 +72,13 @@ export default function Card({ id, name, image, final_price, allItems }) {
       })
     );
     //-------------------------
-    const bodyUpdate = {
+    const bodyUpdateItem = {
       userEmail: user?.email,
       FoodId: id,
       quantity,
       final_price,
     };
-    axios.put("/item", bodyUpdate).catch((error) => console.log(error));
+    axios.put("/item", bodyUpdateItem).catch((error) => console.log(error));
     //-------------------------
   };
   return (
