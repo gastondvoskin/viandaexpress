@@ -1,26 +1,27 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { initMercadoPago } from "@mercadopago/sdk-react";
 import Payment from "../../clientComponents/ShoppingCar/Payment";
 import Checkout from "../../clientComponents/ShoppingCar/Checkout.jsx";
 import Footer from "../../clientComponents/ShoppingCar/Footer.jsx";
 import InternalProvider from "../../clientComponents/ShoppingCar/ContextProvider.jsx";
-import { SpinnerCircular } from 'spinners-react';
+import { SpinnerCircular } from "spinners-react";
 import { useDispatch, useSelector } from "react-redux";
 
 // REPLACE WITH YOUR PUBLIC KEY AVAILABLE IN: https://developers.mercadopago.com/panel
-initMercadoPago('APP_USR-8e95f5fd-f2e0-4982-8ac8-27b1f1b175bb');
+// initMercadoPago("APP_USR-8e95f5fd-f2e0-4982-8ac8-27b1f1b175bb");
+initMercadoPago("TEST-6062b4aa-0752-422b-b693-2282b2ede839");
 
 const ShoppingCar = () => {
-
-  const allItems=useSelector((state)=>state.foodsReducer.orderItems);
-  let total=0;
+  const allItems = useSelector((state) => state.foodsReducer.orderItems);
+  let total = 0;
   const [preferenceId, setPreferenceId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [orderData, setOrderData] = useState(allItems);
-    
+
   const handleClick = () => {
     setIsLoading(true);
-    fetch("http://localhost:8080/create_preference", {
+    //CAMBIAR A AXIOS
+    fetch("http://localhost:3001/shopping-cart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,27 +36,29 @@ const ShoppingCar = () => {
       })
       .catch((error) => {
         console.error(error);
-      }).finally(() => {
-        setIsLoading(false);
       })
-      
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const renderSpinner = () => {
-     if (isLoading) {
+    if (isLoading) {
       return (
         <div className="spinner-wrapper">
-          <SpinnerCircular сolor='#009EE3' />
+          <SpinnerCircular сolor="#009EE3" />
         </div>
-      )
-     }
-  }
+      );
+    }
+  };
 
   return (
-    <InternalProvider context={{ preferenceId, isLoading, orderData, setOrderData, total }}>
+    <InternalProvider
+      context={{ preferenceId, isLoading, orderData, setOrderData, total }}
+    >
       <main>
         {renderSpinner()}
-        <Checkout onClick={handleClick} description/>
+        <Checkout onClick={handleClick} description />
         <Payment />
       </main>
       <Footer />
