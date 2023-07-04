@@ -19,7 +19,7 @@ const AdminPanel = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     if (!allFoods.length) {
-      axios.get("http://localhost:3001/api").then(() => dispatch(getAdminFoodsAction()));
+      axios.get("/api").then(() => dispatch(getAdminFoodsAction()));
     } else {
       dispatch(getAdminFoodsAction());
     }
