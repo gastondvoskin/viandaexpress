@@ -27,6 +27,15 @@ const updateCartTotalPrice = async (orderId) => {
         },
       }
     );
+  } else {
+    await Order.update(
+      { total_price: 0 },
+      {
+        where: {
+          id: orderId,
+        },
+      }
+    );
   }
 };
 

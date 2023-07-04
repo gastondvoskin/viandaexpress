@@ -26,7 +26,16 @@ export default function Card({ id, name, image, final_price, allItems }) {
       );
     } else {
       if (isItem) {
-        setIsItem(false), dispatch(deleteItemActions(id));
+        setIsItem(false);
+        dispatch(deleteItemActions(id));
+        //-------------------------
+        const bodyDelete = {
+          userEmail: user?.email,
+          FoodId: id,
+        };
+        console.log("DeleteAction", bodyDelete);
+        axios.delete("/item", {data: bodyDelete}).catch((error) => console.log(error));
+        //-------------------------
       } else {
         setIsItem(true);
         const quantity = 1;
@@ -35,13 +44,13 @@ export default function Card({ id, name, image, final_price, allItems }) {
           addItemsActions({ id, name, image, final_price, quantity, amount })
         );
         //-------------------------
-        const body = {
+        const bodyAdd = {
           userEmail: user?.email,
           FoodId: id,
           quantity,
           final_price,
         };
-        axios.post("/item", body).catch((error) => console.log(error));
+        axios.post("/item", bodyAdd).catch((error) => console.log(error));
         //-------------------------
       }
     }

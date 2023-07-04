@@ -12,7 +12,7 @@ const postItemHandler = async (req, res) => {
   try {
     // const {userId} = req.params
     const { userEmail, FoodId, quantity, final_price } = req.body;
-    console.log("postItemHandler", userEmail, FoodId, quantity, final_price);
+    
     const addItem = await postItemController(
       userEmail,
       FoodId,
@@ -27,9 +27,10 @@ const postItemHandler = async (req, res) => {
 
 const deleteItemHandler = async (req, res) => {
   try {
-    const { itemId } = req.params;
-    const { orderId } = req.body;
-    await deleteItemController(itemId, orderId);
+    // const { itemId } = req.params;
+    const { userEmail, FoodId } = req.body;
+    console.log("deleteItemHandler", userEmail, FoodId);
+    await deleteItemController(userEmail, FoodId);
   } catch (error) {
     res.status(400).send({ error: error.message });
   }
