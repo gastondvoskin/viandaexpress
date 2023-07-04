@@ -49,7 +49,7 @@ export default function Card({ id, name, image, final_price, allItems }) {
       <div className={style.p}>
         <p>${final_price}</p>
       </div>
-      <button onClick={handleClick}>{isItem ? "Agregado" : "Agregar"}</button>
+      <button className={style.btncar} onClick={handleClick}>{isItem ? "Agregado" : "Agregar"}</button>
       {/* <p>
         Dietas:{" "}
         {diets.map((diet) => (
