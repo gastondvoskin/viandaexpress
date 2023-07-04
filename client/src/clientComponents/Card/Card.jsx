@@ -83,7 +83,7 @@ export default function Card({ id, name, image, final_price, allItems }) {
   };
   return (
     <div className={style.card}>
-      <NavLink to={`/detail/${id}`}>
+      <NavLink className={style.movlef} to={`/detail/${id}`}>
         <div>
           <img src={image} alt="img not found" className={style.card_img} />
         </div>
