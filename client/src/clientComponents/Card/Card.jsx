@@ -8,6 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 export default function Card({ id, name, image, final_price, allItems }) {
   const [isItem, setIsItem] = useState(false);
   const { isAuthenticated } = useAuth0();
+  const [quantity,setQuantity]=useState(1)
 
   console.log(allItems);
   const dispatch = useDispatch();
@@ -28,14 +29,20 @@ export default function Card({ id, name, image, final_price, allItems }) {
         setIsItem(false), dispatch(deleteItemActions(id));
       } else {
         setIsItem(true);
-        const quantity = 1;
-        const amount = final_price * quantity;
+        const amount = final_price * parseInt(quantity);
         dispatch(
           addItemsActions({ id, name, image, final_price, quantity, amount })
         );
       }
     }
   };
+  const updateQuantity=(e)=>{
+    const quantity=parseInt(e.target.value);
+    const amount = final_price * quantity;
+    setQuantity(quantity)
+    dispatch(deleteItemActions(id))
+    dispatch(addItemsActions({id,name,image,final_price,quantity:quantity,amount:amount}))
+  }
   return (
     <div className={style.card}>
       <NavLink to={`/detail/${id}`}>
@@ -49,7 +56,8 @@ export default function Card({ id, name, image, final_price, allItems }) {
       <div className={style.p}>
         <p>${final_price}</p>
       </div>
-      <button className={style.btncar} onClick={handleClick}>{isItem ? "Agregado" : "Agregar"}</button>
+      <button className={style.btncar} onClick={handleClick}>{isItem ? "Agregado" : "Agregar"}</button>{isItem?<input type="number" min='1' value={quantity} onChange={updateQuantity}/>:null}
+
       {/* <p>
         Dietas:{" "}
         {diets.map((diet) => (

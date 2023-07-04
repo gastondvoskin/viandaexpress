@@ -16,6 +16,7 @@ export default function Detail() {
   const dispatch = useDispatch();
 
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
+  const [quantity,setQuantity]=useState(1);
 
   /* The useEffect implementation will change once we have a deployed DB */
   useEffect(() => {
@@ -48,9 +49,17 @@ export default function Detail() {
         dispatch(deleteItemActions(id));
       }else{
         setIsItem(true);
-        dispatch(addItemsActions({id,name:foodDetail?.name,image:foodDetail?.image,final_price:foodDetail?.final_price}))
+        const amount = foodDetail?.final_price * quantity;
+        dispatch(addItemsActions({id,name:foodDetail?.name,image:foodDetail?.image,final_price:foodDetail?.final_price,quantity:quantity,amount:amount}))
       }
     }
+  }
+  const updateQuantity=(e)=>{
+    const quantity=parseInt(e.target.value);
+    const amount = foodDetail?.final_price * quantity;
+    setQuantity(quantity)
+    dispatch(deleteItemActions(id))
+    dispatch(addItemsActions({id,name:foodDetail?.name,image:foodDetail?.image,final_price:foodDetail?.final_price,quantity:quantity,amount:amount}))
   }
   console.log(allItems)
   return (
@@ -100,7 +109,9 @@ export default function Detail() {
               Ésta es una de nuestras comidas más elegidas por los usuarios!
             </p>
           )}
-          <button className={styles.butagregar} onClick={handleClick}>{isItem? 'Agregado':'Agregar'}</button>
+          <button className={styles.butagregar} onClick={handleClick}>{isItem? 'Agregado':'Agregar'}</button>{isItem?
+            <input type="number" min='1' value={quantity} onChange={updateQuantity}/>:null
+          }
           </div>
         </div>
       )}
