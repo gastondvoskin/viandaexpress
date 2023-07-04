@@ -234,39 +234,43 @@ export default function CreateFood() {
               </div>
             ) : null}
           </div>
-          <div className={styles.pricesContainers}>
-            <label>
-              <h3 className={styles.attributesName}>Precio de Vianda:</h3>
-            </label>
-            <input
-              type="number"
-              name="initial_price"
-              value={input.initial_price}
-              onChange={handleChange}
-              className={styles.InputNumberDB}
-            />
-            {errors.initial_price ? (
-              <div>
-                <p className={styles.errorMessage}>{errors.initial_price}</p>
-              </div>
-            ) : null}
-          </div>
-          <div className={styles.pricesContainers}>
-            <label>
-              <h3 className={styles.attributesName}>Descuento de Vianda:</h3>
-            </label>
-            <input
-              type="number"
-              name="discount"
-              value={input.discount}
-              onChange={handleChange}
-              className={styles.InputNumberDB}
-            />
-            {errors.discount ? (
-              <div className={styles.errorsContainer}>
-                <p className={styles.errorMessage}>{errors.discount}</p>
-              </div>
-            ) : null}
+
+          <div className={styles.pricesRow}>
+            <div className={styles.pricesContainers}>
+              <label>
+                <h3 className={styles.attributesName}>Precio de Vianda:</h3>
+              </label>
+              <input
+                type="number"
+                name="initial_price"
+                value={input.initial_price}
+                onChange={handleChange}
+                className={styles.InputNumberDB}
+              />
+              {errors.initial_price ? (
+                <div>
+                  <p className={styles.errorMessage}>{errors.initial_price}</p>
+                </div>
+              ) : null}
+            </div>
+            
+            <div className={styles.pricesContainers}>
+              <label>
+                <h3 className={styles.attributesName}>Descuento de Vianda:</h3>
+              </label>
+              <input
+                type="number"
+                name="discount"
+                value={input.discount}
+                onChange={handleChange}
+                className={styles.InputNumberDB}
+              />
+              {errors.discount ? (
+                <div className={styles.errorsContainer}>
+                  <p className={styles.errorMessage}>{errors.discount}</p>
+                </div>
+              ) : null}
+            </div>
           </div>
           
           <div className={styles.ButtonCreate}>
