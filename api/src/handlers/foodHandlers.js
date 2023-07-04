@@ -3,6 +3,7 @@ const { getAllFoodController } = require('../controllers/foodControllers/getAllF
 const { postFoodController } = require('../controllers/foodControllers/postFoodController');
 const { deleteFoodController } = require('../controllers/foodControllers/deleteFoodController');
 const { putFoodController } = require('../controllers/foodControllers/putFoodController');
+const { getAdminFoodController } = require('../controllers/foodControllers/getAdminFoodsController');
 
 
 const getFoodHandler = async (req, res) => {
@@ -15,6 +16,15 @@ const getFoodHandler = async (req, res) => {
             const allFood = await getAllFoodController();
             res.status(200).send(allFood);
         }
+    } catch (error) {
+        res.status(400).send({ error: error.message });
+    }
+};
+
+const getAdminFoodHandler = async (req, res) => {
+    try {
+        const allFood = await getAdminFoodController();
+        res.status(200).send(allFood);
     } catch (error) {
         res.status(400).send({ error: error.message });
     }
@@ -69,4 +79,4 @@ const deleteFoodHandler = async (req, res) => {
 
 
 
-module.exports = { getFoodHandler, postFoodHandler, putFoodHandler, deleteFoodHandler };
+module.exports = { getFoodHandler, postFoodHandler, putFoodHandler, deleteFoodHandler,getAdminFoodHandler };
