@@ -71,7 +71,7 @@ export default function EditFood() {
         form.append(key, formData[key]);
       }
       try {
-          await axios.put(`http://localhost:3001/food/${id}`, formData, {
+          await axios.put(`/food/${id}`, formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
