@@ -61,7 +61,7 @@ const Viandas = () => {
   if (isLoading) return <h1>Iniciando sesión...</h1>;
 
   return (
-    <div>
+    <div className={styles.mainContainer}>
       <div className={styles.buttonsContainer}>
         <CategoryButtons />
       </div>
