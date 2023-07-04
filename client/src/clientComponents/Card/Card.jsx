@@ -9,7 +9,7 @@ import axios from "axios";
 export default function Card({ id, name, image, final_price, allItems }) {
   const [isItem, setIsItem] = useState(false);
   const { isAuthenticated, user } = useAuth0();
-  const [quantity,setQuantity]=useState(1)
+  const [quantity, setQuantity] = useState(1);
 
   console.log(allItems);
   const dispatch = useDispatch();
@@ -35,7 +35,9 @@ export default function Card({ id, name, image, final_price, allItems }) {
           FoodId: id,
         };
         console.log("DeleteAction", bodyDelete);
-        axios.delete("/item", {data: bodyDelete}).catch((error) => console.log(error));
+        axios
+          .delete("/item", { data: bodyDelete })
+          .catch((error) => console.log(error));
         //-------------------------
       } else {
         setIsItem(true);
@@ -55,13 +57,31 @@ export default function Card({ id, name, image, final_price, allItems }) {
       }
     }
   };
-  const updateQuantity=(e)=>{
-    const quantity=parseInt(e.target.value);
+  const updateQuantity = (e) => {
+    const quantity = parseInt(e.target.value);
     const amount = final_price * quantity;
-    setQuantity(quantity)
-    dispatch(deleteItemActions(id))
-    dispatch(addItemsActions({id,name,image,final_price,quantity:quantity,amount:amount}))
-  }
+    setQuantity(quantity);
+    dispatch(deleteItemActions(id));
+    dispatch(
+      addItemsActions({
+        id,
+        name,
+        image,
+        final_price,
+        quantity: quantity,
+        amount: amount,
+      })
+    );
+    //-------------------------
+    const bodyUpdate = {
+      userEmail: user?.email,
+      FoodId: id,
+      quantity,
+      final_price,
+    };
+    axios.put("/item", bodyUpdate).catch((error) => console.log(error));
+    //-------------------------
+  };
   return (
     <div className={style.card}>
       <NavLink to={`/detail/${id}`}>
@@ -77,8 +97,18 @@ export default function Card({ id, name, image, final_price, allItems }) {
       </div>
 
       <div className={style.divbtndet}>
-      <button className={style.btncar} onClick={handleClick}>{isItem ? "Agregado" : "Agregar"}</button>
-      {isItem?<input className={style.detailinput} type="number" min='1' value={quantity} onChange={updateQuantity}/>:null}
+        <button className={style.btncar} onClick={handleClick}>
+          {isItem ? "Agregado" : "Agregar"}
+        </button>
+        {isItem ? (
+          <input
+            className={style.detailinput}
+            type="number"
+            min="1"
+            value={quantity}
+            onChange={updateQuantity}
+          />
+        ) : null}
       </div>
 
       {/* <p>
