@@ -109,9 +109,11 @@ export default function Detail() {
               Ésta es una de nuestras comidas más elegidas por los usuarios!
             </p>
           )}
-          <button className={styles.butagregar} onClick={handleClick}>{isItem? 'Agregado':'Agregar'}</button>{isItem?
-            <input type="number" min='1' value={quantity} onChange={updateQuantity}/>:null
+          {isItem?
+            <input className={styles.detailinput} type="number" min='1' value={quantity} onChange={updateQuantity}/>:null
           }
+          <button className={styles.butagregar} onClick={handleClick}>{isItem? 'Agregado':'Agregar'}</button>
+          
           </div>
         </div>
       )}

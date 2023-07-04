@@ -50,6 +50,11 @@
   transition: 0.5s;
 }
 
+.detailinput{
+  width: 50px;
+  margin-bottom: 15px;
+}
+
 .container2 {
   width: 30%;
   height: 100%;
