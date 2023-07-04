@@ -5,7 +5,7 @@ import styles from './Products.module.css'; // Importa el archivo CSS
 import { Link } from 'react-router-dom';
 
 const Products = () => {
-  const allFoods = useSelector((state) => state.foodsReducer.allFoods);
+  const allFoods = useSelector((state) => state.foodsReducer.adminFoods);
   const [localFoods, setLocalFoods] = useState(allFoods);
   const [category, setCategory] = useState('todas');
 
