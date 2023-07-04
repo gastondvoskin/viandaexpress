@@ -1,39 +1,39 @@
-const {Item,Order} = require("../../db")
-const {updateCartTotalPrice} = require("./updateCartTotalPrice")
+const { Item, Order, User } = require("../../db");
+const { updateCartTotalPrice } = require("./updateCartTotalPrice");
 
-const postItemController = async (userId,foodId,quantity,price) => {
-    // Buscar el carrito del usuario con estado "PENDIENTE"
+const postItemController = async (userEmail, FoodId, quantity, final_price) => {
+  // Buscar el carrito del usuario con estado "PENDIENTE"
+  try {
+    const itemAmount = final_price * quantity;
 
-    let cart = await Order.findOne({
-        where: {
-          UserId: userId,
-          status: 'PENDIENTE',
-        },
-      });
-  
-      // Si no existe un carrito, se crea uno nuevo
-      if (!cart) {
-        cart = await Order.create({
-          UserId: userId,
-          total_price: 0,
-          status: 'PENDIENTE',
-        });
-      }
-  
-      // Crear el nuevo artículo y asociarlo al carrito
-      const item = await Item.create({
-        OrderId: cart.id,
-        FoodId: foodId,
-        quantity,
-        price,
-        amount: price * quantity,
-      });
+    const user = await User.findOne({
+      where: {
+        email: userEmail,
+      },
+    });
 
-      await updateCartTotalPrice(cart.id);
+    const userOrder = await Order.findOne({
+      where: {
+        UserId: user.dataValues.id,
+        status: "PENDIENTE",
+      },
+    });
 
-      return item;
-}
+    // Crear el nuevo artículo y asociarlo al carrito
+    const newItem = await Item.create({
+      OrderId: userOrder.dataValues.id,
+      FoodId,
+      quantity,
+      final_price,
+      amount: itemAmount,
+    });
 
+    await updateCartTotalPrice(userOrder.dataValues.id);
 
-module.exports = {postItemController}
+    return newItem;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
+module.exports = { postItemController };

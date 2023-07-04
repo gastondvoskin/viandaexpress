@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 import { Context } from "./ContextProvider";
+import { deleteItemActions } from "../../redux/foodActions";
+import { useDispatch, useSelector } from "react-redux";;
 
 const Checkout = ({ onClick }) => {
   const [isVisible, setIsVisible] = React.useState(true);
