@@ -10,7 +10,7 @@ mercadopago.configure({
 });
 
 const createPreferenceHandler = async (req, res) => {
-  // console.log(req.body);
+  console.log("Create Pref: ", req.body);
   // const prueba = {
   //   nada: "nada",
   //   title: req.body[0].name,
@@ -75,6 +75,9 @@ const getInfo = (req, res) => {
   //   status: req.query.status,
   //   merchant_order_id: req.query.merchant_order_id,
   // });
+  res.json({
+    data: req.query,
+  });
 };
 
 module.exports = { createPreferenceHandler, getInfo };
