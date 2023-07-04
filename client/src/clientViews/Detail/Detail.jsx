@@ -16,6 +16,7 @@ export default function Detail() {
   const dispatch = useDispatch();
 
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
+  const [quantity,setQuantity]=useState(1);
 
   /* The useEffect implementation will change once we have a deployed DB */
   useEffect(() => {
@@ -48,9 +49,17 @@ export default function Detail() {
         dispatch(deleteItemActions(id));
       }else{
         setIsItem(true);
-        dispatch(addItemsActions({id,name:foodDetail?.name,image:foodDetail?.image,final_price:foodDetail?.final_price}))
+        const amount = foodDetail?.final_price * quantity;
+        dispatch(addItemsActions({id,name:foodDetail?.name,image:foodDetail?.image,final_price:foodDetail?.final_price,quantity:quantity,amount:amount}))
       }
     }
+  }
+  const updateQuantity=(e)=>{
+    const quantity=parseInt(e.target.value);
+    const amount = foodDetail?.final_price * quantity;
+    setQuantity(quantity)
+    dispatch(deleteItemActions(id))
+    dispatch(addItemsActions({id,name:foodDetail?.name,image:foodDetail?.image,final_price:foodDetail?.final_price,quantity:quantity,amount:amount}))
   }
   console.log(allItems)
   return (
@@ -59,6 +68,7 @@ export default function Detail() {
         <p>"Cargando..."</p>
       ) : (
         <div className={styles.container}>
+          <div className={styles.container1}>
           <h1 className={styles.title}>{foodDetail?.name}</h1>
           <img
             className={styles.image}
@@ -68,6 +78,9 @@ export default function Detail() {
           <p className={styles.description}>
             Descripción: {foodDetail?.description}
           </p>
+          </div>
+          <div className={styles.container2}>
+          <h2 className={styles.caract}>Características Principales</h2>
           <p className={styles.price}>Precio: ${foodDetail?.final_price}</p>
           <p className={styles.category}>Categoría: {foodDetail?.category}</p>
           <p className={styles.diets}>
@@ -96,7 +109,10 @@ export default function Detail() {
               Ésta es una de nuestras comidas más elegidas por los usuarios!
             </p>
           )}
-          <button onClick={handleClick}>{isItem? 'Agregado':'Agregar'}</button>
+          <button className={styles.butagregar} onClick={handleClick}>{isItem? 'Agregado':'Agregar'}</button>{isItem?
+            <input type="number" min='1' value={quantity} onChange={updateQuantity}/>:null
+          }
+          </div>
         </div>
       )}
       
