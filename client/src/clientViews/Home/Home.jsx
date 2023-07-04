@@ -1,40 +1,18 @@
 import React from "react";
-import Carousel from "react-bootstrap/Carousel";
-import "bootstrap/dist/css/bootstrap.css";
 import styles from "./Home.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFoods, setCurrentPageAction } from "../../redux/foodActions.js";
+import { getFoods } from "../../redux/foodActions.js";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import Card from "../../clientComponents/Card/Card";
+// import { foodsWithDiscounts } from "../../../hardcodedFoodsWithDiscounts";
+import CarouselContainer from "../../clientComponents/CarouselContainer/CarouselContainer.jsx";
 
 const Home = () => {
-  const [index, setIndex] = useState(0);
   const dispatch = useDispatch();
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
-  const filteredFoods = useSelector(
-    (state) => state.foodsReducer.filteredFoods
-  );
-  const currentPage = useSelector((state) => state.foodsReducer.currentPage);
-  const active = useSelector((state) => state.foodsReducer.activeFilteredFoods);
   const { isLoading, user, isAuthenticated } = useAuth0();
-  const allItems = useSelector((state) => state.foodsReducer.orderItems);
-
-  // useEffect(() => {
-  //   let body = {};
-  //   if (isAuthenticated) {
-  //     body = {
-  //       name: user?.name,
-  //       email: user?.email
-  //     };
-  //   } else {
-  //     body = {
-  //       type: "guest"
-  //     };
-  //   }
-  //   axios.post("/user", body).catch((error) => console.log(error));
-  // }, [isAuthenticated, user]);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -62,23 +40,11 @@ const Home = () => {
     }
   }, [dispatch]);
 
-  const foodsPerPage = 8;
-  const indexOfLastFood = currentPage * foodsPerPage;
-  const indexOfFirstFood = indexOfLastFood - foodsPerPage;
-  const currentFoods = active
-    ? filteredFoods.slice(indexOfFirstFood, indexOfLastFood)
-    : allFoods.slice(indexOfFirstFood, indexOfLastFood);
-
-  const handleSelect = (selectedIndex) => {
-    setIndex(selectedIndex);
-  };
-
   if (isLoading) return <h1>Iniciando sesión...</h1>;
 
-  // Definición del array foodsWithDiscounts fuera del componente JSX
   const foodsWithDiscounts = [
-    /* hardcoded. In the future, implement logic */
     {
+      id: 1,
       name: "Pasta rellena",
       diets: ["Vegetariano"],
       image:
@@ -93,6 +59,7 @@ const Home = () => {
       total_score: 0,
     },
     {
+      id: 2,
       name: "Ensalada mixta",
       diets: ["Sin TACC", "Vegetariano", "Vegano", "Sin Lactosa"],
       description:
@@ -106,6 +73,7 @@ const Home = () => {
       category: "Ensaladas",
     },
     {
+      id: 3,
       name: "Carne guisada con patatas",
       diets: ["Sin TACC", "Sin Lactosa"],
       description:
@@ -121,51 +89,49 @@ const Home = () => {
     },
   ];
 
-  <div className={styles.container}>
-    {foodsWithDiscounts.map((food, index) => (
-      <div key={index} className={styles.card}>
-        {/* Contenido de la card */}
-      </div>
-    ))}
-  </div>;
+  // const allItems = useSelector((state) => state.foodsReducer.orderItems);
 
   return (
     <div className={styles.mainContainer}>
-      {/* Comentario TONO: A futuro modularizar el carousel */}
-      <div className={styles.Carousel}>
-        <Carousel activeIndex={index} onSelect={handleSelect} interval="9000">
-          <Carousel.Item>
-            <img src="../../src/assets/carousel/variety.jpg" alt="Variadadas" />
-            <Carousel.Caption>
-              <div className={styles.CarouselText}>
-                Viandas para toda la familia
-              </div>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              src="../../src/assets/carousel/healthy.jpeg"
-              alt="Saludables"
-            />
+      <CarouselContainer />
+      <section className={styles.cardsContiner}>
+        <h1>Ofertas de la semana</h1>
 
-            <Carousel.Caption>
-              <div className={styles.CarouselText}>Saludables y nutritivas</div>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img src="../../src/assets/carousel/withLove.jpeg" alt="Caseras" />
-
-            <Carousel.Caption>
-              <div className={styles.CarouselText}>Caseras y con amor</div>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
-      </div>
-
-      <div className={styles.cardsContiner}>
-        {foodsWithDiscounts.map((food) => {
+        {/* {foodsWithDiscounts && foodsWithDiscounts.map(
+          ({ id, name, image, final_price, category, diets }) => {
+            return (
+              <Card
+                id={id}
+                name={name}
+                image={image}
+                final_price={final_price}
+                category={category}
+                diets={diets}
+                allItems={allItems}
+              />
+            );
+          }
+        )} */}
+        {/* {foodsWithDiscounts.map(({name, image, final_price, category, diets}, index) => {
           return (
-            <div className={styles.card}>
+            <Card
+              name={name}
+              image={image}
+              final_price={final_price}
+              category={category}
+              diets={diets}
+            />     
+          );
+        })} */}
+      </section>
+    </div>
+  );
+};
+
+export default Home;
+
+{
+  /* <div className={styles.card}>
               <div>
                 <img
                   src={food.image}
@@ -177,18 +143,5 @@ const Home = () => {
               <div className={styles.p}>
                 <p>${food.final_price}</p>
               </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-};
-
-export default Home;
-
-/**
- *option y valores para ordernar por Popularidad 
- *<option value="asc">Más Popular</option>
-  <option value="desc">Menos Popular</option>
- */
+            </div> */
+}
