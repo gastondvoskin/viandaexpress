@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
             },
             total_price: {
                 type: DataTypes.FLOAT,
-                allowNull: false,
+                allowNull: true,
             },
             payment_date: {
                 type: DataTypes.DATE,
@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
             },
             status: {
                 type: DataTypes.STRING,
-                allowNull: false,
+                allowNull: true,
             },
             bill: {
                 type: DataTypes.STRING,
