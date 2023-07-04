@@ -49,6 +49,7 @@ const handleDelete=(event)=>{
   dispatch(deleteItemActions(id))
   const refresh=useSelector(state=>state.foodsReducer.allItems)
   setOrderData(refresh)
+  Checkout({ onClick })
 }
 
 
