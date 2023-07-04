@@ -30,7 +30,7 @@ export default function CarouselContainer() {
 
   return (
     <div className={styles.mainContainer}>
-      <Carousel activeIndex={index} onSelect={handleSelect} interval="6000">
+      <Carousel activeIndex={index} onSelect={handleSelect} interval="10000">
         {slides.map((slide, index) => {
           return (
             <Carousel.Item key={index}>
