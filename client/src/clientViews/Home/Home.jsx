@@ -8,6 +8,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Card from "../../clientComponents/Card/Card";
 // import { hardcodedFoodsWithDiscounts } from "../../../hardcodedFoodsWithDiscounts";
 import CarouselContainer from "../../clientComponents/CarouselContainer/CarouselContainer.jsx";
+import { Link } from "react-router-dom";
+
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -55,7 +57,10 @@ const Home = () => {
       <CarouselContainer />
 
       <section>
-        <button className={styles.viewAllButton}>VER TODAS LAS VIANDAS</button>
+
+        <Link to="viandas">
+          <button className={styles.viewAllButton}>VER TODAS LAS VIANDAS</button>
+        </Link>
       </section>
 
       <section className={styles.sectionContainer}>
