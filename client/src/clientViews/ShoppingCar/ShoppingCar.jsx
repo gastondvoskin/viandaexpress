@@ -21,7 +21,7 @@ const ShoppingCar = () => {
   const handleClick = () => {
     setIsLoading(true);
     //CAMBIAR A AXIOS
-    fetch("/shopping-cart", {
+    fetch("http://localhost:3001/shopping-cart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
