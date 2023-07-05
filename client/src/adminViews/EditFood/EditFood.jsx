@@ -7,6 +7,7 @@ import axios from "axios";
 import { getFoods, putFoods } from "../../redux/foodActions.js";
 import { useNavigate } from 'react-router-dom';
 import styles from "./EditFood.module.css";
+import Swal from "sweetalert2";
 
 export default function EditFood() {
   const dispatch = useDispatch();
@@ -64,6 +65,47 @@ export default function EditFood() {
 
   const handleEdit = async (e) => {
     e.preventDefault();
+    //var verificar= window.confirm(`Está a punto de modificar la vianda`)
+    Swal.fire({
+      title: 'Estas Seguro?',
+      text: "¡Puedes modificar en cualquier momento!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, ¡Modificar!',
+      cancelButtonText: 'Cancelar'
+    }).then((verificar) => {
+      if(verificar){
+        const form = new FormData();
+        for (let key in formData) {
+          form.append(key, formData[key]);
+        }
+        try {
+            axios.put(`/food/${id}`, formData, {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            });
+            //alert(`Receta de ${formData.name} modificada`); 
+            Swal.fire(
+              'Modificado!',
+              `Receta de ${formData.name} modificado.`,
+              'success'
+            )
+            navigate('/admin');
+        } catch (error) {
+            alert(error.message)
+        }
+      }else{
+        navigate('/admin');
+      }
+    })
+    
+  };
+
+  /*const handleEdit = async (e) => {
+    e.preventDefault();
     var verificar= window.confirm(`Está a punto de modificar la vianda`)
     if(verificar){
       const form = new FormData();
@@ -82,7 +124,7 @@ export default function EditFood() {
           alert(error.message)
       }
     }
-  };
+  };*/
 
   const handleDelete = async (e) => {
     e.preventDefault();
