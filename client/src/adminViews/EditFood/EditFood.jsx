@@ -75,8 +75,8 @@ export default function EditFood() {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Si, ¡Modificar!',
       cancelButtonText: 'Cancelar'
-    }).then((verificar) => {
-      if(verificar){
+    }).then((result) => {
+      if(result.isConfirmed){
         const form = new FormData();
         for (let key in formData) {
           form.append(key, formData[key]);
@@ -95,10 +95,19 @@ export default function EditFood() {
             )
             navigate('/admin');
         } catch (error) {
-            alert(error.message)
+            //alert(error.message)
+            Swal.fire(
+              'Error del sistema',
+              `${error.message}`,
+              'warning',
+              )
         }
-      }else{
-        navigate('/admin');
+      }else if(result.dismiss === Swal.DismissReason.cancel){
+        Swal.fire(
+        'Cancelado',
+        'Los cambios no se guardaron',
+        'success'
+        )
       }
     })
     
@@ -128,6 +137,48 @@ export default function EditFood() {
 
   const handleDelete = async (e) => {
     e.preventDefault();
+    //var verificar= window.confirm(`Está a punto de eliminar la vianda`)
+    Swal.fire({
+      title: 'Estas Seguro?',
+      text: "¡No podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, ¡Eliminar!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if(result.isConfirmed){
+        try {
+          axios.delete(`/food/${id}`);
+            //alert(`Receta de ${formData.name} modificada`); 
+            Swal.fire(
+              'Eliminado!',
+              `Vianda ${formData.name} Eliminado.`,
+              'success'
+            )
+            navigate('/admin');
+        } catch (error) {
+            //alert(error.message)
+            Swal.fire(
+              'Error del sistema',
+              `${error.message}`,
+              'warning',
+              )
+        }
+      }else if(result.dismiss === Swal.DismissReason.cancel){
+        Swal.fire(
+        'Cancelado',
+        'Los cambios no se guardaron',
+        'success'
+        )
+      }
+    })
+  };
+
+  /*
+  const handleDelete = async (e) => {
+    e.preventDefault();
     var verificar= window.confirm(`Está a punto de eliminar la vianda`)
     if(verificar){
       try {
@@ -139,6 +190,7 @@ export default function EditFood() {
       }
     }
   };
+  */
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
