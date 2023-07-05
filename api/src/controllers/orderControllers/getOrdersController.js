@@ -1,5 +1,9 @@
-const getOrdersController = () =>{
-    return 'deberia traer todas las ordenes'
-}
+const { Order } = require("../../db");
 
-module.exports = {getOrdersController}
+
+const getOrdersController = async (id) => {
+    const orderById = await Order.findByPk(id);
+    return orderById;
+};
+
+module.exports = { getOrdersController }

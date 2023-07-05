@@ -2,6 +2,8 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { activeFilteredFoodsAction, filterByDietAction, setCurrentPageAction, setDietAction, setOrderAction } from '../../redux/foodActions';
 
+import styles from "./FilterDietsOptions.module.css"
+
 const FilterDietsOptions = () => {
     const dispatch = useDispatch();
     const category = useSelector((state) => state.foodsReducer.foodsCategory);
@@ -70,6 +72,7 @@ const FilterDietsOptions = () => {
             <select 
             onChange={(e) => handlerSelect(e)}
             value={diet}
+            className={styles.cat} 
             >
                 <option value="" disabled hidden>Dieta</option>
                 <option value="Vegano">Vegano</option>

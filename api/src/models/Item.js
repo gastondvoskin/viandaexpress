@@ -11,28 +11,28 @@ module.exports = (sequelize) => {
       },
       food_name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       food_image: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         isURL: false,
       },
       quantity: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
       final_price: {
         type: DataTypes.FLOAT,
-        allowNull: false,
+        allowNull: true,
       },
       amount: {
         type: DataTypes.FLOAT,
-        allowNull: false,
+        allowNull: true,
       },
-      amount:{
+      amount: {
         type: DataTypes.FLOAT,
-        allowNull: false,
+        allowNull: true,
       }
     },
     { timestamps: false }

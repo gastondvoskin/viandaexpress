@@ -5,15 +5,18 @@ import { getFoods } from "../../redux/foodActions.js";
 import axios from "axios";
 import styles from "../Detail/Detail.module.css";
 import {addItemsActions, deleteItemActions} from '../../redux/foodActions.js';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 export default function Detail() {
   const { id } = useParams();
+  const {isAuthenticated, user } = useAuth0();
   const [isItem,setIsItem]=useState(false);
   const allItems=useSelector((state)=>state.foodsReducer.orderItems);
   const dispatch = useDispatch();
 
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
+  const [quantity,setQuantity]=useState(1);
 
   /* The useEffect implementation will change once we have a deployed DB */
   useEffect(() => {
@@ -31,6 +34,7 @@ export default function Detail() {
     allItems.map((item)=>{
       if(item.name===foodDetail.name){
         setIsItem(true)
+        setQuantity(item.quantity)
       }
     });
   },[])
@@ -38,14 +42,46 @@ export default function Detail() {
   const foodDetail = allFoods.find((food) => food.id === id);
   /*To add a new item or delete an item */
   const handleClick=(e)=>{
-    if(isItem){
-      setIsItem(false),
-      dispatch(deleteItemActions(id));
+    if(!isAuthenticated){
+      alert('¡Cuidado! Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!')
     }else{
-      setIsItem(true);
-      dispatch(addItemsActions({id,name:foodDetail?.name,image:foodDetail?.image,final_price:foodDetail?.final_price}))
+      if(isItem){
+        setIsItem(false);
+        dispatch(deleteItemActions(id));
+        //-------------------------
+        const bodyDelete = {
+          userEmail: user?.email,
+          FoodId: id,
+        };
+        console.log("DeleteAction", bodyDelete);
+        axios
+          .delete("/item", { data: bodyDelete })
+          .catch((error) => console.log(error));
+        //-------------------------
+      }else{
+        setIsItem(true);
+
+        const amount = foodDetail?.final_price * quantity;
+        dispatch(addItemsActions({id,name:foodDetail?.name,image:foodDetail?.image,final_price:foodDetail?.final_price,quantity:quantity,amount:amount}))
+        //-------------------------
+        const bodyAdd = {
+          userEmail: user?.email,
+          FoodId: id,
+          quantity: 1,
+          final_price: foodDetail?.final_price,
+        };
+        axios.post("/item", bodyAdd).catch((error) => console.log(error));
+        //-------------------------
+
+      }
     }
-    
+  }
+  const updateQuantity=(e)=>{
+    const quantity=parseInt(e.target.value);
+    const amount = foodDetail?.final_price * quantity;
+    setQuantity(quantity)
+    dispatch(deleteItemActions(id))
+    dispatch(addItemsActions({id,name:foodDetail?.name,image:foodDetail?.image,final_price:foodDetail?.final_price,quantity:quantity,amount:amount}))
   }
   console.log(allItems)
   return (
@@ -54,6 +90,7 @@ export default function Detail() {
         <p>"Cargando..."</p>
       ) : (
         <div className={styles.container}>
+          <div className={styles.container1}>
           <h1 className={styles.title}>{foodDetail?.name}</h1>
           <img
             className={styles.image}
@@ -63,6 +100,9 @@ export default function Detail() {
           <p className={styles.description}>
             Descripción: {foodDetail?.description}
           </p>
+          </div>
+          <div className={styles.container2}>
+          <h2 className={styles.caract}>Características Principales</h2>
           <p className={styles.price}>Precio: ${foodDetail?.final_price}</p>
           <p className={styles.category}>Categoría: {foodDetail?.category}</p>
           <p className={styles.diets}>
@@ -91,7 +131,12 @@ export default function Detail() {
               Ésta es una de nuestras comidas más elegidas por los usuarios!
             </p>
           )}
-          <button onClick={handleClick}>{isItem? 'Agregado':'Agregar'}</button>
+          {isItem?
+            <input className={styles.detailinput} type="number" min='1' value={quantity} onChange={updateQuantity}/>:null
+          }
+          <button className={styles.butagregar} onClick={handleClick}>{isItem? 'Agregado':'Agregar'}</button>
+          
+          </div>
         </div>
       )}
       

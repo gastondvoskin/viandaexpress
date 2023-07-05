@@ -2,6 +2,9 @@ import React from 'react';
 import styles from './ListProductsItem.module.css'; // Importa el archivo CSS
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import {faTrashCan} from "@fortawesome/free-solid-svg-icons";
 
 const ListProductsItem = ({ name, final_price, status,id,localFoods, setLocalFoods }) => {
     const handleDelete = async (e) => {
@@ -19,24 +22,49 @@ const ListProductsItem = ({ name, final_price, status,id,localFoods, setLocalFoo
         }
       };
 
+      const handleStatus = (e) => {
+        const { value } = e.target;
+      
+        const confirmationMessage = `¿Desea ${
+          value === "true" ? "habilitar" : "deshabilitar"
+        } la vianda?`;
+      
+        if (window.confirm(confirmationMessage)) {
+          axios
+            .put(`/food/${id}`, { status: value })
+            .then(() => {
+              const updatedFoods = localFoods.map((food) =>
+                food.id === id ? { ...food, status: value } : food
+              );
+              setLocalFoods(updatedFoods);
+            })
+            .catch((error) => {
+              alert(error.message);
+            });
+        }
+      };
+
+
+
     return (
-        <div className={styles.listProductsItem}> {/* Aplica la clase CSS utilizando la variable styles */}
-            <div className={styles.left}>
-                <p>{name}</p>
-                <p> $ {final_price} </p>
-                <select onChange={console.log('Implementar /putFood ')} value={status ? 'Disponible' : 'Suspendido'}>
-                    <option value="Disponible">Disponible</option>
-                    <option value="Suspendido">Suspendido</option>
-                </select>
-            </div>
-            <div>
-                <Link to={`/admin/edit/${id}`}>
-                    <button>Editar</button>
-                </Link>
-                <button onClick={handleDelete}>ELIMINAR</button>
-            </div>
-            
-        </div>
+        <tr className={styles.tds}> {/* Aplica la clase CSS utilizando la variable styles */}
+            <td className={styles.tbodys}>{name}</td>
+            <td className={styles.tbodys}>${final_price}</td>
+            <td className={styles.tbodys}>
+            < select className={styles.viewAllButton} onChange={handleStatus} value={status}>
+                <option value={true}>Habilitado</option>
+                <option value={false}>Deshabilitado</option>
+              </select>
+            </td>
+            <td className={styles.tbodys}>
+              <Link to={`/admin/edit/${id}`}>
+                    <button><FontAwesomeIcon icon={faEdit} /></button>
+              </Link>
+            </td>
+            <td className={styles.tbodys}>
+            <button onClick={handleDelete}><FontAwesomeIcon icon={faTrashCan} /></button>
+            </td>  
+        </tr>
     );
 };
 
