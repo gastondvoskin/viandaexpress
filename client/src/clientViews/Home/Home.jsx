@@ -90,8 +90,8 @@ const Home = () => {
       <section className={styles.sectionContainer}>
         <h1>Mejor rankeados</h1>
         <div className={styles.cardsContainer}>
-          {foodsWithScoreHigherThan4 &&
-            foodsWithScoreHigherThan4.map(
+          {/* {foodsWithScoreHigherThan4 && foodsWithScoreHigherThan4.map( */}
+          {hardcodedFoodsWithDiscounts && hardcodedFoodsWithDiscounts.map(
               ({ id, name, image, final_price, category, diets }) => {
                 return (
                   <Card
