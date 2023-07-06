@@ -5,11 +5,12 @@ import { addItemsActions, deleteItemActions } from "../../redux/foodActions.js";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from 'sweetalert2';
+import axios from "axios";
 
 
 export default function Card({ id, name, image, final_price, allItems }) {
   const [isItem, setIsItem] = useState(false);
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated,user } = useAuth0();
   const [quantity,setQuantity]=useState(1)
 
   console.log(allItems);
@@ -33,12 +34,30 @@ export default function Card({ id, name, image, final_price, allItems }) {
     } else {
       if (isItem) {
         setIsItem(false), dispatch(deleteItemActions(id));
+        //-------------------------
+        const bodyDeleteItem = {
+          userEmail: user?.email,
+          FoodId: id,
+        };
+        axios
+          .delete("/item", { data: bodyDeleteItem })
+          .catch((error) => console.log(error));
+        //-------------------------
       } else {
         setIsItem(true);
         const amount = final_price * parseInt(quantity);
         dispatch(
           addItemsActions({ id, name, image, final_price, quantity, amount })
         );
+         //-------------------------
+         const bodyAddItem = {
+          userEmail: user?.email,
+          FoodId: id,
+          quantity,
+          final_price,
+        };
+        axios.post("/item", bodyAddItem).catch((error) => console.log(error));
+        //-------------------------
       }
     }
   };
@@ -48,6 +67,15 @@ export default function Card({ id, name, image, final_price, allItems }) {
     setQuantity(quantity)
     dispatch(deleteItemActions(id))
     dispatch(addItemsActions({id,name,image,final_price,quantity:quantity,amount:amount}))
+    //-------------------------
+    const bodyUpdateItem = {
+      userEmail: user?.email,
+      FoodId: id,
+      quantity,
+      final_price,
+    };
+    axios.put("/item", bodyUpdateItem).catch((error) => console.log(error));
+    //-------------------------
   }
   return (
     <div className={style.card}>
