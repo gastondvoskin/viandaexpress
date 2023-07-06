@@ -4,10 +4,13 @@ import { useEffect, useState } from "react";
 import { addItemsActions, deleteItemActions } from "../../redux/foodActions.js";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
+import Swal from 'sweetalert2';
+import axios from "axios";
+
 
 export default function Card({ id, name, image, final_price, allItems }) {
   const [isItem, setIsItem] = useState(false);
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated,user } = useAuth0();
   const [quantity,setQuantity]=useState(1)
 
   console.log(allItems);
@@ -21,21 +24,42 @@ export default function Card({ id, name, image, final_price, allItems }) {
     });
   }, []);
   const handleClick = (e) => {
-    if (!isAuthenticated) {
-      alert(
-        "¡Cuidado! Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!"
-      );
-    } else {
+    // if (!isAuthenticated) {
+    //   //alert("¡Cuidado! Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!");
+    //   Swal.fire(
+    //     '¡Cuidado!',
+    //     'Logueate antes de agregar productos a tu carrito de compras.',
+    //     'success'
+    //   )
+    // } else {
       if (isItem) {
         setIsItem(false), dispatch(deleteItemActions(id));
+        //-------------------------
+        const bodyDeleteItem = {
+          userEmail: user?.email,
+          FoodId: id,
+        };
+        axios
+          .delete("/item", { data: bodyDeleteItem })
+          .catch((error) => console.log(error));
+        //-------------------------
       } else {
         setIsItem(true);
         const amount = final_price * parseInt(quantity);
         dispatch(
           addItemsActions({ id, name, image, final_price, quantity, amount })
         );
+         //-------------------------
+         const bodyAddItem = {
+          userEmail: user?.email,
+          FoodId: id,
+          quantity,
+          final_price,
+        };
+        axios.post("/item", bodyAddItem).catch((error) => console.log(error));
+        //-------------------------
       }
-    }
+    // }
   };
   const updateQuantity=(e)=>{
     const quantity=parseInt(e.target.value);
@@ -43,6 +67,15 @@ export default function Card({ id, name, image, final_price, allItems }) {
     setQuantity(quantity)
     dispatch(deleteItemActions(id))
     dispatch(addItemsActions({id,name,image,final_price,quantity:quantity,amount:amount}))
+    //-------------------------
+    const bodyUpdateItem = {
+      userEmail: user?.email,
+      FoodId: id,
+      quantity,
+      final_price,
+    };
+    axios.put("/item", bodyUpdateItem).catch((error) => console.log(error));
+    //-------------------------
   }
   return (
     <div className={style.card}>
@@ -57,8 +90,10 @@ export default function Card({ id, name, image, final_price, allItems }) {
       <div className={style.p}>
         <p>${final_price}</p>
       </div>
-      <button className={style.btncar} onClick={handleClick}>{isItem ? "Agregado" : "Agregar"}</button>{isItem?<input type="number" min='1' value={quantity} onChange={updateQuantity}/>:null}
-
+      <div className={style.inputagregar}>
+        <button className={style.btncar} onClick={handleClick}>{isItem ? "Agregado" : "Agregar"}</button>
+        {isItem?<input className={style.detailinput} type="number" min='1' value={quantity} onChange={updateQuantity}/>:null}
+      </div>
       {/* <p>
         Dietas:{" "}
         {diets.map((diet) => (
