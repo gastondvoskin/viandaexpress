@@ -59,7 +59,7 @@ export default function Card({ id, name, image, final_price, allItems }) {
         axios.post("/item", bodyAddItem).catch((error) => console.log(error));
         //-------------------------
       }
-    // }
+    }
   };
   const updateQuantity=(e)=>{
     const quantity=parseInt(e.target.value);
@@ -101,5 +101,4 @@ export default function Card({ id, name, image, final_price, allItems }) {
       <p>Categoría: {category}</p> */}
     </div>
   );
-}
 }
