@@ -24,14 +24,14 @@ export default function Card({ id, name, image, final_price, allItems }) {
     });
   }, []);
   const handleClick = (e) => {
-    if (!isAuthenticated) {
-      Swal.fire({
-        title: "<i>¡Cuidado!</i>",
-        text: "Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!",
-        icon: "warning"
-      });
-      
-    } else {
+    // if (!isAuthenticated) {
+    //   //alert("¡Cuidado! Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!");
+    //   Swal.fire(
+    //     '¡Cuidado!',
+    //     'Logueate antes de agregar productos a tu carrito de compras.',
+    //     'success'
+    //   )
+    // } else {
       if (isItem) {
         setIsItem(false), dispatch(deleteItemActions(id));
         //-------------------------
@@ -59,7 +59,7 @@ export default function Card({ id, name, image, final_price, allItems }) {
         axios.post("/item", bodyAddItem).catch((error) => console.log(error));
         //-------------------------
       }
-    }
+    // }
   };
   const updateQuantity=(e)=>{
     const quantity=parseInt(e.target.value);
@@ -90,8 +90,10 @@ export default function Card({ id, name, image, final_price, allItems }) {
       <div className={style.p}>
         <p>${final_price}</p>
       </div>
-      <button className={style.btncar} onClick={handleClick}>{isItem ? "Agregado" : "Agregar"}</button>{isItem?<input type="number" min='1' value={quantity} onChange={updateQuantity}/>:null}
-
+      <div className={style.inputagregar}>
+        <button className={style.btncar} onClick={handleClick}>{isItem ? "Agregado" : "Agregar"}</button>
+        {isItem?<input className={style.detailinput} type="number" min='1' value={quantity} onChange={updateQuantity}/>:null}
+      </div>
       {/* <p>
         Dietas:{" "}
         {diets.map((diet) => (
