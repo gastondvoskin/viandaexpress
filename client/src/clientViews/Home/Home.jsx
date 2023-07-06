@@ -6,7 +6,7 @@ import { getFoods } from "../../redux/foodActions.js";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import Card from "../../clientComponents/Card/Card";
-// import { hardcodedFoodsWithDiscounts } from "../../../hardcodedFoodsWithDiscounts";
+import { hardcodedFoodsWithDiscounts } from "../../../hardcodedFoodsWithDiscounts";
 import CarouselContainer from "../../clientComponents/CarouselContainer/CarouselContainer.jsx";
 import { Link } from "react-router-dom";
 
