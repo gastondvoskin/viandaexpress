@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { addItemsActions, deleteItemActions } from "../../redux/foodActions.js";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
+import Swal from 'sweetalert2';
+
 
 export default function Card({ id, name, image, final_price, allItems }) {
   const [isItem, setIsItem] = useState(false);
@@ -22,9 +24,12 @@ export default function Card({ id, name, image, final_price, allItems }) {
   }, []);
   const handleClick = (e) => {
     if (!isAuthenticated) {
-      alert(
-        "¡Cuidado! Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!"
-      );
+      Swal.fire({
+        title: "<i>¡Cuidado!</i>",
+        text: "Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!",
+        icon: "warning"
+      });
+      
     } else {
       if (isItem) {
         setIsItem(false), dispatch(deleteItemActions(id));
