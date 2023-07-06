@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from 'sweetalert2';
 import axios from "axios";
-import Swal from "sweetalert2";
 
 
 export default function Card({ id, name, image, final_price, allItems }) {
@@ -102,4 +101,5 @@ export default function Card({ id, name, image, final_price, allItems }) {
       <p>Categoría: {category}</p> */}
     </div>
   );
+}
 }
