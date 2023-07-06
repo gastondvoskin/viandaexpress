@@ -76,5 +76,6 @@ USER ID 7ab6ab3c-11bb-4085-8e0d-8fca7ba4f5be
 
 
 Deploy
-Main: when develop branch is merged into main branch, Vercel updates automatically. 
-Develop: when any branch is merged into develop branch, Vercel's Preview branch Develop updates automatically to test. This allows to check the deploy before actually deploying in main (preview branch vs production environment). 
+Main: when develop branch is merged into main branch, Vercel updates automatically.
+DeployingPreviewBranch (and any branch that is pushed): When a branch is pushed, Vercel allows to view its preview deploy in a specific URL, por example https://viandaexpress-git-deployingpreviewbranch-gastondvoskin.vercel.app/
+
