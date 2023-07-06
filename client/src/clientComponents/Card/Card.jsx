@@ -90,8 +90,10 @@ export default function Card({ id, name, image, final_price, allItems }) {
       <div className={style.p}>
         <p>${final_price}</p>
       </div>
-      <button className={style.btncar} onClick={handleClick}>{isItem ? "Agregado" : "Agregar"}</button>{isItem?<input type="number" min='1' value={quantity} onChange={updateQuantity}/>:null}
-
+      <div className={style.inputagregar}>
+        <button className={style.btncar} onClick={handleClick}>{isItem ? "Agregado" : "Agregar"}</button>
+        {isItem?<input className={style.detailinput} type="number" min='1' value={quantity} onChange={updateQuantity}/>:null}
+      </div>
       {/* <p>
         Dietas:{" "}
         {diets.map((diet) => (
