@@ -1,3 +1,10 @@
+Front-end deploy:
+viandaexpress.vercel.app
+
+Back-end deploy: 
+https://pfecommerce11b-production-177a.up.railway.app/
+
+
 Trello: 
 https://trello.com/b/RpmFNbrL/pf-eccomerce-viandas
 
@@ -54,33 +61,8 @@ Tutoriales:
 Figma: https://www.youtube.com/watch?v=uIDUYPHg3XA&t=195s&ab_channel=TemplunebyDiegoVel%C3%A1zquez
 
 
-Preguntas para Fabián: 
-- styles: editar en figma?
-- Cloudinary
-
-Stack de tecnologías sugeridas por Fabián: 
-https://tailwindcss.com
-https://zustand-demo.pmnd.rs/
-
-Calendario y tareas por demo: 
-Dailys: lunes miércoles viernes. 22 a 22:45hs. 
-Demos: martes. 
-Demo 1: martes 27 de junio. Tener lo equivalente a un PI con un CRUD. Front: cliente (renderizar productos) y dashborad de admin (crear productos, editar, eliminar), searchBar, filtros combinados. No es necesario el carrito de compras, ni métodos de pagos ni favoritos, ni login. Botón para ir al dashboard (luego será condicional con el login). El form debe estar validado. Click en crear arroja advertencia. Click en botón agregar loader. Agregarle estilos. Contar de dónde surge la idea. Hacer un recorrido. Vender lo que estamos haciendo. Demo en total dura 25 minutos. Speech para primera demo aprox 5 min. Tomar nota del feedback para corregir para la segunda demo. 
-Demo 2: martes 4 de julio. Deploy. Carrito de compras (puede quedar pendiente la pasarela de pago). En el panel de admin, órdenes de compra, manejo de usuarios. Autenticación en login. 
-Demo 3: entrega final. Viernes 14 de julio. Detalles, nuevos features ej chatbot. 
-Máximo 2 faltas. 
-
-Demos: siempre presenta una única persona, tiene que haber un backup. 
-
 Dailys: qué hice ayer, problemas/bloqueos, en qué voy a seguir trabajando. 
 
-MER y models: cambiar Basket por Order. 
-MER User reemplazar adress a otra tabla. 
-Especificar tareas en Trello. 
-
-
-API pirateada Spoonacular: 
-https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5
 
 https://www.passportjs.org/
 
@@ -91,3 +73,8 @@ https://www.youtube.com/watch?v=sTJaHQINpTc&ab_channel=CarlosAzaustre-AprendeJav
 
 
 USER ID 7ab6ab3c-11bb-4085-8e0d-8fca7ba4f5be
+
+
+Deploy
+Main: when develop branch is merged into main branch, Vercel updates automatically. 
+Develop: when any branch is merged into develop branch, Vercel's Preview branch Develop updates automatically to test. This allows to check the deploy before actually deploying in main (preview branch vs production environment). 
