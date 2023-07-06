@@ -1,42 +1,47 @@
-Front-end deploy:
+1. DEPLOY
+A. Front-end deploy (production - updated automatically when merging to main branch):
 viandaexpress.vercel.app
-
-Back-end deploy: 
+B. Back-end deploy (production - updated automatically when merging to main branch): 
 https://pfecommerce11b-production-177a.up.railway.app/
+C. Front-end deploy (deployingPreviewBranch environment - updated automatically when pushing to deployingPreviewBranch):
+https://viandaexpress-git-deployingpreviewbranch-gastondvoskin.vercel.app
+D. Back-end deploy (deployingPreviewBranch environment - updated automatically when pushing to deployingPreviewBranch):
+viandaexpress-railway-previewbranchexperiment.up.railway.app
 
 
-Trello: 
-https://trello.com/b/RpmFNbrL/pf-eccomerce-viandas
-
-Maqueta Figma:
-https://www.figma.com/file/yjbQjsLMYhz8kfdrTrifo3/Untitled?type=design&t=mSCBUNZld73hEIVl-0
-
-MER diagram: 
-https://lucid.app/lucidchart/f622be06-48f2-4028-a3e9-f537c214c329/edit?viewport_loc=-64%2C-24%2C3312%2C1434%2C0_0&invitationId=inv_92c24fa6-fd43-45e7-bead-29f12b244f7c
-
-Cloudinary:
-https://collection.cloudinary.com/dgcmyiqup/bb507c4d9f0d844e46bb81e8bdf4ae73
-
-Discord: 
+2. Organization. 
+A. Discord: 
 https://discord.gg/33HZGyDs
+B. Trello: 
+https://trello.com/b/RpmFNbrL/pf-eccomerce-viandas
+C. Daily in Meet:
+meet.google.com/hpk-fbrv-uxr
 
+
+3. References. 
+A. Figma:
+https://www.figma.com/file/yjbQjsLMYhz8kfdrTrifo3/Untitled?type=design&t=mSCBUNZld73hEIVl-0
+B. MER diagram: 
+https://lucid.app/lucidchart/f622be06-48f2-4028-a3e9-f537c214c329/edit?viewport_loc=-64%2C-24%2C3312%2C1434%2C0_0&invitationId=inv_92c24fa6-fd43-45e7-bead-29f12b244f7c
+3. Project example:
+https://www.youtube.com/watch?v=1zpPIxta-g4&t=1s&ab_channel=Marian
+
+
+4. Other important links. 
+A. Cloudinary:
+https://collection.cloudinary.com/dgcmyiqup/bb507c4d9f0d844e46bb81e8bdf4ae73
 Propuesta PF (nombre, descripción, requisitos, ideas extras, user stories):
 https://docs.google.com/document/d/1n4GClqN3Mcf8XwbRy6MugGFm-tt6rr3KSSwn23VAQHw/edit?pli=1
 
-Meet:
-meet.google.com/hpk-fbrv-uxr
 
-Back-end endpoints: 
-GET localhost:3001/api
-GET localhost:3001/food     (change to foods)
-GET localhost:3001/diets
-localhost:3001/food?name=griEga
+5. Back-end endpoints:
+Complete......  
+GET /api
+GET /food 
+GET /diets
 
 
-Chocolatería (ejemplo de PF):
-https://www.youtube.com/watch?v=1zpPIxta-g4&t=1s&ab_channel=Marian
-
-GitHubs: 
+6. GitHubs: 
 github.com/gastondvoskin
 github.com/hetur
 github.com/Gabriel-682
@@ -46,49 +51,13 @@ github.com/Lemanz93
 github.com/Silrojua22
 github.com/MagnoRay
 
-GitFlow: 
-BKMAIN: rama de backup del main. Actualizarla antes de mergear hacia el main. 
-main: rama deployable. 
-develop: siempre vamos a mergear desde una rama secundaria hacia la rama develop (no mergear directo al main). 
-ramas secundarias: para editar, crear una rama y pararse sobre esa rama. Al terminar de mergear, eliminar rama. Ejemplo Nav, SearchBar, getAllFoodsController, etc. 
-Comandos: 
-Actualizar nuestro repo local: pararse sobre la rama main, hacer git pull origin main (para traer los cambios del main remoto al main local). Pararse sobre la rama en la que vamos a trabajar (por ejemplo Nav), hacer git pull origin main (para tener actualizada también nuestra rama secundaria). 
-Subir nuestros cambios de local a remoto: pararse sobre la rama secundaria en la que trabajamos, hacer git add . git commit -m "nombreCommit" git push origin <nombreRamaQueEditamos> (con esto subimos los cambios para hacer un pull request, pero todavía no está hecho el pull request). Entrar a GitHub, Pull requests, New Pull request, modificar desde dónde hacia dónde se hace el pull request: desde rama secundaria a develop (ojo que la rama de la izquierda es hacia donde hacemos el pull request, no debe ser el main). Click en Create pull request. 
-Aceptar cambios: otro integrante debe entrar a pull requests, verificar los cambios, hacer comentarios si hay algo a modificar. Si está todo ok, review changes, aprove.. 
+
+7. GitFlow: 
+BKMAIN: backup from main. 
+main: production deploy. 
+develop: always do the pull requests using develop as the base (never use the main branch).
 
 
-Tutoriales: 
+8. Tutorials: 
 Figma: https://www.youtube.com/watch?v=uIDUYPHg3XA&t=195s&ab_channel=TemplunebyDiegoVel%C3%A1zquez
-
-
-Dailys: qué hice ayer, problemas/bloqueos, en qué voy a seguir trabajando. 
-
-
-https://www.passportjs.org/
-
-
-Auth0
-https://www.youtube.com/watch?v=sTJaHQINpTc&ab_channel=CarlosAzaustre-AprendeJavaScript
-
-
-
-USER ID 7ab6ab3c-11bb-4085-8e0d-8fca7ba4f5be
-
-
-Deploy
-Main: when develop branch is merged into main branch, Vercel updates automatically.
-DeployingPreviewBranch (and any branch that is pushed): When a branch is pushed, Vercel allows to view its preview deploy in a specific URL, por example https://viandaexpress-git-deployingpreviewbranch-gastondvoskin.vercel.app/
-
-Deploy in Vercel works fine calling localhost requests. It doesn't work when calling backend from Railway. 
-
-const foodsScoresToDebug = allFoods.map(food => food.total_score);
-console.log('foodsScoresToDebug: ', foodsScoresToDebug); // returns an array of all values = 0 . So I am working with the old DB which is not updating. This occurs because I am not deploying main. 
-
-
-foods.filter in Home returns [] -> This occurs because I am working with the old deployed DB 
-
-
-Railway: new environment called deployingPreviewBranch . In settings, I set up that this branch will update on each push to this branch. Reimported variables from production to previewBranchexperiment environment. 
-
-Railway branch environment deployingPreviewBranch: https://viandaexpress-railway-previewbranchexperiment.up.railway.app/
-api package.json changed nodemon for node. 
+Auth0: https://www.youtube.com/watch?v=sTJaHQINpTc&ab_channel=CarlosAzaustre-AprendeJavaScript
