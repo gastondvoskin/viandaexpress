@@ -11,6 +11,9 @@ import axios from "axios";
 const domain = import.meta.env.VITE_AUTH0_DOMAIN;
 const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
 
+
+// NIY - TONO comment: a better approach would be to save the URL in .env to adapt according to the environment (production vs deployingPreviewBranch).
+
 // axios.defaults.baseURL = "https://pfecommerce11b-production-177a.up.railway.app"; /* production */
 axios.defaults.baseURL = "https://viandaexpress-railway-previewbranchexperiment.up.railway.app"; /* deployingPreviewBranch environment */
 // axios.defaults.baseURL = "http://localhost:3001";  /* local */

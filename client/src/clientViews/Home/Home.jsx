@@ -18,20 +18,16 @@ const Home = () => {
   const foodsWithDiscounts = allFoods.filter(
     (food) => food.discount > 0
   ); /* .slice(0, 4) */ /* uncomment slice(0,4) to render only the first 4 */
-  
-  // const foodsWithScoreHigherThan4 = allFoods.filter(
-  //   (food) => food.total_score > 4
-  // );
 
   const foodsWithScoreHigherThan4 = allFoods.filter(
     (food) => food.total_score > 4
   );
 
-  const foodsScoresToDebug = allFoods.map(food => food.total_score);
-  console.log('foodsScoresToDebug: ', foodsScoresToDebug);
+  // const foodsScoresToDebug = allFoods.map(food => food.total_score);
+  // console.log('foodsScoresToDebug: ', foodsScoresToDebug);
 
-  console.log('allFoods: ', allFoods)
-  console.log('foodsWithDiscounts: ', foodsWithDiscounts);
+  // console.log('allFoods: ', allFoods)
+  // console.log('foodsWithDiscounts: ', foodsWithDiscounts);
   const { isLoading, user, isAuthenticated } = useAuth0();
 
   useEffect(() => {
