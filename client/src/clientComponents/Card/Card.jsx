@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import { addItemsActions, deleteItemActions } from "../../redux/foodActions.js";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
+import Swal from 'sweetalert2';
 import axios from "axios";
 import Swal from "sweetalert2";
+
 
 export default function Card({ id, name, image, final_price, allItems }) {
   const [isItem, setIsItem] = useState(false);
