@@ -28,7 +28,7 @@
 
 .normalLink, .user {
   text-decoration: none;
-  margin: 60px;
+  margin-right: 50px;
   font-size: 18px;
   color: black;
 }
@@ -72,4 +72,63 @@
 
 .option:hover {
   color: var(--accentColor);
+}
+
+.navul{
+    display: flex;
+    margin-right: 40px;
+    list-style: none;
+    margin-top: 0px;
+}
+.navli{
+  margin: 0 10px;
+    line-height: 60px;
+    width: max-content;
+}
+.menumobil{
+  margin: 0 10px;
+  cursor: pointer;
+  display: none;
+}
+
+@media screen and (max-width: 780px){
+  .navul{
+    display: none;
+  }
+
+  .activeLink {
+    display: block;
+  }
+
+  .navmenumobil{
+    position: absolute;
+    display: block;
+    list-style: none;
+    background-color: var(--accentColor2);
+    left: 0;
+    top: 110px;
+    transition: all 0.5s ease-out;
+    width: 100%; 
+    padding-left: 0px;
+    z-index: 200;
+  }
+
+  .navli{
+    text-align: center;
+    padding: 0px;
+    width: 100%;
+    transition: all 0.5s ease;
+    font-size: 18px;
+}
+
+  .menumobil{
+    display: block;
+    position: inherit;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    height: 65px;
+    color: var(--accentColor);
+    font-size: 33px;
+  }
 }
