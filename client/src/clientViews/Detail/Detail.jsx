@@ -6,6 +6,7 @@ import axios from "axios";
 import styles from "../Detail/Detail.module.css";
 import {addItemsActions, deleteItemActions} from '../../redux/foodActions.js';
 import { useAuth0 } from "@auth0/auth0-react";
+import Swal from "sweetalert2";
 
 
 export default function Detail() {
@@ -43,7 +44,12 @@ export default function Detail() {
   /*To add a new item or delete an item */
   const handleClick=(e)=>{
     if(!isAuthenticated){
-      alert('¡Cuidado! Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!')
+      //alert('¡Cuidado! Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!')
+      Swal.fire(
+        '¡Cuidado!',
+        'Logueate antes de agregar productos a tu carrito de compras.',
+        'success'
+      )
     }else{
       if(isItem){
         setIsItem(false);
