@@ -24,14 +24,14 @@ export default function Card({ id, name, image, final_price, allItems }) {
     });
   }, []);
   const handleClick = (e) => {
-    if (!isAuthenticated) {
-      //alert("¡Cuidado! Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!");
-      Swal.fire(
-        '¡Cuidado!',
-        'Logueate antes de agregar productos a tu carrito de compras.',
-        'success'
-      )
-    } else {
+    // if (!isAuthenticated) {
+    //   //alert("¡Cuidado! Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!");
+    //   Swal.fire(
+    //     '¡Cuidado!',
+    //     'Logueate antes de agregar productos a tu carrito de compras.',
+    //     'success'
+    //   )
+    // } else {
       if (isItem) {
         setIsItem(false), dispatch(deleteItemActions(id));
         //-------------------------
@@ -59,7 +59,7 @@ export default function Card({ id, name, image, final_price, allItems }) {
         axios.post("/item", bodyAddItem).catch((error) => console.log(error));
         //-------------------------
       }
-    }
+    // }
   };
   const updateQuantity=(e)=>{
     const quantity=parseInt(e.target.value);
