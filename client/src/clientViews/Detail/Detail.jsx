@@ -82,6 +82,15 @@ export default function Detail() {
     setQuantity(quantity)
     dispatch(deleteItemActions(id))
     dispatch(addItemsActions({id,name:foodDetail?.name,image:foodDetail?.image,final_price:foodDetail?.final_price,quantity:quantity,amount:amount}))
+    //-------------------------
+    const bodyUpdateItem = {
+      userEmail: user?.email,
+      FoodId: id,
+      quantity,
+      final_price:foodDetail?.final_price,
+    };
+    axios.put("/item", bodyUpdateItem).catch((error) => console.log(error));
+    //-------------------------
   }
   console.log(allItems)
   return (
