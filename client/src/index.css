@@ -15,8 +15,8 @@
 /* BODY */
 body {
   background-color: black; /* for development */
-  /* commented for development */
-  /* background-image: url("./assets/backgroundImage/choppingBoard.jpg"); */  
+  /* background-image: url("./assets/backgroundImage/choppingBoard.jpg"); */ /* commented for development */
+  background-image: url("./assets/backgroundImage/darkBg.jpeg"); /* for development */
   background-size: cover;
   color: var(--text);
   font-family: var(--fontFamily);
