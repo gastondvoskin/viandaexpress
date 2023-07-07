@@ -13,12 +13,14 @@ const PaymentStatus = () => {
   const payment_id = queryParams.get("payment_id");
 
   const date = new Date();
+  const formattedDate = date.toISOString();
   let payment_date = null;
+  console.log(formattedDate);
 
   if (status === "approved") status = "APROBADO";
   if (status === "rejected") status = "RECHAZADO";
   if (status === "in_process") status = "EN PROCESO";
-  if (status === "approved") payment_date = date;
+  if (status === "approved") payment_date = formattedDate;
 
   useEffect(() => {
     const bodyPutOrder = {
