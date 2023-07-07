@@ -6,6 +6,12 @@ const putOrderController = async (
   status,
   merchant_order_id
 ) => {
+
+  console.log("PUT ORDER INFO:", userEmail,
+    payment_id,
+    status,
+    merchant_order_id);
+
   const user = await User.findOne({
     where: {
       email: userEmail,
