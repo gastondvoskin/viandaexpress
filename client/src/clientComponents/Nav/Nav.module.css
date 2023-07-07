@@ -8,6 +8,7 @@
   background-color: var(--myWhite);
   color: black;
   box-shadow: 0px 10px 10px 0px var(--accentColor);
+  
 }
 
 /* LOGO */
@@ -28,9 +29,9 @@
 
 .normalLink, .user {
   text-decoration: none;
-  margin-right: 50px;
   font-size: 18px;
   color: black;
+  
 }
 
 .normalLink:hover {
@@ -50,7 +51,7 @@
 .userContainer {
   display: flex;
   flex-direction: column;
-  position: relative;
+  position:relative;
 }
 
 .options { 
@@ -78,7 +79,7 @@
     display: flex;
     margin-right: 40px;
     list-style: none;
-    margin-top: 0px;
+    margin-top: 15px;
 }
 .navli{
   margin: 0 10px;
@@ -97,7 +98,12 @@
   }
 
   .activeLink {
-    display: block;
+    margin: 0px;
+    border-top: 4px solid var(--accentColor);
+  color: var(--accentColor);
+  }
+  .normalLink, .user {
+    color: var(--myWhite);
   }
 
   .navmenumobil{
@@ -128,7 +134,7 @@
     background-color: transparent;
     border: none;
     height: 65px;
-    color: var(--accentColor);
+    color: var(--accentColor2);
     font-size: 33px;
   }
 }
