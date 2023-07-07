@@ -78,9 +78,9 @@
 
 .navul{
     display: flex;
-    margin-right: 40px;
     list-style: none;
-    margin-top: 15px;
+    margin-top: 19px;
+    justify-content: space-around;
 }
 .navli{
   margin: 0 10px;
@@ -93,6 +93,17 @@
   display: none;
 }
 
+.userul{
+  display: flex;
+  position: absolute;
+}
+
+.userli{
+  float: left;
+  position: fixed;
+}
+
+
 @media screen and (max-width: 780px){
   .navul{
     display: none;
@@ -104,7 +115,7 @@
   color: var(--accentColor);
   }
   .normalLink, .user {
-    color: var(--myWhite);
+    color: black;
   }
 
   .navmenumobil{
