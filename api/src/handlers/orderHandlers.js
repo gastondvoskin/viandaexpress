@@ -46,8 +46,8 @@ const postOrderHandler = async (req, res) => {
 
 const putOrderHandler = async (req, res) => {
   try {
-    const { userEmail, payment_id, status, merchant_order_id } = req.body;
-    await putOrderController(userEmail, payment_id, status, merchant_order_id);
+    const { userEmail, payment_id, status, merchant_order_id, payment_date, } = req.body;
+    await putOrderController(userEmail, payment_id, status, merchant_order_id, payment_date);
     res.status(200).send("Orden modificada correctamente.");
   } catch (error) {
     res.status(400).send({ error: error.message });
