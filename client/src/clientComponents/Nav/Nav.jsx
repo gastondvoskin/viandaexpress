@@ -72,7 +72,9 @@ function Nav() {
           <FontAwesomeIcon icon={faCartShopping} /> PAGAR 
         </NavLink>
         </li>
+
         <li className={styles.navli}>
+          
       <div
           className={styles.userContainer}
           onMouseEnter={() => setDisplayProfileOptions(true)}
@@ -85,7 +87,9 @@ function Nav() {
           </div> }
           {displayProfileOptions && !isAuthenticated && <div><LoginButton /></div>}
         </div>
+        
         </li>
+        
         </ul>
         <button className={styles.menumobil} onClick={()=>setIsMovil(!isMobil)}>
           {
