@@ -83,7 +83,7 @@
     justify-content: space-around;
 }
 .navli{
-  margin: 0 10px;
+  margin: 0px 40px 0px 40px;
     line-height: 60px;
     width: max-content;
 }
@@ -129,6 +129,7 @@
     width: 100%; 
     padding-left: 0px;
     z-index: 200;
+    height: 380px;
   }
 
   .navli{
@@ -137,6 +138,8 @@
     width: 100%;
     transition: all 0.5s ease;
     font-size: 18px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
   .menumobil{
