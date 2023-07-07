@@ -1,4 +1,4 @@
-import style from "./Card.module.css";
+ import style from "./Card.module.css";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { addItemsActions, deleteItemActions } from "../../redux/foodActions.js";
