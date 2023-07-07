@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -11,17 +12,24 @@ const PaymentStatus = () => {
   const merchant_order_id = queryParams.get("merchant_order_id");
   const payment_id = queryParams.get("payment_id");
 
+  const date = new Date();
+  let payment_date = null;
+
   if (status === "approved") status = "APROBADO";
+  if (status === "rejected") status = "RECHAZADO";
+  if (status === "in_process") status = "EN PROCESO";
+  if (status === "approved") payment_date = date;
 
-  const bodyPutOrder = {
-    userEmail,
-    status,
-    merchant_order_id,
-    payment_id,
-  };
-
-  axios.put("/order", bodyPutOrder);
-
+  useEffect(() => {
+    const bodyPutOrder = {
+      userEmail,
+      status,
+      merchant_order_id,
+      payment_id,
+      payment_date,
+    };
+    axios.put("/order", bodyPutOrder).catch((error) => console.log(error));
+  });
   return (
     <>
       <div>Payment</div>

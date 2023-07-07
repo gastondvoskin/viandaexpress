@@ -4,13 +4,10 @@ const putOrderController = async (
   userEmail,
   payment_id,
   status,
-  merchant_order_id
+  merchant_order_id,
+  payment_date
 ) => {
 
-  console.log("PUT ORDER INFO:", userEmail,
-    payment_id,
-    status,
-    merchant_order_id);
 
   const user = await User.findOne({
     where: {
@@ -26,7 +23,7 @@ const putOrderController = async (
   });
 
   await Order.update(
-    { payment_id, status, merchant_order_id },
+    { payment_id, status, merchant_order_id, payment_date },
     {
       where: {
         id: orderToBeModified.dataValues.id,
