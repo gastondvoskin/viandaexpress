@@ -64,12 +64,14 @@
   background-color: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 10px;
+  z-index: 200;
 }
 
 .option {
   color: black;
   text-decoration: none;
   padding: 5px 0;
+  margin-left: 5px;
 }
 
 .option:hover {
@@ -129,7 +131,7 @@
     width: 100%; 
     padding-left: 0px;
     z-index: 200;
-    height: 380px;
+    height: 470px;
   }
 
   .navli{
@@ -151,5 +153,13 @@
     height: 65px;
     color: var(--accentColor2);
     font-size: 33px;
+  }
+  .option {
+    margin-left: 335px;
+  }
+
+  .options { 
+    background-color: rgba(0, 128, 0, 0);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0);
   }
 }
