@@ -57,7 +57,7 @@ const ShoppingCar = () => {
     if (isLoading) {
       return (
         <div className="spinner-wrapper">
-          <SpinnerCircular сolor="#009EE3" />
+          <SpinnerCircular color="#009EE3" />
         </div>
       );
     }
