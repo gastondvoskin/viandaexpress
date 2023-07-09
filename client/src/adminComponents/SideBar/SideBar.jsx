@@ -8,6 +8,7 @@ import { faList } from "@fortawesome/free-solid-svg-icons";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faStore } from "@fortawesome/free-solid-svg-icons";
 
 
 const SideBar = ({ onSelectOption,selectedOption }) => {
@@ -31,9 +32,19 @@ const SideBar = ({ onSelectOption,selectedOption }) => {
                 className={style.option + (selectedOption === 'products' ? ' ' + style.activeOption : '')}
                 onClick={() => handleOptionSelect('products')}
             >
-                <FontAwesomeIcon icon={faList} className={style.sep} />Viandas
+                <FontAwesomeIcon icon={faStore} className={style.sep} />Viandas
             </div>
             </li>
+
+            <li>
+            <div
+                className={style.option + (selectedOption === 'orders' ? ' ' + style.activeOption : '')}
+                onClick={() => handleOptionSelect('orders')}
+            >
+                <FontAwesomeIcon icon={faList} className={style.sep} />Orders
+            </div>
+            </li>
+            
             <li>
             <div
                 className={style.option + (selectedOption === 'reviews' ? ' ' + style.activeOption : '')}
