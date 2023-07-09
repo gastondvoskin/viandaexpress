@@ -12,6 +12,7 @@ import CreateFood from "./adminViews/CreateFood/CreateFood";
 import ShoppingCar from "./clientViews/ShoppingCar/ShoppingCar";
 import Viandas from "./clientViews/Viandas/Viandas";
 import PaymentStatus from "./clientViews/PaymentStatus/PaymentStatus";
+import UserReview from "./clientViews/UserReview/UserReview";
 
 function App() {
   const location = useLocation();
@@ -31,6 +32,7 @@ function App() {
         <Route path="/shoppingcart" element={<ShoppingCar />} />
         <Route path="/payment" element={<PaymentStatus />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/userreview" element={<UserReview />} />
       </Routes>
       {!location.pathname.includes("/admin") && <Footer />}
     </div>
