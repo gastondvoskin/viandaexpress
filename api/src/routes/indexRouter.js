@@ -4,9 +4,10 @@ const { userRouter } = require("./userRouter");
 const { orderRouter } = require("./orderRouter");
 const { itemRouter } = require("./itemRouter")
 const { shoppingCartRouter } = require("../routes/shoppingCartRouter");
-
+const { reviewRouter } = require("./reviewRouter");
 const { foods } = require("../../api");
 const { Food } = require("../db");
+
 
 const router = Router();
 
@@ -15,6 +16,7 @@ router.use("/user", userRouter);
 router.use("/order", orderRouter);
 router.use("/item",itemRouter);
 router.use("/shopping-cart", shoppingCartRouter);
+router.use("/review",reviewRouter)
 
 
 // Tono comment: this route may be modularized
