@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getUserDetailAction } from "../../redux/userSlice";
 import { getPendingOrderAction } from "../../redux/shopingCartSlice";
+import axios from "axios";
 
 // REPLACE WITH YOUR PUBLIC KEY AVAILABLE IN: https://developers.mercadopago.com/panel
 // initMercadoPago("APP_USR-8e95f5fd-f2e0-4982-8ac8-27b1f1b175bb");
@@ -31,15 +32,33 @@ const ShoppingCar = () => {
   const handleClick = () => {
     setIsLoading(true);
     //CAMBIAR A AXIOS
-    fetch("http://localhost:3001/shopping-cart", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(orderData),
-    })
+    // fetch("http://localhost:3001/shopping-cart", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(orderData),
+    // })
+    //   .then((response) => {
+    //     return response.json();
+    //   })
+    //   .then((preference) => {
+    //     setPreferenceId(preference.id);
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   })
+    //   .finally(() => {
+    //     setIsLoading(false);
+    //   });
+    axios
+      .post("/mercadopago", orderData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
       .then((response) => {
-        return response.json();
+        return response.data;
       })
       .then((preference) => {
         setPreferenceId(preference.id);
