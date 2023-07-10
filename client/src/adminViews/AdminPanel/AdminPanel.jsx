@@ -15,7 +15,7 @@ import Orders from '../../adminComponents/Orders/Orders';
 
 const AdminPanel = () => {
 
-  const [selectedOption, setSelectedOption] = useState('dashboard');
+  const sidebarOption = useSelector((state) => state.adminReducer.sidebarOption )
   const allFoods = useSelector((state) => state.foodsReducer.adminFoods);
   const dispatch = useDispatch()
   useEffect(() => {
@@ -27,7 +27,7 @@ const AdminPanel = () => {
   }, [dispatch]);
 
   const renderSelectedOption = () => {
-    switch (selectedOption) {
+    switch (sidebarOption) {
         case 'dashboard':
             return <Dashboard />;
         case 'products':
@@ -47,7 +47,7 @@ const AdminPanel = () => {
 
   return (
     <div className={style.adminPanel}>
-      <Sidebar selectedOption ={selectedOption} onSelectOption={setSelectedOption} />
+      <Sidebar/>
       <div className={style.adminContent}>
         {renderSelectedOption()}
       </div>
