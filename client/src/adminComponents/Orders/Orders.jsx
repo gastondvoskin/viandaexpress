@@ -1,10 +1,13 @@
-import React, { useEffect} from "react";
+import React, { useEffect, useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllOrdersAction } from "../../redux/ordersSlice";
+import { getAllOrdersAction } from "../../redux/adminSlice";
+import ListOrders from "../ListOrders/ListOrders.jsx";
 
 const Orders = () => {
     const dispatch = useDispatch();
-    const allOrders = useSelector((state)=>state.ordersReducer.allOrders);
+    const allOrders = useSelector((state)=>state.adminReducer.allOrders);
+    const [localOrders, setLocalOrders] = useState(allOrders);
+
     useEffect(()=>{
         dispatch(getAllOrdersAction())
     },[dispatch])
@@ -24,21 +27,17 @@ const Orders = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <select>
-                                <option>Entregado</option>
-                                <option> Pendiente</option>
-                            </select>
-                        </td>
-                        <td>
-                            <button>Ver Detalle</button>
-                        </td>
-                    </tr>  
+                    {allOrders.length > 0 &&
+                    allOrders.map(o => (
+                        <ListOrders
+                            key = {o?.id}
+                            id = {o?.id}
+                            UserId = {o?.UserId}
+                            total_price = {o?.total_price}
+                            createdAt = {o?.createdAt}
+                            status = {o?.status}
+                        />
+                    ))}
                 </tbody>
             </table>
         </div>
