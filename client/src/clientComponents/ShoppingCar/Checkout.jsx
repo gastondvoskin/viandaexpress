@@ -5,6 +5,8 @@ import { deleteItemActions,addItemsActions } from "../../redux/foodActions";
 import { useDispatch, useSelector } from "react-redux";;
 
 const Checkout = ({ onClick }) => {
+  const userOrder = useSelector((state) => state.shopingCartReducer.pendingOrder)
+  console.log(userOrder)
   const [isVisible, setIsVisible] = React.useState(true);
   const dispatch=useDispatch();
   let {
@@ -118,8 +120,108 @@ const Checkout = ({ onClick }) => {
               </div>
             </div>
           </div>
-
-          {orderData.map((item) => {return(item.quantity?
+          {userOrder?.Items.map((item) => {return(item.quantity?
+            (
+              <div className="row">
+                <div className="col-md-12 col-lg-8">
+                  <div className="items">
+                    <div className="product">
+                      <div className="info">
+                        <div className="product-details">
+                          <div className="row justify-content-md-center">
+                            <div className="col-md-3">
+                              <img
+                                className="img-fluid mx-auto d-block image"
+                                alt="Image of a product"
+                                src={item.Food.image}
+                              />
+                            </div>
+                            <div className="col-md-4 product-detail">
+                              <div className="product-info">
+                                <b>{item.Food.name}</b>
+                                <br></br>
+                                <b>Price:</b> ${" "}
+                                <span id="unit-price">{item.final_price}</span>
+                                <br />
+                              </div>
+                            </div>
+                            <div className="col-md-3 product-detail">
+                              <input
+                                onChange={updatePrice}
+                                type="number"
+                                id="quantity"
+                                name={item.Food.name}
+                                value={item.quantity}
+                                min="0"
+                                className="form-control"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-12 col-lg-4">
+                  <div className="summary">
+                    <div className="summary-item">
+                      <span className="price" id="cart-total">
+                        ${item.amount}
+                      </span>
+                      <button
+                        className="btn btn-primary btn-lg btn-block"
+                        onClick={handleDelete}
+                        id="checkout-btn"
+                        name={item.Food.name}
+                      >Eliminar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ):null);
+          })}
+          <div className="row">
+            <div className="col-md-12 col-lg-8">
+              <div className="items">
+                <div className="product">
+                  <div className="info">
+                    <div className="product-details">
+                      <div className="row justify-content-md-center">
+                        <div className="col-md-3">
+                          {/* espacio para la imagen*/}
+                        </div>
+                        <div className="col-md-4 product-detail">
+                          {/* columna de producto*/}
+                        </div>
+                        <div className="col-md-3 product-detail">
+                          {/*espacio para la cantidad*/}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-12 col-lg-4">
+              <div className="summary">
+                <div className="summary-item">
+                  <span className="text">Total</span>
+                  <span className="price" id="cart-total">
+                    ${userOrder?.total_price}
+                  </span>
+                </div>
+                <button
+                  className="btn btn-primary btn-lg btn-block"
+                  onClick={onClick}
+                  id="checkout-btn"
+                  disabled={disabled}
+                >
+                  Checkout
+                </button>
+              </div>
+            </div>
+          </div>
+          {/* {orderData.map((item) => {return(item.quantity?
             (
               <div className="row">
                 <div className="col-md-12 col-lg-8">
@@ -178,9 +280,9 @@ const Checkout = ({ onClick }) => {
                 </div>
               </div>
             ):null);
-          })}
+          })} */}
 
-          <div className="row">
+          {/* <div className="row">
             <div className="col-md-12 col-lg-8">
               <div className="items">
                 <div className="product">
@@ -188,13 +290,13 @@ const Checkout = ({ onClick }) => {
                     <div className="product-details">
                       <div className="row justify-content-md-center">
                         <div className="col-md-3">
-                          {/* espacio para la imagen*/}
+                        
                         </div>
                         <div className="col-md-4 product-detail">
-                          {/* columna de producto*/}
+                        
                         </div>
                         <div className="col-md-3 product-detail">
-                          {/*espacio para la cantidad*/}
+                        
                         </div>
                       </div>
                     </div>
@@ -220,7 +322,7 @@ const Checkout = ({ onClick }) => {
                 </button>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
