@@ -8,6 +8,7 @@ import Products from '../../adminComponents/Products/Products';
 import Dashboard from '../../adminComponents/DashBoard/DashBoard';
 import { useDispatch,useSelector } from 'react-redux';
 import axios from 'axios';
+import Orders from '../../adminComponents/Orders/Orders';
 
 
 
@@ -36,6 +37,8 @@ const AdminPanel = () => {
             return <Users/>
         case 'reviews':
             return <Reviews/>
+        case 'orders':
+            return <Orders/>
       // Agrega aquí los casos para los otros componentes del panel de administración
       default:
         return null;
