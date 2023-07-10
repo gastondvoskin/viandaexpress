@@ -1,17 +1,16 @@
- import style from "./Card.module.css";
+import style from "./Card.module.css";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { addItemsActions, deleteItemActions } from "../../redux/foodActions.js";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import axios from "axios";
-
 
 export default function Card({ id, name, image, final_price, allItems }) {
   const [isItem, setIsItem] = useState(false);
-  const { isAuthenticated,user } = useAuth0();
-  const [quantity,setQuantity]=useState(1)
+  const { isAuthenticated, user } = useAuth0();
+  const [quantity, setQuantity] = useState(1);
 
   console.log(allItems);
   const dispatch = useDispatch();
@@ -19,19 +18,19 @@ export default function Card({ id, name, image, final_price, allItems }) {
     allItems.map((item) => {
       if (item.name == name) {
         setIsItem(true);
-        setQuantity(item.quantity)
+        setQuantity(item.quantity);
       }
     });
   }, []);
   const handleClick = (e) => {
-    // if (!isAuthenticated) {
-    //   //alert("¡Cuidado! Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!");
-    //   Swal.fire(
-    //     '¡Cuidado!',
-    //     'Logueate antes de agregar productos a tu carrito de compras.',
-    //     'success'
-    //   )
-    // } else {
+    if (!isAuthenticated) {
+      //alert("¡Cuidado! Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!");
+      Swal.fire(
+        "¡Cuidado!",
+        "Logueate antes de agregar productos a tu carrito de compras.",
+        "success"
+      );
+    } else {
       if (isItem) {
         setIsItem(false), dispatch(deleteItemActions(id));
         //-------------------------
@@ -49,8 +48,8 @@ export default function Card({ id, name, image, final_price, allItems }) {
         dispatch(
           addItemsActions({ id, name, image, final_price, quantity, amount })
         );
-         //-------------------------
-         const bodyAddItem = {
+        //-------------------------
+        const bodyAddItem = {
           userEmail: user?.email,
           FoodId: id,
           quantity,
@@ -59,14 +58,23 @@ export default function Card({ id, name, image, final_price, allItems }) {
         axios.post("/item", bodyAddItem).catch((error) => console.log(error));
         //-------------------------
       }
-    // }
+    }
   };
-  const updateQuantity=(e)=>{
-    const quantity=parseInt(e.target.value);
+  const updateQuantity = (e) => {
+    const quantity = parseInt(e.target.value);
     const amount = final_price * quantity;
-    setQuantity(quantity)
-    dispatch(deleteItemActions(id))
-    dispatch(addItemsActions({id,name,image,final_price,quantity:quantity,amount:amount}))
+    setQuantity(quantity);
+    dispatch(deleteItemActions(id));
+    dispatch(
+      addItemsActions({
+        id,
+        name,
+        image,
+        final_price,
+        quantity: quantity,
+        amount: amount,
+      })
+    );
     //-------------------------
     const bodyUpdateItem = {
       userEmail: user?.email,
@@ -76,7 +84,7 @@ export default function Card({ id, name, image, final_price, allItems }) {
     };
     axios.put("/item", bodyUpdateItem).catch((error) => console.log(error));
     //-------------------------
-  }
+  };
   return (
     <div className={style.card}>
       <NavLink to={`/detail/${id}`}>
@@ -91,8 +99,18 @@ export default function Card({ id, name, image, final_price, allItems }) {
         <p>${final_price}</p>
       </div>
       <div className={style.inputagregar}>
-        <button className={style.btncar} onClick={handleClick}>{isItem ? "Agregado" : "Agregar"}</button>
-        {isItem?<input className={style.detailinput} type="number" min='1' value={quantity} onChange={updateQuantity}/>:null}
+        <button className={style.btncar} onClick={handleClick}>
+          {isItem ? "Agregado" : "Agregar"}
+        </button>
+        {isItem ? (
+          <input
+            className={style.detailinput}
+            type="number"
+            min="1"
+            value={quantity}
+            onChange={updateQuantity}
+          />
+        ) : null}
       </div>
       {/* <p>
         Dietas:{" "}

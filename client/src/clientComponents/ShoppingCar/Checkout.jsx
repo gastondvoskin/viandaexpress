@@ -120,7 +120,7 @@ const Checkout = ({ onClick }) => {
               </div>
             </div>
           </div>
-          {userOrder?.Items.map((item) => {return(item.quantity?
+          {userOrder?.Items?.map((item) => {return(item.quantity?
             (
               <div className="row">
                 <div className="col-md-12 col-lg-8">
