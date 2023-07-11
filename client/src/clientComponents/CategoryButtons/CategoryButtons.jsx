@@ -18,28 +18,11 @@ const CategoryButtons = () => {
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
   const dispatch = useDispatch();
 
-  const handleClick = (e) => {
-    let value = e.target.value;
-    /* we check if it is undefined because the text and the image doesn't have an event.target.value */
-    if (value === undefined) {
-      const button = e.target.closest("button");
-      value = button.value;
-    }
-
-    const filteredFoods = handlerFilterCategory(value);
-    dispatch(filterByCategoryAction(filteredFoods));
-    dispatch(setOrderAction(""));
-    dispatch(activeFilteredFoodsAction(true));
-    dispatch(setCurrentPageAction(1));
-    dispatch(setCategoryAction(value));
-    dispatch(setDietAction(""));
-  };
-
   const handlerFilterCategory = (value) => {
     let filteredCategoryFoods;
     switch (value) {
       case "Todas":
-        filteredCategoryFoods = allFoods.filter((e) => e.category === "Pastas");
+        filteredCategoryFoods = [...allFoods];
         break;
       case "Pastas":
         filteredCategoryFoods = allFoods.filter((e) => e.category === "Pastas");
@@ -58,7 +41,23 @@ const CategoryButtons = () => {
     return filteredCategoryFoods;
   };
 
-  
+  const handleClick = (e) => {
+    let value = e.target.value;
+    /* we check if it is undefined because the text and the image doesn't have an event.target.value */
+    if (value === undefined) {
+      const button = e.target.closest("button");
+      value = button.value;
+    }
+    const filteredFoods = handlerFilterCategory(value);
+
+    dispatch(filterByCategoryAction(filteredFoods));
+    dispatch(setOrderAction(""));
+    dispatch(activeFilteredFoodsAction(true));
+    dispatch(setCurrentPageAction(1));
+    dispatch(setCategoryAction(value));
+    dispatch(setDietAction(""));
+  };
+
   /* RETURN */
   return (
     <div className={styles.mainContainer}>

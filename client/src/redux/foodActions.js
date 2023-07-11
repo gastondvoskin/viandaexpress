@@ -167,14 +167,3 @@ export const deleteItemActions = (id) => (dispatch) => {
     console.log(error);
   }
 };
-
-// Do not delete. Uncomment and test when the endpoint `/food/${id}` is created
-// export const getFood = (id) => async (dispatch) => {
-//     try {
-//         const response = await axios.get(`/food/${id}`);
-//         const foodById = response.data;
-//         dispatch(getFoodById(foodById));
-//     } catch (error) {
-//         console.log(error);
-//     }
-// };
