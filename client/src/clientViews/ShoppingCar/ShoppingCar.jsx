@@ -25,35 +25,18 @@ const ShoppingCar = () => {
   const [orderData, setOrderData] = useState(allItems);
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.usersReducer.userDetail);
+
+  
   useEffect(() => {
     if (!currentUser.id) {
       dispatch(getUserDetailAction(user?.email));
     }
   }, [dispatch]);
+  
   const handleClick = () => {
     setIsLoading(true);
-    //CAMBIAR A AXIOS
-    // fetch("http://localhost:3001/shopping-cart", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(orderData),
-    // })
-    //   .then((response) => {
-    //     return response.json();
-    //   })
-    //   .then((preference) => {
-    //     setPreferenceId(preference.id);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   })
-    //   .finally(() => {
-    //     setIsLoading(false);
-    //   });
     axios
-      .post("/mercadopago", orderData, {
+      .post(`/mercadopago/${user?.email}`, orderData, {
         headers: {
           "Content-Type": "application/json",
         },

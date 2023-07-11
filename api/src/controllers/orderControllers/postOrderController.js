@@ -34,7 +34,7 @@ const postOrderController = async (email) => {
         ],
       });
     }
-    console.log(userOrder)
+    // console.log(userOrder)
     return userOrder;
     
   } catch (error) {
