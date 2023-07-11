@@ -1,0 +1,62 @@
+.mainContainer {
+    border: 1px solid black;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.starsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.starsContainer img {
+    width: 200px;
+    height: 200px;
+    background-color: black;
+    color: aliceblue;
+    border-radius: 25px;
+}
+
+
+
+.title {
+    color: white;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.orderName {
+    color: white;
+    font-size: 18px;
+}
+
+.star {
+    color: gray;
+    font-size: 50px;
+}
+
+.star_filled {
+    color: gold;
+    font-size: 50px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 150px;
+}
+
+.form input {
+    margin-bottom: 10px;
+    height: 40px;
+    width: 400px;
+}

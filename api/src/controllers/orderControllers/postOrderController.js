@@ -1,18 +1,23 @@
 const { User } = require("../../db");
 const { Order } = require("../../db");
+const{ Item } = require("../../db");
+const {Food} = require("../../db");
 
 const postOrderController = async (email) => {
   try {
     const userByEmail = await User.findOne({
       where: { email },
     });
-    // console.log("UserByEmail", userByEmail);
     const userId = userByEmail.dataValues.id;
-    console.log("userId", userId);
+
     let userOrder = await Order.findOne({
       where: {
         UserId: userId,
         status: "PENDIENTE",
+      },
+      include: {
+        model: Item,
+        include: Food,
       },
     });
 
@@ -20,13 +25,22 @@ const postOrderController = async (email) => {
       userOrder = await Order.create({
         UserId: userId,
         status: "PENDIENTE",
+      }, {
+        include: [
+          {
+            model: Item,
+            include: Food,
+          },
+        ],
       });
-      return userOrder;
     }
+    // console.log(userOrder)
     return userOrder;
+    
   } catch (error) {
     console.log(error);
   }
 };
 
 module.exports = { postOrderController };
+

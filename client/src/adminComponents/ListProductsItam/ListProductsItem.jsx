@@ -5,9 +5,51 @@ import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import {faTrashCan} from "@fortawesome/free-solid-svg-icons";
+import Swal from 'sweetalert2';
 
 const ListProductsItem = ({ name, final_price, status,id,localFoods, setLocalFoods }) => {
-    const handleDelete = async (e) => {
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    Swal.fire({
+      title: 'Estas Seguro?',
+      text: '¡No podrás revertir esto!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33', 
+      confirmButtonText: 'Si, ¡Eliminar!',
+      cancelButtonText: 'Cancelar'
+    }).then((result)=>{
+      if(result.isConfirmed){
+        try {
+          axios.delete(`/food/${id}`);
+          Swal.fire(
+            'Eliminado!',
+            `La Vianda ${name} fue Eliminado.`,
+            'success'
+          )
+          const updatedFoods = localFoods.filter(e => e.id !== id);
+          setLocalFoods(updatedFoods);
+        } catch (error) {        
+          Swal.fire(
+            'Error del sistema',
+            `${error.message}`,
+            'warning',
+            )
+        }
+      }else if(result.dismiss === Swal.DismissReason.cancel){
+        Swal.fire(
+          'Cancelado',
+          'Los cambios no se guardaron',
+          'success'
+          )
+      }
+    })
+  }
+
+  /*  
+  const handleDelete = async (e) => {
         e.preventDefault();
         var verificar= window.confirm(`Está a punto de eliminar la vianda`)
         if(verificar){
@@ -21,6 +63,7 @@ const ListProductsItem = ({ name, final_price, status,id,localFoods, setLocalFoo
           }
         }
       };
+  */
 
       const handleStatus = (e) => {
         const { value } = e.target;
