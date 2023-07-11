@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFoods } from "../../redux/foodActions.js";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
-import Card from "../../clientComponents/Card/Card";
 import CardsContainer from "../../clientComponents/CardsContainer/CardsContainer";
 import { hardcodedFoodsWithDiscounts } from "../../../hardcodedFoodsWithDiscounts";
 import CarouselContainer from "../../clientComponents/CarouselContainer/CarouselContainer.jsx";
@@ -17,13 +16,14 @@ const Home = () => {
   const allItems = useSelector((state) => state.foodsReducer.orderItems);
   const foodsWithDiscounts = allFoods.filter(
     (food) => food.discount > 0
-  ); /* .slice(0, 4) */ /* uncomment slice(0,4) to render only the first 4 */
+  );
+
+  console.log('foodsWithDiscounts: ', foodsWithDiscounts);
 
   const foodsWithScoreHigherThan4 = allFoods.filter(
     (food) => food.total_score > 4
   );
 
-  console.log(allFoods);
   const harcodedFavoritesByEmail = allFoods.slice(0, 3); // reemplazar por peticion al back
 
   const { isLoading, user, isAuthenticated } = useAuth0();
