@@ -26,7 +26,7 @@ const getOrdersHandler = async (req, res) => {
 // esta ruta trae el detalle de una order en especifico
 const getOrderDetailHandler = async (req, res) => {
   try {
-    const {orderId} = req.body
+    const {orderId} = req.params
     const detail = await getOrderDetailController(orderId);
     console.log(detail);
     res.status(200).send(detail);
