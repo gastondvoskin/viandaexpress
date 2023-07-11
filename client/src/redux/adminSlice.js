@@ -5,7 +5,7 @@ export const adminSlice = createSlice({
     name: "orders",
     initialState: {
         allOrders: [],
-        orderDetail: {},
+        orderDetail: null,
         sidebarOption:'dashboard'
     },
     reducers: {

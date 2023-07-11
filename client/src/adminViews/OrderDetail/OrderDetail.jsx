@@ -8,7 +8,6 @@ const OrderDetail = () => {
     const orderDetail = useSelector((state)=>state.adminReducer.orderDetail);
 
     useEffect(()=>{
-        console.log("estoy en useefect");
         dispatch(getOrderDetailAction(id))
     },[dispatch])
 
@@ -30,7 +29,7 @@ const OrderDetail = () => {
             </thead>
             <tbody>
                 {orderDetail?.Items.map((i)=>(
-                    <tr>
+                    <tr key = {i.id}>
                         <td>{i.id}</td>
                         <td>{i.Food.name}</td>
                         <td>{i.quantity}</td>
