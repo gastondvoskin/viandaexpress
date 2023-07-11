@@ -31,7 +31,7 @@ const Orders = () => {
                         <ListOrders
                             key = {o?.id}
                             id = {o?.id}
-                            UserId = {o?.UserId}
+                            User_name = {o?.User.name}
                             total_price = {o?.total_price}
                             createdAt = {o?.createdAt}
                             status = {o?.status}
