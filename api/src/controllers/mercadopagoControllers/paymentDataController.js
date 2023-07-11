@@ -10,7 +10,7 @@ const paymentDataController = async (paymentId) => {
     .get(url)
     .then((response) => {
       const paymentData = response.data;
-      // console.log("DataMPByPaymentId", paymentData);
+      console.log("DataMPByPaymentId", paymentData);
     })
     .catch((error) => {
       console.error(

@@ -5,6 +5,9 @@ const {
 const {
   paymentDataController,
 } = require("../controllers/mercadopagoControllers/paymentDataController");
+const {
+  getPendingOrderByUserEmailController,
+} = require("../controllers/orderControllers/getPendingOrderByUserEmailController");
 
 const createPreferenceHandler = async (req, res) => {
   try {
@@ -16,8 +19,13 @@ const createPreferenceHandler = async (req, res) => {
         quantity: item.quantity,
       };
     });
-
-    const preferenceId = await createPreferenceController(userEmail, itemsBody);
+    const pendingOrderId = await getPendingOrderByUserEmailController(
+      userEmail
+    );
+    const preferenceId = await createPreferenceController(
+      pendingOrderId,
+      itemsBody
+    );
     res.status(200).json(preferenceId);
   } catch (error) {
     res.status(400).send({ error: error.message });
@@ -25,10 +33,15 @@ const createPreferenceHandler = async (req, res) => {
 };
 
 const paymentDataHandler = async (req, res) => {
-  const paymentId = req.query["data.id"];
-  const paymentData = await paymentDataController(paymentId);
+  try {
+    const paymentId = req.query["data.id"];
+    const paymentData = await paymentDataController(paymentId);
 
-  res.status(200);
+    res.status(200);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
 };
 
 module.exports = { createPreferenceHandler, paymentDataHandler };

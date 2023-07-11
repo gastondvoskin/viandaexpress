@@ -36,7 +36,7 @@ const ShoppingCar = () => {
   const handleClick = () => {
     setIsLoading(true);
     axios
-      .post(`/mercadopago/${user?.email}`, orderData, {
+      .post(`/mercadopago/create-preference/${user?.email}`, orderData, {
         headers: {
           "Content-Type": "application/json",
         },

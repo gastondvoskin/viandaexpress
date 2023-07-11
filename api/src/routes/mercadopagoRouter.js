@@ -6,7 +6,7 @@ const {
 
 const mercadopagoRouter = Router();
 
-mercadopagoRouter.post("/:userEmail", createPreferenceHandler);
+mercadopagoRouter.post("/create-preference/:userEmail", createPreferenceHandler);
 mercadopagoRouter.post("/payment-data", paymentDataHandler);
 
 module.exports = { mercadopagoRouter };
