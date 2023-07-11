@@ -118,7 +118,7 @@ export default function Card({ id, name, image, initial_price, final_price, cate
         </div>
       </NavLink>
 
-      <div cassName={style.p}>
+      <div className={style.p}>
         <p>${final_price}</p>
       </div>
       <div className={style.inputagregar}>
