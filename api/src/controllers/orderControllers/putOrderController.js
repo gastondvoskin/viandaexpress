@@ -1,36 +1,62 @@
-const { Order, User } = require("../../db");
+const { Order } = require("../../db");
 
-const putOrderController = async (
-  userEmail,
-  payment_id,
+const putOrderController = async ({
+  orderId,
+  order_status,
   status,
-  merchant_order_id,
-  parsedDate
-) => {
-  console.log(parsedDate);
+  payment_status_detail,
+  payment_id,
+  payment_date,
+}) => {
+  try {
+    if (orderId) {
+      const orderToBeModified = await Order.findOne({
+        where: {
+          id: orderId,
+        },
+      });
 
-  const user = await User.findOne({
-    where: {
-      email: userEmail,
-    },
-  });
+      if (
+        orderToBeModified &&
+        order_status &&
+        !status &&
+        !payment_status_detail &&
+        !payment_id &&
+        !payment_date
+      ) {
+        await Order.update(
+          { order_status },
+          {
+            where: {
+              id: orderToBeModified.dataValues.id,
+            },
+          }
+        );
+      }
 
-  const orderToBeModified = await Order.findOne({
-    where: {
-      UserId: user.dataValues.id,
-      status: "PENDIENTE",
-    },
-  });
+      if (
+        orderToBeModified &&
+        !order_status &&
+        status &&
+        payment_status_detail &&
+        payment_id &&
+        payment_date
+      ) {
+        await Order.update(
+          { status, payment_status_detail, payment_id, payment_date },
+          {
+            where: {
+              id: orderToBeModified.dataValues.id,
+            },
+          }
+        );
+      }
 
-  await Order.update(
-    { payment_id, status, merchant_order_id, payment_date: parsedDate },
-    {
-      where: {
-        id: orderToBeModified.dataValues.id,
-      },
+      return "Oder aactualizada correctamente";
     }
-  );
-  return "Oder aactualizada correctamente";
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = { putOrderController };
