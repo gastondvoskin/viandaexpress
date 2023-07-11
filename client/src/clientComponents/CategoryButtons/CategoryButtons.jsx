@@ -12,14 +12,20 @@ import styles from "./CategoryButtons.module.css";
 import pastasImage from "../../assets/categories/pastas.jpg";
 import carnesImage from "../../assets/categories/meat.jpg";
 import saladImage from "../../assets/categories/salad.jpeg";
-
+import varietyImage from "../../assets/carousel/original3.jpg";
 
 const CategoryButtons = () => {
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
   const dispatch = useDispatch();
 
   const handleClick = (e) => {
-    const value = e.target.value;
+    let value = e.target.value;
+    /* we check if it is undefined because the text and the image doesn't have an event.target.value */
+    if (value === undefined) {
+      const button = e.target.closest("button");
+      value = button.value;
+    }
+
     const filteredFoods = handlerFilterCategory(value);
     dispatch(filterByCategoryAction(filteredFoods));
     dispatch(setOrderAction(""));
@@ -32,6 +38,9 @@ const CategoryButtons = () => {
   const handlerFilterCategory = (value) => {
     let filteredCategoryFoods;
     switch (value) {
+      case "Todas":
+        filteredCategoryFoods = allFoods.filter((e) => e.category === "Pastas");
+        break;
       case "Pastas":
         filteredCategoryFoods = allFoods.filter((e) => e.category === "Pastas");
         break;
@@ -49,8 +58,19 @@ const CategoryButtons = () => {
     return filteredCategoryFoods;
   };
 
+  
+  /* RETURN */
   return (
     <div className={styles.mainContainer}>
+      <button
+        className={styles.button}
+        onClick={(e) => handleClick(e)}
+        value="Todas"
+      >
+        <h2 className={styles.text}>Todas</h2>
+        <img className={styles.image} src={varietyImage} alt="Todas" />
+      </button>
+
       <button
         className={styles.button}
         onClick={(e) => handleClick(e)}
