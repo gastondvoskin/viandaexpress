@@ -1,5 +1,5 @@
 const { Order, User } = require("../../db");
-
+// Este controller es innecesaria por el momento se podria eliminar, ya que postOrderController es la que se esta usando  para hacer lo mismo practicamente
 const getPendingOrderByUserEmailController = async (userEmail) => {
   const user = await User.findOne({
     where: {

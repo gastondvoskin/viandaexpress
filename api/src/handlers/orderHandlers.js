@@ -8,25 +8,40 @@ const {
   putOrderController,
 } = require("../controllers/orderControllers/putOrderController");
 const {
-  getOrderByUserIdController,
-} = require("../controllers/orderControllers/getOrderByUserIdController");
+   getUserOrdersController,
+} = require("../controllers/orderControllers/getUserOrdersController");
+const {
+   getOrderDetailController,
+} = require("../controllers/orderControllers/getOrderDetailController");
 
-//Esta ruta trae todas las ordenes cerradas (sirve para el admin)
+//Esta ruta trae todas las ordenes cerradas (sirve para el admin, se deebria modificar proximamente para traer los pedidos ya finalizados )
 const getOrdersHandler = async (req, res) => {
   try {
     const allOrders = await getOrdersController();
-    res.status(200).send(orders);
+    res.status(200).send(allOrders);
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+};
+// esta ruta trae el detalle de una order en especifico
+const getOrderDetailHandler = async (req, res) => {
+  try {
+    const {orderId} = req.body
+    const detail = await getOrderDetailController(orderId);
+    console.log(detail);
+    res.status(200).send(detail);
   } catch (error) {
     res.status(400).send({ error: error.message });
   }
 };
 
-//esta ruta trae la orden abierta de un usuario
-const getOrderByUserIdHandler = async (req, res) => {
+//esta ruta trae el historial de orders de un usuario(sirve para el cliente,falta agregar condicion para que solo traiga las orders concretadas)
+const getUserOrdersHandler = async (req, res) => {
   try {
-    // const { userId } = req.params
     const { userId } = req.body;
-    const openOrder = await getOrderByUserIdController(userId);
+    console.log(`El id es:${userId}`)
+    // const { userId } = req.params
+    const openOrder = await getUserOrdersController(userId);
     res.status(200).send(openOrder);
   } catch (error) {
     res.status(400).send({ error: error.message });
@@ -58,5 +73,6 @@ module.exports = {
   getOrdersHandler,
   postOrderHandler,
   putOrderHandler,
-  getOrderByUserIdHandler,
+  getUserOrdersHandler,
+  getOrderDetailHandler,
 };
