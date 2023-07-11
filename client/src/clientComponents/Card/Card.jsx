@@ -28,11 +28,11 @@ export default function Card({ id, name, image, initial_price, final_price, cate
   if (category === "Ensaladas") categoryIcon = <img className={style.categoryIcon} src={salad}/>;
   if (category === "Pastas") categoryIcon = <img className={style.categoryIcon} src={pastas}/>;
 
-  const dietsIcons = diets.map(diet => {
-    if (diet === "Sin TACC") diet = <img className={style.dietsIcon} src={sinTacc}/>;
-    if (diet === "Vegetariano") diet = <img className={style.dietsIcon} src={vegetarian}/>;
-    if (diet === "Vegano") diet = <img className={style.dietsIcon} src={vegan}/>;
-    if (diet === "Sin Lactosa") diet = <img className={style.dietsIcon} src={sinLactosa}/>;
+  const dietsIcons = diets.map((diet, index) => {
+    if (diet === "Sin TACC") diet = <img key={index} className={style.dietsIcon} src={sinTacc}/>;
+    if (diet === "Vegetariano") diet = <img key={index} className={style.dietsIcon} src={vegetarian}/>;
+    if (diet === "Vegano") diet = <img key={index} className={style.dietsIcon} src={vegan}/>;
+    if (diet === "Sin Lactosa") diet = <img key={index} className={style.dietsIcon} src={sinLactosa}/>;
     return diet;
   }); 
 
@@ -114,7 +114,7 @@ export default function Card({ id, name, image, initial_price, final_price, cate
         </div>
         <div className={style.txt}>
           <h2>{name} </h2>
-          <span>{categoryIcon} | {dietsIcons.map(dietIcon => <span>{dietIcon}</span>)}</span>
+          <span>{categoryIcon} | {dietsIcons.map((dietIcon, index) => <span key={index}>{dietIcon}</span>)}</span>
         </div>
       </NavLink>
 
