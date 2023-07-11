@@ -20,11 +20,23 @@ export default function Paginado({
     pageNumbers.push(i);
   }
 
-  console.log("pageNumbers: ", pageNumbers);
+  console.log("paginado: ", paginado);
+
+  // const paginado = (pageNumber) => {
+  //   dispatch(setCurrentPageAction(pageNumber));
+  // };
 
   return (
     <nav>
       <ul className={styles.foodList}>
+        <li>
+          <button className={styles.previousAndNext}
+            onClick={() => paginado(currentPage - 1)}
+            disabled={currentPage===1}
+          >
+            {'<'}
+          </button>
+        </li>
         {pageNumbers &&
           pageNumbers.map((number) => {
             if (number === currentPage) {
@@ -51,6 +63,12 @@ export default function Paginado({
               );
             }
           })}
+          <button className={styles.previousAndNext}
+            onClick={() => paginado(currentPage + 1)}
+            disabled={currentPage===pageNumbers.length}
+          >
+            {'>'}
+          </button>
       </ul>
     </nav>
   );
