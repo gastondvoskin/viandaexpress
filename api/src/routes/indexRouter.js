@@ -8,7 +8,6 @@ const { reviewRouter } = require("./reviewRouter");
 const { foods } = require("../../api");
 const { Food } = require("../db");
 
-
 const router = Router();
 
 router.use("/food", foodRouter);
@@ -18,8 +17,6 @@ router.use("/item",itemRouter);
 router.use("/mercadopago", mercadopagoRouter);
 router.use("/review",reviewRouter)
 
-
-// Tono comment: this route may be modularized
 router.use("/api", async (req, res) => {
   const allFoods = await Food.findAll();
   if (!allFoods.length) {
