@@ -28,9 +28,9 @@ const postItemHandler = async (req, res) => {
 const deleteItemHandler = async (req, res) => {
   try {
     // const { itemId } = req.params;
-    const { userEmail, FoodId } = req.body;
-    console.log("deleteItemHandler", userEmail, FoodId);
-    await deleteItemController(userEmail, FoodId);
+    const {id} = req.params;
+    await deleteItemController(id);
+    res.status(200).send("Se eliminó con éxito");
   } catch (error) {
     res.status(400).send({ error: error.message });
   }

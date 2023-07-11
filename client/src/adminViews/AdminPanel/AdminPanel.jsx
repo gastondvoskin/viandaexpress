@@ -8,13 +8,14 @@ import Products from '../../adminComponents/Products/Products';
 import Dashboard from '../../adminComponents/DashBoard/DashBoard';
 import { useDispatch,useSelector } from 'react-redux';
 import axios from 'axios';
+import Orders from '../../adminComponents/Orders/Orders';
 
 
 
 
 const AdminPanel = () => {
 
-  const [selectedOption, setSelectedOption] = useState('dashboard');
+  const sidebarOption = useSelector((state) => state.adminReducer.sidebarOption )
   const allFoods = useSelector((state) => state.foodsReducer.adminFoods);
   const dispatch = useDispatch()
   useEffect(() => {
@@ -26,7 +27,7 @@ const AdminPanel = () => {
   }, [dispatch]);
 
   const renderSelectedOption = () => {
-    switch (selectedOption) {
+    switch (sidebarOption) {
         case 'dashboard':
             return <Dashboard />;
         case 'products':
@@ -36,6 +37,8 @@ const AdminPanel = () => {
             return <Users/>
         case 'reviews':
             return <Reviews/>
+        case 'orders':
+            return <Orders/>
       // Agrega aquí los casos para los otros componentes del panel de administración
       default:
         return null;
@@ -44,7 +47,7 @@ const AdminPanel = () => {
 
   return (
     <div className={style.adminPanel}>
-      <Sidebar selectedOption ={selectedOption} onSelectOption={setSelectedOption} />
+      <Sidebar/>
       <div className={style.adminContent}>
         {renderSelectedOption()}
       </div>

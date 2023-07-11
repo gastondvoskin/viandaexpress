@@ -1,12 +1,9 @@
 1. DEPLOY
-A. Front-end deploy (production - updated automatically when merging to main branch):
-viandaexpress.vercel.app
-B. Back-end deploy (production - updated automatically when merging to main branch): 
-https://pfecommerce11b-production-177a.up.railway.app/
-C. Front-end deploy (deployingPreviewBranch environment - updated automatically when pushing to deployingPreviewBranch):
-https://viandaexpress-git-deployingpreviewbranch-gastondvoskin.vercel.app
-D. Back-end deploy (deployingPreviewBranch environment - updated automatically when pushing to deployingPreviewBranch):
-viandaexpress-railway-previewbranchexperiment.up.railway.app
+A. Front-end deploy main: https://viandaexpress.vercel.app
+B. Back-end deploy main: https://viandaexpress-api-main.up.railway.app
+C. Front-end deploy develop: https://viandaexpress-git-develop-gastondvoskin.vercel.app
+D. Back-end deploy develop: https://viandaexpress-api-develop.up.railway.app
+Note: To view the changes applyed in api.js, it is required to restart the server (locally or in Railway). 
 
 
 2. Organization. 
