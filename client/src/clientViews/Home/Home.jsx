@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Home.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,6 +5,7 @@ import { getFoods } from "../../redux/foodActions.js";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import Card from "../../clientComponents/Card/Card";
+import CardsContainer from "../../clientComponents/CardsContainer/CardsContainer";
 import { hardcodedFoodsWithDiscounts } from "../../../hardcodedFoodsWithDiscounts";
 import CarouselContainer from "../../clientComponents/CarouselContainer/CarouselContainer.jsx";
 import { Link } from "react-router-dom";
@@ -23,11 +23,9 @@ const Home = () => {
     (food) => food.total_score > 4
   );
 
-  // const foodsScoresToDebug = allFoods.map(food => food.total_score);
-  // console.log('foodsScoresToDebug: ', foodsScoresToDebug);
+  console.log(allFoods);
+  const harcodedFavoritesByEmail = allFoods.slice(0, 3); // reemplazar por peticion al back
 
-  // console.log('allFoods: ', allFoods)
-  // console.log('foodsWithDiscounts: ', foodsWithDiscounts);
   const { isLoading, user, isAuthenticated } = useAuth0();
 
   useEffect(() => {
@@ -39,10 +37,11 @@ const Home = () => {
       axios
         .post("/user", body)
         .then(async () => {
-          const userOrder = await axios.post("/order", body)
-            .then((r)=> r.data)
-          console.log('userOrder:',userOrder)
-          dispatch(setUserOrderCase(userOrder))
+          const userOrder = await axios
+            .post("/order", body)
+            .then((r) => r.data);
+          console.log("userOrder:", userOrder);
+          dispatch(setUserOrderCase(userOrder));
         })
         .then(() => {
           console.log("Usuario y Order enviados a DB");
@@ -67,56 +66,27 @@ const Home = () => {
 
       <section>
         <Link to="viandas">
-          <button className={styles.viewAllButton}>VER TODAS LAS VIANDAS</button>
+          <button className={styles.viewAllButton}>
+            VER TODAS LAS VIANDAS
+          </button>
         </Link>
       </section>
 
       <section className={styles.sectionContainer}>
         <h1>Ofertas de la semana</h1>
-        <div className={styles.cardsContainer}>
-          {foodsWithDiscounts &&
-            foodsWithDiscounts.map(
-              ({ id, name, image, final_price, category, diets }) => {
-                return (
-                  <Card
-                    id={id}
-                    name={name}
-                    image={image}
-                    final_price={final_price}
-                    category={category}
-                    diets={diets}
-                    allItems={allItems}
-                  />
-                );
-              }
-            )}
-        </div>
-        <br />
-        <br />
+        <CardsContainer currentFoods={foodsWithDiscounts} allItems={allItems}/>
       </section>
 
       <section className={styles.sectionContainer}>
         <h1>Mejor rankeados</h1>
-        <div className={styles.cardsContainer}>
-          {foodsWithScoreHigherThan4 && foodsWithScoreHigherThan4.map(
-          /* {hardcodedFoodsWithDiscounts && hardcodedFoodsWithDiscounts.map( */
-              ({ id, name, image, final_price, category, diets }) => {
-                return (
-                  <Card
-                    id={id}
-                    name={name}
-                    image={image}
-                    final_price={final_price}
-                    category={category}
-                    diets={diets}
-                    allItems={allItems}
-                  />
-                );
-              }
-            )}
-        </div>
-        <br />
+        <CardsContainer currentFoods={foodsWithScoreHigherThan4} allItems={allItems}/>
       </section>
+
+      <section className={styles.sectionContainer}>
+        <h1>Mis favoritos (HARDCODEADOS)</h1>
+        <CardsContainer currentFoods={harcodedFavoritesByEmail} allItems={allItems}/>
+      </section>
+
     </div>
   );
 };

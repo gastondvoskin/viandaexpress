@@ -31,7 +31,8 @@ Propuesta PF (nombre, descripción, requisitos, ideas extras, user stories):
 https://docs.google.com/document/d/1n4GClqN3Mcf8XwbRy6MugGFm-tt6rr3KSSwn23VAQHw/edit?pli=1
 
 
-5. Back-end endpoints:
+5. Map. 
+A. Back-end endpoints:
 /api --- se carga db mediante bulkCreate con archivo api.js
 
 /food GET --- retorna todas las comidas
@@ -64,6 +65,14 @@ https://docs.google.com/document/d/1n4GClqN3Mcf8XwbRy6MugGFm-tt6rr3KSSwn23VAQHw/
 /favorite POST
 /favorite DELETE/:favoriteid
 
+B. Front-end views. 
+(completar...)
+Home
+Detail
+Viandas
+Admin
+Pagar
+Usuario
 
 
 6. GitHubs: 
