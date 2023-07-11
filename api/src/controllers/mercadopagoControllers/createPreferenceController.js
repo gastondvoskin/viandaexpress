@@ -9,9 +9,9 @@ mercadopago.configure({
     "TEST-5452904587884616-070811-5c5f10c51ac99fe1580a358884ccd136-1412025676",
 });
 
-const createPreferenceController = (userEmail, itemsBody) => {
+const createPreferenceController = (pendingOrderId, itemsBody) => {
   let preference = {
-    metadata: { orderId: "123" },
+    metadata: { relatedOrderId: pendingOrderId },
     items: itemsBody,
 
     back_urls: {
