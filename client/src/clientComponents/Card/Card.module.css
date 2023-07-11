@@ -12,6 +12,10 @@
   text-decoration: none;
 }
 
+.NavLink {
+  text-decoration: none;
+}
+
 .movlef{
   margin-left: 11px;
 }
@@ -47,6 +51,16 @@
   color: #426b1f;
   margin-left: 15px;
   margin-bottom: 17px;
+}
+
+.categoryIcon {
+  width:25px;
+  height:25px;
+}
+
+.dietsIcon {
+  width:25px;
+  height:25px;
 }
 
 .shopping{

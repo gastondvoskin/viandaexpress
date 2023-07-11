@@ -19,8 +19,7 @@ function App() {
 
   return (
     <div className="app">
-      {/* {!location.pathname.includes('/admin') && <Nav /> } */}
-      <Nav />
+      {!location.pathname.includes('/admin') && <Nav /> }
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/viandas" element={<Viandas />} />
