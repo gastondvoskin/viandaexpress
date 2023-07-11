@@ -32,10 +32,38 @@ https://docs.google.com/document/d/1n4GClqN3Mcf8XwbRy6MugGFm-tt6rr3KSSwn23VAQHw/
 
 
 5. Back-end endpoints:
-Complete......  
-GET /api
-GET /food 
-GET /diets
+/api --- se carga db mediante bulkCreate con archivo api.js
+
+/food GET --- retorna todas las comidas
+/food/admin GET
+/food POST
+/food/:id PUT 
+/food/:id DELETE 
+
+/user GET
+/user POST
+/user/:email PUT
+
+/item POST 
+/item PUT 
+/item DELETE 
+
+/order GET
+/order/order GET
+/order POST
+/order PUT
+
+/mercadopago/create-preference/:userEmail POST
+/mercadopago/payment-data POST
+
+/review GET
+/review POST
+/review PUT
+
+/favorite GET/:useremail
+/favorite POST
+/favorite DELETE/:favoriteid
+
 
 
 6. GitHubs: 
