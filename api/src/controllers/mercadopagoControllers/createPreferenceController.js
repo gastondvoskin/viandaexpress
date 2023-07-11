@@ -14,10 +14,18 @@ const createPreferenceController = (pendingOrderId, itemsBody) => {
     metadata: { relatedOrderId: pendingOrderId },
     items: itemsBody,
 
+    // back_urls: {
+    //   success: "http://localhost:5173/payment",
+    //   failure: "http://localhost:5173/payment",
+    //   pending: "http://localhost:5173/payment",
+    // },
     back_urls: {
-      success: "http://localhost:5173/payment",
-      failure: "http://localhost:5173/payment",
-      pending: "http://localhost:5173/payment",
+      success:
+        "https://viandaexpress-git-develop-gastondvoskin.vercel.app/payment",
+      failure:
+        "https://viandaexpress-git-develop-gastondvoskin.vercel.app/payment",
+      pending:
+        "https://viandaexpress-git-develop-gastondvoskin.vercel.app/payment",
     },
     auto_return: "approved",
   };
