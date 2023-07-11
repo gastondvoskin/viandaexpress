@@ -13,7 +13,8 @@ import axios from "axios";
 
 // REPLACE WITH YOUR PUBLIC KEY AVAILABLE IN: https://developers.mercadopago.com/panel
 // initMercadoPago("APP_USR-8e95f5fd-f2e0-4982-8ac8-27b1f1b175bb");
-initMercadoPago("TEST-6062b4aa-0752-422b-b693-2282b2ede839");
+// initMercadoPago("TEST-6062b4aa-0752-422b-b693-2282b2ede839");
+initMercadoPago("TEST-9b320738-7137-42a2-a2c5-d6956bc6ba9d");
 
 const ShoppingCar = () => {
   const { user } = useAuth0();

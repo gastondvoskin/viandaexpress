@@ -1,12 +1,12 @@
 const { Router } = require("express");
 const {
   createPreferenceHandler,
-  getInfo,
+  paymentDataHandler,
 } = require("../handlers/shoppingCartHandlers");
 
 const mercadopagoRouter = Router();
 
 mercadopagoRouter.post("/", createPreferenceHandler);
-mercadopagoRouter.get("/feedback", getInfo);
+mercadopagoRouter.post("/payment-data", paymentDataHandler);
 
 module.exports = { mercadopagoRouter };
