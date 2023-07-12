@@ -112,6 +112,17 @@ export const foodsSlice = createSlice({
     deleteItems: (state, action)=>{
       const deleteId = action.payload;
       state.orderItems = state.orderItems.filter((it)=>it.id!==deleteId);
+    },
+    putItems: (state,action)=>{
+      const putId=action.payload.id;
+      const putQuantity=action.payload.quantity;
+      const putAmount=action.payload.amount;
+      state.orderItems=state.orderItems.map(it=>{
+        if(it.id===putId){
+          it.quantity= putQuantity;
+          it.amount=putAmount;
+        }
+      })
     }
   },
 });
@@ -131,7 +142,8 @@ export const {
   editFoods,
   deleteFoods,
   addItems,
-  deleteItems
+  deleteItems,
+  putItems,
 } = foodsSlice.actions;
 
 
