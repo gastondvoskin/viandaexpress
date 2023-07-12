@@ -3,14 +3,15 @@ import { ResponsivePie } from '@nivo/pie';
 
 const PieChart = () => {
     const data = [
-        { id: 'pizza', label: 'Pizza', value: 35 },
-        { id: 'hamburgers', label: 'Hamburgers', value: 45 },
-        { id: 'sushi', label: 'Sushi', value: 20 },
+        { id: 'Pasta de camarones y vino blanco', label: 'Pasta de camarones y vino blanco', value: 35 },
+        { id: 'Costillas de cerdo BBQ', label: 'HamCostillas de cerdo BBQ', value: 45 },
+        { id: 'Asado de tira al chimichurri', label: 'Asado de tira al chimichurri', value: 20 },
       ];
 
     return (
         
             <div style={{ height: '400px',backgroundColor:'green' }}>
+                <h2>PRODUCTOS MAS VENDIDOS</h2>
                 <ResponsivePie
                     data={data}
                     margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
