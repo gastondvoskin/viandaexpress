@@ -37,7 +37,7 @@ const paymentDataHandler = async (req, res) => {
     const paymentId = req.query["data.id"];
     const paymentData = await paymentDataController(paymentId);
 
-    res.status(200);
+    res.status(200).send("hola");
   } catch (error) {
     console.log(error);
     res.status(400).send(error);
