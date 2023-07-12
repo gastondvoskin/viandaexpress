@@ -159,22 +159,12 @@ export const addItemsActions = (id, name, image,  final_price, quantity,amount) 
     }
   };
 
-export const deleteItemActions = (id) => (dispatch) => {
+export const deleteItemActions = ({FoodId,id}) =>async (dispatch) => {
   try {
-    console.log("deleteItems", id);
-    dispatch(deleteItems(id));
+    await axios.delete(`/item/${id}`);
+    // console.log("deleteItems", FoodId);
+    dispatch(deleteItems(FoodId));
   } catch (error) {
     console.log(error);
   }
 };
-
-// Do not delete. Uncomment and test when the endpoint `/food/${id}` is created
-// export const getFood = (id) => async (dispatch) => {
-//     try {
-//         const response = await axios.get(`/food/${id}`);
-//         const foodById = response.data;
-//         dispatch(getFoodById(foodById));
-//     } catch (error) {
-//         console.log(error);
-//     }
-// };

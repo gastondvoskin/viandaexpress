@@ -19,16 +19,20 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    merchant_order_id: {
+    payment_status_detail: {
       type: DataTypes.STRING,
       allowNull: true,
     },
     payment_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
     pickup_date: {
       type: DataTypes.DATE,
+      allowNull: true,
+    },
+    order_status: {
+      type: DataTypes.STRING,
       allowNull: true,
     },
   });

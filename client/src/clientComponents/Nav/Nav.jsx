@@ -7,19 +7,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-
+import { faCartShopping, faUser, faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 
 function Nav() {
   const [displayProfileOptions, setDisplayProfileOptions] = useState(false);
   const { user, isAuthenticated } = useAuth0();
-  console.log("displayProfileOptions: ", displayProfileOptions);
-  console.log("isAuthenticated: ", isAuthenticated);
-  console.log('user', user)
 
   // Estado para visualización móvil
   const [isMobil, setIsMovil] = useState(false);

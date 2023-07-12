@@ -1,15 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const ListOrders = ({id, UserId, total_price, createdAt, status}) => {
+
+const ListOrders = ({id, User_name, total_price, createdAt, status}) => {
+    console.log('id detalle', id);
     return(
         <tr>
             <td>{id}</td>
-            <td>{UserId}</td>
+            <td>{User_name}</td>
             <td>{total_price}</td>
             <td>{createdAt}</td>
             <td>{status}</td>
             <td>
-                <button>Ver Detalle</button>
+                <Link to={`/order/detail/${id}`}>
+                    <button>Ver Detalle</button>
+                </Link>
             </td>
         </tr>  
     )

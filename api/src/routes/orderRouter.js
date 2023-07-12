@@ -1,10 +1,11 @@
 const { Router } = require("express");
-const { getOrdersHandler, postOrderHandler, putOrderHandler, getOrderByUserIdHandler,getBestSellersHandler } = require("../handlers/orderHandlers");
+const { getOrdersHandler, postOrderHandler, putOrderHandler, getUserOrdersHandler,getOrderDetailHandler,getBestSellersHandler} = require("../handlers/orderHandlers");
 const orderRouter = Router();
 
 
 orderRouter.get("/", getOrdersHandler )
-orderRouter.get("/order",getOrderByUserIdHandler)
+orderRouter.get("/user",getUserOrdersHandler)
+orderRouter.get("/detail/:orderId",getOrderDetailHandler)
 orderRouter.post("/", postOrderHandler )
 orderRouter.put("/", putOrderHandler )
 orderRouter.get("/bestSellers", getBestSellersHandler)

@@ -8,26 +8,41 @@ const {
   putOrderController,
 } = require("../controllers/orderControllers/putOrderController");
 const {
-  getOrderByUserIdController,
-} = require("../controllers/orderControllers/getOrderByUserIdController");
-const { getBestSellersController } = require("../controllers/orderControllers/getBestSellersController");
+   getUserOrdersController,
+} = require("../controllers/orderControllers/getUserOrdersController");
+const {
+   getOrderDetailController,
+} = require("../controllers/orderControllers/getOrderDetailController");
 
-//Esta ruta trae todas las ordenes cerradas (sirve para el admin)
+
+//Esta ruta trae todas las ordenes cerradas (sirve para el admin, se deebria modificar proximamente para traer los pedidos ya finalizados )
 const getOrdersHandler = async (req, res) => {
   try {
     const allOrders = await getOrdersController();
-    res.status(200).send(orders);
+    res.status(200).send(allOrders);
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+};
+// esta ruta trae el detalle de una order en especifico
+const getOrderDetailHandler = async (req, res) => {
+  try {
+    const {orderId} = req.params
+    const detail = await getOrderDetailController(orderId);
+    console.log(detail);
+    res.status(200).send(detail);
   } catch (error) {
     res.status(400).send({ error: error.message });
   }
 };
 
-//esta ruta trae la orden abierta de un usuario
-const getOrderByUserIdHandler = async (req, res) => {
+//esta ruta trae el historial de orders de un usuario(sirve para el cliente,falta agregar condicion para que solo traiga las orders concretadas)
+const getUserOrdersHandler = async (req, res) => {
   try {
-    // const { userId } = req.params
     const { userId } = req.body;
-    const openOrder = await getOrderByUserIdController(userId);
+    console.log(`El id es:${userId}`)
+    // const { userId } = req.params
+    const openOrder = await getUserOrdersController(userId);
     res.status(200).send(openOrder);
   } catch (error) {
     res.status(400).send({ error: error.message });
@@ -46,15 +61,9 @@ const postOrderHandler = async (req, res) => {
 
 const putOrderHandler = async (req, res) => {
   try {
-    const { userEmail, payment_id, status, merchant_order_id, payment_date, } = req.body;
-    const parsedDate = new Date(payment_date);
-    await putOrderController(
-      userEmail,
-      payment_id,
-      status,
-      merchant_order_id,
-      parsedDate
-    );
+    const { orderId, order_status } = req.body;
+
+    await putOrderController({orderId, order_status});
     res.status(200).send("Orden modificada correctamente.");
   } catch (error) {
     res.status(400).send({ error: error.message });
@@ -75,6 +84,8 @@ module.exports = {
   getOrdersHandler,
   postOrderHandler,
   putOrderHandler,
-  getOrderByUserIdHandler,
   getBestSellersHandler
+  getUserOrdersHandler,
+  getOrderDetailHandler,
+
 };

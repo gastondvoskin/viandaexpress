@@ -25,21 +25,6 @@ const Viandas = () => {
   const allItems = useSelector((state) => state.foodsReducer.orderItems);
 
   useEffect(() => {
-    let body = {};
-    if (isAuthenticated) {
-      body = {
-        name: user?.name,
-        email: user?.email,
-      };
-    } else {
-      body = {
-        type: "guest",
-      };
-    }
-    axios.post("/user", body).catch((error) => console.log(error));
-  }, [isAuthenticated, user]);
-
-  useEffect(() => {
     if (!allFoods.length) {
       axios.get("/api").then(() => dispatch(getFoods()));
     } else {
