@@ -13,6 +13,7 @@ const {
 const {
   getOrderDetailController,
 } = require("../controllers/orderControllers/getOrderDetailController");
+const { getBestSellersController } = require("../controllers/orderControllers/getBestSellersController");
 
 
 //Esta ruta trae todas las ordenes cerradas (sirve para el admin, se deebria modificar proximamente para traer los pedidos ya finalizados )
