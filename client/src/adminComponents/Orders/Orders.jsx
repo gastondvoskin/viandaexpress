@@ -5,14 +5,14 @@ import ListOrders from "../ListOrders/ListOrders.jsx";
 
 const Orders = () => {
     const dispatch = useDispatch();
-    const allOrders = useSelector((state)=>state.adminReducer.allOrders);
-    const [localOrders, setLocalOrders] = useState(allOrders);
 
+    const allOrders = useSelector((state)=>state.adminReducer.allOrders);
+    
     useEffect(()=>{
         dispatch(getAllOrdersAction())
     },[dispatch])
     
-    console.log("vengo desde orders",allOrders);
+    console.log("Local orders",allOrders);
     return(
         <div>
             <h1>Nuestras Ordenes</h1>
@@ -27,12 +27,11 @@ const Orders = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {allOrders.length > 0 &&
-                    allOrders.map(o => (
+                    {allOrders.map(o => (
                         <ListOrders
                             key = {o?.id}
                             id = {o?.id}
-                            UserId = {o?.UserId}
+                            User_name = {o?.User.name}
                             total_price = {o?.total_price}
                             createdAt = {o?.createdAt}
                             status = {o?.status}

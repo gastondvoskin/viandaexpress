@@ -14,7 +14,7 @@ const FilterDietsOptions = () => {
     const handlerDietFilter = (diet) =>{
         let results;
         
-        if (category !== ''){
+        if (category !== 'Todas'){
             switch (diet) {
                 case 'Vegano':
                     results = allFoods.filter(e => e.diets.includes('Vegano') && e.category === category )
@@ -54,7 +54,6 @@ const FilterDietsOptions = () => {
      }
 
     const handlerSelect = (e) =>{
-        console.log('hola')
         const {value} = e.target;
         const filters = handlerDietFilter(value);
         dispatch(filterByDietAction(filters))
@@ -63,10 +62,6 @@ const FilterDietsOptions = () => {
         dispatch(setOrderAction(''))
         dispatch(activeFilteredFoodsAction(true))
     }
-    // "Sin TACC",
-    // "Vegetariano",
-    // "Vegano",
-    // "Sin Lactosa",
     return (
         <div>
             <select 
