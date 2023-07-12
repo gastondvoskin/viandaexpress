@@ -8,10 +8,10 @@ const {
   putOrderController,
 } = require("../controllers/orderControllers/putOrderController");
 const {
-   getUserOrdersController,
+  getUserOrdersController,
 } = require("../controllers/orderControllers/getUserOrdersController");
 const {
-   getOrderDetailController,
+  getOrderDetailController,
 } = require("../controllers/orderControllers/getOrderDetailController");
 
 
@@ -27,7 +27,7 @@ const getOrdersHandler = async (req, res) => {
 // esta ruta trae el detalle de una order en especifico
 const getOrderDetailHandler = async (req, res) => {
   try {
-    const {orderId} = req.params
+    const { orderId } = req.params
     const detail = await getOrderDetailController(orderId);
     console.log(detail);
     res.status(200).send(detail);
@@ -63,7 +63,7 @@ const putOrderHandler = async (req, res) => {
   try {
     const { orderId, order_status } = req.body;
 
-    await putOrderController({orderId, order_status});
+    await putOrderController({ orderId, order_status });
     res.status(200).send("Orden modificada correctamente.");
   } catch (error) {
     res.status(400).send({ error: error.message });
@@ -71,7 +71,7 @@ const putOrderHandler = async (req, res) => {
 };
 
 
-const getBestSellersHandler = async (req,res) => {
+const getBestSellersHandler = async (req, res) => {
   try {
     const bestSellers = await getBestSellersController()
     res.status(200).send(bestSellers);
@@ -84,7 +84,7 @@ module.exports = {
   getOrdersHandler,
   postOrderHandler,
   putOrderHandler,
-  getBestSellersHandler
+  getBestSellersHandler,
   getUserOrdersHandler,
   getOrderDetailHandler,
 
