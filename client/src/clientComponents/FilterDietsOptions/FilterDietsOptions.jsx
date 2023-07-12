@@ -14,7 +14,7 @@ const FilterDietsOptions = () => {
     const handlerDietFilter = (diet) =>{
         let results;
         
-        if (category !== ''){
+        if (category !== 'Todas'){
             switch (diet) {
                 case 'Vegano':
                     results = allFoods.filter(e => e.diets.includes('Vegano') && e.category === category )

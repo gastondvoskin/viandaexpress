@@ -15,7 +15,7 @@ const initialState = {
   orderItems: [],
   activeFilteredFoods: false,
   orderBy: "",
-  foodsCategory: "",
+  foodsCategory: "todas",
   foodsDiet: "",
   currentPage: 1,
   diets: [
