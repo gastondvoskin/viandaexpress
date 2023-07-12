@@ -39,13 +39,12 @@ const deleteItemHandler = async (req, res) => {
 const putItemHandler = async (req, res) => {
   try {
     // const { itemId } = req.params;
-    const { userEmail, FoodId, quantity, final_price } = req.body;
-    console.log("putItemHandler", userEmail, FoodId, quantity, final_price);
+    const { id, quantity, amount } = req.body;
+    console.log("putItemHandler", id, quantity, amount);
     const response = await putItemController(
-      userEmail,
-      FoodId,
+      id,
       quantity,
-      final_price
+      amount,
     );
     res.status(200).send(response);
   } catch (error) {
