@@ -1,12 +1,9 @@
 1. DEPLOY
-A. Front-end deploy (production - updated automatically when merging to main branch):
-viandaexpress.vercel.app
-B. Back-end deploy (production - updated automatically when merging to main branch): 
-https://pfecommerce11b-production-177a.up.railway.app/
-C. Front-end deploy (deployingPreviewBranch environment - updated automatically when pushing to deployingPreviewBranch):
-https://viandaexpress-git-deployingpreviewbranch-gastondvoskin.vercel.app
-D. Back-end deploy (deployingPreviewBranch environment - updated automatically when pushing to deployingPreviewBranch):
-viandaexpress-railway-previewbranchexperiment.up.railway.app
+A. Front-end deploy main: https://viandaexpress.vercel.app
+B. Back-end deploy main: https://viandaexpress-api-main.up.railway.app
+C. Front-end deploy develop: https://viandaexpress-git-develop-gastondvoskin.vercel.app
+D. Back-end deploy develop: https://viandaexpress-api-develop.up.railway.app
+Note: To view the changes applyed in api.js, it is required to restart the server (locally or in Railway). 
 
 
 2. Organization. 
@@ -34,11 +31,48 @@ Propuesta PF (nombre, descripción, requisitos, ideas extras, user stories):
 https://docs.google.com/document/d/1n4GClqN3Mcf8XwbRy6MugGFm-tt6rr3KSSwn23VAQHw/edit?pli=1
 
 
-5. Back-end endpoints:
-Complete......  
-GET /api
-GET /food 
-GET /diets
+5. Map. 
+A. Back-end endpoints:
+/api --- se carga db mediante bulkCreate con archivo api.js
+
+/food GET --- retorna todas las comidas
+/food/admin GET
+/food POST
+/food/:id PUT 
+/food/:id DELETE 
+
+/user GET
+/user POST
+/user/:email PUT
+
+/item POST 
+/item PUT 
+/item DELETE 
+
+/order GET
+/order/order GET
+/order POST
+/order PUT
+
+/mercadopago/create-preference/:userEmail POST
+/mercadopago/payment-data POST
+
+/review GET
+/review POST
+/review PUT
+
+/favorite GET/:useremail
+/favorite POST
+/favorite DELETE/:favoriteid
+
+B. Front-end views. 
+(completar...)
+Home
+Detail
+Viandas
+Admin
+Pagar
+Usuario
 
 
 6. GitHubs: 

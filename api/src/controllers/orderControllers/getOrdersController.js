@@ -1,9 +1,18 @@
 const { Order } = require("../../db");
+const { User } = require("../../db");
 
+const getOrdersController = async () => {
+  const allOrders = await Order.findAll({
+    attributes: ['total_price', 'createdAt', 'status', 'UserId', 'id','payment_status_detail'],
+    include: [
+      {
+        model: User,
+        attributes: ['name']
+      }
+    ]
+  });
 
-const getOrdersController = async (id) => {
-    const orderById = await Order.findByPk(id);
-    return orderById;
+  return allOrders;
 };
 
-module.exports = { getOrdersController }
+module.exports = { getOrdersController };

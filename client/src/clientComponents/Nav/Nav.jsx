@@ -7,16 +7,15 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faUser, faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 
 function Nav() {
   const [displayProfileOptions, setDisplayProfileOptions] = useState(false);
   const { user, isAuthenticated } = useAuth0();
-  console.log("displayProfileOptions: ", displayProfileOptions);
-  console.log("isAuthenticated: ", isAuthenticated);
-  console.log('user', user)
+
+  // Estado para visualización móvil
+  const [isMobil, setIsMovil] = useState(false);
 
   return (
     <nav className={styles.mainContainer}>
@@ -25,24 +24,28 @@ function Nav() {
       </Link>
 
       <div className={styles.rightContainer}>
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            isActive ? styles.activeLink : styles.normalLink
-          }
-        >
-          HOME
-        </NavLink>
-
-        <NavLink
-          to="/viandas"
-          className={({ isActive }) =>
-            isActive ? styles.activeLink : styles.normalLink
-          }
-        >
-          VIANDAS
-        </NavLink>
-
+        <ul className={isMobil? styles.navmenumobil : styles.navul} onClick={()=>setIsMovil(false)}>
+          <li className={styles.navli}>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? styles.activeLink : styles.normalLink
+              }
+            >
+              HOME
+            </NavLink>
+          </li>
+          <li className={styles.navli}>
+            <NavLink
+              to="/viandas"
+              className={({ isActive }) =>
+                isActive ? styles.activeLink : styles.normalLink
+              }
+            >
+              VIANDAS
+            </NavLink>
+          </li>
+        <li className={styles.navli}>
         <NavLink
           to="/admin"
           className={({ isActive }) =>
@@ -51,7 +54,8 @@ function Nav() {
         >
           ADMIN
         </NavLink>
-
+        </li>
+        <li className={styles.navli}>
         <NavLink
           to="/shoppingcart"
           className={({ isActive }) =>
@@ -60,7 +64,8 @@ function Nav() {
         >
           <FontAwesomeIcon icon={faCartShopping} /> PAGAR 
         </NavLink>
-
+        </li>
+        <li className={styles.navli}>
       <div
           className={styles.userContainer}
           onMouseEnter={() => setDisplayProfileOptions(true)}
@@ -71,8 +76,21 @@ function Nav() {
             <LogoutButton />
             <NavLink className={styles.option} to="/myprofile">MI CUENTA</NavLink>
           </div> }
-          {displayProfileOptions && !isAuthenticated && <div><LoginButton /></div>}
+          <ul className={styles.userul}>
+            <li className={styles.userli}>
+                {displayProfileOptions && !isAuthenticated && <div><LoginButton /></div>}
+            </li>
+          </ul>
         </div>
+        </li>
+        </ul>
+        <button className={styles.menumobil} onClick={()=>setIsMovil(!isMobil)}>
+          {
+            isMobil? (<FontAwesomeIcon icon={faXmark} />) 
+            :
+            (<FontAwesomeIcon icon={faBars} />)
+          }
+        </button>
       </div>
 
     </nav>
