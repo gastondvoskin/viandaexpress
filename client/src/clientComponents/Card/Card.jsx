@@ -6,6 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLeaf, faPlantWilt, faMillSign, faBreadSlice, faBowlFood, faPizzaSlice } from "@fortawesome/free-solid-svg-icons";
+import { setUserOrderCase } from "../../redux/shopingCartSlice";
 
 import meat from "../../assets/categories/meat.png";
 import pastas from "../../assets/categories/pastas.png";
@@ -52,6 +55,7 @@ export default function Card({
   });
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     allItems.map((item) => {
       if (item.name == name) {
@@ -92,6 +96,27 @@ export default function Card({
         axios.post("/item", bodyAddItem).catch((error) => console.log(error));
       }
     }
+    useEffect(() => {
+      if (isAuthenticated) {
+        const body = {
+          name: user?.name,
+          email: user?.email,
+        };
+        axios
+          .post("/user", body)
+          .then(async () => {
+            const userOrder = await axios
+              .post("/order", body)
+              .then((r) => r.data);
+            console.log("userOrder:", userOrder);
+            dispatch(setUserOrderCase(userOrder));
+          })
+          .then(() => {
+            console.log("Usuario y Order enviados a DB");
+          })
+          .catch((error) => console.log(error));
+      }
+    }, [isAuthenticated, user]);
   };
 
   const updateQuantity = (e) => {
