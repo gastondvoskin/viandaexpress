@@ -17,9 +17,9 @@ const getBestSellersController = async () => {
       const { FoodId, total_vendidos } = producto;
       const food = await Food.findOne({ where: { id: FoodId }, attributes: ['name'] });
       return {
-        FoodId,
-        total_vendidos,
-        name: food ? food.name : 'No disponible', // Agregamos el nombre o un mensaje de "No disponible"
+        label :FoodId,
+        value: total_vendidos,
+        id: food ? food.name : 'No disponible', // Agregamos el nombre o un mensaje de "No disponible"
       };
     })
   );

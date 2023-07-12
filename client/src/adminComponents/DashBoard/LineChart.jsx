@@ -16,6 +16,7 @@ const data = [
   const MyLineChart = () => {
     return (
       <div style={{ height: '400px' }}>
+        <h2>Mis ventas</h2>
         <ResponsiveLine
           data={data}
           margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
