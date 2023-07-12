@@ -8,10 +8,10 @@ const getBestSellersController = async () => {
     ],
     include: [],
     group: ['FoodId'],
-    raw: true, // Agregamos esta opción para obtener resultados en formato JSON plano
+    raw: true, 
   });
 
-  // Mapeamos los resultados para agregar el nombre de la Food
+
   const productosVendidosConNombre = await Promise.all(
     productosVendidos.map(async (producto) => {
       const { FoodId, total_vendidos } = producto;
@@ -19,7 +19,7 @@ const getBestSellersController = async () => {
       return {
         label :FoodId,
         value: total_vendidos,
-        id: food ? food.name : 'No disponible', // Agregamos el nombre o un mensaje de "No disponible"
+        id: food ? food.name : 'No disponible', 
       };
     })
   );
