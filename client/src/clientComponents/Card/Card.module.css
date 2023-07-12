@@ -1,67 +1,77 @@
 .card {
-  width: 269px;
-  height: 366px;
+  width: 250px;
+  height: 340px;
   border-radius: 24px;
-  border: 2px solid #e6e6e6;
-  background: #fafaf5;
+  background: white;
   box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.25);
-  padding: 10px 0px ;
   display: flex;
   flex-direction: column;
-  margin: 10px 20px 15px 0;
-  text-decoration: none;
+  text-align: center;
+  margin: 15px;
 }
 
 .NavLink {
   text-decoration: none;
 }
 
-.movlef{
-  margin-left: 11px;
-}
-
-.card:hover {
-  box-shadow: 0 0 25px var(--accentColor);
+.imageAndLikeContainer {
+  position: relative;
+  display: inline-block;
 }
 
 .card_img {
-  width: 245px;
+  width: 230px;
+  margin-top: 10px;
   border-radius: 24px;
-  height: 186px;
-  margin-left: 10px;
+  height: 140px;
+}
+
+.card_img:hover {
+  box-shadow: 0 0 25px var(--accentColor);
+}
+
+.likeButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: fit-content;
+  height: fit-content;
+  background-color: var(--accentColor);
+  color: white;
+  border-radius: 100%;
+}
+
+.likeButton:hover {
+  background-color: var(--accentColor2);
+  transition: 0.5s;
 }
 
 .card h2 {
-  text-align: start;
-  text-decoration: none;
   font-size: 15px;
-  padding: 10px;
   font-weight: bold;
-  color: #000;
-  height: 60px;
-  margin-top: 20px;
-  
+  color: black;
+  height: 40px;
+  margin: 15px;
+}
+
+.categoryAndDiets {
+  display: flex;
+  margin: 20px;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.categoryIcon, .dietsIcon {
+  width:25px;
+  height:25px;
 }
 
 .card p {
-  text-align: start;
-  text-decoration: none;
-  font-size: 25px;
+  font-size: 19px;
   font-weight: bold;
   color: #426b1f;
-  margin-left: 15px;
-  margin-bottom: 17px;
 }
 
-.categoryIcon {
-  width:25px;
-  height:25px;
-}
-
-.dietsIcon {
-  width:25px;
-  height:25px;
-}
 
 .shopping{
   width: 29px;
@@ -90,7 +100,6 @@
   border-radius: 0px 0px 10px 0px;
   border: none;
   text-align: center;
-  text-decoration: none;
 }
 
 .inputagregar{
