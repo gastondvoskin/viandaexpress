@@ -14,6 +14,7 @@ const {
    getOrderDetailController,
 } = require("../controllers/orderControllers/getOrderDetailController");
 
+
 //Esta ruta trae todas las ordenes cerradas (sirve para el admin, se deebria modificar proximamente para traer los pedidos ya finalizados )
 const getOrdersHandler = async (req, res) => {
   try {
@@ -69,10 +70,22 @@ const putOrderHandler = async (req, res) => {
   }
 };
 
+
+const getBestSellersHandler = async (req,res) => {
+  try {
+    const bestSellers = await getBestSellersController()
+    res.status(200).send(bestSellers);
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+}
+
 module.exports = {
   getOrdersHandler,
   postOrderHandler,
   putOrderHandler,
+  getBestSellersHandler
   getUserOrdersHandler,
   getOrderDetailHandler,
+
 };
