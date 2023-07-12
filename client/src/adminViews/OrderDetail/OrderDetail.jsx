@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getOrderDetailAction } from '../../redux/adminSlice';
+import { cleanOrderDetailAction, getOrderDetailAction } from '../../redux/adminSlice';
+import styles from "./OrderDetail.module.css";
 const OrderDetail = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -9,15 +10,16 @@ const OrderDetail = () => {
 
     useEffect(()=>{
         dispatch(getOrderDetailAction(id))
+        return ()=>dispatch(cleanOrderDetailAction());
     },[dispatch])
 
     console.log("Id Orden", id);
     console.log("Order Detail", orderDetail);
 
     return(
-        <div>
-            <h1>{orderDetail?.User.name}</h1>
-        <table>
+        <div className={styles.orderdiv}>
+            <h3>{orderDetail?.User.name}</h3>
+        <table className={styles.destable}>
             <thead>
                 <tr>
                     <th>Id</th>
