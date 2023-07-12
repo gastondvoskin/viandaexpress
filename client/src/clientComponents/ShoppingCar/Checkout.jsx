@@ -76,7 +76,7 @@ const Checkout = ({ onClick }) => {
     if (preferenceId) setIsVisible(false);
   }, [preferenceId]);
 
-  userOrder.Items.forEach((item) => {
+  userOrder.Items?.forEach((item) => {
     total = total + item.amount;
   });
 
