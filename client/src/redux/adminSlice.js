@@ -5,6 +5,7 @@ export const adminSlice = createSlice({
     name: "orders",
     initialState: {
         allOrders: [],
+        bestSellers:[],
         orderDetail: null,
         sidebarOption:'dashboard'
     },
@@ -12,16 +13,25 @@ export const adminSlice = createSlice({
         getAllOrdersCase: (state, action) => {
             state.allOrders = action.payload
         },
+
+        getBestSellersCase:(state, action) => {
+            state.bestSellers = action.payload
+        },
         setSidebarOption:(state,action) =>{
             state.sidebarOption = action.payload
         },
         getOrderDetailCase: (state,action) =>{
             state.orderDetail = action.payload
+        },
+        cleanOrderDetailCase: (state) =>{
+            state.orderDetail = null
         }
+
     }
 })
 
-export const { getAllOrdersCase,setSidebarOption, getOrderDetailCase } = adminSlice.actions;
+export const { getAllOrdersCase,setSidebarOption, getOrderDetailCase, cleanOrderDetailCase, getBestSellersCase } = adminSlice.actions;
+
 export default adminSlice.reducer;
 
 export const getAllOrdersAction = () => async (dispatch) => {
@@ -35,6 +45,15 @@ export const getAllOrdersAction = () => async (dispatch) => {
         console.log(error);
     }
 }
+export const getBestSellersAction = () => async (dispatch) => {
+    try {
+        const bestSellers = await axios.get('/order/bestSellers')
+            .then(r => r.data)
+        dispatch(getBestSellersCase(bestSellers))
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 export const getOrderDetailAction = (id) => async (dispatch) => {
     try {
@@ -44,5 +63,10 @@ export const getOrderDetailAction = (id) => async (dispatch) => {
     } catch (error) {
         console.log(error);
     }
+}
+
+
+export const cleanOrderDetailAction = () => (dispatch) => {
+    dispatch(cleanOrderDetailCase())
 }
 

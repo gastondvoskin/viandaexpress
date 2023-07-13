@@ -9,15 +9,15 @@ module.exports = (sequelize) => {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
-      food_name: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      food_image: {
-        type: DataTypes.STRING,
-        allowNull: true,
-        isURL: false,
-      },
+      // food_name: {
+      //   type: DataTypes.STRING,
+      //   allowNull: true,
+      // },
+      // food_image: {
+      //   type: DataTypes.STRING,
+      //   allowNull: true,
+      //   isURL: false,
+      // },
       quantity: {
         type: DataTypes.INTEGER,
         allowNull: true,
@@ -30,10 +30,10 @@ module.exports = (sequelize) => {
         type: DataTypes.FLOAT,
         allowNull: true,
       },
-      amount: {
-        type: DataTypes.FLOAT,
-        allowNull: true,
-      }
+      // amount: {
+      //   type: DataTypes.FLOAT,
+      //   allowNull: true,
+      // }
     },
     { timestamps: false }
   );

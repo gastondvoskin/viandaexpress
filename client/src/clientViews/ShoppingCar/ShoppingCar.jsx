@@ -18,7 +18,7 @@ initMercadoPago("TEST-9b320738-7137-42a2-a2c5-d6956bc6ba9d");
 
 const ShoppingCar = () => {
   const { user } = useAuth0();
-  const allItems = useSelector((state) => state.foodsReducer.orderItems);
+  const allItems = useSelector((state) => state.shopingCartReducer.pendingOrder);
   let total = 0;
   const [preferenceId, setPreferenceId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);

@@ -4,8 +4,7 @@ import { getUserDetailAction } from "../../redux/userSlice";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import styles from "./MyProfile.module.css";
-import { Link } from "react-router-dom";
-import  UserOrder from  "../UserOrder/UserOrder";
+import Swal from 'sweetalert2';
 
 const MyProfile = () => {
   const dispatch = useDispatch();
@@ -57,13 +56,25 @@ const MyProfile = () => {
       console.log("formData ", formData);
       const response = await axios.put(`/user/${email}`, formData);
       console.log("2");
-
+  
       console.log(response);
-      window.alert("Perfil editado correctamente");
+      Swal.fire({
+        title: "¡Éxito!",
+        text: "Perfil editado correctamente",
+        icon: "success",
+        confirmButtonText: "Continuar"
+      });
+       
     } catch (error) {
-      alert({ error: error.message });
+      Swal.fire({ 
+        title: 'Error',
+        text: "Error de Sistema",
+        icon: 'error',
+        confirmButtonText: 'Cerrar'
+      });
     }
   };
+
   return (
     <main className={styles.mainContainer}>
       <h1>Mi perfil</h1>
