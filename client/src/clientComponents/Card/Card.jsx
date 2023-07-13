@@ -6,9 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLeaf, faPlantWilt, faMillSign, faBreadSlice, faBowlFood, faPizzaSlice } from "@fortawesome/free-solid-svg-icons";
 import { setUserOrderCase } from "../../redux/shopingCartSlice";
+import LikeButton from "../LikeButton/LikeButton";
+
 
 import meat from "../../assets/categories/meat.png";
 import pastas from "../../assets/categories/pastas.png";
@@ -143,9 +143,6 @@ export default function Card({
     axios.put("/item", bodyUpdateItem).catch((error) => console.log(error));
   };
 
-  const handleLike = () => {
-    console.log("clikkkk");
-  };
 
   /* RETURN */
   return (
@@ -154,9 +151,10 @@ export default function Card({
         <NavLink className={style.NavLink} to={`/detail/${id}`}>
           <img src={image} alt="img not found" className={style.card_img} />
         </NavLink>
-        <button className={style.likeButton} onClick={handleLike}>
-          ♡
-        </button>
+        <div>
+          <LikeButton />
+        </div>
+        
       </div>
 
       <div className={style.dataContainer}>

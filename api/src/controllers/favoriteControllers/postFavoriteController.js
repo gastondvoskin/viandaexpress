@@ -6,4 +6,3 @@ const postFavoriteController = async (email, foodId) => {
 };
   
 module.exports = { postFavoriteController };
-  

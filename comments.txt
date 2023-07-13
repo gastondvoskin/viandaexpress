@@ -61,9 +61,9 @@ A. Back-end endpoints:
 /review POST
 /review PUT
 
-/favorite GET/:useremail
+/favorite GET/:email
 /favorite POST
-/favorite DELETE/:favoriteid
+/favorite DELETE ... NIY
 
 B. Front-end views. 
 (completar...)
