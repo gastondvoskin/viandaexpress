@@ -36,7 +36,7 @@ const Payment = () => {
           <p>This is an example of a Mercado Pago integration</p>
         </div>
         <div className="form-payment">
-          {orderData.Items.forEach((item) => {
+          {orderData.Items?.forEach((item) => {
             console.log(item);
             //-------------------------
             const bodyUpdateItem = {

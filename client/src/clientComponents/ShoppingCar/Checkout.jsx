@@ -63,7 +63,7 @@ const Checkout = ({ onClick }) => {
     orderData.Items.map(item=>{
       if(item.id!==toActual.id){
         actual.Items.push(item)
-      }else{actual.Items.push(toActual)}
+      }else if(toActual.quantity){actual.Items.push(toActual)}
     })
     setOrderData(actual);
   };
@@ -79,9 +79,24 @@ const Checkout = ({ onClick }) => {
   const handleDelete=(e)=>{
     e.preventDefault()
     const name=e.target.name;
-    const item=userOrder.Items.filter(it=>it.Food.name===name)[0]
+    const item=orderData.Items.filter(it=>it.Food.name===name)[0]
     console.log(item.id)
-    // setOrderData(orderData.filter(it=>it.id!==item.id))
+    const toActual=orderData.Items.filter(it=>it.id!==item.id)
+    const actual={
+      UserId: orderData.UserId,
+      Items: toActual,
+      createdAt: orderData.createdAt,
+      id: orderData.id,
+      order_status: orderData.order_status,
+      payment_date: orderData.payment_date,
+      payment_id: orderData.payment_id,
+      payment_status_detail: orderData.payment_status_detail,
+      pickup_date: orderData.pickup_date,
+      status: orderData.status,
+      total_price: orderData.total_price,
+      updatedAt: orderData.updatedAt
+    };
+    setOrderData(actual)
     dispatch(deleteItemActions({
       FoodId: item.FoodId,
       id: item.id,
