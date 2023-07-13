@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faListOl } from "@fortawesome/free-solid-svg-icons";
 
 
+
 const ListOrders = ({id, User_name, total_price, createdAt, status}) => {
     console.log('id detalle', id);
     return(

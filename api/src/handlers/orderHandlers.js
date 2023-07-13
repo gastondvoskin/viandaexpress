@@ -8,11 +8,13 @@ const {
   putOrderController,
 } = require("../controllers/orderControllers/putOrderController");
 const {
-   getUserOrdersController,
+  getUserOrdersController,
 } = require("../controllers/orderControllers/getUserOrdersController");
 const {
-   getOrderDetailController,
+  getOrderDetailController,
 } = require("../controllers/orderControllers/getOrderDetailController");
+const { getBestSellersController } = require("../controllers/orderControllers/getBestSellersController");
+
 
 //Esta ruta trae todas las ordenes cerradas (sirve para el admin, se deebria modificar proximamente para traer los pedidos ya finalizados )
 const getOrdersHandler = async (req, res) => {
@@ -26,7 +28,7 @@ const getOrdersHandler = async (req, res) => {
 // esta ruta trae el detalle de una order en especifico
 const getOrderDetailHandler = async (req, res) => {
   try {
-    const {orderId} = req.params
+    const { orderId } = req.params
     const detail = await getOrderDetailController(orderId);
     console.log(detail);
     res.status(200).send(detail);
@@ -62,17 +64,29 @@ const putOrderHandler = async (req, res) => {
   try {
     const { orderId, order_status } = req.body;
 
-    await putOrderController({orderId, order_status});
+    await putOrderController({ orderId, order_status });
     res.status(200).send("Orden modificada correctamente.");
   } catch (error) {
     res.status(400).send({ error: error.message });
   }
 };
 
+
+const getBestSellersHandler = async (req, res) => {
+  try {
+    const bestSellers = await getBestSellersController()
+    res.status(200).send(bestSellers);
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+}
+
 module.exports = {
   getOrdersHandler,
   postOrderHandler,
   putOrderHandler,
+  getBestSellersHandler,
   getUserOrdersHandler,
   getOrderDetailHandler,
+
 };

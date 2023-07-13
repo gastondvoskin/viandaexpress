@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+
 import { cleanOrderDetailAction, getOrderDetailAction } from '../../redux/adminSlice';
 import styles from "./OrderDetail.module.css";
 const OrderDetail = () => {
@@ -20,6 +21,7 @@ const OrderDetail = () => {
         <div className={styles.orderdiv}>
             <h3>{orderDetail?.User.name}</h3>
         <table className={styles.destable}>
+
             <thead>
                 <tr>
                     <th>Id</th>

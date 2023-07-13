@@ -15,7 +15,7 @@ const initialState = {
   orderItems: [],
   activeFilteredFoods: false,
   orderBy: "",
-  foodsCategory: "",
+  foodsCategory: "todas",
   foodsDiet: "",
   currentPage: 1,
   diets: [
@@ -111,8 +111,19 @@ export const foodsSlice = createSlice({
     },
     deleteItems: (state, action) => {
       const deleteId = action.payload;
-      state.orderItems = state.orderItems.filter((it) => it.id !== deleteId);
+      state.orderItems = state.orderItems.filter((it)=>it.id!==deleteId);
     },
+    putItems: (state,action)=>{
+      const putId=action.payload.id;
+      const putQuantity=action.payload.quantity;
+      const putAmount=action.payload.amount;
+      state.orderItems=state.orderItems.map(it=>{
+        if(it.id===putId){
+          it.quantity= putQuantity;
+          it.amount=putAmount;
+        }
+      })
+    }
   },
 });
 
@@ -132,6 +143,7 @@ export const {
   deleteFoods,
   addItems,
   deleteItems,
+  putItems,
 } = foodsSlice.actions;
 
 export default foodsSlice.reducer; /* it will be imported in the store */
