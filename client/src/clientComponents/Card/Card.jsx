@@ -69,7 +69,7 @@ export default function Card({
       Swal.fire(
         "¡Cuidado!",
         "Loguéate antes de agregar productos a tu carrito de compras.",
-        "success"
+        "error"
       );
     } else {
       if (isItem) {

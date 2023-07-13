@@ -15,6 +15,7 @@ import PaymentStatus from "./clientViews/PaymentStatus/PaymentStatus";
 import UserReview from "./clientViews/UserReview/UserReview";
 import OrderDetail from "./adminViews/OrderDetail/OrderDetail";
 import UserOrder from "./clientViews/UserOrder/UserOrder";
+import UserOrderDetail from "./clientViews/UserOrderDetail/UserOrderDetail";
 
 function App() {
   const location = useLocation();
@@ -26,6 +27,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/viandas" element={<Viandas />} />
         <Route path="/myprofile" element={<MyProfile />} />
+        <Route path="/userorder/detail/:id" element={<UserOrderDetail />} />
         <Route path="/userorder" element={ <UserOrder /> } />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/admin/*" element={<AdminPanel />} />
