@@ -73,7 +73,7 @@ const ShoppingCar = () => {
       <main>
         {renderSpinner()}
         <Checkout onClick={handleClick} description />
-        {/* <Payment /> */}
+        <Payment />
       </main>
       <Footer />
     </InternalProvider>
