@@ -22,13 +22,16 @@ export const adminSlice = createSlice({
         },
         getOrderDetailCase: (state,action) =>{
             state.orderDetail = action.payload
-
+        },
+        cleanOrderDetailCase: (state) =>{
+            state.orderDetail = null
         }
 
     }
 })
 
-export const { getAllOrdersCase,setSidebarOption, getOrderDetailCase,getBestSellersCase } = adminSlice.actions;
+export const { getAllOrdersCase,setSidebarOption, getOrderDetailCase, cleanOrderDetailCase, getBestSellersCase } = adminSlice.actions;
+
 export default adminSlice.reducer;
 
 export const getAllOrdersAction = () => async (dispatch) => {
@@ -60,5 +63,19 @@ export const getOrderDetailAction = (id) => async (dispatch) => {
     } catch (error) {
         console.log(error);
     }
+}
+
+export const getOrderDetailAction = (id) => async (dispatch) => {
+    try {
+        const detail = await axios.get(`/order/detail/${id}`)
+            .then(r => r.data)
+        dispatch(getOrderDetailCase(detail))
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const cleanOrderDetailAction = () => (dispatch) => {
+    dispatch(cleanOrderDetailCase())
 }
 
