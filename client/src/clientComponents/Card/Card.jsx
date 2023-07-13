@@ -51,7 +51,7 @@ export default function Card({ id, name, image, initial_price, final_price, cate
       Swal.fire(
         "¡Cuidado!",
         "Loguéate antes de agregar productos a tu carrito de compras.",
-        "success"
+        "error"
       );
     } else {
       if (isItem) {
