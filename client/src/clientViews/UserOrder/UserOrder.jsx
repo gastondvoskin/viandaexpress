@@ -1,19 +1,30 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getUserOrderAction } from "../../redux/userSlice";
 import { useEffect } from "react";
+import styles from "./UserOrder.module.css";
+import { getUserDetailAction } from "../../redux/userSlice";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
 
 const UserOrder = () =>{
     const dispatch = useDispatch();
     const orderUser = useSelector((state) => state.usersReducer.userOrder);
-    console.log("prueva", orderUser)
+    const userDetail = useSelector((state) => state.usersReducer.userDetail);
+    console.log("order", orderUser)
+    const { user, isAuthenticated } = useAuth0();
+    const email = user?.email;
+    const id = userDetail[0]?.id;
 
     useEffect (() =>{
-        dispatch (getUserOrderAction ());
+        dispatch (getUserOrderAction(id));
+        dispatch (getUserDetailAction(email));
     }, [dispatch])
+    console.log("prueba", userDetail )
+    console.log("prueba2", id )
     return (
-        <div>
+        <div className={styles.divuser}>
           
-            <table>
+            <table className={styles.destable}>
                 <thead>
                     <tr>
                         <th>id</th>
@@ -27,10 +38,13 @@ const UserOrder = () =>{
                     {orderUser.map((o) => ( 
                     <tr key={o.id}>
                         <td>{o.id}</td>
-                        <td>{o.User.name}</td>
+                        <td>{o.UserId}</td>
                         <td>{o.total_price}</td>
                         <td>{o.createdAt}</td>
-                        <td>{o.status}</td>
+                        <td>{o.order_status}</td>
+                        <td>
+                            <Link to={`/userorder/detail/${o.id}`}><button>Detalle</button></Link>
+                        </td>
                     </tr>
                     ))}
                 </tbody>

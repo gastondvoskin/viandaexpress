@@ -25,7 +25,6 @@ app.use((req, res, next) => {
   next();
 });
 
-console.log('sdf')
 // MIDDLEWARE TO THE ROUTER
 app.use("/", router);
 

@@ -5,14 +5,21 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import styles from "./MyProfile.module.css";
 import Swal from 'sweetalert2';
-
+import { Link } from "react-router-dom";
 
 const MyProfile = () => {
   const dispatch = useDispatch();
   const userDetail = useSelector((state) => state.usersReducer.userDetail);
   const [editableFields, setEditableFields] = useState(false);
   const { user, isAuthenticated } = useAuth0();
+  
+  useEffect (() =>{
+    dispatch (getUserDetailAction (email));
+}, [dispatch])
 
+  console.log("verifica 1", userDetail )
+  //console.log("verifica id", userDetail[0].id )
+  
   const [formData, setFormData] = useState({
     name: "",
     /* address: "" */
@@ -68,11 +75,13 @@ const MyProfile = () => {
       });
     }
   };
-  
 
   return (
     <main className={styles.mainContainer}>
       <h1>Mi perfil</h1>
+      
+      <Link to="/userorder"> <button>Mi Orden</button> </Link> 
+
       <section>
         <h2>Mis datos</h2>
         <button type="button" onClick={handleCheck}>

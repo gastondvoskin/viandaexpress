@@ -57,7 +57,7 @@ export default function Card({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    allItems.map((item) => {
+    allItems.Items?.map((item) => {
       if (item.name == name) {
         setIsItem(true);
         setQuantity(item.quantity);
@@ -69,7 +69,7 @@ export default function Card({
       Swal.fire(
         "¡Cuidado!",
         "Loguéate antes de agregar productos a tu carrito de compras.",
-        "success"
+        "error"
       );
     } else {
       if (isItem) {

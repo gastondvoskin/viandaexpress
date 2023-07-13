@@ -13,7 +13,7 @@ import { setUserOrderCase } from "../../redux/shopingCartSlice";
 const Home = () => {
   const dispatch = useDispatch();
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
-  const allItems = useSelector((state) => state.foodsReducer.orderItems);
+  const allItems = useSelector((state) => state.shopingCartReducer.pendingOrder);
   const foodsWithDiscounts = allFoods.filter(
     (food) => food.discount > 0
   );

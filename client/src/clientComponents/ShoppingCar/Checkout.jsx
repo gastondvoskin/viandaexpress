@@ -8,7 +8,6 @@ import { getPendingOrderAction } from "../../redux/shopingCartSlice";
 const Checkout = ({ onClick }) => {
   const dispatch=useDispatch();
   const userOrder = useSelector((state) => state.shopingCartReducer.pendingOrder)
-  console.log(userOrder)
   const [isVisible, setIsVisible] = React.useState(true);
   let {
     preferenceId,
@@ -17,75 +16,87 @@ const Checkout = ({ onClick }) => {
     setOrderData,
     total,
   } = React.useContext(Context);
+  // console.log(orderData)
   const shoppingCartClass = classnames("shopping-cart dark", {
     "shopping-cart--hidden": !isVisible,
   });
 
   const updatePrice = (event) => {
     const quantity = parseInt(event.target.value);
-    console.log(quantity)
     const name = event.target.name;
-    const item = userOrder.Items.filter((it) => it.Food.name === name)[0];
-    const variation = quantity - item.quantity;
+    const item = orderData.Items.filter((it) => it.Food.name === name)[0];
+    // console.log(item.quantity)
+    const variation = quantity - parseInt(item.quantity);
+    console.log(variation)
     const amount = item.final_price * quantity;
-    console.log(amount);
-    dispatch(putItemActions({
-      quantity: quantity,
+    const toActual={
+      Food: item.Food,
+      FoodId: item.FoodId,
+      OrderId: item.OrderId,
       amount: amount,
+      final_price: item.final_price,
+      id: item.id,
+      quantity: quantity,
+    };
+    console.log(toActual);
+    dispatch(putItemActions({
+      quantity: item.quantity,
+      amount: item.amount,
       id: item.id,
     }))
-    // userOrder.Items.map((it) => {
-    //   if (it.name === name && quantity!==0) {
-    //     actual.push({
-    //       id: it.id,
-    //       name: it.name,
-    //       image: it.image,
-    //       final_price: it.final_price,
-    //       quantity: quantity,
-    //       amount: amount,
-    //     });
-    //     dispatch(putItemActions({
-    //       quantity: quantity,
-    //       amount: amount,
-    //       id: item.id,
-        // }))
-        // dispatch(addItemsActions({
-        //   id: it.id,
-        //   name: it.name,
-        //   image: it.image,
-        //   final_price: it.final_price,
-        //   quantity: quantity,
-        //   amount: amount,
-        //   orderID: userOrder.id,
-        // }))
-      // } else if(it.name!==name) {
-      //   actual.push(it);
-      // }else{
-      //   dispatch(deleteItemActions({
-      //     FoodId: item.FoodId,
-      //     id: item.id,
-      //   }))
-      // }
-    // });
-    // setOrderData(actual);
-    // console.log(userOrder.Items);
-    total = total + variation * userOrder.Items.final_price;
+    let total_price = parseInt(orderData.total_price) + (variation) * parseInt(item.final_price);
+    console.log(total_price)
+    let actual={
+      UserId: orderData.UserId,
+      Items: [],
+      createdAt: orderData.createdAt,
+      id: orderData.id,
+      order_status: orderData.order_status,
+      payment_date: orderData.payment_date,
+      payment_id: orderData.payment_id,
+      payment_status_detail: orderData.payment_status_detail,
+      pickup_date: orderData.pickup_date,
+      status: orderData.status,
+      total_price: total_price,
+      updatedAt: orderData.updatedAt
+    };
+    orderData.Items.map(item=>{
+      if(item.id!==toActual.id){
+        actual.Items.push(item)
+      }else if(toActual.quantity){actual.Items.push(toActual)}
+    })
+    setOrderData(actual);
   };
 
   useEffect(() => {
     if (preferenceId) setIsVisible(false);
   }, [preferenceId]);
 
-  userOrder.Items?.forEach((item) => {
+  orderData.Items?.forEach((item) => {
     total = total + item.amount;
   });
 
   const handleDelete=(e)=>{
     e.preventDefault()
     const name=e.target.name;
-    const item=userOrder.Items.filter(it=>it.Food.name===name)[0]
+    const item=orderData.Items.filter(it=>it.Food.name===name)[0]
     console.log(item.id)
-    // setOrderData(orderData.filter(it=>it.id!==item.id))
+    const toActual=orderData.Items.filter(it=>it.id!==item.id)
+    const actual={
+      UserId: orderData.UserId,
+      Items: toActual,
+      createdAt: orderData.createdAt,
+      id: orderData.id,
+      order_status: orderData.order_status,
+      payment_date: orderData.payment_date,
+      payment_id: orderData.payment_id,
+      payment_status_detail: orderData.payment_status_detail,
+      pickup_date: orderData.pickup_date,
+      status: orderData.status,
+      total_price: orderData.total_price,
+      updatedAt: orderData.updatedAt
+    };
+    setOrderData(actual)
     dispatch(deleteItemActions({
       FoodId: item.FoodId,
       id: item.id,
@@ -137,7 +148,7 @@ const Checkout = ({ onClick }) => {
               </div>
             </div>
           </div>
-          {userOrder.hasOwnProperty('Items')? userOrder.Items.map((item) => {return(item.quantity?
+          {orderData.hasOwnProperty('Items')? orderData.Items.map((item) => {return(item.quantity?
             (
               <div className="row">
                 <div className="col-md-12 col-lg-8">
@@ -224,7 +235,7 @@ const Checkout = ({ onClick }) => {
                 <div className="summary-item">
                   <span className="text">Total</span>
                   <span className="price" id="cart-total">
-                    ${userOrder?.total_price}
+                    ${orderData?.total_price}
                   </span>
                 </div>
                 <button
