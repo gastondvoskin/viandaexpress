@@ -1,4 +1,5 @@
 const { postFavoriteController } = require("../controllers/favoriteControllers/postFavoriteController.js");
+const { getFavoritesByEmailController } = require("../controllers/favoriteControllers/getFavoritesByEmailController");
 
 const postFavoriteHandler = async (req, res) => {
     try {
@@ -15,4 +16,14 @@ const postFavoriteHandler = async (req, res) => {
     }
 };
 
-module.exports = { postFavoriteHandler };
+const getFavoritesByEmailHandler = async (req, res) => {
+    try {
+        const { email } = req.params;
+        const favoritesByEmail = await getFavoritesByEmailController(email);
+        res.status(200).send(favoritesByEmail);
+    } catch (error) {
+        res.status(400).send({error: error.message});
+    }
+};
+
+module.exports = { postFavoriteHandler, getFavoritesByEmailHandler };
