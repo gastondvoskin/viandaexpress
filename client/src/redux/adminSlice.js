@@ -65,15 +65,6 @@ export const getOrderDetailAction = (id) => async (dispatch) => {
     }
 }
 
-export const getOrderDetailAction = (id) => async (dispatch) => {
-    try {
-        const detail = await axios.get(`/order/detail/${id}`)
-            .then(r => r.data)
-        dispatch(getOrderDetailCase(detail))
-    } catch (error) {
-        console.log(error);
-    }
-}
 
 export const cleanOrderDetailAction = () => (dispatch) => {
     dispatch(cleanOrderDetailCase())
