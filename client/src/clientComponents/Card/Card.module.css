@@ -30,22 +30,6 @@
   box-shadow: 0 0 25px var(--accentColor);
 }
 
-.likeButton {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: fit-content;
-  height: fit-content;
-  background-color: var(--accentColor);
-  color: white;
-  border-radius: 100%;
-}
-
-.likeButton:hover {
-  background-color: var(--accentColor2);
-  transition: 0.5s;
-}
-
 .card h2 {
   font-size: 15px;
   font-weight: bold;

@@ -20,12 +20,6 @@ export default function Paginado({
     pageNumbers.push(i);
   }
 
-  console.log("paginado: ", paginado);
-
-  // const paginado = (pageNumber) => {
-  //   dispatch(setCurrentPageAction(pageNumber));
-  // };
-
   return (
     <nav>
       <ul className={styles.foodList}>

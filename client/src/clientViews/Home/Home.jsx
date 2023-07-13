@@ -18,8 +18,6 @@ const Home = () => {
     (food) => food.discount > 0
   );
 
-  console.log('foodsWithDiscounts: ', foodsWithDiscounts);
-
   const foodsWithScoreHigherThan4 = allFoods.filter(
     (food) => food.total_score > 4
   );
@@ -40,7 +38,7 @@ const Home = () => {
           const userOrder = await axios
             .post("/order", body)
             .then((r) => r.data);
-          console.log("userOrder:", userOrder);
+          /* console.log("userOrder:", userOrder); */
           dispatch(setUserOrderCase(userOrder));
         })
         .then(() => {
