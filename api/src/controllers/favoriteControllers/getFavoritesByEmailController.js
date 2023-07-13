@@ -5,17 +5,18 @@ const getFavoritesByEmailController = async (email) => {
         where: { 
             email: email
         },
+        attributes: [],
         include: [{
             model: Food,
             through: {
                 attributes: []
             }
         }]
-    })
-
-    const favoritesByEmailClean = favoritesByEmailRaw.Food;
+    });
     
+    const favoritesByEmailClean = favoritesByEmailRaw.Food;  
     return favoritesByEmailClean; 
+
 };
 
 module.exports = { getFavoritesByEmailController }
