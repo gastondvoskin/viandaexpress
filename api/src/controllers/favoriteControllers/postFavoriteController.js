@@ -1,10 +1,9 @@
-const { Favorite } = require("../../db");
+const { User } = require("../../db");
 
-const postFavoriteController = async (userId, foodId) => {
-    console.log("testing postFavoriteController");
-    /* const newFavorite = await Favorite.create(userId, foodId);
-    return newFavorite.dataValues; */
-  };
+const postFavoriteController = async (email, foodId) => {
+  const userByEmail = await User.findOne({where: {email: email}});
+  userByEmail.addFood(foodId);
+};
   
-  module.exports = { postFavoriteController };
+module.exports = { postFavoriteController };
   
