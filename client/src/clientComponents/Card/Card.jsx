@@ -42,7 +42,7 @@ export default function Card({
   if (category === "Pastas")
     categoryIcon = <img className={style.categoryIcon} src={pastas} />;
 
-  const dietsIcons = diets.map((diet, index) => {
+  const dietsIcons = diets?.map((diet, index) => {
     if (diet === "Sin TACC")
       diet = <img key={index} className={style.dietsIcon} src={sinTacc} />;
     if (diet === "Vegetariano")
@@ -162,7 +162,7 @@ export default function Card({
         <h2>{name}</h2>
         <div className={style.categoryAndDiets}>
           {categoryIcon}{" "}
-          {dietsIcons.map((dietIcon, index) => (
+          {dietsIcons?.map((dietIcon, index) => (
             <span key={index}>{dietIcon}</span>
           ))}
         </div>
