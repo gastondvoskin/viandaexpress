@@ -1,7 +1,7 @@
 const foods = [
   {
     name: "Cinta de garbanzo con espinas y salsa de setas portobello",
-    diets: ["Sin TACC", "Vegano"],
+    diets: ["Sin TACC", "Vegana"],
     image:
       "https://content-cocina.lecturas.com/medio/2023/04/24/cintas_de_garbanzo_con_espinacas_y_salsa_de_setas_portobello_7f4208fc_1200x1200.jpg",
     description:
@@ -29,7 +29,7 @@ const foods = [
   },
   {
     name: "Delicia de Raviolis de maíz con relleno de setas portobello y boletus a la trufa",
-    diets: ["Vegetariano"],
+    diets: ["Vegetariana"],
     image:
       "https://www.cuerpomente.com/medio/2023/06/01/panzerotti-o-medialunas-de-arroz-con-relleno-de-pera-y-ricotta_00000000_230601103938_1063x717.jpg",
     description:
@@ -43,7 +43,7 @@ const foods = [
   },
   {
     name: "Panzerotti o meidalunas de arroz con relleno de pera y ricotta",
-    diets: ["Sin TACC", "Vegetariano", "Vegano"],
+    diets: ["Sin TACC", "Vegetariana", "Vegana"],
     image:
       "https://www.cuerpomente.com/medio/2023/06/01/tallarines-de-trigo-sarraceno-integral-con-salsa-arrabbiata_00000000_230601103730_1063x718.jpg",
     description:
@@ -57,7 +57,7 @@ const foods = [
   },
   {
     name: "Tallarines de trigo sarraceno integral con salsa arrabiata ",
-    diets: ["Vegetariano", "Vegano"],
+    diets: ["Vegetariana", "Vegana"],
     image:
       "https://www.cuerpomente.com/medio/2023/06/01/noquis-de-patata-y-trigo-sarraceno-con-salsa-pesto-de-rucula-y-nueces_00000000_230601103837_1063x717.jpg",
     description:
@@ -99,7 +99,7 @@ const foods = [
   },
   {
     name: "Pasta rellena",
-    diets: ["Vegetariano"],
+    diets: ["Vegetariana"],
     image:
       "https://img-global.cpcdn.com/recipes/7041b21955686cf2/1360x964cq70/pasta-rellenas-sin-tacc-sin-gluten-vegan-foto-principal.webp",
     description:
@@ -113,7 +113,7 @@ const foods = [
   },
   {
     name: "Pasta con salteado de verduras",
-    diets: ["Vegetariano", "Vegano"],
+    diets: ["Vegetariana", "Vegana"],
     image:
       "https://img-global.cpcdn.com/recipes/6e877bb633a841aa/1360x964cq70/pastas-con-salteado-de-verduras-sin-gluten-foto-principal.webp",
     description:
@@ -127,7 +127,7 @@ const foods = [
   },
   {
     name: "Fideos de arroz con vegetales horneados",
-    diets: ["Sin TACC", "Vegetariano", "Vegano"],
+    diets: ["Sin TACC", "Vegetariana", "Vegana"],
     image:
       "https://img-global.cpcdn.com/recipes/bcf9698a5a0fdeb4/1360x964cq70/fideos-de-arroz-con-vegetales-horneados-pasta-apta-celiacos-foto-principal.webp",
     description:
@@ -141,7 +141,7 @@ const foods = [
   },
   {
     name: "Tagliatelle con salsa de seitán con manzanas",
-    diets: ["Vegetariano"],
+    diets: ["Vegetariana"],
     image:
       "https://saborgourmet.com/wp-content/uploads/recetas-de-pasta-vegana-Tagliatelle-con-salsa-de-seit%C3%A1n-con-manzanas-istock-600x294.jpg",
     description:
@@ -169,7 +169,7 @@ const foods = [
   },
   {
     name: "Penne con pesto de tomate seco",
-    diets: ["Vegetariano"],
+    diets: ["Vegetariana"],
     image:
       "https://saborgourmet.com/wp-content/uploads/recetas-de-pasta-vegana-Penne-con-pesto-de-tomate-seco-istock-600x323.jpg",
     description:
@@ -183,7 +183,7 @@ const foods = [
   },
   {
     name: "Tortiglioni con uvas y pan rallado",
-    diets: ["Sin Lactosa", "Vegetariano"],
+    diets: ["Sin Lactosa", "Vegetariana"],
     image:
       "https://saborgourmet.com/wp-content/uploads/recetas-de-pasta-vegana-Tortiglioni-con-uvas-y-pan-rallado-istock-600x289.jpg",
     description:
@@ -211,7 +211,7 @@ const foods = [
   },
   {
     name: "Pasta con pesto de pistachos",
-    diets: ["Vegetariano"],
+    diets: ["Vegetariana"],
     image:
       "https://saborgourmet.com/wp-content/uploads/recetas-de-pasta-vegana-Pasta-con-pesto-de-pistachos-istock-600x294.jpg",
     description:
@@ -225,7 +225,7 @@ const foods = [
   },
   {
     name: "Pasta con aceitunas y tomates secos y piñones",
-    diets: ["Vegetariano"],
+    diets: ["Vegetariana"],
     image:
       "https://saborgourmet.com/wp-content/uploads/recetas-de-pasta-vegana-Pasta-con-aceitunas-y-tomates-secos-y-pi%C3%B1ones-istock-600x280.jpg",
     description:
@@ -239,7 +239,7 @@ const foods = [
   },
   {
     name: "Pasta alfredo vegana",
-    diets: ["Vegano"],
+    diets: ["Vegana"],
     image:
       "https://danzadefogones.com/wp-content/uploads/2014/04/Pasta-Alfredo-vegana-danzadefogones.com-vegan-pasta-alfredo-gf.jpg",
     description:
@@ -253,7 +253,7 @@ const foods = [
   },
   {
     name: "Boloñesa de lentejas",
-    diets: ["Vegetariano"],
+    diets: ["Vegetariana"],
     image:
       "https://danzadefogones.com/wp-content/uploads/2017/06/BoloC3B1esa-de-lentejas-4.jpg",
     description:
@@ -267,7 +267,7 @@ const foods = [
   },
   {
     name: "Espaguetis con salsa verde de coco",
-    diets: ["Sin Lactosa", "Vegetariano"],
+    diets: ["Sin Lactosa", "Vegetariana"],
     image:
       "https://danzadefogones.com/wp-content/uploads/2018/07/Espaguetis-con-salsa-verde-de-coco.jpg",
     description:
@@ -281,7 +281,7 @@ const foods = [
   },
   {
     name: "Pasta con salsa de pimientos del piquillo",
-    diets: ["Vegetariano", "Vegano"],
+    diets: ["Vegetariana", "Vegana"],
     image:
       "https://danzadefogones.com/wp-content/uploads/2015/02/Pasta-con-salsa-de-pimientos-del-Piquillo-2.jpg",
     description:
@@ -295,7 +295,7 @@ const foods = [
   },
   {
     name: "Pasta arrabiata",
-    diets: ["Vegano"],
+    diets: ["Vegana"],
     image:
       "https://danzadefogones.com/wp-content/uploads/2017/08/Pasta-arrabiata-3.jpg",
     description:
@@ -309,7 +309,7 @@ const foods = [
   },
   {
     name: "Pasta Primavera",
-    diets: ["Vegetariano"],
+    diets: ["Vegetariana"],
     image:
       "https://danzadefogones.com/wp-content/uploads/2018/03/Pasta-primavera-2.jpg",
     description:
@@ -337,7 +337,7 @@ const foods = [
   },
   {
     name: "Pasta alfredo",
-    diets: ["Vegetariano"],
+    diets: ["Vegetariana"],
     image:
       "https://kaikusinlactosa.com/blog/wp-content/uploads/2016/06/Kaiku-Sin-Lactosa-Cocina-Facil-Sin-Lactosa.jpg",
     description:
@@ -657,7 +657,7 @@ const foods = [
   },
   {
     name: "Ensalada de espinacas",
-    diets: ["Sin TACC", "Vegetariano", "Vegano", "Sin Lactosa"],
+    diets: ["Sin TACC", "Vegetariana", "Vegana", "Sin Lactosa"],
     description:
       "Una deliciosa ensalada de espinacas frescas con tomates cherry, aguacate, nueces y aderezo de vinagreta balsámica.",
     image:
@@ -671,7 +671,7 @@ const foods = [
   },
   {
     name: "Ensalada César",
-    diets: ["Vegetariano"],
+    diets: ["Vegetariana"],
     description:
       "La clásica ensalada César con lechuga romana, crutones, queso parmesano y aderezo César cremoso.",
     image:
@@ -685,7 +685,7 @@ const foods = [
   },
   {
     name: "Ensalada de quinoa",
-    diets: ["Sin TACC", "Vegetariano", "Vegano", "Sin Lactosa"],
+    diets: ["Sin TACC", "Vegetariana", "Vegana", "Sin Lactosa"],
     description:
       "Una nutritiva ensalada de quinoa con vegetales frescos, aceitunas, pepino y aderezo de limón y cilantro.",
     image:
@@ -699,7 +699,7 @@ const foods = [
   },
   {
     name: "Ensalada Caprese",
-    diets: ["Sin TACC", "Vegetariano"],
+    diets: ["Sin TACC", "Vegetariana"],
     description:
       "Una ensalada Caprese clásica con tomates frescos, mozzarella de búfala, hojas de albahaca y aceite de oliva.",
     image:
@@ -713,7 +713,7 @@ const foods = [
   },
   {
     name: "Ensalada de frutas",
-    diets: ["Sin TACC", "Vegetariano", "Vegano", "Sin Lactosa"],
+    diets: ["Sin TACC", "Vegetariana", "Vegana", "Sin Lactosa"],
     description:
       "Una refrescante ensalada de frutas variadas como sandía, melón, uvas y piña, con un toque de menta fresca.",
     image:
@@ -727,7 +727,7 @@ const foods = [
   },
   {
     name: "Ensalada de garbanzos",
-    diets: ["Sin TACC", "Vegetariano", "Vegano", "Sin Lactosa"],
+    diets: ["Sin TACC", "Vegetariana", "Vegana", "Sin Lactosa"],
     description:
       "Una ensalada de garbanzos con pepino, tomate, cebolla roja, pimiento y aderezo de yogur y comino.",
     image:
@@ -741,7 +741,7 @@ const foods = [
   },
   {
     name: "Ensalada de aguacate",
-    diets: ["Sin TACC", "Vegetariano", "Vegano", "Sin Lactosa"],
+    diets: ["Sin TACC", "Vegetariana", "Vegana", "Sin Lactosa"],
     description:
       "Una ensalada de aguacate con tomate cherry, cilantro, cebolla roja y aliño de limón y aceite de oliva.",
     image:
@@ -755,7 +755,7 @@ const foods = [
   },
   {
     name: "Ensalada mixta",
-    diets: ["Sin TACC", "Vegetariano", "Vegano", "Sin Lactosa"],
+    diets: ["Sin TACC", "Vegetariana", "Vegana", "Sin Lactosa"],
     description:
       "Una ensalada mixta clásica con lechuga, tomate, zanahoria, pepino y aderezo de vinagreta casera.",
     image: "https://imag.bonviveur.com/imagen-de-la-ensalada-mixta.jpg",
@@ -768,7 +768,7 @@ const foods = [
   },
   {
     name: "Ensalada de zanahoria rallada",
-    diets: ["Sin TACC", "Vegetariano", "Vegano", "Sin Lactosa"],
+    diets: ["Sin TACC", "Vegetariana", "Vegana", "Sin Lactosa"],
     description:
       "Una ensalada fresca de zanahoria rallada con pasas, nueces, cilantro y aderezo de limón y miel.",
     image:
@@ -782,7 +782,7 @@ const foods = [
   },
   {
     name: "Ensalada de tomate y mozzarella",
-    diets: ["Vegetariano"],
+    diets: ["Vegetariana"],
     description:
       "Una ensalada clásica de tomate y mozzarella con hojas de albahaca fresca y aceite de oliva virgen extra.",
     image:
@@ -796,7 +796,7 @@ const foods = [
   },
   {
     name: "Ensalada Waldorf",
-    diets: ["Vegetariano"],
+    diets: ["Vegetariana"],
     description:
       "Una ensalada Waldorf tradicional con apio, manzanas, uvas, nueces y aderezo de yogur y mayonesa.",
     image:
@@ -810,7 +810,7 @@ const foods = [
   },
   {
     name: "Ensalada de pepino y yogur",
-    diets: ["Vegetariano"],
+    diets: ["Vegetariana"],
     description:
       "Una ensalada refrescante de pepino con yogur griego, ajo, eneldo y un toque de jugo de limón.",
     image:
@@ -824,7 +824,7 @@ const foods = [
   },
   {
     name: "Ensalada de remolacha",
-    diets: ["Sin TACC", "Vegetariano", "Vegano", "Sin Lactosa"],
+    diets: ["Sin TACC", "Vegetariana", "Vegana", "Sin Lactosa"],
     description:
       "Una colorida ensalada de remolacha asada con rúcula, queso de cabra, nueces y aderezo de vinagreta balsámica.",
     image:
@@ -838,7 +838,7 @@ const foods = [
   },
   {
     name: "Ensalada de pasta",
-    diets: ["Vegetariano"],
+    diets: ["Vegetariana"],
     description:
       "Una ensalada de pasta fría con vegetales mixtos, aceitunas, queso feta y aderezo de aceite y vinagre.",
     image:
@@ -852,7 +852,7 @@ const foods = [
   },
   {
     name: "Ensalada griega",
-    diets: ["Vegetariano"],
+    diets: ["Vegetariana"],
     description:
       "Una ensalada griega clásica con pepino, tomate, cebolla roja, aceitunas kalamata y queso feta.",
     image:
@@ -866,7 +866,7 @@ const foods = [
   },
   {
     name: "Ensalada de col rizada",
-    diets: ["Sin TACC", "Vegetariano", "Vegano", "Sin Lactosa"],
+    diets: ["Sin TACC", "Vegetariana", "Vegana", "Sin Lactosa"],
     description:
       "Una saludable ensalada de col rizada con manzanas, nueces, pasas y aderezo de vinagreta de mostaza y miel.",
     image:
@@ -880,7 +880,7 @@ const foods = [
   },
   {
     name: "Ensalada de lentejas",
-    diets: ["Sin TACC", "Vegetariano", "Vegano", "Sin Lactosa"],
+    diets: ["Sin TACC", "Vegetariana", "Vegana", "Sin Lactosa"],
     description:
       "Una satisfactoria ensalada de lentejas con vegetales, cilantro, limón y un aliño de aceite de oliva y comino.",
     image:
@@ -894,7 +894,7 @@ const foods = [
   },
   {
     name: "Ensalada de garbanzos y aguacate",
-    diets: ["Sin TACC", "Vegetariano", "Vegano", "Sin Lactosa"],
+    diets: ["Sin TACC", "Vegetariana", "Vegana", "Sin Lactosa"],
     description:
       "Una combinación deliciosa de garbanzos, aguacate, tomates cherry, cebolla roja y aderezo de limón y cilantro.",
     image:
@@ -908,7 +908,7 @@ const foods = [
   },
   {
     name: "Ensalada de patatas",
-    diets: ["Sin TACC", "Vegetariano", "Vegano", "Sin Lactosa"],
+    diets: ["Sin TACC", "Vegetariana", "Vegana", "Sin Lactosa"],
     description:
       "Una ensalada clásica de patatas con mayonesa, apio, cebolla, mostaza, eneldo y sal y pimienta al gusto.",
     image: "https://cocinaabuenashoras.com/files/ensalada-de-patatas.jpg",
@@ -921,7 +921,7 @@ const foods = [
   },
   {
     name: "Ensalada de rúcula y parmesano",
-    diets: ["Vegetariano"],
+    diets: ["Vegetariana"],
     description:
       "Una ensalada simple pero sabrosa de rúcula fresca, queso parmesano en láminas y aderezo de limón y aceite de oliva.",
     image: "https://queapetito.com/wp-content/uploads/2019/05/rucula-1.jpg",
@@ -934,7 +934,7 @@ const foods = [
   },
   {
     name: "Ensalada de naranja y aguacate",
-    diets: ["Sin TACC", "Vegetariano", "Vegano", "Sin Lactosa"],
+    diets: ["Sin TACC", "Vegetariana", "Vegana", "Sin Lactosa"],
     description:
       "Una refrescante ensalada de naranja, aguacate, espinacas baby y aderezo de vinagreta de naranja y miel.",
     image:
