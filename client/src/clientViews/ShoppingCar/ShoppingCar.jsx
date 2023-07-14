@@ -18,7 +18,9 @@ initMercadoPago("TEST-9b320738-7137-42a2-a2c5-d6956bc6ba9d");
 
 const ShoppingCar = () => {
   const { user } = useAuth0();
-  const allItems = useSelector((state) => state.shopingCartReducer.pendingOrder);
+  const allItems = useSelector(
+    (state) => state.shopingCartReducer.pendingOrder
+  );
   let total = 0;
   const [preferenceId, setPreferenceId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,13 +28,13 @@ const ShoppingCar = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.usersReducer.userDetail);
 
-  
   useEffect(() => {
     if (!currentUser.id) {
       dispatch(getUserDetailAction(user?.email));
     }
+    dispatch(getPendingOrderAction(currentUser.id));
   }, [dispatch]);
-  
+
   const handleClick = () => {
     setIsLoading(true);
     axios
@@ -53,7 +55,7 @@ const ShoppingCar = () => {
       .finally(() => {
         setIsLoading(false);
       });
-    dispatch(getPendingOrderAction(currentUser.id));
+    // dispatch(getPendingOrderAction(currentUser.id));
   };
 
   const renderSpinner = () => {
