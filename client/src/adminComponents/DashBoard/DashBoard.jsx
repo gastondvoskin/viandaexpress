@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import PieChart from './PieChart'
 import MyLineChart from './LineChart'
-import styles from './Dashboard.module.css'
+import styles from './DashBoard.module.css'
 
 
 const DashBoard = () => {
