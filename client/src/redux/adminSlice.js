@@ -29,12 +29,18 @@ export const adminSlice = createSlice({
         },
         setQuantityCase:(state,action) =>{
             state.quantityOfBestSellers = action.payload
+        },
+        updateOrderStatusCase: (state, action)=>{
+            const { id, newOrderStatus } = action.payload;
+            const order = state.allOrders.find((order)=>order.id === id);
+            if(order){
+                order.state = newOrderStatus;
+            }
         }
-
     }
 })
 
-export const { getAllOrdersCase,setSidebarOption, getOrderDetailCase, cleanOrderDetailCase, getBestSellersCase,setQuantityCase } = adminSlice.actions;
+export const { getAllOrdersCase,setSidebarOption, getOrderDetailCase, cleanOrderDetailCase, getBestSellersCase,setQuantityCase, updateOrderStatusCase } = adminSlice.actions;
 
 export default adminSlice.reducer;
 
@@ -73,4 +79,16 @@ export const getOrderDetailAction = (id) => async (dispatch) => {
 export const cleanOrderDetailAction = () => (dispatch) => {
     dispatch(cleanOrderDetailCase())
 }
+
+export const updateOrderStatusAction = (id, newOrderStatus) => async (dispatch) => {
+    try {
+        const data = {id: id, newOrderStatus: newOrderStatus};
+      const response = await axios.put('/order', data, {
+        headers: { 'Content-Type': 'application/json' },
+      });
+      dispatch(updateOrderStatusCase({ id, newOrderStatus }));
+    } catch (error) {
+        console.log(error);
+    }
+  };
 
