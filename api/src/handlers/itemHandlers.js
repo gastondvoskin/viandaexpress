@@ -27,9 +27,8 @@ const postItemHandler = async (req, res) => {
 
 const deleteItemHandler = async (req, res) => {
   try {
-    // const { itemId } = req.params;
-    const {id} = req.params;
-    await deleteItemController(id);
+    const { userEmail, FoodId } = req.body;
+    await deleteItemController(userEmail, FoodId);
     res.status(200).send("Se eliminó con éxito");
   } catch (error) {
     res.status(400).send({ error: error.message });
@@ -39,13 +38,8 @@ const deleteItemHandler = async (req, res) => {
 const putItemHandler = async (req, res) => {
   try {
     // const { itemId } = req.params;
-    const { id, quantity, amount } = req.body;
-    console.log("putItemHandler", id, quantity, amount);
-    const response = await putItemController(
-      id,
-      quantity,
-      amount,
-    );
+    const {userEmail, FoodId, quantity, final_price } = req.body;
+    const response = await putItemController(userEmail, FoodId, quantity, final_price);
     res.status(200).send(response);
   } catch (error) {
     res.status(400).send({ error: error.message });

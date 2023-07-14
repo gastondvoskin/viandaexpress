@@ -12,7 +12,7 @@ const PieChart = () => {
     const dispatch = useDispatch()
     const quantityOfBestSellers = useSelector((state)=> state.adminReducer.quantityOfBestSellers)
     const bestSellers = useSelector((state)=> state.adminReducer.bestSellers)
-
+    console.log(bestSellers.message);
     useEffect(()=>{
         dispatch(getBestSellersAction(quantityOfBestSellers))
     },[quantityOfBestSellers])
@@ -37,7 +37,8 @@ const PieChart = () => {
                     
                 </div>
                 <div className={styles.chartContainer}>
-                    <ResponsivePie
+                    {!bestSellers.message
+                    ? <ResponsivePie
                     data={bestSellers && bestSellers}
                     margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
                     innerRadius={0}
@@ -54,6 +55,7 @@ const PieChart = () => {
                     sliceLabelsSkipAngle={10}
                     sliceLabelsTextColor="#333333"
                     />
+                    : <h4>{bestSellers.message}</h4>}
                 </div>
                 
             </div>
