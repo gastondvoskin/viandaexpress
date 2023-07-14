@@ -12,7 +12,6 @@ import CreateFood from "./adminViews/CreateFood/CreateFood";
 import ShoppingCar from "./clientViews/ShoppingCar/ShoppingCar";
 import Viandas from "./clientViews/Viandas/Viandas";
 import PaymentStatus from "./clientViews/PaymentStatus/PaymentStatus";
-import UserReview from "./clientViews/UserReview/UserReview";
 import OrderDetail from "./adminViews/OrderDetail/OrderDetail";
 import UserOrder from "./clientViews/UserOrder/UserOrder";
 import UserOrderDetail from "./clientViews/UserOrderDetail/UserOrderDetail";
@@ -37,7 +36,6 @@ function App() {
         <Route path="/shoppingcart" element={<ShoppingCar />} />
         <Route path="/payment" element={<PaymentStatus />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/userreview" element={<UserReview />} />
       </Routes>
       {!location.pathname.includes("/admin") && <Footer />}
     </div>
