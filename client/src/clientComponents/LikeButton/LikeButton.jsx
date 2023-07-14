@@ -15,7 +15,12 @@ export default function LikeButton({ foodId }) {
       return;
     }
     const email = user.email;
-    await axios.post("/favorite", { email, foodId });
+
+    
+    // await axios.post("/favorite", { email, foodId });
+    // dispatch(getUserFavoritesAction(email));
+
+    await axios.delete(`/favorite/${email}/${foodId}`);
     dispatch(getUserFavoritesAction(email));
   };
 

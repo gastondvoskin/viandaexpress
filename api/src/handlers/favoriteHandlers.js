@@ -1,5 +1,6 @@
 const { postFavoriteController } = require("../controllers/favoriteControllers/postFavoriteController.js");
-const { getFavoritesByEmailController } = require("../controllers/favoriteControllers/getFavoritesByEmailController");
+const { getFavoritesByEmailController } = require("../controllers/favoriteControllers/getFavoritesByEmailController.js");
+const { deleteFavoriteController } = require("../controllers/favoriteControllers/deleteFavoriteController.js");
 
 const postFavoriteHandler = async (req, res) => {
     try {
@@ -25,4 +26,15 @@ const getFavoritesByEmailHandler = async (req, res) => {
     }
 };
 
-module.exports = { postFavoriteHandler, getFavoritesByEmailHandler };
+const deleteFavoriteHandler = async (req, res) => {
+    try {
+        const { email, foodId } = req.params;
+        const response = await deleteFavoriteController(email, foodId);
+        res.status(200).send(response);
+    } catch (error) {
+        res.status(400).send({error: error.message});
+    }
+    console.log('en deleteFavoriteHandler');
+};
+
+module.exports = { postFavoriteHandler, getFavoritesByEmailHandler, deleteFavoriteHandler };
