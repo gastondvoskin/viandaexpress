@@ -37,18 +37,18 @@ const Payment = () => {
         </div>
         <div className="form-payment">
           {orderData.Items?.forEach((item) => {
-            console.log(item);
+            // console.log(item);
             //-------------------------
-            const bodyUpdateItem = {
-              userEmail: user?.email,
-              FoodId: item.id,
-              quantity: item.quantity,
-              final_price: item.final_price,
-            };
-            axios
-              .put("/item", bodyUpdateItem)
-              .catch((error) => console.log(error));
-            //-------------------------
+            // const bodyUpdateItem = {
+            //   userEmail: user?.email,
+            //   FoodId: item.id,
+            //   quantity: item.quantity,
+            //   final_price: item.final_price,
+            // };
+            // axios
+            //   .put("/item", bodyUpdateItem)
+            //   .catch((error) => console.log(error));
+            // //-------------------------
             return (
               <div className="products">
                 <h2 className="title">Summary</h2>

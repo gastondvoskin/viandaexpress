@@ -7,13 +7,22 @@ import {
   putItemActions,
 } from "../../redux/foodActions";
 import { useDispatch, useSelector } from "react-redux";
-import { getPendingOrderAction } from "../../redux/shopingCartSlice";
+import { useAuth0 } from "@auth0/auth0-react";
+import { getPendingOrderAction, setUserOrderCase } from "../../redux/shopingCartSlice";
+import axios from "axios";
 
 const Checkout = ({ onClick }) => {
+  const {user} = useAuth0()
   const dispatch = useDispatch();
   const userOrder = useSelector(
-    (state) => state.shopingCartReducer.pendingOrder
+    (state) => state.shopingCartReducer.pendingOrder.Items
   );
+
+
+  const [quantity,setQuantity] = useState(1);
+
+
+
   const [isVisible, setIsVisible] = React.useState(true);
   let {
     preferenceId,
@@ -27,57 +36,69 @@ const Checkout = ({ onClick }) => {
     "shopping-cart--hidden": !isVisible,
   });
 
-  const updatePrice = (event) => {
+  const updatePrice = async (event) => {
+    event.preventDefault()
     const quantity = parseInt(event.target.value);
-    const name = event.target.name;
-    const item = orderData.Items.filter((it) => it.Food.name === name)[0];
-    // console.log(item.quantity)
-    const variation = quantity - parseInt(item.quantity);
-    console.log(variation);
-    const amount = item.final_price * quantity;
-    const toActual = {
-      Food: item.Food,
-      FoodId: item.FoodId,
-      OrderId: item.OrderId,
-      amount: amount,
-      final_price: item.final_price,
-      id: item.id,
-      quantity: quantity,
-    };
-    console.log(toActual);
-    dispatch(
-      putItemActions({
-        quantity: item.quantity,
-        amount: item.amount,
-        id: item.id,
-      })
-    );
-    let total_price =
-      parseInt(orderData.total_price) + variation * parseInt(item.final_price);
-    console.log(total_price);
-    let actual = {
-      UserId: orderData.UserId,
-      Items: [],
-      createdAt: orderData.createdAt,
-      id: orderData.id,
-      order_status: orderData.order_status,
-      payment_date: orderData.payment_date,
-      payment_id: orderData.payment_id,
-      payment_status_detail: orderData.payment_status_detail,
-      pickup_date: orderData.pickup_date,
-      status: orderData.status,
-      total_price: total_price,
-      updatedAt: orderData.updatedAt,
-    };
-    orderData.Items.map((item) => {
-      if (item.id !== toActual.id) {
-        actual.Items.push(item);
-      } else if (toActual.quantity) {
-        actual.Items.push(toActual);
-      }
-    });
-    setOrderData(actual);
+    const updateBody ={
+      userEmail:user?.email,
+      quantity,
+      FoodId:event.target.getAttribute("foodId"),
+      final_price:event.target.getAttribute("final_price")
+    }
+    setQuantity(quantity)
+
+
+
+    await axios.put("/item",updateBody)
   };
+    // const item = orderData.Items.filter((it) => it.Food.name === name)[0];
+    // // console.log(item.quantity)
+    // const variation = quantity - parseInt(item.quantity);
+    // console.log(variation);
+    // const amount = item.final_price * quantity;
+    // const toActual = {
+    //   Food: item.Food,
+    //   FoodId: item.FoodId,
+    //   OrderId: item.OrderId,
+    //   amount: amount,
+    //   final_price: item.final_price,
+    //   id: item.id,
+    //   quantity: quantity,
+    // };
+    // console.log(toActual);
+    // dispatch(
+    //   putItemActions({
+    //     quantity: item.quantity,
+    //     amount: item.amount,
+    //     id: item.id,
+    //   })
+    // );
+    // let total_price =
+    //   parseInt(orderData.total_price) + variation * parseInt(item.final_price);
+    // console.log(total_price);
+    // let actual = {
+    //   UserId: orderData.UserId,
+    //   Items: [],
+    //   createdAt: orderData.createdAt,
+    //   id: orderData.id,
+    //   order_status: orderData.order_status,
+    //   payment_date: orderData.payment_date,
+    //   payment_id: orderData.payment_id,
+    //   payment_status_detail: orderData.payment_status_detail,
+    //   pickup_date: orderData.pickup_date,
+    //   status: orderData.status,
+    //   total_price: total_price,
+    //   updatedAt: orderData.updatedAt,
+    // };
+    // orderData.Items.map((item) => {
+    //   if (item.id !== toActual.id) {
+    //     actual.Items.push(item);
+    //   } else if (toActual.quantity) {
+    //     actual.Items.push(toActual);
+    //   }
+    // });
+    // setOrderData(actual);
+  
 
   useEffect(() => {
     if (preferenceId) setIsVisible(false);
@@ -161,7 +182,7 @@ const Checkout = ({ onClick }) => {
               </div>
             </div>
           </div>
-          {userOrder?.Items?.map((item) => {
+          {userOrder?.map((item) => {
             return item.quantity ? (
               <div className="row">
                 <div className="col-md-12 col-lg-8">
@@ -191,8 +212,10 @@ const Checkout = ({ onClick }) => {
                                 onChange={updatePrice}
                                 type="number"
                                 id="quantity"
+                                final_price={item.final_price}
+                                foodId ={item.FoodId}
                                 name={item.Food.name}
-                                value={item.quantity}
+                                value={quantity}
                                 min="0"
                                 className="form-control"
                               />
@@ -250,7 +273,7 @@ const Checkout = ({ onClick }) => {
                 <div className="summary-item">
                   <span className="text">Total</span>
                   <span className="price" id="cart-total">
-                    ${userOrder?.total_price}
+                    ${}
                   </span>
                 </div>
                 <button

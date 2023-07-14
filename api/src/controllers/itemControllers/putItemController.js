@@ -2,6 +2,7 @@ const { Item, User, Order } = require("../../db");
 const { updateCartTotalPrice } = require("./updateCartTotalPrice");
 
   const putItemController = async (userEmail, FoodId, quantity, final_price) => {
+    console.log(quantity)
     const user = await User.findOne({
       where: {
         email: userEmail,
