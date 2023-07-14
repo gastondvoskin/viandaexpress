@@ -74,7 +74,8 @@ const putOrderHandler = async (req, res) => {
 
 const getBestSellersHandler = async (req, res) => {
   try {
-    const bestSellers = await getBestSellersController()
+    const quantity = parseInt(req.query.quantity, 10)
+    const bestSellers = await getBestSellersController(quantity)
     res.status(200).send(bestSellers);
   } catch (error) {
     res.status(400).send({ error: error.message });
