@@ -40,10 +40,11 @@ const getOrderDetailHandler = async (req, res) => {
 //esta ruta trae el historial de orders de un usuario(sirve para el cliente,falta agregar condicion para que solo traiga las orders concretadas)
 const getUserOrdersHandler = async (req, res) => {
   try {
-    const { userId } = req.body;
+    const { userId } = req.params;
     console.log(`El id es:${userId}`)
     // const { userId } = req.params
     const openOrder = await getUserOrdersController(userId);
+    console.log(openOrder);
     res.status(200).send(openOrder);
   } catch (error) {
     res.status(400).send({ error: error.message });
