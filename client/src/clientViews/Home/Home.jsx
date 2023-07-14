@@ -18,7 +18,7 @@ const Home = () => {
     (state) => state.shopingCartReducer.pendingOrder
   );
   const favorites = useSelector((state) => state.usersReducer.userFavorites);
-  console.log("favorites: ", favorites);
+  // console.log("favorites: ", favorites);
 
   const foodsWithDiscounts = allFoods.filter((food) => food.discount > 0);
 
