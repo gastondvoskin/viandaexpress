@@ -21,8 +21,8 @@ const userOrderDetail = useSelector((state)=>state.usersReducer.userOrderDetail)
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Vianda </th>
-                    <th>Cantidad </th>
+                    <th>Vianda</th>
+                    <th>Cantidad</th>
                     <th>Precio</th>
                     <th>Total</th>
                     <th>Puntuación</th>
@@ -34,7 +34,7 @@ const userOrderDetail = useSelector((state)=>state.usersReducer.userOrderDetail)
                     <tr key = {i.id}>
                         <td>{i.id}</td>
                         <td>{i.Food.name}</td>
-                        <td style={{ textAlign: 'center' }}>{i.quantity}</td>
+                        <td>{i.quantity}</td>
                         <td>{i.final_price}</td>
                         <td>{i.amount}</td>
                         <td>*****</td>
