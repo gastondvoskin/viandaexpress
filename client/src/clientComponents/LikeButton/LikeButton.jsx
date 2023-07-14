@@ -21,11 +21,16 @@ export default function LikeButton({ foodId }) {
     const email = user.email;
 
     if (isFavorite) {
-      await axios.delete(`/favorite/${email}/${foodId}`);
-      dispatch(getUserFavoritesAction(email));
+      const confirmation = window.confirm('Está seguro de querer eliminar esta vianda de sus favoritos?');
+      if (confirmation) {
+        await axios.delete(`/favorite/${email}/${foodId}`);
+        dispatch(getUserFavoritesAction(email));
+        window.alert('Se ha eliminado la vianda de sus favoritos');
+      }
     } else {
       await axios.post("/favorite", { email, foodId });
       dispatch(getUserFavoritesAction(email));
+      window.alert('Se ha agregado la vianda a sus favoritos.');
     }
   };
 
