@@ -11,7 +11,7 @@ const {
 const orderRouter = Router();
 
 orderRouter.get("/", getOrdersHandler);
-orderRouter.get("/:userEmail", getOrderByUserIdHandler);
+orderRouter.get("/:userEmail", getOrderByUserEmailHandler);
 orderRouter.get("/user/:userId",getUserOrdersHandler)
 orderRouter.get("/detail/:orderId", getOrderDetailHandler);
 orderRouter.post("/", postOrderHandler);
