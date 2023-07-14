@@ -17,8 +17,8 @@ const {
   getBestSellersController,
 } = require("../controllers/orderControllers/getBestSellersController");
 const {
-  getOrderByUserIdController,
-} = require("../controllers/orderControllers/getOrderByUserIdController");
+  getOrderByUserEmailController,
+} = require("../controllers/orderControllers/getOrderByUserEmailController");
 
 //Esta ruta trae todas las ordenes cerradas (sirve para el admin, se deebria modificar proximamente para traer los pedidos ya finalizados )
 const getOrdersHandler = async (req, res) => {
@@ -30,10 +30,10 @@ const getOrdersHandler = async (req, res) => {
   }
 };
 
-const getOrderByUserIdHandler = async (req, res) => {
+const getOrderByUserEmailHandler = async (req, res) => {
   try {
-    const { userId } = req.params;
-    const orderByUserId = await getOrderByUserIdController(userId);
+    const { userEmail } = req.params;
+    const orderByUserId = await getOrderByUserEmailController(userEmail);
     res.status(200).send(orderByUserId);
   } catch (error) {
     res.status(400).send({ error: error.message });
@@ -99,7 +99,7 @@ const getBestSellersHandler = async (req, res) => {
 
 module.exports = {
   getOrdersHandler,
-  getOrderByUserIdHandler,
+  getOrderByUserEmailHandler,
   postOrderHandler,
   putOrderHandler,
   getBestSellersHandler,

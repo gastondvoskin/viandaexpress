@@ -32,7 +32,7 @@ const ShoppingCar = () => {
     if (!currentUser.id) {
       dispatch(getUserDetailAction(user?.email));
     }
-    dispatch(getPendingOrderAction(currentUser.id));
+    dispatch(getPendingOrderAction(user?.email));
   }, [dispatch]);
 
   const handleClick = () => {
