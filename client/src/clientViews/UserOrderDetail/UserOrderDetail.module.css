@@ -32,12 +32,10 @@ color: white;
   .destable tbody tr:last-of-type {
       border-bottom: 2px solid #009879;
 }
-
 .star {
   color: gray;
   font-size: 15px;
 }
-
 .star_filled {
   color: gold;
   font-size: 15px;
