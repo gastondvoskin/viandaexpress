@@ -96,27 +96,27 @@ export default function Card({
         axios.post("/item", bodyAddItem).catch((error) => console.log(error));
       }
     }
-    useEffect(() => {
-      if (isAuthenticated) {
-        const body = {
-          name: user?.name,
-          email: user?.email,
-        };
-        axios
-          .post("/user", body)
-          .then(async () => {
-            const userOrder = await axios
-              .post("/order", body)
-              .then((r) => r.data);
-            console.log("userOrder:", userOrder);
-            dispatch(setUserOrderCase(userOrder));
-          })
-          .then(() => {
-            console.log("Usuario y Order enviados a DB");
-          })
-          .catch((error) => console.log(error));
-      }
-    }, [isAuthenticated, user]);
+    // useEffect(() => {
+    //   if (isAuthenticated) {
+    //     const body = {
+    //       name: user?.name,
+    //       email: user?.email,
+    //     };
+    //     axios
+    //       .post("/user", body)
+    //       .then(async () => {
+    //         const userOrder = await axios
+    //           .post("/order", body)
+    //           .then((r) => r.data);
+    //         console.log("userOrder:", userOrder);
+    //         dispatch(setUserOrderCase(userOrder));
+    //       })
+    //       .then(() => {
+    //         console.log("Usuario y Order enviados a DB");
+    //       })
+    //       .catch((error) => console.log(error));
+    //   }
+    // }, [isAuthenticated, user]);
   };
 
   const updateQuantity = (e) => {

@@ -41,7 +41,7 @@ const Home = () => {
             .post("/order", body)
             .then((r) => r.data);
           /* console.log("userOrder:", userOrder); */
-          dispatch(setUserOrderCase(userOrder));
+          // dispatch(setUserOrderCase(userOrder));
         })
         .then(() => {
           console.log("Usuario y Order enviados a DB");
