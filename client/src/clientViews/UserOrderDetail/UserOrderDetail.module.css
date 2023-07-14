@@ -14,7 +14,7 @@ color: white;
   background-color: var(--accentColor2);
   color: #ffffff; 
   text-align: middle;
-   height: 40px;
+  height: 40px;
   font-size: 18px;
 }
 
@@ -31,4 +31,12 @@ color: white;
   }
   .destable tbody tr:last-of-type {
       border-bottom: 2px solid #009879;
+}
+.star {
+  color: gray;
+  font-size: 15px;
+}
+.star_filled {
+  color: gold;
+  font-size: 15px;
 }
