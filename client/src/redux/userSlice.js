@@ -26,6 +26,10 @@ export const userSlice = createSlice({
     getUserFavoritesCase: (state, action) => {
       state.userFavorites = action.payload;
     },
+    postUserFavoriteCase: (state, action) => {
+      console.log('en postUserFavoriteCase')
+      state.userFavorites = [...state.userFavorites, action.payload];
+    },
   },
 });
 
@@ -87,6 +91,18 @@ export const getUserFavoritesAction = (email) => async (dispatch) => {
       .get(`/favorite/${email}`)
       .then((res) => res.data);
     dispatch(getUserFavoritesCase(userFavorites));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postUserFavoriteAction = (email, foodId) => async (dispatch) => {
+  try {
+    const newFavorite = await axios
+      .post('/favorite', {email, foodId})
+      .then((res) => console.log(res.data));
+      /* .then((res) => res.data); */
+    /* dispatch(getUserFavoritesCase(newFavorite)); */
   } catch (error) {
     console.log(error);
   }

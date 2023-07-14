@@ -151,8 +151,9 @@ export default function Card({
         <NavLink className={style.NavLink} to={`/detail/${id}`}>
           <img src={image} alt="img not found" className={style.card_img} />
         </NavLink>
+
         <div>
-          <LikeButton />
+          <LikeButton foodId={id}/>
         </div>
         
       </div>
