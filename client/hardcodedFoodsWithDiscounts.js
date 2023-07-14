@@ -29,7 +29,7 @@ export const hardcodedFoodsWithDiscounts = [
   },
   {
     name: "Ensalada de aguacate",
-    diets: ["Sin TACC", "Vegetariano", "Vegano", "Sin Lactosa"],
+    diets: ["Sin TACC", "Vegetariana", "Vegana", "Sin Lactosa"],
     description:
       "Una ensalada de aguacate con tomate cherry, cilantro, cebolla roja y aliño de limón y aceite de oliva.",
     image:

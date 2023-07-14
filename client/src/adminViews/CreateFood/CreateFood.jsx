@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 
 export default function CreateFood() {
   const dispatch = useDispatch();
-  const diets = ["Sin TACC", "Vegetariano", "Vegano", "Sin Lactosa"];
+  const diets = ["Sin TACC", "Vegetariano", "Vegana", "Sin Lactosa"];
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
   const categories = ["Carnes", "Pastas", "Ensaladas"];
   const [selectedImage, setSelectedImage] = useState(null);
@@ -66,10 +66,10 @@ export default function CreateFood() {
     ) {
       //alert(`Llena todos los campos para crear la vianda`);
       Swal.fire(
-        'Imposible de crear Viandas!',
-        'Por favor llenar todos los campos',
-        'warning'
-      )
+        "Imposible de crear Viandas!",
+        "Por favor llenar todos los campos",
+        "warning"
+      );
     } else {
       try {
         const formData = new FormData();
@@ -88,11 +88,7 @@ export default function CreateFood() {
           },
         });
         //alert(`Receta de ${input.name} creada`);
-        Swal.fire(
-          'la Receta!',
-          `${input.name}`,
-          'success'
-        )
+        Swal.fire("la Receta!", `${input.name}`, "success");
         setInput({
           name: "",
           description: "",
@@ -151,7 +147,6 @@ export default function CreateFood() {
               <div className={styles.errorsContainer}>
                 <p className={styles.errorMessage}>{errors.name}</p>
               </div>
-              
             ) : null}
           </div>
           <div className={styles.attributesContainers}>
@@ -181,10 +176,10 @@ export default function CreateFood() {
                 return <option value={ca}>{ca}</option>;
               })}
             </select>
-            
+
             {errors.category ? (
               <div className={styles.errorsContainer}>
-              <p className={styles.errorMessage}>{errors.category}</p>
+                <p className={styles.errorMessage}>{errors.category}</p>
               </div>
             ) : null}
           </div>
@@ -192,30 +187,27 @@ export default function CreateFood() {
             <h3 className={styles.attributesName}>Dietas: </h3>
             <div className={styles.dietsContainer}>
               {diets.map((diet) => (
-                
-                  <div key={diet} className={styles.diets}>
-                    <div className={styles.dietsValues}>
-                      <span className={styles.checkBox}>{diet}</span>
-                      <input
-                        value={diet}
-                        checked={input.diets.includes(diet)}
-                        onChange={handleCheck}
-                        type="checkbox"
-                        name="diet"
-                        className={styles.inputCheckBox}
-                      />
-                    </div>
+                <div key={diet} className={styles.diets}>
+                  <div className={styles.dietsValues}>
+                    <span className={styles.checkBox}>{diet}</span>
+                    <input
+                      value={diet}
+                      checked={input.diets.includes(diet)}
+                      onChange={handleCheck}
+                      type="checkbox"
+                      name="diet"
+                      className={styles.inputCheckBox}
+                    />
                   </div>
-                
+                </div>
               ))}
             </div>
             {errors.diets ? (
               <div className={styles.errorsContainer}>
-              <p className={styles.errorMessage}>{errors.diets}</p>
+                <p className={styles.errorMessage}>{errors.diets}</p>
               </div>
             ) : null}
           </div>
-          
         </div>
         <div className={styles.imageContainer}>
           <div className={styles.image}>
@@ -263,7 +255,7 @@ export default function CreateFood() {
                 </div>
               ) : null}
             </div>
-            
+
             <div className={styles.pricesContainers}>
               <label>
                 <h3 className={styles.attributesName}>Descuento de Vianda:</h3>
@@ -282,11 +274,11 @@ export default function CreateFood() {
               ) : null}
             </div>
           </div>
-          
+
           <div className={styles.ButtonCreate}>
             <button type="submit">Crear Vianda</button>
           </div>
-            {/* <div>
+          {/* <div>
                 <Link to="/">
                   <img
                     className={style.logo}
@@ -296,10 +288,11 @@ export default function CreateFood() {
                 </Link>
               </div> */}
           <div className={styles.ButtonDB}>
-            <Link to='/admin'><button>Home</button></Link>
+            <Link to="/admin">
+              <button>Home</button>
+            </Link>
           </div>
         </div>
-        
       </form>
     </div>
   );

@@ -9,7 +9,6 @@ import axios from "axios";
 import { setUserOrderCase } from "../../redux/shopingCartSlice";
 import LikeButton from "../LikeButton/LikeButton";
 
-
 import meat from "../../assets/categories/meat.png";
 import pastas from "../../assets/categories/pastas.png";
 import salad from "../../assets/categories/salad.png";
@@ -47,7 +46,7 @@ export default function Card({
       diet = <img key={index} className={style.dietsIcon} src={sinTacc} />;
     if (diet === "Vegetariano")
       diet = <img key={index} className={style.dietsIcon} src={vegetarian} />;
-    if (diet === "Vegano")
+    if (diet === "Vegana")
       diet = <img key={index} className={style.dietsIcon} src={vegan} />;
     if (diet === "Sin Lactosa")
       diet = <img key={index} className={style.dietsIcon} src={sinLactosa} />;
@@ -122,7 +121,6 @@ export default function Card({
     axios.put("/item", bodyUpdateItem).catch((error) => console.log(error));
   };
 
-
   /* RETURN */
   return (
     <div className={style.card}>
@@ -133,7 +131,6 @@ export default function Card({
         <div>
           <LikeButton />
         </div>
-        
       </div>
 
       <div className={style.dataContainer}>
