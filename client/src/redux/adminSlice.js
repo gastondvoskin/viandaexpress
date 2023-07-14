@@ -7,7 +7,8 @@ export const adminSlice = createSlice({
         allOrders: [],
         bestSellers:[],
         orderDetail: null,
-        sidebarOption:'dashboard'
+        sidebarOption:'dashboard',
+        quantityOfBestSellers:3,
     },
     reducers: {
         getAllOrdersCase: (state, action) => {
@@ -25,12 +26,15 @@ export const adminSlice = createSlice({
         },
         cleanOrderDetailCase: (state) =>{
             state.orderDetail = null
+        },
+        setQuantityCase:(state,action) =>{
+            state.quantityOfBestSellers = action.payload
         }
 
     }
 })
 
-export const { getAllOrdersCase,setSidebarOption, getOrderDetailCase, cleanOrderDetailCase, getBestSellersCase } = adminSlice.actions;
+export const { getAllOrdersCase,setSidebarOption, getOrderDetailCase, cleanOrderDetailCase, getBestSellersCase,setQuantityCase } = adminSlice.actions;
 
 export default adminSlice.reducer;
 
@@ -45,9 +49,9 @@ export const getAllOrdersAction = () => async (dispatch) => {
         console.log(error);
     }
 }
-export const getBestSellersAction = () => async (dispatch) => {
+export const getBestSellersAction = (quantity) => async (dispatch) => {
     try {
-        const bestSellers = await axios.get('/order/bestSellers')
+        const bestSellers = await axios.get(`/order/bestSellers?quantity=${quantity}`)
             .then(r => r.data)
         dispatch(getBestSellersCase(bestSellers))
     } catch (error) {
