@@ -96,34 +96,13 @@ export default function Card({
         axios.post("/item", bodyAddItem).catch((error) => console.log(error));
       }
     }
-    // useEffect(() => {
-    //   if (isAuthenticated) {
-    //     const body = {
-    //       name: user?.name,
-    //       email: user?.email,
-    //     };
-    //     axios
-    //       .post("/user", body)
-    //       .then(async () => {
-    //         const userOrder = await axios
-    //           .post("/order", body)
-    //           .then((r) => r.data);
-    //         console.log("userOrder:", userOrder);
-    //         dispatch(setUserOrderCase(userOrder));
-    //       })
-    //       .then(() => {
-    //         console.log("Usuario y Order enviados a DB");
-    //       })
-    //       .catch((error) => console.log(error));
-    //   }
-    // }, [isAuthenticated, user]);
   };
 
   const updateQuantity = (e) => {
     const quantity = parseInt(e.target.value);
     const amount = final_price * quantity;
     setQuantity(quantity);
-    dispatch(deleteItemActions(id));
+    // dispatch(deleteItemActions(id));
     dispatch(
       addItemsActions({
         id,
@@ -173,7 +152,7 @@ export default function Card({
 
       <div className={style.inputagregar}>
         <button className={style.btncar} onClick={handleClick}>
-          {isItem ? "Agregado" : "Agregar"}
+          {isItem ? "Eliminar" : "Agregar"}
         </button>
         {isItem ? (
           <input
