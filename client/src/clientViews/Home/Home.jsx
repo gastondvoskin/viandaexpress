@@ -43,10 +43,12 @@ const Home = () => {
         // })
         .then(() => {
           console.log("Usuario enviado a DB");
+
         })
         .catch((error) => console.log(error));
     }
   }, [isAuthenticated, user]);
+
 
   // useEffect(() => {
   //   if (isAuthenticated) {
@@ -69,6 +71,7 @@ const Home = () => {
   //       .catch((error) => console.log(error));
   //   }
   // }, [isAuthenticated, user]);
+
 
   useEffect(() => {
     if (!allFoods.length) {
