@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 import { Context } from "./ContextProvider";
-import {
-  deleteItemActions,
-  addItemsActions,
-  putItemActions,
-} from "../../redux/foodActions";
+import { deleteItemActions,setItemsActions, putItemActions } from "../../redux/shopingCartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getPendingOrderAction, setUserOrderCase } from "../../redux/shopingCartSlice";
@@ -39,17 +35,49 @@ const Checkout = ({ onClick }) => {
   const updatePrice = async (event) => {
     event.preventDefault()
     const quantity = parseInt(event.target.value);
-    const updateBody ={
-      userEmail:user?.email,
-      quantity,
-      FoodId:event.target.getAttribute("foodId"),
-      final_price:event.target.getAttribute("final_price")
-    }
-    setQuantity(quantity)
-
-
-
-    await axios.put("/item",updateBody)
+    const name = event.target.name;
+    const item = orderData.filter((it) => it.Food.name === name)[0];
+    // console.log(item.quantity)
+    const variation = quantity - parseInt(item.quantity);
+    console.log(variation)
+    const amount = item.final_price * quantity;
+    const toActual={
+      Food: item.Food,
+      FoodId: item.FoodId,
+      OrderId: item.OrderId,
+      amount: amount,
+      final_price: item.final_price,
+      id: item.id,
+      quantity: quantity,
+    };
+    console.log(toActual);
+    dispatch(putItemActions({
+      quantity: item.quantity,
+      amount: item.amount,
+      id: item.id,
+    }))
+    let total_price = parseInt(orderData.total_price) + (variation) * parseInt(item.final_price);
+    console.log(total_price)
+    let actual={
+      UserId: orderData.UserId,
+      Items: [],
+      createdAt: orderData.createdAt,
+      id: orderData.id,
+      order_status: orderData.order_status,
+      payment_date: orderData.payment_date,
+      payment_id: orderData.payment_id,
+      payment_status_detail: orderData.payment_status_detail,
+      pickup_date: orderData.pickup_date,
+      status: orderData.status,
+      total_price: total_price,
+      updatedAt: orderData.updatedAt
+    };
+    orderData.Items.map(item=>{
+      if(item.id!==toActual.id){
+        actual.Items.push(item)
+      }else if(toActual.quantity){actual.Items.push(toActual)}
+    })
+    setOrderData(actual);
   };
     // const item = orderData.Items.filter((it) => it.Food.name === name)[0];
     // // console.log(item.quantity)
@@ -182,8 +210,9 @@ const Checkout = ({ onClick }) => {
               </div>
             </div>
           </div>
-          {userOrder?.map((item) => {
-            return item.quantity ? (
+          {orderData.length? orderData.map((item) => {
+            return(item.quantity?
+            (
               <div className="row">
                 <div className="col-md-12 col-lg-8">
                   <div className="items">
@@ -244,8 +273,8 @@ const Checkout = ({ onClick }) => {
                   </div>
                 </div>
               </div>
-            ) : null;
-          })}
+            ) : null);
+          }):null}
           <div className="row">
             <div className="col-md-12 col-lg-8">
               <div className="items">

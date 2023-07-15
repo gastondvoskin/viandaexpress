@@ -10,16 +10,17 @@ const {
 
 const postItemHandler = async (req, res) => {
   try {
-    // const {userId} = req.params
-    const { userEmail, FoodId, quantity, final_price } = req.body;
+    const {OrderId,FoodId,final_price,quantity,amount} = req.body;
+    const setItem=await postItemController(FoodId,OrderId,final_price,quantity,amount);
+    // const { userEmail, FoodId, quantity, final_price } = req.body;
 
-    const addItem = await postItemController(
-      userEmail,
-      FoodId,
-      quantity,
-      final_price
-    );
-    res.status(200).send(addItem);
+    // const addItem = await postItemController(
+    //   userEmail,
+    //   FoodId,
+    //   quantity,
+    //   final_price
+    // );
+    res.status(200).send(setItem);
   } catch (error) {
     res.status(400).send({ error: error.message });
   }

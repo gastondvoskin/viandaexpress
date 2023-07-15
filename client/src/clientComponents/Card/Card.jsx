@@ -1,7 +1,7 @@
 import style from "./Card.module.css";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { addItemsActions, deleteItemActions } from "../../redux/foodActions.js";
+import { setItemsActions, deleteItemActions, putItemActions } from "../../redux/shopingCartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
@@ -28,6 +28,7 @@ export default function Card({
   discount,
   status,
   allItems,
+  orderUser
 }) {
   const [isItem, setIsItem] = useState(false);
   const { isAuthenticated, user } = useAuth0();
@@ -56,8 +57,8 @@ export default function Card({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    allItems.Items?.map((item) => {
-      if (item.name == name) {
+    allItems?.map((item) => {
+      if (item.FoodId === id) {
         setIsItem(true);
         setQuantity(item.quantity);
       }
@@ -72,19 +73,29 @@ export default function Card({
       );
     } else {
       if (isItem) {
-        setIsItem(false), dispatch(deleteItemActions(id));
-        const bodyDeleteItem = {
-          userEmail: user?.email,
-          FoodId: id,
-        };
-        axios
-          .delete("/item", { data: bodyDeleteItem })
-          .catch((error) => console.log(error));
+        setIsItem(false);
+        const item=allItems.filter(it=>it.FoodId===id)
+        dispatch(deleteItemActions(item.id));
+        // const bodyDeleteItem = {
+        //   userEmail: user?.email,
+        //   FoodId: id,
+        // };
+        // axios
+        //   .delete("/item", { data: bodyDeleteItem })
+        //   .catch((error) => console.log(error));
       } else {
         setIsItem(true);
         const amount = final_price * parseInt(quantity);
-        dispatch(
-          addItemsActions({ id, name, image, final_price, quantity, amount })
+       dispatch(
+          setItemsActions({
+            FoodId: id,
+            OrderId: orderUser.id,
+            name: name,
+            image: image,
+            final_price: final_price,
+            quantity: quantity,
+            amount: amount,
+          })
         );
         const bodyAddItem = {
           userEmail: user?.email,
