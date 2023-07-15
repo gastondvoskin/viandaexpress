@@ -14,9 +14,7 @@ import { getUserFavoritesAction } from "../../redux/userSlice";
 const Home = () => {
   const dispatch = useDispatch();
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
-  const allItems = useSelector(
-    (state) => state.shopingCartReducer.itemsOrder
-  );
+  const allItems = useSelector((state) => state.shopingCartReducer.itemsOrder);
   const favorites = useSelector((state) => state.usersReducer.userFavorites);
   console.log("favorites: ", favorites);
 
@@ -36,19 +34,44 @@ const Home = () => {
       };
       axios
         .post("/user", body)
-        .then(async () => {
-          const userOrder = await axios
-            .post("/order", body)
-            .then((r) => r.data);
-          /* console.log("userOrder:", userOrder); */
-          dispatch(setUserOrderCase(userOrder));
-        })
+        // .then(async () => {
+        //   const userOrder = await axios
+        //     .post("/order", body)
+        //     .then((r) => r.data);
+        //   /* console.log("userOrder:", userOrder); */
+        //   dispatch(setUserOrderCase(userOrder));
+        // })
         .then(() => {
-          console.log("Usuario y Order enviados a DB");
+          console.log("Usuario enviado a DB");
+
         })
         .catch((error) => console.log(error));
     }
   }, [isAuthenticated, user]);
+
+
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     const body = {
+  //       name: user?.name,
+  //       email: user?.email,
+  //     };
+  //     axios
+  //       .post("/user", body)
+  //       .then(async () => {
+  //         const userOrder = await axios
+  //           .post("/order", body)
+  //           .then((r) => r.data);
+  //         /* console.log("userOrder:", userOrder); */
+  //         dispatch(setUserOrderCase(userOrder));
+  //       })
+  //       .then(() => {
+  //         console.log("Usuario y Order enviados a DB");
+  //       })
+  //       .catch((error) => console.log(error));
+  //   }
+  // }, [isAuthenticated, user]);
+
 
   useEffect(() => {
     if (!allFoods.length) {
@@ -94,7 +117,11 @@ const Home = () => {
         />
       </section>
 
-      {!favorites.length ? <div>No hay favoritos por el momento. Agrégalos con el corazón en cada comida"</div> : (
+      {!favorites.length ? (
+        <div>
+          No has agregado favoritos.
+        </div>
+      ) : (
         <section className={styles.sectionContainer}>
           <h1>Mis favoritos</h1>
           <CardsContainer currentFoods={favorites} allItems={allItems} />
