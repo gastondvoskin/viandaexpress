@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 import { Context } from "./ContextProvider";
-import { deleteItemActions,setItemsActions, putItemActions } from "../../redux/shopingCartSlice";
+import {
+  deleteItemActions,
+  setItemsActions,
+  putItemActions,
+} from "../../redux/shopingCartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getPendingOrderAction, setUserOrderCase } from "../../redux/shopingCartSlice";
+import {
+  getPendingOrderAction,
+  setUserOrderCase,
+} from "../../redux/shopingCartSlice";
 import axios from "axios";
 
 const Checkout = ({ onClick }) => {
-  const {user} = useAuth0()
+  const { user } = useAuth0();
   const dispatch = useDispatch();
-  const userOrder = useSelector(
-    (state) => state.shopingCartReducer.pendingOrder.Items
-  );
+  // const userOrder = useSelector(
+  //   (state) => state.shopingCartReducer.pendingOrder.Items
+  // );
 
-
-  const [quantity,setQuantity] = useState(1);
-
-
+  const [quantity, setQuantity] = useState(1);
 
   const [isVisible, setIsVisible] = React.useState(true);
   let {
@@ -27,64 +31,22 @@ const Checkout = ({ onClick }) => {
     setOrderData,
     total,
   } = React.useContext(Context);
+  console.log("Checkout: ", orderData);
 
   const shoppingCartClass = classnames("shopping-cart dark", {
     "shopping-cart--hidden": !isVisible,
   });
 
   const updatePrice = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const quantity = parseInt(event.target.value);
     const name = event.target.name;
-    const item = orderData.filter((it) => it.Food.name === name)[0];
-    // console.log(item.quantity)
+    let item = orderData.filter((it) => it.Food.name === name)[0];
+    // console.log("updatePrice: ", item);
     const variation = quantity - parseInt(item.quantity);
-    console.log(variation)
-    const amount = item.final_price * quantity;
-    const toActual={
-      Food: item.Food,
-      FoodId: item.FoodId,
-      OrderId: item.OrderId,
-      amount: amount,
-      final_price: item.final_price,
-      id: item.id,
-      quantity: quantity,
-    };
-    console.log(toActual);
-    dispatch(putItemActions({
-      quantity: item.quantity,
-      amount: item.amount,
-      id: item.id,
-    }))
-    let total_price = parseInt(orderData.total_price) + (variation) * parseInt(item.final_price);
-    console.log(total_price)
-    let actual={
-      UserId: orderData.UserId,
-      Items: [],
-      createdAt: orderData.createdAt,
-      id: orderData.id,
-      order_status: orderData.order_status,
-      payment_date: orderData.payment_date,
-      payment_id: orderData.payment_id,
-      payment_status_detail: orderData.payment_status_detail,
-      pickup_date: orderData.pickup_date,
-      status: orderData.status,
-      total_price: total_price,
-      updatedAt: orderData.updatedAt
-    };
-    orderData.Items.map(item=>{
-      if(item.id!==toActual.id){
-        actual.Items.push(item)
-      }else if(toActual.quantity){actual.Items.push(toActual)}
-    })
-    setOrderData(actual);
-  };
-    // const item = orderData.Items.filter((it) => it.Food.name === name)[0];
-    // // console.log(item.quantity)
-    // const variation = quantity - parseInt(item.quantity);
     // console.log(variation);
-    // const amount = item.final_price * quantity;
-    // const toActual = {
+    const amount = item.final_price * quantity;
+    // const toActual={
     //   Food: item.Food,
     //   FoodId: item.FoodId,
     //   OrderId: item.OrderId,
@@ -92,77 +54,163 @@ const Checkout = ({ onClick }) => {
     //   final_price: item.final_price,
     //   id: item.id,
     //   quantity: quantity,
-    // };
-    // console.log(toActual);
-    // dispatch(
-    //   putItemActions({
-    //     quantity: item.quantity,
-    //     amount: item.amount,
-    //     id: item.id,
+    dispatch(
+      putItemActions({
+        orderId: item.OrderId,
+        quantity: quantity,
+        amount: amount,
+        itemId: item.id,
+      })
+    );
+    // item.quantity = quantity;
+    // item.amount = amount;
+    // setOrderData(
+    //   orderData.map((it) => {
+    //     if (it.id === item.id) {
+    //       return item;
+    //     } else {
+    //       return it;
+    //     }
     //   })
     // );
-    // let total_price =
-    //   parseInt(orderData.total_price) + variation * parseInt(item.final_price);
-    // console.log(total_price);
-    // let actual = {
-    //   UserId: orderData.UserId,
-    //   Items: [],
-    //   createdAt: orderData.createdAt,
-    //   id: orderData.id,
-    //   order_status: orderData.order_status,
-    //   payment_date: orderData.payment_date,
-    //   payment_id: orderData.payment_id,
-    //   payment_status_detail: orderData.payment_status_detail,
-    //   pickup_date: orderData.pickup_date,
-    //   status: orderData.status,
-    //   total_price: total_price,
-    //   updatedAt: orderData.updatedAt,
-    // };
-    // orderData.Items.map((item) => {
-    //   if (item.id !== toActual.id) {
-    //     actual.Items.push(item);
-    //   } else if (toActual.quantity) {
-    //     actual.Items.push(toActual);
-    //   }
-    // });
-    // setOrderData(actual);
-  
+    const updatedItem = {
+      ...item,
+      quantity: quantity,
+      amount: amount,
+    };
+    // setOrderData(
+    //   orderData.map((it) => {
+    //     if (it.id === item.id) {
+    //       return {
+    //         id: item.id,
+    //         Food: item.Food,
+    //         FoodId: item.FoodId,
+    //         OrderId: item.OrderId,
+    //         final_price: item.final_price,
+    //         amount: amount,
+    //         quantity: quantity,
+    //       };
+    //     } else {
+    //       return it;
+    //     }
+    //   })
+    // );
+    setOrderData(
+      orderData.map((it) => {
+        if (it.id === item.id) {
+          return updatedItem;
+        } else {
+          return it;
+        }
+      })
+    );
+    total = total + variation * parseInt(item.final_price);
+  };
+
+  // let actual={
+  //   UserId: orderData.UserId,
+  //   Items: [],
+  //   createdAt: orderData.createdAt,
+  //   id: orderData.id,
+  //   order_status: orderData.order_status,
+  //   payment_date: orderData.payment_date,
+  //   payment_id: orderData.payment_id,
+  //   payment_status_detail: orderData.payment_status_detail,
+  //   pickup_date: orderData.pickup_date,
+  //   status: orderData.status,
+  //   total_price: total_price,
+  //   updatedAt: orderData.updatedAt
+  // };
+  // orderData.Items.map(item=>{
+  //   if(item.id!==toActual.id){
+  //     actual.Items.push(item)
+  //   }else if(toActual.quantity){actual.Items.push(toActual)}
+  // })
+  // setOrderData(actual);
+  // };
+  // const item = orderData.Items.filter((it) => it.Food.name === name)[0];
+  // // console.log(item.quantity)
+  // const variation = quantity - parseInt(item.quantity);
+  // console.log(variation);
+  // const amount = item.final_price * quantity;
+  // const toActual = {
+  //   Food: item.Food,
+  //   FoodId: item.FoodId,
+  //   OrderId: item.OrderId,
+  //   amount: amount,
+  //   final_price: item.final_price,
+  //   id: item.id,
+  //   quantity: quantity,
+  // };
+  // console.log(toActual);
+  // dispatch(
+  //   putItemActions({
+  //     quantity: item.quantity,
+  //     amount: item.amount,
+  //     id: item.id,
+  //   })
+  // );
+  // let total_price =
+  //   parseInt(orderData.total_price) + variation * parseInt(item.final_price);
+  // console.log(total_price);
+  // let actual = {
+  //   UserId: orderData.UserId,
+  //   Items: [],
+  //   createdAt: orderData.createdAt,
+  //   id: orderData.id,
+  //   order_status: orderData.order_status,
+  //   payment_date: orderData.payment_date,
+  //   payment_id: orderData.payment_id,
+  //   payment_status_detail: orderData.payment_status_detail,
+  //   pickup_date: orderData.pickup_date,
+  //   status: orderData.status,
+  //   total_price: total_price,
+  //   updatedAt: orderData.updatedAt,
+  // };
+  // orderData.Items.map((item) => {
+  //   if (item.id !== toActual.id) {
+  //     actual.Items.push(item);
+  //   } else if (toActual.quantity) {
+  //     actual.Items.push(toActual);
+  //   }
+  // });
+  // setOrderData(actual);
 
   useEffect(() => {
     if (preferenceId) setIsVisible(false);
   }, [preferenceId]);
 
-  orderData.Items?.forEach((item) => {
+  orderData?.forEach((item) => {
     total = total + item.amount;
   });
 
   const handleDelete = (e) => {
-    e.preventDefault();
-    const name = e.target.name;
-    const item = orderData.Items.filter((it) => it.Food.name === name)[0];
-    console.log(item.id);
-    const toActual = orderData.Items.filter((it) => it.id !== item.id);
-    const actual = {
-      UserId: orderData.UserId,
-      Items: toActual,
-      createdAt: orderData.createdAt,
-      id: orderData.id,
-      order_status: orderData.order_status,
-      payment_date: orderData.payment_date,
-      payment_id: orderData.payment_id,
-      payment_status_detail: orderData.payment_status_detail,
-      pickup_date: orderData.pickup_date,
-      status: orderData.status,
-      total_price: orderData.total_price,
-      updatedAt: orderData.updatedAt,
-    };
-    setOrderData(actual);
-    dispatch(
-      deleteItemActions({
-        FoodId: item.FoodId,
-        id: item.id,
-      })
-    );
+    // // e.preventDefault();
+    // // const name = e.target.name;
+    // // const item = orderData.Items.filter((it) => it.Food.name === name)[0];
+    // // console.log(item.id);
+    // // const toActual = orderData.Items.filter((it) => it.id !== item.id);
+    // // const actual = {
+    // //   UserId: orderData.UserId,
+    // //   Items: toActual,
+    // //   createdAt: orderData.createdAt,
+    // //   id: orderData.id,
+    // //   order_status: orderData.order_status,
+    // //   payment_date: orderData.payment_date,
+    // //   payment_id: orderData.payment_id,
+    // //   payment_status_detail: orderData.payment_status_detail,
+    // //   pickup_date: orderData.pickup_date,
+    // //   status: orderData.status,
+    // //   total_price: orderData.total_price,
+    // //   updatedAt: orderData.updatedAt,
+    // // };
+    // // setOrderData(actual);
+    // // dispatch(
+    // //   deleteItemActions({
+    // //     FoodId: item.FoodId,
+    // //     id: item.id,
+    // //   })
+    // );
   };
 
   return (
@@ -210,71 +258,74 @@ const Checkout = ({ onClick }) => {
               </div>
             </div>
           </div>
-          {orderData.length? orderData.map((item) => {
-            return(item.quantity?
-            (
-              <div className="row">
-                <div className="col-md-12 col-lg-8">
-                  <div className="items">
-                    <div className="product">
-                      <div className="info">
-                        <div className="product-details">
-                          <div className="row justify-content-md-center">
-                            <div className="col-md-3">
-                              <img
-                                className="img-fluid mx-auto d-block image"
-                                alt="Image of a product"
-                                src={item.Food.image}
-                              />
-                            </div>
-                            <div className="col-md-4 product-detail">
-                              <div className="product-info">
-                                <b>{item.Food.name}</b>
-                                <br></br>
-                                <b>Price:</b> ${" "}
-                                <span id="unit-price">{item.final_price}</span>
-                                <br />
+          {orderData.length
+            ? orderData.map((item) => {
+                return item.quantity ? (
+                  <div className="row">
+                    <div className="col-md-12 col-lg-8">
+                      <div className="items">
+                        <div className="product">
+                          <div className="info">
+                            <div className="product-details">
+                              <div className="row justify-content-md-center">
+                                <div className="col-md-3">
+                                  <img
+                                    className="img-fluid mx-auto d-block image"
+                                    alt="Image of a product"
+                                    src={item.Food.image}
+                                  />
+                                </div>
+                                <div className="col-md-4 product-detail">
+                                  <div className="product-info">
+                                    <b>{item.Food.name}</b>
+                                    <br></br>
+                                    <b>Price:</b> ${" "}
+                                    <span id="unit-price">
+                                      {item.final_price}
+                                    </span>
+                                    <br />
+                                  </div>
+                                </div>
+                                <div className="col-md-3 product-detail">
+                                  <input
+                                    onChange={updatePrice}
+                                    type="number"
+                                    id="quantity"
+                                    final_price={item.final_price}
+                                    foodId={item.FoodId}
+                                    name={item.Food.name}
+                                    value={item.quantity}
+                                    min="0"
+                                    className="form-control"
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div className="col-md-3 product-detail">
-                              <input
-                                onChange={updatePrice}
-                                type="number"
-                                id="quantity"
-                                final_price={item.final_price}
-                                foodId ={item.FoodId}
-                                name={item.Food.name}
-                                value={quantity}
-                                min="0"
-                                className="form-control"
-                              />
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div className="col-md-12 col-lg-4">
-                  <div className="summary">
-                    <div className="summary-item">
-                      <span className="price" id="cart-total">
-                        ${item.amount}
-                      </span>
-                      <button
-                        className="btn btn-primary btn-lg btn-block"
-                        onClick={handleDelete}
-                        id="checkout-btn"
-                        name={item.Food.name}
-                      >
-                        Eliminar
-                      </button>
+                    <div className="col-md-12 col-lg-4">
+                      <div className="summary">
+                        <div className="summary-item">
+                          <span className="price" id="cart-total">
+                            ${item.amount}
+                          </span>
+                          <button
+                            className="btn btn-primary btn-lg btn-block"
+                            onClick={handleDelete}
+                            id="checkout-btn"
+                            name={item.Food.name}
+                          >
+                            Eliminar
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ) : null);
-          }):null}
+                ) : null;
+              })
+            : null}
           <div className="row">
             <div className="col-md-12 col-lg-8">
               <div className="items">
@@ -302,7 +353,7 @@ const Checkout = ({ onClick }) => {
                 <div className="summary-item">
                   <span className="text">Total</span>
                   <span className="price" id="cart-total">
-                    ${}
+                    ${total}
                   </span>
                 </div>
                 <button

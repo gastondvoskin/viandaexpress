@@ -1,38 +1,37 @@
 const { Item, User, Order } = require("../../db");
 const { updateCartTotalPrice } = require("./updateCartTotalPrice");
 
-  const putItemController = async (userEmail, FoodId, quantity, final_price) => {
-    console.log(quantity)
-    const user = await User.findOne({
-      where: {
-        email: userEmail,
-      },
-    });
-  
-    const userOrder = await Order.findOne({
-      where: {
-        UserId: user.dataValues.id,
-        status: "PENDIENTE",
-      },
-    });
-  
-    const itemToBeModified = await Item.findOne({
-      where: {
-        FoodId,
-        OrderId: userOrder.dataValues.id,
-      },
-    });
-  
+  const putItemController = async (orderId, itemId, quantity, amount) => {
+    // const user = await User.findOne({
+    //   where: {
+    //     email: userEmail,
+    //   },
+    // });
+
+    // const userOrder = await Order.findOne({
+    //   where: {
+    //     UserId: user.dataValues.id,
+    //     status: "PENDIENTE",
+    //   },
+    // });
+
+    // const itemToBeModified = await Item.findOne({
+    //   where: {
+    //     FoodId,
+    //     OrderId,
+    //   },
+    // });
+
     await Item.update(
-      { quantity, final_price, amount: final_price * quantity },
+      { quantity, amount },
       {
         where: {
-          id: itemToBeModified.dataValues.id,
+          id: itemId,
         },
       }
     );
-  
-    await updateCartTotalPrice(userOrder.dataValues.id);
+
+    await updateCartTotalPrice(orderId);
     return "Item actualizado correctamente";
   };
 
