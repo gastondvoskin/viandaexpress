@@ -23,9 +23,11 @@ const Viandas = () => {
     (state) => state.foodsReducer.activeFilteredFoods
   );
   const { isLoading, user, isAuthenticated } = useAuth0();
-  const orderUser = useSelector((state) => state.shopingCartReducer.pendingOrder);
-  console.log(orderUser)
-  const allItems=useSelector((state)=>state.shopingCartReducer.itemsOrder)
+  const orderUser = useSelector(
+    (state) => state.shopingCartReducer.pendingOrder
+  );
+  console.log(orderUser);
+  const allItems = useSelector((state) => state.shopingCartReducer.itemsOrder);
   useEffect(() => {
     if (!allFoods.length) {
       axios.get("/api").then(() => dispatch(getFoods()));
@@ -37,27 +39,25 @@ const Viandas = () => {
   useEffect(() => {
     if (isAuthenticated && !allItems.length) {
       const body = {
-        name: user?.name,
         email: user?.email,
       };
       axios
-        .post("/user", body)
-        .then(async () => {
-          const userOrder = await axios
-            .post("/order", body)
-            .then((r) => r.data);
-          /* console.log("userOrder:", userOrder); */
-          dispatch(setUserOrderCase(userOrder));
-          if(userOrder.Items?.length) dispatch(getItems(userOrder.Items))
-        })
-        .then(() => {
-          console.log("Usuario y Order enviados a DB");
+        .post("/order", body)
+        .then((r) => r.data)
+        .then((data) => {
+          dispatch(setUserOrderCase(data));
+          if (data.Items?.length) dispatch(getItems(data.Items));
+          console.log("Order enviado a DB");
         })
         .catch((error) => console.log(error));
+      /* console.log("userOrder:", userOrder); */
+      // dispatch(setUserOrderCase(userOrder));
+      // if (userOrder.Items?.length) dispatch(getItems(userOrder.Items));
     }
-  }, [isAuthenticated, user]);
-  console.log(allItems)
-  
+  }, [isAuthenticated, user, allItems, dispatch]);
+
+  console.log(allItems);
+
   const foodsPerPage = 8;
   const indexOfLastFood = currentPage * foodsPerPage;
   const indexOfFirstFood = indexOfLastFood - foodsPerPage;
@@ -99,7 +99,11 @@ const Viandas = () => {
             No se encontraron resultados
           </h1>
         ) : (
-        <CardsContainer currentFoods={currentFoods} allItems={allItems} orderUser={orderUser}/>
+          <CardsContainer
+            currentFoods={currentFoods}
+            allItems={allItems}
+            orderUser={orderUser}
+          />
         )}
       </div>
     </div>
