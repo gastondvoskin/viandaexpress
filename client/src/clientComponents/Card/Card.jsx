@@ -1,7 +1,11 @@
 import style from "./Card.module.css";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { setItemsActions, deleteItemActions, putItemActions } from "../../redux/shopingCartSlice";
+import {
+  setItemsActions,
+  deleteItemActions,
+  putItemActions,
+} from "../../redux/shopingCartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
@@ -28,12 +32,12 @@ export default function Card({
   discount,
   status,
   allItems,
-  orderUser
+  orderId,
 }) {
   const [isItem, setIsItem] = useState(false);
   const { isAuthenticated, user } = useAuth0();
   const [quantity, setQuantity] = useState(1);
-  const Food={
+  const Food = {
     id,
     name,
     image,
@@ -85,16 +89,16 @@ export default function Card({
     } else {
       if (isItem) {
         setIsItem(false);
-        const item=allItems.filter(it=>it.FoodId===id)
+        const item = allItems.filter((it) => it.FoodId === id);
         dispatch(deleteItemActions(item.id));
       } else {
         setIsItem(true);
         const amount = final_price * parseInt(quantity);
-       dispatch(
+        dispatch(
           setItemsActions({
             Food: Food,
             FoodId: id,
-            OrderId: orderUser.id,
+            OrderId: orderId,
             name: name,
             image: image,
             final_price: final_price,
@@ -102,39 +106,46 @@ export default function Card({
             amount: amount,
           })
         );
-        const bodyAddItem = {
-          userEmail: user?.email,
-          FoodId: id,
-          quantity,
-          final_price,
-        };
-        axios.post("/item", bodyAddItem).catch((error) => console.log(error));
+        // const bodyAddItem = {
+        //   userEmail: user?.email,
+        //   FoodId: id,
+        //   quantity,
+        //   final_price,
+        // };
+        // axios.post("/item", bodyAddItem).catch((error) => console.log(error));
       }
     }
   };
 
   const updateQuantity = (e) => {
+    const item = allItems.filter((it) => it.FoodId === id)[0];
     const quantity = parseInt(e.target.value);
     const amount = final_price * quantity;
     setQuantity(quantity);
     // dispatch(deleteItemActions(id));
     dispatch(
-      addItemsActions({
-        id,
-        name,
-        image,
-        final_price,
-        quantity: quantity,
-        amount: amount,
+      putItemActions({
+        orderId,
+        itemId: item.id,
+        quantity,
+        amount,
       })
     );
-    const bodyUpdateItem = {
-      userEmail: user?.email,
-      FoodId: id,
-      quantity,
-      final_price,
-    };
-    axios.put("/item", bodyUpdateItem).catch((error) => console.log(error));
+    // addItemsActions({
+    //   id,
+    //   name,
+    //   image,
+    //   final_price,
+    //   quantity: quantity,
+    //   amount: amount,
+    // })
+    // const bodyUpdateItem = {
+    //   userEmail: user?.email,
+    //   FoodId: id,
+    //   quantity,
+    //   final_price,
+    // };
+    // axios.put("/item", bodyUpdateItem).catch((error) => console.log(error));
   };
 
   /* RETURN */
