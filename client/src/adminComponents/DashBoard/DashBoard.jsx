@@ -1,17 +1,14 @@
 import React, { useEffect } from 'react'
 import PieChart from './PieChart'
 import MyLineChart from './LineChart'
-import { useDispatch } from 'react-redux';
-import { getBestSellersAction } from '../../redux/adminSlice';
+import styles from './DashBoard.module.css'
 
 
 const DashBoard = () => {
-  const dispatch = useDispatch();
-  useEffect(()=>{
-    dispatch(getBestSellersAction())
-  },[])
+
+  
   return (
-    <div>
+    <div className={styles.container}>
         <h1>TABLERO</h1>
         <div>
           <PieChart/>

@@ -8,8 +8,6 @@ import {
   setOrderAction,
 } from "../../redux/foodActions";
 
-import styles from "./FilterDietsOptions.module.css";
-
 const FilterDietsOptions = () => {
   const dispatch = useDispatch();
   const category = useSelector((state) => state.foodsReducer.foodsCategory);
@@ -22,7 +20,7 @@ const FilterDietsOptions = () => {
   const handlerDietFilter = (diet) => {
     let results;
 
-    if (category !== "Todas") {
+    if (category !== "") {
       switch (diet) {
         case "Vegana":
           results = allFoods.filter(
@@ -70,6 +68,7 @@ const FilterDietsOptions = () => {
   };
 
   const handlerSelect = (e) => {
+    console.log("hola");
     const { value } = e.target;
     const filters = handlerDietFilter(value);
     dispatch(filterByDietAction(filters));
@@ -78,13 +77,13 @@ const FilterDietsOptions = () => {
     dispatch(setOrderAction(""));
     dispatch(activeFilteredFoodsAction(true));
   };
+  // "Sin TACC",
+  // "Vegetariana",
+  // "Vegana",
+  // "Sin Lactosa",
   return (
     <div>
-      <select
-        onChange={(e) => handlerSelect(e)}
-        value={diet}
-        className={styles.cat}
-      >
+      <select onChange={(e) => handlerSelect(e)} value={diet}>
         <option value="" disabled hidden>
           Dieta
         </option>

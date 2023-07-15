@@ -18,7 +18,6 @@ import {
   getAdminFoods,
   putItems,
 } from "./foodSlice.js";
-import { Alert } from "bootstrap";
 
 export const getFoods = () => async (dispatch) => {
   try {

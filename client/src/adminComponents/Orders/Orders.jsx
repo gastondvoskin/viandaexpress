@@ -24,7 +24,8 @@ const Orders = () => {
                         <th>Cliente</th>
                         <th>Precio Total</th>
                         <th>Fecha</th>
-                        <th>Estado</th>
+                        <th>Estado Pago</th>
+                        <th>Estado Orden</th>
                         <th>Detalle</th>
                     </tr>
                 </thead>
@@ -37,6 +38,7 @@ const Orders = () => {
                             total_price = {o?.total_price}
                             createdAt = {o?.createdAt}
                             status = {o?.status}
+                            order_status = {o?.order_status}
                         />
                     ))}
                 </tbody>

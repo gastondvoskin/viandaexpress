@@ -26,17 +26,17 @@ const ShoppingCar = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.usersReducer.userDetail);
 
-  
   useEffect(() => {
     if (!currentUser.id) {
       dispatch(getUserDetailAction(user?.email));
     }
+    dispatch(getPendingOrderAction(user?.email));
   }, [dispatch]);
-  
+
   const handleClick = () => {
     setIsLoading(true);
     axios
-      .post(`/mercadopago/create-preference/${user?.email}`, orderData, {
+      .post(`/mercadopago/create-preference/${user?.email}`, allItems?.Items, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -53,7 +53,7 @@ const ShoppingCar = () => {
       .finally(() => {
         setIsLoading(false);
       });
-    dispatch(getPendingOrderAction(currentUser.id));
+    // dispatch(getPendingOrderAction(currentUser.id));
   };
 
   const renderSpinner = () => {

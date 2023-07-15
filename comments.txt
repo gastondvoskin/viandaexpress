@@ -4,7 +4,7 @@ B. Back-end deploy main: https://viandaexpress-api-main.up.railway.app
 C. Front-end deploy develop: https://viandaexpress-git-develop-gastondvoskin.vercel.app
 D. Back-end deploy develop: https://viandaexpress-api-develop.up.railway.app
 Note: To view the changes applyed in api.js, it is required to restart the server (locally or in Railway). 
-
+TESTING
 
 2. Organization. 
 A. Discord: 

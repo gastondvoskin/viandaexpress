@@ -7,7 +7,8 @@ export const adminSlice = createSlice({
         allOrders: [],
         bestSellers:[],
         orderDetail: null,
-        sidebarOption:'dashboard'
+        sidebarOption:'dashboard',
+        quantityOfBestSellers:3,
     },
     reducers: {
         getAllOrdersCase: (state, action) => {
@@ -25,12 +26,21 @@ export const adminSlice = createSlice({
         },
         cleanOrderDetailCase: (state) =>{
             state.orderDetail = null
+        },
+        setQuantityCase:(state,action) =>{
+            state.quantityOfBestSellers = action.payload
+        },
+        updateOrderStatusCase: (state, action)=>{
+            const { id, newOrderStatus } = action.payload;
+            const order = state.allOrders.find((order)=>order.id === id);
+            if(order){
+                order.state = newOrderStatus;
+            }
         }
-
     }
 })
 
-export const { getAllOrdersCase,setSidebarOption, getOrderDetailCase, cleanOrderDetailCase, getBestSellersCase } = adminSlice.actions;
+export const { getAllOrdersCase,setSidebarOption, getOrderDetailCase, cleanOrderDetailCase, getBestSellersCase,setQuantityCase, updateOrderStatusCase } = adminSlice.actions;
 
 export default adminSlice.reducer;
 
@@ -45,9 +55,9 @@ export const getAllOrdersAction = () => async (dispatch) => {
         console.log(error);
     }
 }
-export const getBestSellersAction = () => async (dispatch) => {
+export const getBestSellersAction = (quantity) => async (dispatch) => {
     try {
-        const bestSellers = await axios.get('/order/bestSellers')
+        const bestSellers = await axios.get(`/order/bestSellers?quantity=${quantity}`)
             .then(r => r.data)
         dispatch(getBestSellersCase(bestSellers))
     } catch (error) {
@@ -69,4 +79,16 @@ export const getOrderDetailAction = (id) => async (dispatch) => {
 export const cleanOrderDetailAction = () => (dispatch) => {
     dispatch(cleanOrderDetailCase())
 }
+
+export const updateOrderStatusAction = (id, newOrderStatus) => async (dispatch) => {
+    try {
+        const data = {id: id, newOrderStatus: newOrderStatus};
+      const response = await axios.put('/order', data, {
+        headers: { 'Content-Type': 'application/json' },
+      });
+      dispatch(updateOrderStatusCase({ id, newOrderStatus }));
+    } catch (error) {
+        console.log(error);
+    }
+  };
 
