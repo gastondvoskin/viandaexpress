@@ -44,7 +44,7 @@ export default function Card({
   const dietsIcons = diets?.map((diet, index) => {
     if (diet === "Sin TACC")
       diet = <img key={index} className={style.dietsIcon} src={sinTacc} />;
-    if (diet === "Vegetariano")
+    if (diet === "Vegetariana")
       diet = <img key={index} className={style.dietsIcon} src={vegetarian} />;
     if (diet === "Vegana")
       diet = <img key={index} className={style.dietsIcon} src={vegan} />;
@@ -130,7 +130,7 @@ export default function Card({
         </NavLink>
 
         <div>
-          <LikeButton foodId={id}/>
+          <LikeButton foodId={id} />
         </div>
       </div>
 

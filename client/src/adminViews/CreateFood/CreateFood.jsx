@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 
 export default function CreateFood() {
   const dispatch = useDispatch();
-  const diets = ["Sin TACC", "Vegetariano", "Vegana", "Sin Lactosa"];
+  const diets = ["Sin TACC", "Vegetariana", "Vegana", "Sin Lactosa"];
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
   const categories = ["Carnes", "Pastas", "Ensaladas"];
   const [selectedImage, setSelectedImage] = useState(null);
