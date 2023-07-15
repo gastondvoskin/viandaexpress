@@ -3,6 +3,9 @@ const sendEmailWelcome = require("../../nodemailer/sendEmail");
 
 const postUserController = async (name, email, type, status, address) => {
   let newUser = {};
+  if (email === "viandaexpress84@gmail.com") {
+    type = "Admin";
+  }
   if (type === "guest") {
     newUser = await User.create({ name, email, type, status, address });
   } else {
