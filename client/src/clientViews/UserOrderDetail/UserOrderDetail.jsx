@@ -2,16 +2,22 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getUserOrderDetailAction } from '../../redux/userSlice';
+import { getUserDetailAction } from '../../redux/userSlice';
 import styles from './UserOrderDetail.module.css';
 import { useState } from 'react';
+import { postUserReviewAction } from '../../redux/userSlice';
 
 const UserOrderDetail = () => {
 const dispatch = useDispatch();
 const { id } = useParams();
 const userOrderDetail = useSelector((state)=>state.usersReducer.userOrderDetail);
+const userDetail = useSelector((state) => state.usersReducer.userDetail);
 const [ratings, setRatings] = useState({});
 const [comments, setComments] = useState({});
 const [isHovered, setIsHovered] = useState({});
+
+const userIdRaw = userDetail.map((user) => user.id); 
+const userId = userIdRaw[0]
 
 
 const handleStarClick = (itemId, selectedRating) => {
@@ -53,14 +59,21 @@ const handleStarClick = (itemId, selectedRating) => {
   };
 
   const handleSubmitReview = (itemId) => {
-    let rating = ratings[itemId];
-    if (!rating) {
-      rating = 0;
-    }
+    const item = userOrderDetail.Items.find((item) => item.id === itemId);
+    if (item) {
+      const foodId = item.FoodId;
+      let rating = ratings[itemId];
+      if (!rating) {
+        rating = 0;
+      }
     const comment = comments[itemId];
+
+    console.log("id de la food ",foodId)
+    console.log("id del usuario ", userId)
 
     // Send the rating and comment data to make a review for the item with the given itemId
     console.log(`Submitting review for item ${itemId}: rating=${rating}, comment=${comment}`);
+    dispatch(postUserReviewAction(foodId, userId, comment, rating));
 
     // Reset the rating and comment for the item after submitting the review
     setRatings((prevRatings) => ({
@@ -71,10 +84,11 @@ const handleStarClick = (itemId, selectedRating) => {
       ...prevComments,
       [itemId]: '',
     }));
+  }
   };
 
     useEffect(()=>{
-        dispatch(getUserOrderDetailAction(id))
+        dispatch(getUserOrderDetailAction(id));
     },[dispatch])
     
     return(
