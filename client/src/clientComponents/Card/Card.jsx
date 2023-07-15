@@ -33,6 +33,17 @@ export default function Card({
   const [isItem, setIsItem] = useState(false);
   const { isAuthenticated, user } = useAuth0();
   const [quantity, setQuantity] = useState(1);
+  const Food={
+    id,
+    name,
+    image,
+    initial_price,
+    final_price,
+    category,
+    diets,
+    discount,
+    status,
+  };
 
   let categoryIcon;
   if (category === "Carnes")
@@ -88,6 +99,7 @@ export default function Card({
         const amount = final_price * parseInt(quantity);
        dispatch(
           setItemsActions({
+            Food: Food,
             FoodId: id,
             OrderId: orderUser.id,
             name: name,

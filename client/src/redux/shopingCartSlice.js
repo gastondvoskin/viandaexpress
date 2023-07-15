@@ -51,28 +51,28 @@ export const getPendingOrderAction = (userId) => async (dispatch) => {
         console.log(error)
     }
 }
-export const setItemsActions = ({FoodId, OrderId, name, image,  final_price, quantity,amount}) =>async (dispatch) => {
+export const setItemsActions = ({Food, FoodId, OrderId, name, image,  final_price, quantity,amount}) =>async (dispatch) => {
     try {
-        amount=quantity*final_price
+        // amount=quantity*final_price
         const item=await axios.post('/item',{
             FoodId: FoodId,
             OrderId: OrderId,
             final_price: final_price,
             quantity: quantity,
             amount: amount,
-        })
+        }).then(r => r.data)
         console.log(item)
-        dispatch(setItems(item.id, OrderId, FoodId, name, image, final_price, quantity,amount));
+        dispatch(setItems({Food: Food,...item}));
     } catch (error) {
       console.log(error);
     }
 };
 
-export const deleteItemActions = ({FoodId,id}) =>async (dispatch) => {
+export const deleteItemActions = ({id}) =>async (dispatch) => {
   try {
     await axios.delete(`/item/${id}`);
     // console.log("deleteItems", FoodId);
-    dispatch(deleteItems(FoodId));
+    dispatch(deleteItems(id));
   } catch (error) {
     console.log(error);
   }
