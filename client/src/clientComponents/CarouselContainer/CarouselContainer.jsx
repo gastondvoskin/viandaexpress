@@ -2,9 +2,11 @@ import Carousel from "react-bootstrap/Carousel";
 import "bootstrap/dist/css/bootstrap.css";
 import styles from "./CarouselContainer.module.css";
 import { useState } from "react";
+import image1 from "../../assets/carousel/1.png";
+import image2 from "../../assets/carousel/2.png";
+import image3 from "../../assets/carousel/3.png";
 
-
-export default function CarouselContainer() {
+            export default function CarouselContainer() {
   const [index, setIndex] = useState(0);
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -12,18 +14,18 @@ export default function CarouselContainer() {
 
   const slides = [
     {
-      imageSource: "../../src/assets/carousel/1.png",
+      imageSource: image1,
       imageAlt: "Variadadas",
       imageText: "Viandas para toda la familia",
     },
 
     {
-      imageSource: "../../src/assets/carousel/2.png",
+      imageSource: image2,
       imageAlt: "Saludables",
       imageText: "Saludables",
     },
     {
-      imageSource: "../../src/assets/carousel/3.png",
+      imageSource: image3,
       imageAlt: "Orgánicas",
       imageText: "100% orgánicas",
     },
