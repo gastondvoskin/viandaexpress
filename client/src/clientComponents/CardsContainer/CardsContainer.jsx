@@ -1,7 +1,7 @@
 import Card from "../Card/Card";
 import style from "./CardsContainer.module.css";
 
-export default function CardsContainer({ currentFoods, allItems }) {
+export default function CardsContainer({ currentFoods, allItems, orderUser }) {
 
   return (
     <div className={style.cardsContainer}>
@@ -21,6 +21,7 @@ export default function CardsContainer({ currentFoods, allItems }) {
             category={category}
             diets={diets}
             allItems={allItems}
+            orderUser={orderUser}
           />
         ))
       )}

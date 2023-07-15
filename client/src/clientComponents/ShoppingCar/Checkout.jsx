@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 import { Context } from "./ContextProvider";
-import { deleteItemActions,addItemsActions, putItemActions } from "../../redux/foodActions";
+import { deleteItemActions,setItemsActions, putItemActions } from "../../redux/shopingCartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { getPendingOrderAction } from "../../redux/shopingCartSlice";
 
@@ -24,7 +24,7 @@ const Checkout = ({ onClick }) => {
   const updatePrice = (event) => {
     const quantity = parseInt(event.target.value);
     const name = event.target.name;
-    const item = orderData.Items.filter((it) => it.Food.name === name)[0];
+    const item = orderData.filter((it) => it.Food.name === name)[0];
     // console.log(item.quantity)
     const variation = quantity - parseInt(item.quantity);
     console.log(variation)
@@ -148,7 +148,7 @@ const Checkout = ({ onClick }) => {
               </div>
             </div>
           </div>
-          {orderData.hasOwnProperty('Items')? orderData.Items.map((item) => {return(item.quantity?
+          {orderData.length? orderData.map((item) => {return(item.quantity?
             (
               <div className="row">
                 <div className="col-md-12 col-lg-8">

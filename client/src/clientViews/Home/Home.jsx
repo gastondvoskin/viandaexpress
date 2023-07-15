@@ -8,14 +8,14 @@ import CardsContainer from "../../clientComponents/CardsContainer/CardsContainer
 // import { hardcodedFoodsWithDiscounts } from "../../../hardcodedFoodsWithDiscounts";
 import CarouselContainer from "../../clientComponents/CarouselContainer/CarouselContainer.jsx";
 import { Link } from "react-router-dom";
-import { setUserOrderCase } from "../../redux/shopingCartSlice";
+// import { setUserOrderCase } from "../../redux/shopingCartSlice";
 import { getUserFavoritesAction } from "../../redux/userSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
   const allItems = useSelector(
-    (state) => state.shopingCartReducer.pendingOrder
+    (state) => state.shopingCartReducer.itemsOrder
   );
   const favorites = useSelector((state) => state.usersReducer.userFavorites);
   console.log("favorites: ", favorites);
@@ -28,27 +28,27 @@ const Home = () => {
 
   const { isLoading, user, isAuthenticated } = useAuth0();
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      const body = {
-        name: user?.name,
-        email: user?.email,
-      };
-      axios
-        .post("/user", body)
-        .then(async () => {
-          const userOrder = await axios
-            .post("/order", body)
-            .then((r) => r.data);
-          /* console.log("userOrder:", userOrder); */
-          dispatch(setUserOrderCase(userOrder));
-        })
-        .then(() => {
-          console.log("Usuario y Order enviados a DB");
-        })
-        .catch((error) => console.log(error));
-    }
-  }, [isAuthenticated, user]);
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     const body = {
+  //       name: user?.name,
+  //       email: user?.email,
+  //     };
+  //     axios
+  //       .post("/user", body)
+  //       .then(async () => {
+  //         const userOrder = await axios
+  //           .post("/order", body)
+  //           .then((r) => r.data);
+  //         /* console.log("userOrder:", userOrder); */
+  //         dispatch(setUserOrderCase(userOrder));
+  //       })
+  //       .then(() => {
+  //         console.log("Usuario y Order enviados a DB");
+  //       })
+  //       .catch((error) => console.log(error));
+  //   }
+  // }, [isAuthenticated, user]);
 
   useEffect(() => {
     if (!allFoods.length) {
