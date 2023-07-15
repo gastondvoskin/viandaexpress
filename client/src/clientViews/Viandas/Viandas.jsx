@@ -56,7 +56,7 @@ const Viandas = () => {
     }
   }, [isAuthenticated, user, allItems, dispatch]);
 
-  console.log(allItems);
+  console.log("Viandas: ", allItems);
 
   const foodsPerPage = 8;
   const indexOfLastFood = currentPage * foodsPerPage;

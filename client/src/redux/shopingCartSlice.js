@@ -35,6 +35,7 @@ export const shopingCartSlice = createSlice({
           it.quantity = putQuantity;
           it.amount = putAmount;
         }
+        return it;
       });
     },
   },
