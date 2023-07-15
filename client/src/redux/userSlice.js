@@ -26,6 +26,9 @@ export const userSlice = createSlice({
     getUserFavoritesCase: (state, action) => {
       state.userFavorites = action.payload;
     },
+    postUserReviewCase: (state, action) => {
+      state
+    },
   },
 });
 
@@ -35,6 +38,7 @@ export const {
   getUserOrderCase,
   getUserOrderDetailCase,
   getUserFavoritesCase,
+  postUserReviewCase,
 } = userSlice.actions;
 
 export default userSlice.reducer;
@@ -87,6 +91,23 @@ export const getUserFavoritesAction = (email) => async (dispatch) => {
       .get(`/favorite/${email}`)
       .then((res) => res.data);
     dispatch(getUserFavoritesCase(userFavorites));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postUserReviewAction = (foodId, userId, comment, rating) => async (dispatch) => {
+  try {
+    const newReview = {
+      foodId,
+      userId,
+      comment,
+      rating,
+    };
+
+    const response = await axios.post("http://localhost:3001/review", newReview);
+    const createdReview = response.data;
+    dispatch(postUserReviewCase(createdReview));
   } catch (error) {
     console.log(error);
   }
