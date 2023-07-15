@@ -10,16 +10,23 @@ const {
 
 const postItemHandler = async (req, res) => {
   try {
-    // const {userId} = req.params
-    const { userEmail, FoodId, quantity, final_price } = req.body;
-
-    const addItem = await postItemController(
-      userEmail,
+    const { FoodId, OrderId, final_price, quantity, amount } = req.body;
+    const setItem = await postItemController(
       FoodId,
+      OrderId,
+      final_price,
       quantity,
-      final_price
+      amount
     );
-    res.status(200).send(addItem);
+    // const { userEmail, FoodId, quantity, final_price } = req.body;
+
+    // const addItem = await postItemController(
+    //   userEmail,
+    //   FoodId,
+    //   quantity,
+    //   final_price
+    // );
+    res.status(200).send(setItem);
   } catch (error) {
     res.status(400).send({ error: error.message });
   }
@@ -38,8 +45,13 @@ const deleteItemHandler = async (req, res) => {
 const putItemHandler = async (req, res) => {
   try {
     // const { itemId } = req.params;
-    const {userEmail, FoodId, quantity, final_price } = req.body;
-    const response = await putItemController(userEmail, FoodId, quantity, final_price);
+    const { userEmail, FoodId, quantity, final_price } = req.body;
+    const response = await putItemController(
+      userEmail,
+      FoodId,
+      quantity,
+      final_price
+    );
     res.status(200).send(response);
   } catch (error) {
     res.status(400).send({ error: error.message });
