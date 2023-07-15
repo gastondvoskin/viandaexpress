@@ -17,9 +17,9 @@ import axios from "axios";
 const Checkout = ({ onClick }) => {
   const { user } = useAuth0();
   const dispatch = useDispatch();
-  const userOrder = useSelector(
-    (state) => state.shopingCartReducer.pendingOrder.Items
-  );
+  // const userOrder = useSelector(
+  //   (state) => state.shopingCartReducer.pendingOrder.Items
+  // );
 
   const [quantity, setQuantity] = useState(1);
 
@@ -42,9 +42,9 @@ const Checkout = ({ onClick }) => {
     const quantity = parseInt(event.target.value);
     const name = event.target.name;
     let item = orderData.filter((it) => it.Food.name === name)[0];
-    // console.log(item.quantity)
+    // console.log("updatePrice: ", item);
     const variation = quantity - parseInt(item.quantity);
-    console.log(variation);
+    // console.log(variation);
     const amount = item.final_price * quantity;
     // const toActual={
     //   Food: item.Food,
@@ -56,18 +56,49 @@ const Checkout = ({ onClick }) => {
     //   quantity: quantity,
     dispatch(
       putItemActions({
+        orderId: item.OrderId,
         quantity: quantity,
         amount: amount,
         itemId: item.id,
-        orderId: item.OrderId,
       })
     );
-    item.quantity = quantity;
-    item.amount = amount;
+    // item.quantity = quantity;
+    // item.amount = amount;
+    // setOrderData(
+    //   orderData.map((it) => {
+    //     if (it.id === item.id) {
+    //       return item;
+    //     } else {
+    //       return it;
+    //     }
+    //   })
+    // );
+    const updatedItem = {
+      ...item,
+      quantity: quantity,
+      amount: amount,
+    };
+    // setOrderData(
+    //   orderData.map((it) => {
+    //     if (it.id === item.id) {
+    //       return {
+    //         id: item.id,
+    //         Food: item.Food,
+    //         FoodId: item.FoodId,
+    //         OrderId: item.OrderId,
+    //         final_price: item.final_price,
+    //         amount: amount,
+    //         quantity: quantity,
+    //       };
+    //     } else {
+    //       return it;
+    //     }
+    //   })
+    // );
     setOrderData(
       orderData.map((it) => {
         if (it.id === item.id) {
-          return item;
+          return updatedItem;
         } else {
           return it;
         }
