@@ -18,16 +18,22 @@ const { updateCartTotalPrice } = require("./updateCartTotalPrice");
 //         status: "PENDIENTE",
 //       },
 //     });
-  const postItemController=async (FoodId,OrderId,amount,final_price,quantity)=>{
-    // Crear el nuevo artículo y asociarlo al carrito
-    try{
-      const newItem = await Item.create({
-        OrderId,
-        FoodId,
-        quantity,
-        final_price,
-        amount,
-      });
+const postItemController = async (
+  FoodId,
+  OrderId,
+  final_price,
+  quantity,
+  amount
+) => {
+  // Crear el nuevo artículo y asociarlo al carrito
+  try {
+    const newItem = await Item.create({
+      FoodId,
+      OrderId,
+      final_price,
+      quantity,
+      amount,
+    });
 
     await updateCartTotalPrice(OrderId);
 
