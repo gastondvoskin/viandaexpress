@@ -21,3 +21,21 @@
     .tbodys tr:last-of-type {
         border-bottom: 2px solid #009879;
   }
+
+  .btnorder {
+    background-color: var(--accentColor);
+    border-radius: 5px;
+    padding: 1px;
+    border: solid 4px white;
+    color: white;
+    font-size: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  .btnorder:hover {
+    background-color: var(--accentColor2);
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: 0.5s;
+  }

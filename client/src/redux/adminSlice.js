@@ -31,10 +31,10 @@ export const adminSlice = createSlice({
             state.quantityOfBestSellers = action.payload
         },
         updateOrderStatusCase: (state, action)=>{
-            const { id, newOrderStatus } = action.payload;
-            const order = state.allOrders.find((order)=>order.id === id);
+            const { orderId, order_status } = action.payload;
+            const order = state.allOrders.find((order)=>order.id === orderId);
             if(order){
-                order.state = newOrderStatus;
+                order.state = order_status;
             }
         }
     }
@@ -80,13 +80,13 @@ export const cleanOrderDetailAction = () => (dispatch) => {
     dispatch(cleanOrderDetailCase())
 }
 
-export const updateOrderStatusAction = (id, newOrderStatus) => async (dispatch) => {
+export const updateOrderStatusAction = (orderId, order_status) => async (dispatch) => {
     try {
-        const data = {id: id, newOrderStatus: newOrderStatus};
+        const data = {orderId: orderId, order_status: order_status};
       const response = await axios.put('/order', data, {
         headers: { 'Content-Type': 'application/json' },
       });
-      dispatch(updateOrderStatusCase({ id, newOrderStatus }));
+      dispatch(updateOrderStatusCase({ orderId, order_status }));
     } catch (error) {
         console.log(error);
     }
