@@ -53,15 +53,15 @@ export const getPendingOrderAction = (userId) => async (dispatch) => {
 }
 export const setItemsActions = ({FoodId, OrderId, name, image,  final_price, quantity,amount}) =>async (dispatch) => {
     try {
-        amount=quantity*final_price
+        // amount=quantity*final_price
         const item=await axios.post('/item',{
             FoodId: FoodId,
             OrderId: OrderId,
             final_price: final_price,
             quantity: quantity,
             amount: amount,
-        })
-        console.log(item)
+        }).then(r => r.data)
+       
         dispatch(setItems(item.id, OrderId, FoodId, name, image, final_price, quantity,amount));
     } catch (error) {
       console.log(error);

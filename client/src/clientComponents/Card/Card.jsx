@@ -76,13 +76,6 @@ export default function Card({
         setIsItem(false);
         const item=allItems.filter(it=>it.FoodId===id)
         dispatch(deleteItemActions(item.id));
-        // const bodyDeleteItem = {
-        //   userEmail: user?.email,
-        //   FoodId: id,
-        // };
-        // axios
-        //   .delete("/item", { data: bodyDeleteItem })
-        //   .catch((error) => console.log(error));
       } else {
         setIsItem(true);
         const amount = final_price * parseInt(quantity);
