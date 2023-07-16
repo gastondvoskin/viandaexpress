@@ -82,10 +82,10 @@ export const setItemsActions =
   };
 
 export const deleteItemActions =
-  ({ id }) =>
+  ({ id,OrderId }) =>
   async (dispatch) => {
     try {
-      await axios.delete(`/item/${id}`);
+      await axios.delete(`/item/${id}`,{OrderId});
       // console.log("deleteItems", FoodId);
       dispatch(deleteItems(id));
     } catch (error) {
