@@ -15,7 +15,6 @@ const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
 axios.defaults.baseURL = import.meta.env.VITE_API_BASEURL || "http://localhost:3001"; 
 
 const onRedirectCallback = (appState) => {
-  // Replace 'https://example.com/logout' with your desired logout redirect URL
   window.location.href = appState?.returnTo || 'https://viandaexpress-git-viewer-gastondvoskin.vercel.app/';
 };
 
