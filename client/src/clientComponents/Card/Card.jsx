@@ -118,11 +118,9 @@ export default function Card({
   };
 
   const updateQuantity = (e) => {
-    console.log("Card: ", allItems);
     const item = allItems.filter((it) => it.FoodId === id)[0];
     const quantity = parseInt(e.target.value);
     const amount = final_price * quantity;
-    console.log("Card II: ", item.id);
     setQuantity(quantity);
     // dispatch(deleteItemActions(id));
     dispatch(
