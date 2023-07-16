@@ -82,11 +82,11 @@ export const setItemsActions =
   };
 
 export const deleteItemActions =
-  ({ id,OrderId }) =>
+  ({ id, OrderId }) =>
   async (dispatch) => {
     try {
-      await axios.delete(`/item/${id}`,{OrderId});
-      // console.log("deleteItems", FoodId);
+      console.log("deleteItemsActions", id, OrderId);
+      await axios.delete(`/item/${id}`, { data: { OrderId } });
       dispatch(deleteItems(id));
     } catch (error) {
       console.log(error);
