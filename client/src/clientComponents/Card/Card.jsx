@@ -89,8 +89,8 @@ export default function Card({
     } else {
       if (isItem) {
         setIsItem(false);
-        const item = allItems.filter((it) => it.FoodId === id);
-        dispatch(deleteItemActions(item.id));
+        const item = allItems.filter((it) => it.FoodId === id)[0];
+        dispatch(deleteItemActions({ id: item.id, OrderId: orderId }));
       } else {
         setIsItem(true);
         const amount = final_price * parseInt(quantity);
