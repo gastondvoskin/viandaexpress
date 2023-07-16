@@ -14,15 +14,19 @@ const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
 /* The following line should not be changed. It defines which API will be called */
 axios.defaults.baseURL = import.meta.env.VITE_API_BASEURL || "http://localhost:3001"; 
 
+const onRedirectCallback = (appState) => {
+  // Replace 'https://example.com/logout' with your desired logout redirect URL
+  window.location.href = 'https://example.com/logout';
+};
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <Auth0Provider
       domain={domain}
       clientId={clientId}
+      onRedirectCallback={onRedirectCallback}
       authorizationParams={{
         redirect_uri: window.location.origin,
-        // redirect_uri: "http://localhost:5173",
       }}
     >
       <BrowserRouter>
