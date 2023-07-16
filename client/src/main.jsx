@@ -14,6 +14,9 @@ const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
 /* The following line should not be changed. It defines which API will be called */
 axios.defaults.baseURL = import.meta.env.VITE_API_BASEURL || "http://localhost:3001"; 
 
+const onRedirectCallback = (appState) => {
+  window.location.href = appState?.returnTo || 'https://viandaexpress-git-viewer-gastondvoskin.vercel.app/';
+};
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
@@ -22,8 +25,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       clientId={clientId}
       authorizationParams={{
         redirect_uri: window.location.origin,
-        // redirect_uri: "http://localhost:5173",
       }}
+      onRedirectCallback={onRedirectCallback}
     >
       <BrowserRouter>
         <App />
