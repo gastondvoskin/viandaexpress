@@ -1,14 +1,28 @@
 import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 import { Context } from "./ContextProvider";
-import { deleteItemActions,addItemsActions } from "../../redux/foodActions";
+import {
+  deleteItemActions,
+  setItemsActions,
+  putItemActions,
+} from "../../redux/shopingCartSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { getPendingOrderAction } from "../../redux/shopingCartSlice";
+import { useAuth0 } from "@auth0/auth0-react";
+import {
+  getPendingOrderAction,
+  setUserOrderCase,
+} from "../../redux/shopingCartSlice";
+import axios from "axios";
 
 const Checkout = ({ onClick }) => {
-  const dispatch=useDispatch();
-  const userOrder = useSelector((state) => state.shopingCartReducer.pendingOrder)
-  console.log(userOrder)
+  const { user } = useAuth0();
+  const dispatch = useDispatch();
+  // const userOrder = useSelector(
+  //   (state) => state.shopingCartReducer.pendingOrder.Items
+  // );
+
+  const [quantity, setQuantity] = useState(1);
+
   const [isVisible, setIsVisible] = React.useState(true);
   let {
     preferenceId,
@@ -17,75 +31,119 @@ const Checkout = ({ onClick }) => {
     setOrderData,
     total,
   } = React.useContext(Context);
+  console.log("Checkout: ", orderData);
+
   const shoppingCartClass = classnames("shopping-cart dark", {
     "shopping-cart--hidden": !isVisible,
   });
 
-  const updatePrice = (event) => {
+  const updatePrice = async (event) => {
+    event.preventDefault();
     const quantity = parseInt(event.target.value);
-    console.log(quantity)
     const name = event.target.name;
-    const item = orderData.filter((it) => it.Food.name === name)[0];
-    const variation = quantity - item.quantity;
+    let item = orderData.filter((it) => it.Food.name === name)[0];
+    // console.log("updatePrice: ", item);
+    const variation = quantity - parseInt(item.quantity);
+    // console.log(variation);
     const amount = item.final_price * quantity;
-    console.log(amount);
-    const actual = [];
-    orderData.map((it) => {
-      if (it.name === name && quantity!==0) {
-        actual.push({
-          id: it.id,
-          name: it.name,
-          image: it.image,
-          final_price: it.final_price,
-          quantity: quantity,
-          amount: amount,
-        });
-        dispatch(deleteItemActions({
-          FoodId: item.FoodId,
-          id: item.id,
-        }))
-        dispatch(addItemsActions({
-          id: it.id,
-          name: it.name,
-          image: it.image,
-          final_price: it.final_price,
-          quantity: quantity,
-          amount: amount,
-          orderID: userOrder.id,
-        }))
-      } else if(it.name!==name) {
-        actual.push(it);
-      }else{
-        dispatch(deleteItemActions({
-          FoodId: item.FoodId,
-          id: item.id,
-        }))
-      }
-    });
-    setOrderData(actual);
-    console.log(orderData);
-    total = total + variation * orderData.final_price;
+    // const toActual={
+    //   Food: item.Food,
+    //   FoodId: item.FoodId,
+    //   OrderId: item.OrderId,
+    //   amount: amount,
+    //   final_price: item.final_price,
+    //   id: item.id,
+    //   quantity: quantity,
+    dispatch(
+      putItemActions({
+        orderId: item.OrderId,
+        quantity: quantity,
+        amount: amount,
+        itemId: item.id,
+      })
+    );
+    // item.quantity = quantity;
+    // item.amount = amount;
+    // setOrderData(
+    //   orderData.map((it) => {
+    //     if (it.id === item.id) {
+    //       return item;
+    //     } else {
+    //       return it;
+    //     }
+    //   })
+    // );
+    const updatedItem = {
+      ...item,
+      quantity: quantity,
+      amount: amount,
+    };
+    // setOrderData(
+    //   orderData.map((it) => {
+    //     if (it.id === item.id) {
+    //       return {
+    //         id: item.id,
+    //         Food: item.Food,
+    //         FoodId: item.FoodId,
+    //         OrderId: item.OrderId,
+    //         final_price: item.final_price,
+    //         amount: amount,
+    //         quantity: quantity,
+    //       };
+    //     } else {
+    //       return it;
+    //     }
+    //   })
+    // );
+    setOrderData(
+      orderData.map((it) => {
+        if (it.id === item.id) {
+          return updatedItem;
+        } else {
+          return it;
+        }
+      })
+    );
+    total = total + variation * parseInt(item.final_price);
   };
 
   useEffect(() => {
     if (preferenceId) setIsVisible(false);
   }, [preferenceId]);
 
-  orderData.forEach((item) => {
+  orderData?.forEach((item) => {
     total = total + item.amount;
   });
 
-  const handleDelete=(e)=>{
-    e.preventDefault()
-    const name=e.target.name;
-    const item=userOrder.Items.filter(it=>it.Food.name===name)[0]
-    console.log(item.id)
-    // setOrderData(orderData.filter(it=>it.id!==item.id))
-    dispatch(deleteItemActions({
-      FoodId: item.FoodId,
-      id: item.id,
-    }))
-  }
+  const handleDelete = (e) => {
+    e.preventDefault();
+    const name = e.target.name;
+    const item = orderData.filter((it) => it.Food.name === name)[0];
+    setOrderData(orderData.filter(it=>it.id!==item.id))
+    // // console.log(item.id);
+    // // const toActual = orderData.Items.filter((it) => it.id !== item.id);
+    // // const actual = {
+    // //   UserId: orderData.UserId,
+    // //   Items: toActual,
+    // //   createdAt: orderData.createdAt,
+    // //   id: orderData.id,
+    // //   order_status: orderData.order_status,
+    // //   payment_date: orderData.payment_date,
+    // //   payment_id: orderData.payment_id,
+    // //   payment_status_detail: orderData.payment_status_detail,
+    // //   pickup_date: orderData.pickup_date,
+    // //   status: orderData.status,
+    // //   total_price: orderData.total_price,
+    // //   updatedAt: orderData.updatedAt,
+    // // };
+    // // setOrderData(actual);
+    dispatch(
+      deleteItemActions({
+        OrderId: item.OrderId,
+        id: item.id,
+      })
+    );
+  };
 
   return (
     <section className={shoppingCartClass}>
@@ -132,66 +190,74 @@ const Checkout = ({ onClick }) => {
               </div>
             </div>
           </div>
-          {userOrder.hasOwnProperty('Items')? userOrder.Items.map((item) => {return(item.quantity?
-            (
-              <div className="row">
-                <div className="col-md-12 col-lg-8">
-                  <div className="items">
-                    <div className="product">
-                      <div className="info">
-                        <div className="product-details">
-                          <div className="row justify-content-md-center">
-                            <div className="col-md-3">
-                              <img
-                                className="img-fluid mx-auto d-block image"
-                                alt="Image of a product"
-                                src={item.Food.image}
-                              />
-                            </div>
-                            <div className="col-md-4 product-detail">
-                              <div className="product-info">
-                                <b>{item.Food.name}</b>
-                                <br></br>
-                                <b>Price:</b> ${" "}
-                                <span id="unit-price">{item.final_price}</span>
-                                <br />
+          {orderData.length
+            ? orderData.map((item) => {
+                return item.quantity ? (
+                  <div className="row">
+                    <div className="col-md-12 col-lg-8">
+                      <div className="items">
+                        <div className="product">
+                          <div className="info">
+                            <div className="product-details">
+                              <div className="row justify-content-md-center">
+                                <div className="col-md-3">
+                                  <img
+                                    className="img-fluid mx-auto d-block image"
+                                    alt="Image of a product"
+                                    src={item.Food.image}
+                                  />
+                                </div>
+                                <div className="col-md-4 product-detail">
+                                  <div className="product-info">
+                                    <b>{item.Food.name}</b>
+                                    <br></br>
+                                    <b>Price:</b> ${" "}
+                                    <span id="unit-price">
+                                      {item.final_price}
+                                    </span>
+                                    <br />
+                                  </div>
+                                </div>
+                                <div className="col-md-3 product-detail">
+                                  <input
+                                    onChange={updatePrice}
+                                    type="number"
+                                    id="quantity"
+                                    final_price={item.final_price}
+                                    foodId={item.FoodId}
+                                    name={item.Food.name}
+                                    value={item.quantity}
+                                    min="0"
+                                    className="form-control"
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div className="col-md-3 product-detail">
-                              <input
-                                onChange={updatePrice}
-                                type="number"
-                                id="quantity"
-                                name={item.Food.name}
-                                value={item.quantity}
-                                min="0"
-                                className="form-control"
-                              />
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div className="col-md-12 col-lg-4">
-                  <div className="summary">
-                    <div className="summary-item">
-                      <span className="price" id="cart-total">
-                        ${item.amount}
-                      </span>
-                      <button
-                        className="btn btn-primary btn-lg btn-block"
-                        onClick={handleDelete}
-                        id="checkout-btn"
-                        name={item.Food.name}
-                      >Eliminar</button>
+                    <div className="col-md-12 col-lg-4">
+                      <div className="summary">
+                        <div className="summary-item">
+                          <span className="price" id="cart-total">
+                            ${item.amount}
+                          </span>
+                          <button
+                            className="btn btn-primary btn-lg btn-block"
+                            onClick={handleDelete}
+                            id="checkout-btn"
+                            name={item.Food.name}
+                          >
+                            Eliminar
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ):null);
-          }):null}
+                ) : null;
+              })
+            : null}
           <div className="row">
             <div className="col-md-12 col-lg-8">
               <div className="items">
@@ -219,108 +285,6 @@ const Checkout = ({ onClick }) => {
                 <div className="summary-item">
                   <span className="text">Total</span>
                   <span className="price" id="cart-total">
-                    ${userOrder?.total_price}
-                  </span>
-                </div>
-                <button
-                  className="btn btn-primary btn-lg btn-block"
-                  onClick={onClick}
-                  id="checkout-btn"
-                  disabled={disabled}
-                >
-                  Checkout
-                </button>
-              </div>
-            </div>
-          </div>
-          {/* {orderData.map((item) => {return(item.quantity?
-            (
-              <div className="row">
-                <div className="col-md-12 col-lg-8">
-                  <div className="items">
-                    <div className="product">
-                      <div className="info">
-                        <div className="product-details">
-                          <div className="row justify-content-md-center">
-                            <div className="col-md-3">
-                              <img
-                                className="img-fluid mx-auto d-block image"
-                                alt="Image of a product"
-                                src={item.image}
-                              />
-                            </div>
-                            <div className="col-md-4 product-detail">
-                              <div className="product-info">
-                                <b>{item.name}</b>
-                                <br></br>
-                                <b>Price:</b> ${" "}
-                                <span id="unit-price">{item.final_price}</span>
-                                <br />
-                              </div>
-                            </div>
-                            <div className="col-md-3 product-detail">
-                              <input
-                                onChange={updatePrice}
-                                type="number"
-                                id="quantity"
-                                name={item.name}
-                                value={item.quantity}
-                                min="0"
-                                className="form-control"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12 col-lg-4">
-                  <div className="summary">
-                    <div className="summary-item">
-                      <span className="price" id="cart-total">
-                        ${item.amount}
-                      </span>
-                      <button
-                        className="btn btn-primary btn-lg btn-block"
-                        onClick={handleDelete}
-                        id="checkout-btn"
-                        name={item.name}
-                      >Eliminar</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ):null);
-          })} */}
-
-          {/* <div className="row">
-            <div className="col-md-12 col-lg-8">
-              <div className="items">
-                <div className="product">
-                  <div className="info">
-                    <div className="product-details">
-                      <div className="row justify-content-md-center">
-                        <div className="col-md-3">
-                        
-                        </div>
-                        <div className="col-md-4 product-detail">
-                        
-                        </div>
-                        <div className="col-md-3 product-detail">
-                        
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-12 col-lg-4">
-              <div className="summary">
-                <div className="summary-item">
-                  <span className="text">Total</span>
-                  <span className="price" id="cart-total">
                     ${total}
                   </span>
                 </div>
@@ -334,7 +298,7 @@ const Checkout = ({ onClick }) => {
                 </button>
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </section>

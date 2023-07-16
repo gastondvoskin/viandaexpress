@@ -16,8 +16,8 @@ import {
   addItems,
   deleteItems, /* , getFoodById */
   getAdminFoods,
+  putItems,
 } from "./foodSlice.js";
-import { Alert } from "bootstrap";
 
 export const getFoods = () => async (dispatch) => {
   try {
@@ -168,3 +168,21 @@ export const deleteItemActions = ({FoodId,id}) =>async (dispatch) => {
     console.log(error);
   }
 };
+export const putItemActions=({id,quantity,amount})=>async (dispatch)=>{
+  try{
+    await axios.put('/item',{id,quantity,amount});
+    dispatch(putItems({id,quantity,amount}));
+  }catch(error){
+    console.log(error);
+  }
+}
+// Do not delete. Uncomment and test when the endpoint `/food/${id}` is created
+// export const getFood = (id) => async (dispatch) => {
+//     try {
+//         const response = await axios.get(`/food/${id}`);
+//         const foodById = response.data;
+//         dispatch(getFoodById(foodById));
+//     } catch (error) {
+//         console.log(error);
+//     }
+// };

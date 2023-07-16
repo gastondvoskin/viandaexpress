@@ -1,7 +1,7 @@
 const { Item, User, Order } = require("../../db");
 const { updateCartTotalPrice } = require("./updateCartTotalPrice");
 
-const deleteItemController = async (id) => {
+const deleteItemController = async (id, OrderId) => {
   try {
     // const user = await User.findOne({
     //   where: {
@@ -16,17 +16,13 @@ const deleteItemController = async (id) => {
     //   },
     // });
 
-    // // const item = await Item.findByPk(itemId, {
-    // //   attributes: ["price"],
-    // // });
-
     await Item.destroy({
       where: {
-       id:id,
+        id,
       },
     });
 
-    // await updateCartTotalPrice(OrderId);
+    await updateCartTotalPrice(OrderId);
   } catch (error) {
     console.log(error);
   }

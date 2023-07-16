@@ -12,13 +12,11 @@ import { getPendingOrderAction } from "../../redux/shopingCartSlice";
 import axios from "axios";
 
 // REPLACE WITH YOUR PUBLIC KEY AVAILABLE IN: https://developers.mercadopago.com/panel
-// initMercadoPago("APP_USR-8e95f5fd-f2e0-4982-8ac8-27b1f1b175bb");
-// initMercadoPago("TEST-6062b4aa-0752-422b-b693-2282b2ede839");
 initMercadoPago("TEST-9b320738-7137-42a2-a2c5-d6956bc6ba9d");
 
 const ShoppingCar = () => {
   const { user } = useAuth0();
-  const allItems = useSelector((state) => state.foodsReducer.orderItems);
+  const allItems = useSelector((state) => state.shopingCartReducer.itemsOrder);
   let total = 0;
   const [preferenceId, setPreferenceId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,17 +24,17 @@ const ShoppingCar = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.usersReducer.userDetail);
 
-  
   useEffect(() => {
     if (!currentUser.id) {
       dispatch(getUserDetailAction(user?.email));
     }
+    dispatch(getPendingOrderAction(user?.email));
   }, [dispatch]);
-  
+
   const handleClick = () => {
     setIsLoading(true);
     axios
-      .post(`/mercadopago/create-preference/${user?.email}`, orderData, {
+      .post(`/mercadopago/create-preference/${user?.email}`, allItems, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -53,7 +51,7 @@ const ShoppingCar = () => {
       .finally(() => {
         setIsLoading(false);
       });
-    dispatch(getPendingOrderAction(currentUser.id));
+    // dispatch(getPendingOrderAction(currentUser.id));
   };
 
   const renderSpinner = () => {

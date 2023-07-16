@@ -20,8 +20,8 @@ const initialState = {
   currentPage: 1,
   diets: [
     "Sin TACC",
-    "Vegetariano",
-    "Vegano",
+    "Vegetariana",
+    "Vegana",
     "Sin Lactosa",
   ] /* TONO: why is there a diets property in redux? Cause don´t a diets' table*/,
   categories: [
@@ -113,6 +113,17 @@ export const foodsSlice = createSlice({
       const deleteId = action.payload;
       state.orderItems = state.orderItems.filter((it) => it.id !== deleteId);
     },
+    putItems: (state, action) => {
+      const putId = action.payload.id;
+      const putQuantity = action.payload.quantity;
+      const putAmount = action.payload.amount;
+      state.orderItems = state.orderItems.map(it => {
+        if (it.id === putId) {
+          it.quantity = putQuantity;
+          it.amount = putAmount;
+        }
+      })
+    }
   },
 });
 
@@ -132,6 +143,7 @@ export const {
   deleteFoods,
   addItems,
   deleteItems,
+  putItems,
 } = foodsSlice.actions;
 
 export default foodsSlice.reducer; /* it will be imported in the store */

@@ -7,6 +7,7 @@ const { mercadopagoRouter } = require("./mercadopagoRouter");
 const { reviewRouter } = require("./reviewRouter");
 const { foods } = require("../../api");
 const { Food } = require("../db");
+const { favoriteRouter } = require("./favoriteRouter");
 
 const router = Router();
 
@@ -16,6 +17,7 @@ router.use("/order", orderRouter);
 router.use("/item",itemRouter);
 router.use("/mercadopago", mercadopagoRouter);
 router.use("/review",reviewRouter)
+router.use("/favorite", favoriteRouter);
 
 router.use("/api", async (req, res) => {
   const allFoods = await Food.findAll();
