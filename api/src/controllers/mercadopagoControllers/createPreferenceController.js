@@ -17,13 +17,18 @@ const createPreferenceController = (pendingOrderId, itemsBody) => {
     //   failure: "http://localhost:5173/payment",
     //   pending: "http://localhost:5173/payment",
     // },
+    // back_urls: {
+    //   success:
+    //     "https://viandaexpress-git-develop-gastondvoskin.vercel.app/payment",
+    //   failure:
+    //     "https://viandaexpress-git-develop-gastondvoskin.vercel.app/payment",
+    //   pending:
+    //     "https://viandaexpress-git-develop-gastondvoskin.vercel.app/payment",
+    // },
     back_urls: {
-      success:
-        "https://viandaexpress-git-develop-gastondvoskin.vercel.app/payment",
-      failure:
-        "https://viandaexpress-git-develop-gastondvoskin.vercel.app/payment",
-      pending:
-        "https://viandaexpress-git-develop-gastondvoskin.vercel.app/payment",
+      success: "https://viandaexpress.vercel.app/payment",
+      failure: "https://viandaexpress.vercel.app/payment",
+      pending: "https://viandaexpress.vercel.app/payment",
     },
     auto_return: "approved",
   };
