@@ -15,8 +15,7 @@ const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
 axios.defaults.baseURL = import.meta.env.VITE_API_BASEURL || "http://localhost:3001"; 
 
 const onRedirectCallback = (appState) => {
-  // Replace 'https://example.com/logout' with your desired logout redirect URL
-  window.location.href = 'https://viandaexpress-git-viewer-gastondvoskin.vercel.app/';
+  window.location.href = appState?.returnTo || 'https://viandaexpress-git-viewer-gastondvoskin.vercel.app/';
 };
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -25,11 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       domain={domain}
       clientId={clientId}
       onRedirectCallback={onRedirectCallback}
-      redirect_uri='https://viandaexpress-git-viewer-gastondvoskin.vercel.app/'
-      authorizationParams={{
-        /* redirect_uri: window.location.origin, */
-        redirect_uri: 'https://viandaexpress-git-viewer-gastondvoskin.vercel.app/'
-      }}
+      redirect_uri={window.location.origin}
     >
       <BrowserRouter>
         <App />
