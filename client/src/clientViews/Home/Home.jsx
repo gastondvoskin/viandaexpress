@@ -16,7 +16,9 @@ const Home = () => {
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
   const allItems = useSelector((state) => state.shopingCartReducer.itemsOrder);
   const favorites = useSelector((state) => state.usersReducer.userFavorites);
-  console.log("favorites: ", favorites);
+  const orderUser = useSelector(
+    (state) => state.shopingCartReducer.pendingOrder
+  );
 
   const foodsWithDiscounts = allFoods.filter((food) => food.discount > 0);
 
@@ -106,7 +108,11 @@ const Home = () => {
 
       <section className={styles.sectionContainer}>
         <h1>Ofertas de la semana</h1>
-        <CardsContainer currentFoods={foodsWithDiscounts} allItems={allItems} />
+        <CardsContainer
+          currentFoods={foodsWithDiscounts}
+          allItems={allItems}
+          orderId={orderUser.id}
+        />
       </section>
 
       <section className={styles.sectionContainer}>
@@ -114,17 +120,20 @@ const Home = () => {
         <CardsContainer
           currentFoods={foodsWithScoreHigherThan4}
           allItems={allItems}
+          orderId={orderUser.id}
         />
       </section>
 
       {!favorites.length ? (
-        <div>
-          No has agregado favoritos.
-        </div>
+        <div>No has agregado favoritos.</div>
       ) : (
         <section className={styles.sectionContainer}>
           <h1>Mis favoritos</h1>
-          <CardsContainer currentFoods={favorites} allItems={allItems} />
+          <CardsContainer
+            currentFoods={favorites}
+            allItems={allItems}
+            orderId={orderUser.id}
+          />
         </section>
       )}
     </div>

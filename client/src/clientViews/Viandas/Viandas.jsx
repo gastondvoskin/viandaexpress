@@ -26,7 +26,6 @@ const Viandas = () => {
   const orderUser = useSelector(
     (state) => state.shopingCartReducer.pendingOrder
   );
-  console.log(orderUser);
   const allItems = useSelector((state) => state.shopingCartReducer.itemsOrder);
   useEffect(() => {
     if (!allFoods.length) {
