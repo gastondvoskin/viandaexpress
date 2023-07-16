@@ -16,7 +16,7 @@ axios.defaults.baseURL = import.meta.env.VITE_API_BASEURL || "http://localhost:3
 
 const onRedirectCallback = (appState) => {
   // Replace 'https://example.com/logout' with your desired logout redirect URL
-  window.location.href = 'https://example.com/logout';
+  window.location.href = 'https://viandaexpress-git-viewer-gastondvoskin.vercel.app/';
 };
 
 ReactDOM.createRoot(document.getElementById("root")).render(
