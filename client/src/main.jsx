@@ -25,6 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       domain={domain}
       clientId={clientId}
       onRedirectCallback={onRedirectCallback}
+      redirect_uri='https://viandaexpress-git-viewer-gastondvoskin.vercel.app/'
       authorizationParams={{
         /* redirect_uri: window.location.origin, */
         redirect_uri: 'https://viandaexpress-git-viewer-gastondvoskin.vercel.app/'
