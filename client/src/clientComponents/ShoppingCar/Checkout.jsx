@@ -107,75 +107,6 @@ const Checkout = ({ onClick }) => {
     total = total + variation * parseInt(item.final_price);
   };
 
-  // let actual={
-  //   UserId: orderData.UserId,
-  //   Items: [],
-  //   createdAt: orderData.createdAt,
-  //   id: orderData.id,
-  //   order_status: orderData.order_status,
-  //   payment_date: orderData.payment_date,
-  //   payment_id: orderData.payment_id,
-  //   payment_status_detail: orderData.payment_status_detail,
-  //   pickup_date: orderData.pickup_date,
-  //   status: orderData.status,
-  //   total_price: total_price,
-  //   updatedAt: orderData.updatedAt
-  // };
-  // orderData.Items.map(item=>{
-  //   if(item.id!==toActual.id){
-  //     actual.Items.push(item)
-  //   }else if(toActual.quantity){actual.Items.push(toActual)}
-  // })
-  // setOrderData(actual);
-  // };
-  // const item = orderData.Items.filter((it) => it.Food.name === name)[0];
-  // // console.log(item.quantity)
-  // const variation = quantity - parseInt(item.quantity);
-  // console.log(variation);
-  // const amount = item.final_price * quantity;
-  // const toActual = {
-  //   Food: item.Food,
-  //   FoodId: item.FoodId,
-  //   OrderId: item.OrderId,
-  //   amount: amount,
-  //   final_price: item.final_price,
-  //   id: item.id,
-  //   quantity: quantity,
-  // };
-  // console.log(toActual);
-  // dispatch(
-  //   putItemActions({
-  //     quantity: item.quantity,
-  //     amount: item.amount,
-  //     id: item.id,
-  //   })
-  // );
-  // let total_price =
-  //   parseInt(orderData.total_price) + variation * parseInt(item.final_price);
-  // console.log(total_price);
-  // let actual = {
-  //   UserId: orderData.UserId,
-  //   Items: [],
-  //   createdAt: orderData.createdAt,
-  //   id: orderData.id,
-  //   order_status: orderData.order_status,
-  //   payment_date: orderData.payment_date,
-  //   payment_id: orderData.payment_id,
-  //   payment_status_detail: orderData.payment_status_detail,
-  //   pickup_date: orderData.pickup_date,
-  //   status: orderData.status,
-  //   total_price: total_price,
-  //   updatedAt: orderData.updatedAt,
-  // };
-  // orderData.Items.map((item) => {
-  //   if (item.id !== toActual.id) {
-  //     actual.Items.push(item);
-  //   } else if (toActual.quantity) {
-  //     actual.Items.push(toActual);
-  //   }
-  // });
-  // setOrderData(actual);
-
   useEffect(() => {
     if (preferenceId) setIsVisible(false);
   }, [preferenceId]);
@@ -185,9 +116,10 @@ const Checkout = ({ onClick }) => {
   });
 
   const handleDelete = (e) => {
-    // // e.preventDefault();
-    // // const name = e.target.name;
-    // // const item = orderData.Items.filter((it) => it.Food.name === name)[0];
+    e.preventDefault();
+    const name = e.target.name;
+    const item = orderData.filter((it) => it.Food.name === name)[0];
+    setOrderData(orderData.filter(it=>it.id!==item.id))
     // // console.log(item.id);
     // // const toActual = orderData.Items.filter((it) => it.id !== item.id);
     // // const actual = {
@@ -205,12 +137,12 @@ const Checkout = ({ onClick }) => {
     // //   updatedAt: orderData.updatedAt,
     // // };
     // // setOrderData(actual);
-    // // dispatch(
-    // //   deleteItemActions({
-    // //     FoodId: item.FoodId,
-    // //     id: item.id,
-    // //   })
-    // );
+    dispatch(
+      deleteItemActions({
+        OrderId: item.OrderId,
+        id: item.id,
+      })
+    );
   };
 
   return (
