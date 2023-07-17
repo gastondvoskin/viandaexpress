@@ -69,19 +69,16 @@ const Viandas = () => {
 
   return (
     <div className={styles.mainContainer}>
-      <div className={styles.buttonsContainer}>
+      <div className={styles.categoriesAndFiltersAndOrder}>
         <CategoryButtons />
-      </div>
-
-      <div className={styles.filtros}>
-        <div className={styles.filtros2}>
+        <div className={styles.filters}>
           <FilterDietsOptions />
           <OrderOptions />
         </div>
       </div>
 
-      <div className={styles.asereje}>
-        <SearchBar />
+
+      <SearchBar />
 
         <Paginado
           foodsPerPage={foodsPerPage}

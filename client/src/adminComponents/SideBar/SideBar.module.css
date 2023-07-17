@@ -13,6 +13,11 @@
     padding: 10px;
     cursor: pointer;
   }
+
+  .clientOption {
+    margin-top: 40px;
+  }
+
   .sep{
     margin: 0px 4px 0px 0px;
     color: white;
