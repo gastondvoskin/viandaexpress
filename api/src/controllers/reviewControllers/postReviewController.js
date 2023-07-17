@@ -1,10 +1,23 @@
-const {Review} = require("../../db")
+const { Review, Food, sequelize } = require("../../db");
 
-const postReviewController = async (foodId,userId,comment,rating) =>{
-    const newReview = await Review.create({
-        FoodId:foodId,UserId:userId,comment,rating
-    });
+const postReviewController = async (foodId, userId, comment, rating) => {
+  const newReview = await Review.create({
+    FoodId: foodId,
+    UserId: userId,
+    comment,
+    rating
+  });
 
-    return newReview;
+  const averageRating = await Review.findOne({
+    attributes: [[sequelize.fn('AVG', sequelize.col('rating')), 'averageRating']],
+    where: { FoodId: foodId }
+  });
+
+  const average = averageRating.get('averageRating');
+
+  await Food.update({ total_score: average }, { where: { id: foodId } });
+
+  return newReview;
 };
-module.exports = {postReviewController}
+
+module.exports = { postReviewController };
