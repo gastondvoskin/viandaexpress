@@ -69,39 +69,33 @@ const Viandas = () => {
 
   return (
     <div className={styles.mainContainer}>
-      <div className={styles.buttonsContainer}>
+      <div className={styles.categoriesAndFiltersAndOrder}>
         <CategoryButtons />
-      </div>
-
-      <div className={styles.filtros}>
-        <div className={styles.filtros2}>
+        <div className={styles.filters}>
           <FilterDietsOptions />
           <OrderOptions />
         </div>
       </div>
 
-      <div className={styles.asereje}>
-        <SearchBar />
 
-        <Paginado
-          foodsPerPage={foodsPerPage}
-          foods={allFoods.length}
-          filterFoods={filteredFoods.length}
-          paginado={paginado}
-          currentPage={currentPage}
+      <SearchBar />
+
+      <Paginado
+        foodsPerPage={foodsPerPage}
+        foods={allFoods.length}
+        filterFoods={filteredFoods.length}
+        paginado={paginado}
+        currentPage={currentPage}
+      />
+      {!currentFoods.length ? (
+        <h1 className={styles.notFoundMessage}>No se encontraron resultados</h1>
+      ) : (
+        <CardsContainer
+          currentFoods={currentFoods}
+          allItems={allItems}
+          orderId={orderUser?.id}
         />
-        {!currentFoods.length ? (
-          <h1 className={styles.notFoundMessage}>
-            No se encontraron resultados
-          </h1>
-        ) : (
-          <CardsContainer
-            currentFoods={currentFoods}
-            allItems={allItems}
-            orderId={orderUser?.id}
-          />
-        )}
-      </div>
+      )}
     </div>
   );
 };
