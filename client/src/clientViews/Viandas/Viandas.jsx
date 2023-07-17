@@ -102,7 +102,7 @@ const Viandas = () => {
           <CardsContainer
             currentFoods={currentFoods}
             allItems={allItems}
-            orderId={orderUser.id}
+            orderUser={orderUser}
           />
         )}
       </div>

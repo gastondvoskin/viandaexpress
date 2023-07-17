@@ -8,6 +8,7 @@ import { addItemsActions, deleteItemActions } from "../../redux/foodActions.js";
 import { setItemsActions } from "../../redux/shopingCartSlice.js";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
+import AddButton from "../../clientComponents/AddButton/AddButton.jsx"
 
 export default function Detail() {
   const { id } = useParams();
@@ -180,21 +181,21 @@ export default function Detail() {
                 Ésta es una de nuestras comidas más elegidas por los usuarios!
               </p>
             )}
-            {isItem ? (
-              <input
-                className={styles.detailinput}
-                type="number"
-                min="1"
-                value={quantity}
-                onChange={updateQuantity}
-              />
-            ) : null}
-            <button className={styles.butagregar} onClick={handleClick}>
-              {isItem ? "Agregado" : "Agregar"}
-            </button>
+            <AddButton 
+              id={id}
+              orderId={orderUser.id}
+              allItems={allItems}
+              isItem={isItem}
+              setIsItem={setIsItem}
+              Food={foodDetail}
+              quantity={quantity}
+              setQuantity={setQuantity}
+            />
           </div>
+          
         </div>
       )}
+      
     </main>
   );
 }
