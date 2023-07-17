@@ -9,6 +9,8 @@ import CarouselContainer from "../../clientComponents/CarouselContainer/Carousel
 import { Link } from "react-router-dom";
 import { getUserFavoritesAction } from "../../redux/userSlice";
 import { setUserOrderCase, getItems } from "../../redux/shopingCartSlice";
+// import logo from "../../assets/logo/logo-transparent.png";
+import food from "../../assets/carousel/original2.jpeg";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -35,7 +37,7 @@ const Home = () => {
         .then(() => {
           if (isAuthenticated && !allItems.length) {
             axios
-              .post("/order", {email: body.email})
+              .post("/order", { email: body.email })
               .then((r) => r.data)
               .then((data) => {
                 dispatch(setUserOrderCase(data));
@@ -77,6 +79,32 @@ const Home = () => {
         </Link>
       </section>
 
+      <section className={styles.viewMission}>
+        <div>
+          {/* <img src={logo} alt="logo" /> */}
+          <h2>Comer saludable, es una opción!</h2>
+          <p className={styles.description}>
+            Nos dedicamos a promover una alimentación saludable tanto en el
+            trabajo como en el hogar. Nuestra misión es brindarte opciones
+            nutritivas y sabrosas que se adapten a tu estilo de vida.
+          </p>
+          <ul>
+            <li>
+              <span>1- Elegí tu vianda</span>
+            </li>
+            <li>
+              <span>2- Encargala online</span>
+            </li>
+            <li>
+              <span>3- Disfrutala donde quieras que estés!</span>
+            </li>
+          </ul>
+        </div>
+        <div className={styles.foodImage}>
+          <img src={food} alt="food" />
+        </div>
+      </section>
+
       <section className={styles.sectionContainer}>
         <h1>Ofertas de la semana</h1>
         <CardsContainer
@@ -95,7 +123,9 @@ const Home = () => {
         />
       </section>
 
-      {!favorites.length ? "" : (
+      {!favorites.length ? (
+        ""
+      ) : (
         <section className={styles.sectionContainer}>
           <h1>Mis favoritos</h1>
           <CardsContainer
