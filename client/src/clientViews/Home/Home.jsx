@@ -8,6 +8,7 @@ import CardsContainer from "../../clientComponents/CardsContainer/CardsContainer
 import CarouselContainer from "../../clientComponents/CarouselContainer/CarouselContainer.jsx";
 import { Link } from "react-router-dom";
 import { getUserFavoritesAction } from "../../redux/userSlice";
+import { setUserOrderCase, getItems } from "../../redux/shopingCartSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -32,21 +33,17 @@ const Home = () => {
       axios
         .post("/user", body)
         .then(() => {
+          if (isAuthenticated && !allItems.length) {
+            axios
+              .post("/order", {email: body.email})
+              .then((r) => r.data)
+              .then((data) => {
+                dispatch(setUserOrderCase(data));
+                if (data.Items?.length) dispatch(getItems(data.Items));
+                console.log("DB Order");
+              });
+          }
           console.log("Usuario enviado a DB");
-        })
-        .catch((error) => console.log(error));
-    }
-    if (isAuthenticated && !allItems.length) {
-      const body = {
-        email: user?.email,
-      };
-      axios
-        .post("/order", body)
-        .then((r) => r.data)
-        .then((data) => {
-          dispatch(setUserOrderCase(data));
-          if (data.Items?.length) dispatch(getItems(data.Items));
-          console.log("DB Order");
         })
         .catch((error) => console.log(error));
     }
@@ -85,7 +82,7 @@ const Home = () => {
         <CardsContainer
           currentFoods={foodsWithDiscounts}
           allItems={allItems}
-          orderId={orderUser.id}
+          orderId={orderUser?.id}
         />
       </section>
 
@@ -94,7 +91,7 @@ const Home = () => {
         <CardsContainer
           currentFoods={foodsWithScoreHigherThan4}
           allItems={allItems}
-          orderId={orderUser.id}
+          orderId={orderUser?.id}
         />
       </section>
 
@@ -106,7 +103,7 @@ const Home = () => {
           <CardsContainer
             currentFoods={favorites}
             allItems={allItems}
-            orderId={orderUser.id}
+            orderId={orderUser?.id}
           />
         </section>
       )}

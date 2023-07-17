@@ -49,9 +49,6 @@ const Viandas = () => {
           console.log("DB Order");
         })
         .catch((error) => console.log(error));
-      /* console.log("userOrder:", userOrder); */
-      // dispatch(setUserOrderCase(userOrder));
-      // if (userOrder.Items?.length) dispatch(getItems(userOrder.Items));
     }
   }, [isAuthenticated, user, allItems, dispatch]);
 
@@ -101,7 +98,7 @@ const Viandas = () => {
           <CardsContainer
             currentFoods={currentFoods}
             allItems={allItems}
-            orderId={orderUser.id}
+            orderId={orderUser?.id}
           />
         )}
       </div>
