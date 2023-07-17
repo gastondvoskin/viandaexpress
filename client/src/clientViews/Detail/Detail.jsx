@@ -4,8 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFoods } from "../../redux/foodActions.js";
 import axios from "axios";
 import styles from "../Detail/Detail.module.css";
-import { addItemsActions, deleteItemActions } from "../../redux/foodActions.js";
-import { setItemsActions } from "../../redux/shopingCartSlice.js";
+// import { addItemsActions, deleteItemActions } from "../../redux/foodActions.js";
+import {
+  setItemsActions,
+  deleteItemActions,
+  putItemActions,
+} from "../../redux/shopingCartSlice.js";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
 import AddButton from "../../clientComponents/AddButton/AddButton.jsx"
@@ -17,8 +21,8 @@ export default function Detail() {
   const orderUser = useSelector(
     (state) => state.shopingCartReducer.pendingOrder
   ); //
-  const allItems = useSelector((state) => state.shopingCartReducer.itemsOrder);//
-  console.log("Detail: ", allItems);
+  const allItems = useSelector((state) => state.shopingCartReducer.itemsOrder); //
+  console.log("Detail All: ", allItems);
   // const allItems = useSelector((state) => state.foodsReducer.orderItems);
   const dispatch = useDispatch();
 
@@ -59,8 +63,8 @@ export default function Detail() {
     } else {
       if (isItem) {
         setIsItem(false);
-        const item = allItems.filter((it) => it.FoodId === id);
-        dispatch(deleteItemActions(item?.id, orderUser?.id));
+        const item = allItems.filter((it) => it.FoodId === id)[0];
+        dispatch(deleteItemActions({ id: item?.id, OrderId: orderUser?.id }));
         //-------------------------
         // const bodyDelete = {
         //   userEmail: user?.email,
@@ -110,30 +114,39 @@ export default function Detail() {
   };
   const updateQuantity = (e) => {
     const quantity = parseInt(e.target.value);
+    const item = allItems.filter((it) => it.FoodId === id)[0];
     const amount = foodDetail?.final_price * quantity;
     setQuantity(quantity);
-    dispatch(deleteItemActions(id));
     dispatch(
-      addItemsActions({
-        id,
-        name: foodDetail?.name,
-        image: foodDetail?.image,
-        final_price: foodDetail?.final_price,
-        quantity: quantity,
-        amount: amount,
+      putItemActions({
+        orderId: orderUser?.id,
+        itemId: item.id,
+        quantity,
+        amount,
       })
     );
+    // dispatch(deleteItemActions(id));
+    // dispatch(
+    //   addItemsActions({
+    //     id,
+    //     name: foodDetail?.name,
+    //     image: foodDetail?.image,
+    //     final_price: foodDetail?.final_price,
+    //     quantity: quantity,
+    //     amount: amount,
+    //   })
+    // );
     //-------------------------
-    const bodyUpdateItem = {
-      userEmail: user?.email,
-      FoodId: id,
-      quantity,
-      final_price: foodDetail?.final_price,
-    };
-    axios.put("/item", bodyUpdateItem).catch((error) => console.log(error));
+    // const bodyUpdateItem = {
+    //   userEmail: user?.email,
+    //   FoodId: id,
+    //   quantity,
+    //   final_price: foodDetail?.final_price,
+    // };
+    // axios.put("/item", bodyUpdateItem).catch((error) => console.log(error));
     //-------------------------
   };
-  console.log(allItems);
+
   return (
     <main className={styles.main}>
       {!foodDetail ? (

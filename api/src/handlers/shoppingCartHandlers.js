@@ -14,7 +14,7 @@ const createPreferenceHandler = async (req, res) => {
     const { userEmail } = req.params;
     const itemsBody = req.body.map((item) => {
       return {
-        title: item.name,
+        title: item.Food.name,
         unit_price: item.final_price,
         quantity: item.quantity,
       };

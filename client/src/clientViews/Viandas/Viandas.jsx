@@ -26,7 +26,6 @@ const Viandas = () => {
   const orderUser = useSelector(
     (state) => state.shopingCartReducer.pendingOrder
   );
-  console.log(orderUser);
   const allItems = useSelector((state) => state.shopingCartReducer.itemsOrder);
   useEffect(() => {
     if (!allFoods.length) {
@@ -47,12 +46,9 @@ const Viandas = () => {
         .then((data) => {
           dispatch(setUserOrderCase(data));
           if (data.Items?.length) dispatch(getItems(data.Items));
-          console.log("Order enviado a DB");
+          console.log("DB Order");
         })
         .catch((error) => console.log(error));
-      /* console.log("userOrder:", userOrder); */
-      // dispatch(setUserOrderCase(userOrder));
-      // if (userOrder.Items?.length) dispatch(getItems(userOrder.Items));
     }
   }, [isAuthenticated, user, allItems, dispatch]);
 
