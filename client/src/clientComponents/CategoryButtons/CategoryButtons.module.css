@@ -16,12 +16,12 @@
   width: 120px;
   height: 120px;
   margin: 5px;
-  border-radius: 25px;
+  border-radius: 15px;
 }
 
 .button:hover {
   border: solid 4px var(--accentColor2);
-
+  transition: all 0.5s ease-out;
 }
 
 .categorySelected {
