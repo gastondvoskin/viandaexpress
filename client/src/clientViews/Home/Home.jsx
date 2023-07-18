@@ -9,7 +9,6 @@ import CarouselContainer from "../../clientComponents/CarouselContainer/Carousel
 import { Link } from "react-router-dom";
 import { getUserFavoritesAction } from "../../redux/userSlice";
 import { setUserOrderCase, getItems } from "../../redux/shopingCartSlice";
-import food from "../../assets/carousel/original2.jpeg";
 import Mission from "../../clientComponents/Mission/Mission";
 
 const Home = () => {
@@ -67,8 +66,14 @@ const Home = () => {
 
   /* if (isLoading) return <h1>Iniciando sesión...</h1>; */
 
+  console.log("user.given_name: ", user?.given_name);
   return (
     <div className={styles.mainContainer}>
+      {!user?.given_name ? "" : (
+        <div className={styles.greetingContainer}>
+          <h1>{`Hola, ${user.given_name}!`}</h1>
+        </div>
+      )}
       <CarouselContainer />
 
       <section>
