@@ -8,11 +8,11 @@
 .viewAllButton {
   background-color: var(--accentColor);
   border-radius: 15px;
-  padding: 20px;
+  padding: 10px;
   border: solid 4px white;
   color: white;
-  margin: 30px;
-  font-size: 30px;
+  margin: 10px;
+  font-size: 22px;
   text-decoration: none;
   transition: transform 0.3s, box-shadow 0.3s;
   box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);

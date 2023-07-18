@@ -4,7 +4,7 @@ import styles from "./Mission.module.css";
 export default function Mission() {
 
   return (
-    <section className={styles.missionContainer}>
+    <div className={styles.mainContainer}>
       <div className={styles.leftContainer}>
         <h2>Comer saludable es una elección!</h2>
         <p className={styles.description}>
@@ -13,14 +13,14 @@ export default function Mission() {
           nutritivas y sabrosas que se adapten a tu estilo de vida.
         </p>
         <ol>
-          <li>1- Elegí tu vianda</li>
-          <li>2- Encargala online</li>
-          <li>3- Disfrutala donde y cuando quieras!</li>
+          <li>1. Elegí tu vianda.</li>
+          <li>2. Encargala online.</li>
+          <li>3. Disfrutala donde y cuando quieras!</li>
         </ol>
       </div>
       <div className={styles.foodImage}>
         <img src={foodImage} alt="food" />
       </div>
-    </section>
+    </div>
   );
 }

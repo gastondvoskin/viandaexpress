@@ -82,7 +82,7 @@ const Home = () => {
       <Mission />
 
       <section className={styles.sectionContainer}>
-        <h1>Ofertas de la semana</h1>
+        <h2>Ofertas de la semana</h2>
         <CardsContainer
           currentFoods={foodsWithDiscounts}
           allItems={allItems}
@@ -91,7 +91,7 @@ const Home = () => {
       </section>
 
       <section className={styles.sectionContainer}>
-        <h1>Mejor rankeadas</h1>
+        <h2>Mejor rankeadas</h2>
         <CardsContainer
           currentFoods={foodsWithScoreHigherThan4}
           allItems={allItems}
@@ -103,7 +103,7 @@ const Home = () => {
         ""
       ) : (
         <section className={styles.sectionContainer}>
-          <h1>Mis favoritos</h1>
+          <h2>Mis favoritos</h2>
           <CardsContainer
             currentFoods={favorites}
             allItems={allItems}
@@ -111,6 +111,13 @@ const Home = () => {
           />
         </section>
       )}
+      <section>
+        <Link to="viandas">
+          <button className={styles.viewAllButton}>
+            VER TODAS LAS VIANDAS
+          </button>
+        </Link>
+      </section>
     </div>
   );
 };
