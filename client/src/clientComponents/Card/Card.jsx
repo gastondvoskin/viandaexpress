@@ -1,16 +1,8 @@
 import style from "./Card.module.css";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
-import {
-  setItemsActions,
-  deleteItemActions,
-  putItemActions,
-} from "../../redux/shopingCartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
-import Swal from "sweetalert2";
-import axios from "axios";
-import { setUserOrderCase } from "../../redux/shopingCartSlice";
 import LikeButton from "../LikeButton/LikeButton";
 import AddButton from "../AddButton/AddButton";
 import meat from "../../assets/categories/meat.png";
