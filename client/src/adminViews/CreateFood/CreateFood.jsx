@@ -123,7 +123,7 @@ export default function CreateFood() {
     });
   };
   return (
-    <div className={styles.mainContainer}>
+    <main className={styles.mainContainer}>
       <SideBar />
       <div className={styles.formContainer}>
         <h1 className={styles.title}>Agregar Vianda</h1>
@@ -279,23 +279,15 @@ export default function CreateFood() {
             <div className={styles.ButtonCreate}>
               <button type="submit">Crear Vianda</button>
             </div>
-            {/* <div>
-                <Link to="/">
-                  <img
-                    className={style.logo}
-                    src={logoViandaExpress}
-                    alt="logo Vianda Express"
-                  />
-                </Link>
-              </div> */}
+
             <div className={styles.ButtonDB}>
               <Link to="/admin">
-                <button>Home</button>
+                <button>Cancelar</button>
               </Link>
             </div>
           </div>
         </form>
       </div>
-    </div>
+    </main>
   );
 }
