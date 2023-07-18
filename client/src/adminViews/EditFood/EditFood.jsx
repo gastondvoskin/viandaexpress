@@ -81,7 +81,6 @@ export default function EditFood() {
     ) {
       //alert(`Llena todos los campos para crear la vianda`);
       Swal.fire(
-        'Imposible de modificar Vianda!',
         'Por favor llenar todos los campos',
         'warning'
       )
@@ -111,8 +110,8 @@ export default function EditFood() {
             });
             //alert(`Receta de ${formData.name} modificada`); 
             Swal.fire(
-              'Modificado!',
-              `Receta de ${formData.name} modificado.`,
+              'Modificada!',
+              `Receta de ${formData.name} modificada.`,
               'success'
             )
             navigate('/admin');
@@ -175,8 +174,8 @@ export default function EditFood() {
           axios.delete(`/food/${id}`);
             //alert(`Receta de ${formData.name} modificada`); 
             Swal.fire(
-              'Eliminado!',
-              `Vianda ${formData.name} Eliminado.`,
+              'Eliminada!',
+              `Vianda ${formData.name} Eliminada.`,
               'success'
             )
             navigate('/admin');

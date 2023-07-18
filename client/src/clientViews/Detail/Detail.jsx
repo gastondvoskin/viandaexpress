@@ -56,7 +56,7 @@ export default function Detail() {
       //alert('¡Cuidado! Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!')
       Swal.fire(
         "¡Cuidado!",
-        "Logueate antes de agregar productos a tu carrito de compras.",
+        "Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!",
         "error"
       );
     } else {

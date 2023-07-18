@@ -66,7 +66,6 @@ export default function CreateFood() {
     ) {
       //alert(`Llena todos los campos para crear la vianda`);
       Swal.fire(
-        "Imposible de crear Viandas!",
         "Por favor llenar todos los campos",
         "warning"
       );
