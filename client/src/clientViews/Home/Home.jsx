@@ -82,7 +82,7 @@ const Home = () => {
       <Mission />
 
       <section className={styles.sectionContainer}>
-        <h2>Ofertas de la semana</h2>
+        <h2 className={styles.sectionTitle}>Ofertas de la semana</h2>
         <CardsContainer
           currentFoods={foodsWithDiscounts}
           allItems={allItems}
@@ -91,7 +91,7 @@ const Home = () => {
       </section>
 
       <section className={styles.sectionContainer}>
-        <h2>Mejor rankeadas</h2>
+        <h2 className={styles.sectionTitle}>Mejor rankeadas</h2>
         <CardsContainer
           currentFoods={foodsWithScoreHigherThan4}
           allItems={allItems}
@@ -103,7 +103,7 @@ const Home = () => {
         ""
       ) : (
         <section className={styles.sectionContainer}>
-          <h2>Mis favoritos</h2>
+          <h2 className={styles.sectionTitle}>Mis favoritos</h2>
           <CardsContainer
             currentFoods={favorites}
             allItems={allItems}
