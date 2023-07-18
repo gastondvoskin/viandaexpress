@@ -96,64 +96,64 @@ const UserOrderDetail = () => {
 
   return (
     <div className={styles.orderdiv}>
-    <SidebarUser />
-    <section>
-      <h3>{userOrderDetail?.User.name}</h3>
-      <table className={styles.destable}>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Vianda</th>
-            <th>Cantidad</th>
-            <th>Precio</th>
-            <th>Total</th>
-            <th>Puntuación</th>
-            <th>Comentario</th>
-          </tr>
-        </thead>
-        <tbody>
-          {userOrderDetail?.Items.map((i) => (
-            <tr key={i.id}>
-              <td>{i.id}</td>
-              <td>{i.Food.name}</td>
-              <td>{i.quantity}</td>
-              <td>{i.final_price}</td>
-              <td>{i.amount}</td>
-              <td>
-                <div className={styles.starsList}>
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <span
-                      key={star}
-                      className={
-                        star <= (ratings[i.id] || 0) ||
-                        star <= (isHovered[i.id] || 0)
-                          ? styles.star_filled
-                          : styles.star
-                      }
-                      onClick={() => handleStarClick(i.id, star)}
-                      onMouseEnter={() => handleStarHover(i.id, star)}
-                      onMouseLeave={() => handleStarHoverLeave(i.id)}
-                      role="button"
-                      aria-label={`${star} star`}
-                    >
-                      &#9733;
-                    </span>
-                  ))}
-                </div>
-              </td>
-              <td>
-                <input
-                  type="text"
-                  value={comments[i.id] || ""}
-                  onChange={(e) => handleCommentChange(i.id, e)}
-                />
-                <button onClick={() => handleSubmitReview(i.id)}>Enviar</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <SidebarUser />
       <section>
+        <h3>{userOrderDetail?.User.name}</h3>
+        <table className={styles.destable}>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Vianda</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+              <th>Total</th>
+              <th>Puntuación</th>
+              <th>Comentario</th>
+            </tr>
+          </thead>
+          <tbody>
+            {userOrderDetail?.Items.map((i) => (
+              <tr key={i.id}>
+                <td>{i.id}</td>
+                <td>{i.Food.name}</td>
+                <td>{i.quantity}</td>
+                <td>{i.final_price}</td>
+                <td>{i.amount}</td>
+                <td>
+                  <div className={styles.starsList}>
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <span
+                        key={star}
+                        className={
+                          star <= (ratings[i.id] || 0) ||
+                          star <= (isHovered[i.id] || 0)
+                            ? styles.star_filled
+                            : styles.star
+                        }
+                        onClick={() => handleStarClick(i.id, star)}
+                        onMouseEnter={() => handleStarHover(i.id, star)}
+                        onMouseLeave={() => handleStarHoverLeave(i.id)}
+                        role="button"
+                        aria-label={`${star} star`}
+                      >
+                        &#9733;
+                      </span>
+                    ))}
+                  </div>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={comments[i.id] || ""}
+                    onChange={(e) => handleCommentChange(i.id, e)}
+                  />
+                  <button onClick={() => handleSubmitReview(i.id)}>Enviar</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
     </div>
   );
 };

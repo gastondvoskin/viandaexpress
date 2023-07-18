@@ -49,7 +49,7 @@ function App() {
         <Route path="/viandas" element={<Viandas />} />
         <Route path="/myprofile/*" element={<MyProfile />} />
         <Route path="/userorder" element={ <UserOrder /> } />
-        <Route path="/myprofileuser" element={<MyProfileUser />} 
+        <Route path="/myprofileuser" element={<MyProfileUser />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route
           path="/admin/*"
