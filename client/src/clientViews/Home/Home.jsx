@@ -96,7 +96,7 @@ const Home = () => {
               <span>2- Encargala online</span>
             </li>
             <li>
-              <span>3- Disfrutala donde quieras que estés!</span>
+              <span>3- Disfrutala donde quiera que estés!</span>
             </li>
           </ul>
         </div>
@@ -115,7 +115,7 @@ const Home = () => {
       </section>
 
       <section className={styles.sectionContainer}>
-        <h1>Mejor rankeados</h1>
+        <h1>Mejor rankeadas</h1>
         <CardsContainer
           currentFoods={foodsWithScoreHigherThan4}
           allItems={allItems}

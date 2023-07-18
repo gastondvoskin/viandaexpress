@@ -25,8 +25,8 @@ const ListProductsItem = ({ name, final_price, status,id,localFoods, setLocalFoo
         try {
           axios.delete(`/food/${id}`);
           Swal.fire(
-            'Eliminado!',
-            `La Vianda ${name} fue Eliminado.`,
+            'Eliminada!',
+            `La Vianda ${name} fue Eliminada.`,
             'success'
           )
           const updatedFoods = localFoods.filter(e => e.id !== id);
