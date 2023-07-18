@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { setUserOrderCase } from "../../redux/shopingCartSlice";
 import LikeButton from "../LikeButton/LikeButton";
-
+import AddButton from "../AddButton/AddButton";
 import meat from "../../assets/categories/meat.png";
 import pastas from "../../assets/categories/pastas.png";
 import salad from "../../assets/categories/salad.png";
@@ -32,12 +32,12 @@ export default function Card({
   discount,
   status,
   allItems,
-  orderId,
+  orderUser,
 }) {
   const [isItem, setIsItem] = useState(false);
   const { isAuthenticated, user } = useAuth0();
   const [quantity, setQuantity] = useState(1);
-  const Food = {
+  const foodDetail = {
     id,
     name,
     image,
@@ -79,75 +79,7 @@ export default function Card({
       }
     });
   }, []);
-  const handleClick = (e) => {
-    if (!isAuthenticated) {
-      Swal.fire(
-        "¡Cuidado!",
-        "Loguéate antes de agregar productos a tu carrito de compras.",
-        "error"
-      );
-    } else {
-      if (isItem) {
-        setIsItem(false);
-        const item = allItems.filter((it) => it.FoodId === id)[0];
-        dispatch(deleteItemActions({ id: item.id, OrderId: orderId }));
-      } else {
-        setIsItem(true);
-        const amount = final_price * parseInt(quantity);
-        dispatch(
-          setItemsActions({
-            Food: Food,
-            FoodId: id,
-            OrderId: orderId,
-            name: name,
-            image: image,
-            final_price: final_price,
-            quantity: quantity,
-            amount: amount,
-          })
-        );
-        // const bodyAddItem = {
-        //   userEmail: user?.email,
-        //   FoodId: id,
-        //   quantity,
-        //   final_price,
-        // };
-        // axios.post("/item", bodyAddItem).catch((error) => console.log(error));
-      }
-    }
-  };
-
-  const updateQuantity = (e) => {
-    const item = allItems.filter((it) => it.FoodId === id)[0];
-    const quantity = parseInt(e.target.value);
-    const amount = final_price * quantity;
-    setQuantity(quantity);
-    // dispatch(deleteItemActions(id));
-    dispatch(
-      putItemActions({
-        orderId,
-        itemId: item.id,
-        quantity,
-        amount,
-      })
-    );
-    // addItemsActions({
-    //   id,
-    //   name,
-    //   image,
-    //   final_price,
-    //   quantity: quantity,
-    //   amount: amount,
-    // })
-    // const bodyUpdateItem = {
-    //   userEmail: user?.email,
-    //   FoodId: id,
-    //   quantity,
-    //   final_price,
-    // };
-    // axios.put("/item", bodyUpdateItem).catch((error) => console.log(error));
-  };
-
+  
   /* RETURN */
   return (
     <div className={style.card}>
@@ -175,20 +107,15 @@ export default function Card({
         </div>
       </div>
 
-      <div className={style.inputagregar}>
-        <button className={style.btncar} onClick={handleClick}>
-          {isItem ? "Eliminar" : "Agregar"}
-        </button>
-        {isItem ? (
-          <input
-            className={style.detailinput}
-            type="number"
-            min="1"
-            value={quantity}
-            onChange={updateQuantity}
-          />
-        ) : null}
-      </div>
+      <AddButton 
+        id={foodDetail.id}
+        allItems={allItems}
+        isItem={isItem}
+        setIsItem={setIsItem}
+        Food={foodDetail}
+        quantity={quantity}
+        setQuantity={setQuantity}
+      />
     </div>
   );
 }

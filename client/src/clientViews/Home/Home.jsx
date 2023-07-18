@@ -95,9 +95,7 @@ const Home = () => {
         />
       </section>
 
-      {!favorites.length ? (
-        <div>No has agregado favoritos.</div>
-      ) : (
+      {!favorites.length ? "" : (
         <section className={styles.sectionContainer}>
           <h1>Mis favoritos</h1>
           <CardsContainer
