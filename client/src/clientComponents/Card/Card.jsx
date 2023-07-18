@@ -22,7 +22,7 @@ import sinLactosa from "../../assets/diets/sinLactosa.png";
 import sinTacc from "../../assets/diets/sinTacc.png";
 
 export default function Card({
-  id,
+  id ,
   name,
   image,
   initial_price,
