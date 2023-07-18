@@ -5,7 +5,7 @@ import LoginButton from "../../LoginComponents/LoginButton/LoginButton.jsx";
 import LogoutButton from "../../LoginComponents/LogoutButton/LogoutButton.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
-import { useEffect } from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
@@ -18,7 +18,11 @@ function Nav() {
   const [displayProfileOptions, setDisplayProfileOptions] = useState(false);
   const { user, isAuthenticated } = useAuth0();
   const isAdmin =
-    isAuthenticated && user?.email === "viandaexpress84@gmail.com";
+    isAuthenticated &&
+    (user?.email === "viandaexpress84@gmail.com" ||
+      user?.email === "dvoskingaston@gmail.com" ||
+      user?.email === "gabriel.682681@gmail.com" ||
+      user?.email === "silviojuarez60@gmail.com");
   // Estado para visualización móvil
   const [isMobil, setIsMovil] = useState(false);
 
@@ -40,7 +44,7 @@ function Nav() {
                 isActive ? styles.activeLink : styles.normalLink
               }
             >
-              HOME
+              INICIO
             </NavLink>
           </li>
           <li className={styles.navli}>
@@ -51,6 +55,16 @@ function Nav() {
               }
             >
               VIANDAS
+            </NavLink>
+          </li>
+          <li className={styles.navli}>
+            <NavLink
+              to="/shoppingcart"
+              className={({ isActive }) =>
+                isActive ? styles.activeLink : styles.normalLink
+              }
+            >
+              <FontAwesomeIcon icon={faCartShopping} /> PAGAR
             </NavLink>
           </li>
           {isAdmin && (
@@ -65,16 +79,6 @@ function Nav() {
               </NavLink>
             </li>
           )}
-          <li className={styles.navli}>
-            <NavLink
-              to="/shoppingcart"
-              className={({ isActive }) =>
-                isActive ? styles.activeLink : styles.normalLink
-              }
-            >
-              <FontAwesomeIcon icon={faCartShopping} /> PAGAR
-            </NavLink>
-          </li>
           <li className={styles.navli}>
             <div
               className={styles.userContainer}

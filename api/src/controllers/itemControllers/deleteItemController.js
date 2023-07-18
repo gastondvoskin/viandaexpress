@@ -1,7 +1,7 @@
 const { Item, User, Order } = require("../../db");
 const { updateCartTotalPrice } = require("./updateCartTotalPrice");
 
-const deleteItemController = async (id,OrderId) => {
+const deleteItemController = async (id, OrderId) => {
   try {
     // const user = await User.findOne({
     //   where: {
@@ -15,7 +15,7 @@ const deleteItemController = async (id,OrderId) => {
     //     status: "PENDIENTE",
     //   },
     // });
-    
+
     await Item.destroy({
       where: {
         id,

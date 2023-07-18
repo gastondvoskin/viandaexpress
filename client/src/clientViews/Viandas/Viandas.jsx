@@ -26,7 +26,6 @@ const Viandas = () => {
   const orderUser = useSelector(
     (state) => state.shopingCartReducer.pendingOrder
   );
-  console.log(orderUser);
   const allItems = useSelector((state) => state.shopingCartReducer.itemsOrder);
   useEffect(() => {
     if (!allFoods.length) {
@@ -47,12 +46,9 @@ const Viandas = () => {
         .then((data) => {
           dispatch(setUserOrderCase(data));
           if (data.Items?.length) dispatch(getItems(data.Items));
-          console.log("Order enviado a DB");
+          console.log("DB Order");
         })
         .catch((error) => console.log(error));
-      /* console.log("userOrder:", userOrder); */
-      // dispatch(setUserOrderCase(userOrder));
-      // if (userOrder.Items?.length) dispatch(getItems(userOrder.Items));
     }
   }, [isAuthenticated, user, allItems, dispatch]);
 
@@ -73,39 +69,33 @@ const Viandas = () => {
 
   return (
     <div className={styles.mainContainer}>
-      <div className={styles.buttonsContainer}>
+      <div className={styles.categoriesAndFiltersAndOrder}>
         <CategoryButtons />
-      </div>
-
-      <div className={styles.filtros}>
-        <div className={styles.filtros2}>
+        <div className={styles.filters}>
           <FilterDietsOptions />
           <OrderOptions />
         </div>
       </div>
 
-      <div className={styles.asereje}>
-        <SearchBar />
 
-        <Paginado
-          foodsPerPage={foodsPerPage}
-          foods={allFoods.length}
-          filterFoods={filteredFoods.length}
-          paginado={paginado}
-          currentPage={currentPage}
+      <SearchBar />
+
+      <Paginado
+        foodsPerPage={foodsPerPage}
+        foods={allFoods.length}
+        filterFoods={filteredFoods.length}
+        paginado={paginado}
+        currentPage={currentPage}
+      />
+      {!currentFoods.length ? (
+        <h1 className={styles.notFoundMessage}>No se encontraron resultados</h1>
+      ) : (
+        <CardsContainer
+          currentFoods={currentFoods}
+          allItems={allItems}
+          orderId={orderUser?.id}
         />
-        {!currentFoods.length ? (
-          <h1 className={styles.notFoundMessage}>
-            No se encontraron resultados
-          </h1>
-        ) : (
-          <CardsContainer
-            currentFoods={currentFoods}
-            allItems={allItems}
-            orderId={orderUser.id}
-          />
-        )}
-      </div>
+      )}
     </div>
   );
 };

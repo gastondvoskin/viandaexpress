@@ -5,25 +5,25 @@ import { getFoods } from "../../redux/foodActions.js";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import CardsContainer from "../../clientComponents/CardsContainer/CardsContainer";
-// import { hardcodedFoodsWithDiscounts } from "../../../hardcodedFoodsWithDiscounts";
 import CarouselContainer from "../../clientComponents/CarouselContainer/CarouselContainer.jsx";
 import { Link } from "react-router-dom";
-// import { setUserOrderCase } from "../../redux/shopingCartSlice";
 import { getUserFavoritesAction } from "../../redux/userSlice";
+import { setUserOrderCase, getItems } from "../../redux/shopingCartSlice";
+import food from "../../assets/carousel/original2.jpeg";
+import Mission from "../../clientComponents/Mission/Mission";
 
 const Home = () => {
   const dispatch = useDispatch();
   const allFoods = useSelector((state) => state.foodsReducer.allFoods);
   const allItems = useSelector((state) => state.shopingCartReducer.itemsOrder);
   const favorites = useSelector((state) => state.usersReducer.userFavorites);
-  console.log("favorites: ", favorites);
-
+  const orderUser = useSelector(
+    (state) => state.shopingCartReducer.pendingOrder
+  );
   const foodsWithDiscounts = allFoods.filter((food) => food.discount > 0);
-
   const foodsWithScoreHigherThan4 = allFoods.filter(
     (food) => food.total_score > 4
   );
-
   const { isLoading, user, isAuthenticated } = useAuth0();
 
   useEffect(() => {
@@ -34,44 +34,22 @@ const Home = () => {
       };
       axios
         .post("/user", body)
-        // .then(async () => {
-        //   const userOrder = await axios
-        //     .post("/order", body)
-        //     .then((r) => r.data);
-        //   /* console.log("userOrder:", userOrder); */
-        //   dispatch(setUserOrderCase(userOrder));
-        // })
         .then(() => {
+          if (isAuthenticated && !allItems.length) {
+            axios
+              .post("/order", { email: body.email })
+              .then((r) => r.data)
+              .then((data) => {
+                dispatch(setUserOrderCase(data));
+                if (data.Items?.length) dispatch(getItems(data.Items));
+                console.log("DB Order");
+              });
+          }
           console.log("Usuario enviado a DB");
-
         })
         .catch((error) => console.log(error));
     }
-  }, [isAuthenticated, user]);
-
-
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     const body = {
-  //       name: user?.name,
-  //       email: user?.email,
-  //     };
-  //     axios
-  //       .post("/user", body)
-  //       .then(async () => {
-  //         const userOrder = await axios
-  //           .post("/order", body)
-  //           .then((r) => r.data);
-  //         /* console.log("userOrder:", userOrder); */
-  //         dispatch(setUserOrderCase(userOrder));
-  //       })
-  //       .then(() => {
-  //         console.log("Usuario y Order enviados a DB");
-  //       })
-  //       .catch((error) => console.log(error));
-  //   }
-  // }, [isAuthenticated, user]);
-
+  }, [isAuthenticated, user, allItems, dispatch]);
 
   useEffect(() => {
     if (!allFoods.length) {
@@ -81,17 +59,14 @@ const Home = () => {
     }
   }, [dispatch]);
 
-  /* wip start */
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(getUserFavoritesAction(user.email));
     }
   }, [isAuthenticated, user]);
-  /* wip end */
 
   /* if (isLoading) return <h1>Iniciando sesión...</h1>; */
 
-  /* RETURN */
   return (
     <div className={styles.mainContainer}>
       <CarouselContainer />
@@ -104,29 +79,45 @@ const Home = () => {
         </Link>
       </section>
 
+      <Mission />
+
       <section className={styles.sectionContainer}>
-        <h1>Ofertas de la semana</h1>
-        <CardsContainer currentFoods={foodsWithDiscounts} allItems={allItems} />
+        <h2 className={styles.sectionTitle}>Ofertas de la semana</h2>
+        <CardsContainer
+          currentFoods={foodsWithDiscounts}
+          allItems={allItems}
+          orderId={orderUser?.id}
+        />
       </section>
 
       <section className={styles.sectionContainer}>
-        <h1>Mejor rankeados</h1>
+        <h2 className={styles.sectionTitle}>Mejor rankeadas</h2>
         <CardsContainer
           currentFoods={foodsWithScoreHigherThan4}
           allItems={allItems}
+          orderId={orderUser?.id}
         />
       </section>
 
       {!favorites.length ? (
-        <div>
-          No has agregado favoritos.
-        </div>
+        ""
       ) : (
         <section className={styles.sectionContainer}>
-          <h1>Mis favoritos</h1>
-          <CardsContainer currentFoods={favorites} allItems={allItems} />
+          <h2 className={styles.sectionTitle}>Mis favoritos</h2>
+          <CardsContainer
+            currentFoods={favorites}
+            allItems={allItems}
+            orderId={orderUser?.id}
+          />
         </section>
       )}
+      <section>
+        <Link to="viandas">
+          <button className={styles.viewAllButton}>
+            VER TODAS LAS VIANDAS
+          </button>
+        </Link>
+      </section>
     </div>
   );
 };

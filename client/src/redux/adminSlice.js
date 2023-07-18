@@ -9,6 +9,7 @@ export const adminSlice = createSlice({
         orderDetail: null,
         sidebarOption:'dashboard',
         quantityOfBestSellers:3,
+        reviews:[],
     },
     reducers: {
         getAllOrdersCase: (state, action) => {
@@ -36,11 +37,15 @@ export const adminSlice = createSlice({
             if(order){
                 order.state = order_status;
             }
-        }
+        },
+        getAllReviewsCase:(state, action) => {
+            state.reviews = action.payload
+        },
+
     }
 })
 
-export const { getAllOrdersCase,setSidebarOption, getOrderDetailCase, cleanOrderDetailCase, getBestSellersCase,setQuantityCase, updateOrderStatusCase } = adminSlice.actions;
+export const { getAllOrdersCase,setSidebarOption, getOrderDetailCase, cleanOrderDetailCase, getBestSellersCase,setQuantityCase, updateOrderStatusCase,getAllReviewsCase } = adminSlice.actions;
 
 export default adminSlice.reducer;
 
@@ -92,3 +97,11 @@ export const updateOrderStatusAction = (orderId, order_status) => async (dispatc
     }
   };
 
+  export const getAllReviewsAction = () => async (dispatch) =>{
+    try {
+        const {data} = await axios.get("/review")
+        dispatch(getAllReviewsCase(data))
+    } catch (error) {
+        console.log(error);
+    }
+  }
