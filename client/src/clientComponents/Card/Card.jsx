@@ -1,4 +1,4 @@
-import style from "./Card.module.css";
+import styles from "./Card.module.css";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
@@ -9,7 +9,6 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
-import axios from "axios";
 import { setUserOrderCase } from "../../redux/shopingCartSlice";
 import LikeButton from "../LikeButton/LikeButton";
 
@@ -33,6 +32,7 @@ export default function Card({
   status,
   allItems,
   orderId,
+  total_score,
 }) {
   const [isItem, setIsItem] = useState(false);
   const { isAuthenticated, user } = useAuth0();
@@ -51,21 +51,21 @@ export default function Card({
 
   let categoryIcon;
   if (category === "Carnes")
-    categoryIcon = <img className={style.categoryIcon} src={meat} />;
+    categoryIcon = <img className={styles.categoryIcon} src={meat} />;
   if (category === "Ensaladas")
-    categoryIcon = <img className={style.categoryIcon} src={salad} />;
+    categoryIcon = <img className={styles.categoryIcon} src={salad} />;
   if (category === "Pastas")
-    categoryIcon = <img className={style.categoryIcon} src={pastas} />;
+    categoryIcon = <img className={styles.categoryIcon} src={pastas} />;
 
   const dietsIcons = diets?.map((diet, index) => {
     if (diet === "Sin TACC")
-      diet = <img key={index} className={style.dietsIcon} src={sinTacc} />;
+      diet = <img key={index} className={styles.dietsIcon} src={sinTacc} />;
     if (diet === "Vegetariana")
-      diet = <img key={index} className={style.dietsIcon} src={vegetarian} />;
+      diet = <img key={index} className={styles.dietsIcon} src={vegetarian} />;
     if (diet === "Vegana")
-      diet = <img key={index} className={style.dietsIcon} src={vegan} />;
+      diet = <img key={index} className={styles.dietsIcon} src={vegan} />;
     if (diet === "Sin Lactosa")
-      diet = <img key={index} className={style.dietsIcon} src={sinLactosa} />;
+      diet = <img key={index} className={styles.dietsIcon} src={sinLactosa} />;
     return diet;
   });
 
@@ -150,43 +150,48 @@ export default function Card({
 
   /* RETURN */
   return (
-    <div className={style.card}>
-      <div className={style.imageAndLikeContainer}>
-        <NavLink className={style.NavLink} to={`/detail/${id}`}>
-          <img src={image} alt="img not found" className={style.card_img} />
+    <div className={styles.card}>
+      <div className={styles.imageAndLikeContainer}>
+        <NavLink className={styles.NavLink} to={`/detail/${id}`}>
+          <img src={image} alt="img not found" className={styles.card_img} />
         </NavLink>
+
+        {total_score > 4 && <div className={styles.star}>⭐️</div>}
 
         <div>
           <LikeButton foodId={id} />
         </div>
       </div>
 
-      <div className={style.dataContainer}>
+      <div className={styles.dataContainer}>
         <h2>{name}</h2>
-        <div className={style.categoryAndDiets}>
+        <div className={styles.categoryAndDiets}>
           {categoryIcon}{" "}
           {dietsIcons?.map((dietIcon, index) => (
             <span key={index}>{dietIcon}</span>
           ))}
         </div>
 
-          {discount === 0 ? (<div className={style.priceContainer}><span className={style.normalPrice}>${final_price}</span></div>) : (
-            <div className={style.priceContainer}>
-              <span className={style.discount}>🎁 {discount}%</span>
-              <span className={style.previousPrice}>${initial_price}</span>
-              <span className={style.currentPrice}>${final_price}</span>
-            </div>
-          )}
-
+        {discount === 0 ? (
+          <div className={styles.priceContainer}>
+            <span className={styles.normalPrice}>${final_price}</span>
+          </div>
+        ) : (
+          <div className={styles.priceContainer}>
+            <span className={styles.discount}>🎁 {discount}%</span>
+            <span className={styles.previousPrice}>${initial_price}</span>
+            <span className={styles.currentPrice}>${final_price}</span>
+          </div>
+        )}
       </div>
 
-      <div className={style.inputagregar}>
-        <button className={style.btncar} onClick={handleClick}>
+      <div className={styles.inputagregar}>
+        <button className={styles.btncar} onClick={handleClick}>
           {isItem ? "Eliminar" : "Agregar"}
         </button>
         {isItem ? (
           <input
-            className={style.detailinput}
+            className={styles.detailinput}
             type="number"
             min="1"
             value={quantity}
