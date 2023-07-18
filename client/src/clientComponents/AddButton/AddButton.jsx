@@ -69,7 +69,7 @@ export default function AddButton({id,allItems,isItem,setIsItem,Food,quantity,se
         const item = allItems.filter((it) => it.FoodId === id)[0];
         const quantity = parseInt(e.target.value);
         const amount = Food.final_price * quantity;
-        console.log("Card II: ", item.id);
+        console.log("Card II: ", item);
         setQuantity(quantity);
         dispatch(
           putItemActions({
