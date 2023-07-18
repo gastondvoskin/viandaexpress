@@ -6,6 +6,7 @@ import { getUserDetailAction } from '../../redux/userSlice';
 import styles from './UserOrderDetail.module.css';
 import { useState } from 'react';
 import { postUserReviewAction } from '../../redux/userSlice';
+import SidebarUser from '../SidebarUser/SidebarUser';
 
 const UserOrderDetail = () => {
 const dispatch = useDispatch();
@@ -93,6 +94,8 @@ const handleStarClick = (itemId, selectedRating) => {
     
     return(
         <div className={styles.orderdiv}>
+          <SidebarUser />
+          <section>
             <h3>{userOrderDetail?.User.name}</h3>
         <table className={styles.destable}>
             <thead>
@@ -147,6 +150,7 @@ const handleStarClick = (itemId, selectedRating) => {
                 ))}
             </tbody>
         </table>
+        </section>
         </div>
     )
 }

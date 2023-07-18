@@ -5,6 +5,7 @@ import styles from "./UserOrder.module.css";
 import { getUserDetailAction } from "../../redux/userSlice";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
+import SidebarUser from "../SidebarUser/SidebarUser";
 
 const UserOrder = () =>{
     const dispatch = useDispatch();
@@ -23,7 +24,8 @@ const UserOrder = () =>{
     console.log("prueba2", id )
     return (
         <div className={styles.divuser}>
-          
+          <SidebarUser />
+          <section>
             <table className={styles.destable}>
                 <thead>
                     <tr>
@@ -50,7 +52,7 @@ const UserOrder = () =>{
                 </tbody>
             </table>
            
-
+            </section>
         </div>
     )
 }
