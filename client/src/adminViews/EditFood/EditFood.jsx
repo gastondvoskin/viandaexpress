@@ -7,6 +7,8 @@ import { getFoods, putFoods } from "../../redux/foodActions.js";
 import { useNavigate } from "react-router-dom";
 import styles from "./EditFood.module.css";
 import Swal from "sweetalert2";
+import 'animate.css';
+import logo from "../../assets/logo/LogoViandaExpress.jpeg"
 import validation from "../CreateFood/validation";
 import SideBar from "../../adminComponents/SideBar/SideBar";
 
@@ -79,19 +81,41 @@ export default function EditFood() {
       formData.discount > 100
     ) {
       //alert(`Llena todos los campos para crear la vianda`);
-      Swal.fire("Por favor llenar todos los campos", "warning");
+      Swal.fire({
+        title: "Por favor llenar todos los campos",
+        icon: "warning",
+        footer: 'Vianda Express',
+        imageUrl: logo,
+        timer: 5000,
+        timerProgressBar: true,
+        confirmButtonColor: 'var(--accentColor)',
+        showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+             },
+          hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+             }
+        });
     } else {
       e.preventDefault();
-      //var verificar= window.confirm(`Está a punto de modificar la vianda`)
+      //var verificar alert(`Está a punto de modificar la vianda`)
       Swal.fire({
         title: "Estas Seguro?",
         text: "¡Puedes modificar en cualquier momento!",
         icon: "warning",
+        imageUrl: logo,
+        footer: 'Vianda Express',
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Si, ¡Modificar!",
         cancelButtonText: "Cancelar",
+        confirmButtonColor: 'var(--accentColor)',
+        showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+             },
+          hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+             }
       }).then((result) => {
         if (result.isConfirmed) {
           const form = new FormData();
@@ -105,18 +129,54 @@ export default function EditFood() {
               },
             });
             //alert(`Receta de ${formData.name} modificada`);
-            Swal.fire(
-              "Modificada!",
-              `Receta de ${formData.name} modificada.`,
-              "success"
+            Swal.fire({
+              title: "Modificada!",
+              text: `Receta de ${formData.name} modificada.`,
+              icon: "success",
+              imageUrl: logo,
+              footer: 'Vianda Express',
+              confirmButtonColor: 'var(--accentColor)',
+              showClass: {
+              popup: 'animate__animated animate__fadeInDown'
+                   },
+                hideClass: {
+              popup: 'animate__animated animate__fadeOutUp'
+                   }
+            }
             );
             navigate("/admin");
           } catch (error) {
             //alert(error.message)
-            Swal.fire("Error del sistema", `${error.message}`, "warning");
+            Swal.fire({
+              title: "Error del sistema",
+              text: `${error.message}`,
+              icon: "warning",
+              imageUrl: logo,
+              footer: 'Vianda Express',
+              confirmButtonColor: 'var(--accentColor)',
+              showClass: {
+              popup: 'animate__animated animate__fadeInDown'
+                   },
+                hideClass: {
+              popup: 'animate__animated animate__fadeOutUp'
+                   }
+            });
           }
         } else if (result.dismiss === Swal.DismissReason.cancel) {
-          Swal.fire("Cancelado", "Los cambios no se guardaron", "success");
+          Swal.fire({
+            title: "Cancelado",
+            text: "Los cambios no se guardaron",
+            icon: "success",
+            imageUrl: logo,
+            footer: 'Vianda Express',
+            confirmButtonColor: 'var(--accentColor)',
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown'
+                },
+            hideClass: {
+               popup: 'animate__animated animate__fadeOutUp'
+                },
+          });
         }
       });
     }
