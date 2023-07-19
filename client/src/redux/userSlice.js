@@ -4,16 +4,12 @@ import axios from "axios";
 export const userSlice = createSlice({
   name: "users",
   initialState: {
-    allUsers: [],
     userDetail: {},
     userOrder: [],
     userOrderDetail: null,
     userFavorites: [],
   },
   reducers: {
-    getAllUsersCase: (state, action) => {
-      state.allUsers = action.payload;
-    },
     getUserByNameCase: (state, action) => {
       state.userDetail = action.payload;
     },
@@ -42,16 +38,6 @@ export const {
 } = userSlice.actions;
 
 export default userSlice.reducer;
-
-export const getAllUsersAction = () => async (dispatch) => {
-  try {
-    const allUsers = await axios.get("/user");
-    const usersData = allUsers.data;
-    dispatch(getAllUsersCase(usersData));
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 export const getUserDetailAction = (email) => async (dispatch) => {
   try {
