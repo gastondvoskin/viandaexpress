@@ -6,6 +6,7 @@ const {
 const paymentDataController = async (paymentId) => {
   const accessToken =
     "TEST-5452904587884616-070811-5c5f10c51ac99fe1580a358884ccd136-1412025676";
+  // const accessToken = "TEST-1886874462186522-070719-46a98fd793c6106a90381621123abc1d-1417316603";
 
   try {
     const url = `https://api.mercadopago.com/v1/payments/${paymentId}?access_token=${accessToken}`;
