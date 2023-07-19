@@ -10,6 +10,7 @@ export const adminSlice = createSlice({
         sidebarOption:'dashboard',
         quantityOfBestSellers:3,
         reviews:[],
+        users:[],
     },
     reducers: {
         getAllOrdersCase: (state, action) => {
@@ -41,11 +42,14 @@ export const adminSlice = createSlice({
         getAllReviewsCase:(state, action) => {
             state.reviews = action.payload
         },
+        getAllUsersCase:(state, action) => {
+            state.users = action.payload
+        },
 
     }
 })
 
-export const { getAllOrdersCase,setSidebarOption, getOrderDetailCase, cleanOrderDetailCase, getBestSellersCase,setQuantityCase, updateOrderStatusCase,getAllReviewsCase } = adminSlice.actions;
+export const { getAllOrdersCase,setSidebarOption, getOrderDetailCase, cleanOrderDetailCase, getBestSellersCase,setQuantityCase, updateOrderStatusCase,getAllReviewsCase,getAllUsersCase } = adminSlice.actions;
 
 export default adminSlice.reducer;
 
@@ -105,3 +109,14 @@ export const updateOrderStatusAction = (orderId, order_status) => async (dispatc
         console.log(error);
     }
   }
+
+export const getAllUsersAction = () => async (dispatch) =>{
+try {
+    console.log('en el action');
+    const {data} = await axios.get("/user")
+    console.log(data);
+    dispatch(getAllUsersCase(data))
+} catch (error) {
+    console.log(error);
+}
+}
