@@ -6,6 +6,8 @@ import validation from "./validation.jsx";
 import styles from "./CreateFood.module.css";
 import axios from "axios";
 import Swal from "sweetalert2";
+import 'animate.css';
+import logo from "../../assets/logo/LogoViandaExpress.jpeg"
 import SideBar from "../../adminComponents/SideBar/SideBar";
 
 export default function CreateFood() {
@@ -66,7 +68,21 @@ export default function CreateFood() {
       input.discount > 100
     ) {
       //alert(`Llena todos los campos para crear la vianda`);
-      Swal.fire("Por favor llenar todos los campos", "warning");
+      Swal.fire({
+        title: "Por favor llenar todos los campos",
+        icon: "warning",
+        imageUrl: logo,
+        footer: 'Vianda Express',
+        timer: 4000,
+        timerProgressBar: true,
+        confirmButtonColor: 'var(--accentColor)',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      });
     } else {
       try {
         const formData = new FormData();
@@ -85,7 +101,20 @@ export default function CreateFood() {
           },
         });
         //alert(`Receta de ${input.name} creada`);
-        Swal.fire("la Receta!", `${input.name}`, "success");
+        Swal.fire({
+          title: "la Receta!",
+          text: `${input.name}`,
+          icon: "success",
+          imageUrl: logo,
+          timer: 5000,
+          timerProgressBar: true,
+          confirmButtonColor: 'var(--accentColor)',
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'},
+          });
         setInput({
           name: "",
           description: "",
@@ -96,7 +125,23 @@ export default function CreateFood() {
           image: "",
         });
       } catch (error) {
-        alert(error.message);
+        Swal.fire({
+          icon: 'info',
+          title: 'Error de sistema',
+          text: 'Por favor intente mas tarde nuevamente',
+          footer: 'Vianda Express',
+          imageUrl: logo,
+          timer: 5000,
+          timerProgressBar: true,
+          confirmButtonColor: 'var(--accentColor)',
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+
+        });
       }
     }
   };

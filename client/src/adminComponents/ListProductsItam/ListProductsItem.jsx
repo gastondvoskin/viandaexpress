@@ -6,6 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import {faTrashCan} from "@fortawesome/free-solid-svg-icons";
 import Swal from 'sweetalert2';
+import 'animate.css';
+import logo from "../../assets/logo/LogoViandaExpress.jpeg"
+
 
 const ListProductsItem = ({ name, final_price, status,id,localFoods, setLocalFoods }) => {
 
@@ -15,35 +18,55 @@ const ListProductsItem = ({ name, final_price, status,id,localFoods, setLocalFoo
       title: 'Estas Seguro?',
       text: '¡No podrás revertir esto!',
       icon: 'warning',
+      imageUrl: logo,
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33', 
       confirmButtonText: 'Si, ¡Eliminar!',
-      cancelButtonText: 'Cancelar'
+      cancelButtonText: 'Cancelar',
+      footer: 'Vianda Express',
+      confirmButtonColor: 'var(--accentColor)',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+       },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+       }
     }).then((result)=>{
       if(result.isConfirmed){
         try {
           axios.delete(`/food/${id}`);
-          Swal.fire(
-            'Eliminada!',
-            `La Vianda ${name} fue Eliminada.`,
-            'success'
-          )
+          Swal.fire({ 
+            title: 'Eliminada!',
+            text: `La Vianda ${name} fue Eliminada.`,
+            icon:'success',
+            confirmButtonColor: 'var(--accentColor)',
+            footer: 'Vianda Express',
+            imageUrl: logo,
+            timer: 4000,
+            timerProgressBar: true,
+            
+          });
           const updatedFoods = localFoods.filter(e => e.id !== id);
           setLocalFoods(updatedFoods);
         } catch (error) {        
-          Swal.fire(
-            'Error del sistema',
-            `${error.message}`,
-            'warning',
-            )
+          Swal.fire({ 
+            title:'Error del sistema',
+            text: `${error.message}`,
+            icon: 'warning',
+            imageUrl: logo,
+            confirmButtonColor: 'var(--accentColor)',
+            footer: 'Vianda Express',
+          });
         }
       }else if(result.dismiss === Swal.DismissReason.cancel){
-        Swal.fire(
-          'Cancelado',
-          'Los cambios no se guardaron',
-          'success'
-          )
+        Swal.fire({
+          title:'Cancelado',
+          text: 'Los cambios no se guardaron',
+          icon: 'success',
+          imageUrl: logo,
+          confirmButtonColor: 'var(--accentColor)',
+          footer: 'Vianda Express',
+        });
       }
     })
   }
@@ -87,9 +110,7 @@ const ListProductsItem = ({ name, final_price, status,id,localFoods, setLocalFoo
         }
       };
 
-
-
-    return (
+      return (
         <tr className={styles.tds}> {/* Aplica la clase CSS utilizando la variable styles */}
             <td className={styles.tbodys}>{name}</td>
             <td className={styles.tbodys}>${final_price}</td>
