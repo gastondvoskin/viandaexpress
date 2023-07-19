@@ -1,5 +1,5 @@
 const emailContent =
-    `<!DOCTYPE html>
+  `<!DOCTYPE html>
   <html lang="en">
   <head>
       <meta charset="UTF-8">
@@ -50,7 +50,6 @@ const emailContent =
   <body>
       <div style="width: 100%; background-color: #e3e3e3;">
           <div style="padding: 20px 10px 20px 10px;">
-          
               <!-- Imagen inicial -->
               <div style="background-color: #FFFFFF;border: 5px solid #426b1f; padding: 10px 0px 10px 0px; width: 100%; text-align: center;color: #000000">
                   <h1>Vianda Express<h1/>
