@@ -17,6 +17,10 @@ import axios from "axios";
 const Checkout = ({ onClick }) => {
   const { user } = useAuth0();
   const dispatch = useDispatch();
+  const [next,setNext]=useState({
+    step1: false,
+    steps2: false,
+  });
   // const userOrder = useSelector(
   //   (state) => state.shopingCartReducer.pendingOrder.Items
   // );
@@ -144,6 +148,12 @@ const Checkout = ({ onClick }) => {
       })
     );
   };
+
+  const handleClick=(e)=>{
+    e.preventDefault();
+    const {name}=e.target;
+    if(orderData.length) setNext({...next,[name]:true});
+  }
 
   return (
     <section className={shoppingCartClass}>
@@ -290,17 +300,24 @@ const Checkout = ({ onClick }) => {
                 </div>
                 <button
                   className="btn btn-primary btn-lg btn-block"
-                  onClick={onClick}
-                  id="checkout-btn"
+                  name='step1'
+                  onClick={handleClick}
+                  id="next"
                   disabled={disabled}
                 >
-                  Checkout
+                  Siguiente
                 </button>
               </div>
             </div>
           </div>
+          {next?
           <div className="row">
-            <div className="col-md-12 col-lg-8"></div>
+            <div className="col-md-12 col-lg-8">
+              <div>
+                <span className="text">Dirección de envío</span>
+                <input type="text" name="address" value={null} />
+              </div>
+            </div>
             <div className="col-md-12 col-lg-4">
               <div className="summary">
                 <button
@@ -314,6 +331,7 @@ const Checkout = ({ onClick }) => {
               </div>
             </div>
           </div>
+          :null}
         </div>
       </div>
     </section>
