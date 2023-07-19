@@ -12,7 +12,7 @@ import {
 } from "../../redux/shopingCartSlice.js";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
-import AddButton from "../../clientComponents/AddButton/AddButton.jsx"
+import AddButton from "../../clientComponents/AddButton/AddButton.jsx";
 import GoBackHome from "../../clientComponents/GoBackHome/GoBackHome.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
@@ -189,21 +189,29 @@ export default function Detail() {
                 valoración por parte de los usuarios.
               </p>
             )}
-            <AddButton 
-              id={id}
-              orderId={orderUser.id}
-              allItems={allItems}
-              isItem={isItem}
-              setIsItem={setIsItem}
-              Food={foodDetail}
-              quantity={quantity}
-              setQuantity={setQuantity}
-            />
+            {isItem ? (
+              <input
+                className={styles.detailinput}
+                type="number"
+                min="1"
+                value={quantity}
+                onChange={updateQuantity}
+              />
+            ) : null}
+            <button className={styles.addButton} onClick={handleClick}>
+              {isItem ? (
+                "Agregado"
+              ) : (
+                <p>
+                  <FontAwesomeIcon icon={faCartShopping} /> Agregar
+                </p>
+              )}
+            </button>
+
+            <GoBackHome />
           </div>
-          
         </div>
       )}
-      
     </main>
   );
 }
