@@ -2,64 +2,87 @@
 
 .container {
     width: 100%;
-    max-width: 600px;
+    height: 100%;
     margin: 0 auto;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .titleContainer {
+    width: 100%;
+    border: 5px solid transparent;
+    border-bottom-color: #426b1f;
   }
   
   .title {
-    font-size: 24px;
+    font-size: 36px;
     font-weight: bold;
     margin-bottom: 20px;
+    text-align: center;
   }
-  
+
+  .reviewsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    flex-wrap: wrap;
+    padding-top: 10px;
+  }
+
+  .paginadoContainer {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+  }
   .review {
-    border: 1px solid #ccc;
+    border: 5px solid #426b1f;
     border-radius: 4px;
     padding: 20px;
     margin-bottom: 20px;
+    display: flex;
+    width: 525px;
+    height: 300px;
+    justify-content: space-between;
   }
   
-  .foodInfo h3 {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .foodInfo p {
-    margin-bottom: 10px;
+  .foodImage img {  
+    width: 225px;
+    height: 225px;
+    border-radius: 4px;
+    border: 1px solid #426b1f;
+
   }
   
   .reviewInfo {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
+    width: 225px;
+    height: 225px;
   }
-  
-  .rating {
-    display: flex;
-  }
-  
-  .star-filled,
-  .star-empty {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background-image: url('path/to/star-icon.png');
-    background-size: cover;
-    margin-right: 5px;
-  }
-  
-  .star-empty {
-    opacity: 0.3;
-  }
-  
-  .reviewInfo p {
-    margin-bottom: 10px;
-  }
-  
-  .reviewInfo h4 {
-    font-size: 16px;
+
+  .foodName {
+    text-align: center;
     font-weight: bold;
+    font-size: 22px;
+  }
+
+  .userRating {
+    display: flex;
+    width: 180px;
+    height: 30px;
+    justify-content: space-around;
+  }
+
+  .star {
+    color: darkgrey;
+  }
+
+  .star_filled {
+    color: gold;
   }
   
