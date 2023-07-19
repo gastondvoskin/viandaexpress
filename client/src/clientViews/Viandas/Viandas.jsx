@@ -52,8 +52,6 @@ const Viandas = () => {
     }
   }, [isAuthenticated, user, allItems, dispatch]);
 
-  console.log("Viandas: ", allItems);
-
   const foodsPerPage = 8;
   const indexOfLastFood = currentPage * foodsPerPage;
   const indexOfFirstFood = indexOfLastFood - foodsPerPage;
@@ -76,7 +74,6 @@ const Viandas = () => {
           <OrderOptions />
         </div>
       </div>
-
 
       <SearchBar />
 

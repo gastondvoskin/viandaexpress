@@ -9,6 +9,7 @@ import CarouselContainer from "../../clientComponents/CarouselContainer/Carousel
 import { Link } from "react-router-dom";
 import { getUserFavoritesAction } from "../../redux/userSlice";
 import { setUserOrderCase, getItems } from "../../redux/shopingCartSlice";
+import Mission from "../../clientComponents/Mission/Mission";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const Home = () => {
         .then(() => {
           if (isAuthenticated && !allItems.length) {
             axios
-              .post("/order", {email: body.email})
+              .post("/order", { email: body.email })
               .then((r) => r.data)
               .then((data) => {
                 dispatch(setUserOrderCase(data));
@@ -65,8 +66,14 @@ const Home = () => {
 
   /* if (isLoading) return <h1>Iniciando sesión...</h1>; */
 
+  console.log("user.given_name: ", user?.given_name);
   return (
     <div className={styles.mainContainer}>
+      {!user?.given_name ? "" : (
+        <div className={styles.greetingContainer}>
+          <h1>{`Hola, ${user.given_name}!`}</h1>
+        </div>
+      )}
       <CarouselContainer />
 
       <section>
@@ -77,8 +84,10 @@ const Home = () => {
         </Link>
       </section>
 
+      <Mission />
+
       <section className={styles.sectionContainer}>
-        <h1>Ofertas de la semana</h1>
+        <h2 className={styles.sectionTitle}>Ofertas de la semana</h2>
         <CardsContainer
           currentFoods={foodsWithDiscounts}
           allItems={allItems}
@@ -87,7 +96,7 @@ const Home = () => {
       </section>
 
       <section className={styles.sectionContainer}>
-        <h1>Mejor rankeados</h1>
+        <h2 className={styles.sectionTitle}>Mejor rankeadas</h2>
         <CardsContainer
           currentFoods={foodsWithScoreHigherThan4}
           allItems={allItems}
@@ -95,9 +104,11 @@ const Home = () => {
         />
       </section>
 
-      {!favorites.length ? "" : (
+      {!favorites.length ? (
+        ""
+      ) : (
         <section className={styles.sectionContainer}>
-          <h1>Mis favoritos</h1>
+          <h2 className={styles.sectionTitle}>Mis favoritos</h2>
           <CardsContainer
             currentFoods={favorites}
             allItems={allItems}
@@ -105,6 +116,13 @@ const Home = () => {
           />
         </section>
       )}
+      <section>
+        <Link to="viandas">
+          <button className={styles.viewAllButton}>
+            VER TODAS LAS VIANDAS
+          </button>
+        </Link>
+      </section>
     </div>
   );
 };

@@ -1,0 +1,65 @@
+/* Reviews.module.css */
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .review {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .foodInfo h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .foodInfo p {
+    margin-bottom: 10px;
+  }
+  
+  .reviewInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .rating {
+    display: flex;
+  }
+  
+  .star-filled,
+  .star-empty {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url('path/to/star-icon.png');
+    background-size: cover;
+    margin-right: 5px;
+  }
+  
+  .star-empty {
+    opacity: 0.3;
+  }
+  
+  .reviewInfo p {
+    margin-bottom: 10px;
+  }
+  
+  .reviewInfo h4 {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
