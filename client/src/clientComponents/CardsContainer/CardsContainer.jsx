@@ -1,7 +1,7 @@
 import Card from "../Card/Card";
 import styles from "./CardsContainer.module.css";
 
-export default function CardsContainer({ currentFoods, allItems, orderId }) {
+export default function CardsContainer({ currentFoods, allItems, orderUser }) {
   return (
     <div className={styles.cardsContainer}>
       {currentFoods.length === 0 ? (
@@ -21,7 +21,7 @@ export default function CardsContainer({ currentFoods, allItems, orderId }) {
               category={category}
               diets={diets}
               allItems={allItems}
-              orderId={orderId}
+              orderUser={orderUser}
               total_score={total_score}
             />
           )

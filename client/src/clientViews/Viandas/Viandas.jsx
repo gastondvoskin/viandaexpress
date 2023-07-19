@@ -77,23 +77,26 @@ const Viandas = () => {
 
       <SearchBar />
 
-      <Paginado
-        foodsPerPage={foodsPerPage}
-        foods={allFoods.length}
-        filterFoods={filteredFoods.length}
-        paginado={paginado}
-        currentPage={currentPage}
-      />
-      {!currentFoods.length ? (
-        <h1 className={styles.notFoundMessage}>No se encontraron resultados</h1>
-      ) : (
-        <CardsContainer
-          currentFoods={currentFoods}
-          allItems={allItems}
-          orderId={orderUser?.id}
+        <Paginado
+          foodsPerPage={foodsPerPage}
+          foods={allFoods.length}
+          filterFoods={filteredFoods.length}
+          paginado={paginado}
+          currentPage={currentPage}
         />
-      )}
-    </div>
+        {!currentFoods.length ? (
+          <h1 className={styles.notFoundMessage}>
+            No se encontraron resultados
+          </h1>
+        ) : (
+          <CardsContainer
+            currentFoods={currentFoods}
+            allItems={allItems}
+            orderUser={orderUser}
+          />
+        )}
+      </div>
+    // </div>
   );
 };
 export default Viandas;
