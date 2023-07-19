@@ -1,0 +1,19 @@
+.mainContainer {
+    display: grid;
+    grid-template-columns: 1fr 5fr; 
+    background-color: white;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.rowContainer {
+    margin: 15px;
+}
+
+.input {
+    width: 300px;
+}
