@@ -17,6 +17,7 @@ import OrderDetail from "./adminViews/OrderDetail/OrderDetail";
 import UserOrder from "./clientViews/UserOrder/UserOrder";
 import UserOrderDetail from "./clientViews/UserOrderDetail/UserOrderDetail";
 import MyProfile from "./clientViews/MyProfile/MyProfile.jsx";
+import MyFavorites from "./clientViews/MyFavorites/MyFavorites.jsx";
 
 function App() {
   const location = useLocation();
@@ -49,6 +50,7 @@ function App() {
         <Route path="/micuenta/misdatos" element={<MyProfile />} />
         <Route path="/micuenta/misordenes" element={<UserOrder />} />
         <Route path="/micuenta/misordenes/detalle/:id" element={<UserOrderDetail />} />
+        <Route path="/micuenta/misfavoritos" element={<MyFavorites />} />
 
         <Route path="/detail/:id" element={<Detail />} />
         <Route

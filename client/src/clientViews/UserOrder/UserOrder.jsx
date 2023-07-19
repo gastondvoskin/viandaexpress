@@ -25,6 +25,7 @@ const UserOrder = () => {
     <div className={styles.divuser}>
       <SidebarUser />
       <section className={styles.content}>
+        <h1>Mis órdenes</h1>
         <table className={styles.destable}>
           <thead>
             <tr>
@@ -40,7 +41,9 @@ const UserOrder = () => {
               <tr key={o.id}>
                 <td>{o.id}</td>
                 <td>{o.total_price}</td>
-                <td>{`${new Date(o.createdAt).getDate()}/${new Date(o.createdAt).getMonth() + 1}/${new Date(o.createdAt).getFullYear()}`}</td>
+                <td>{`${new Date(o.createdAt).getDate()}/${
+                  new Date(o.createdAt).getMonth() + 1
+                }/${new Date(o.createdAt).getFullYear()}`}</td>
                 <td>{o.order_status || "Procesando"}</td>
                 <td>
                   <Link to={`/micuenta/misordenes/detalle/${o.id}`}>
