@@ -299,6 +299,21 @@ const Checkout = ({ onClick }) => {
               </div>
             </div>
           </div>
+          <div className="row">
+            <div className="col-md-12 col-lg-8"></div>
+            <div className="col-md-12 col-lg-4">
+              <div className="summary">
+                <button
+                  className="btn btn-primary btn-lg btn-block"
+                  onClick={onClick}
+                  id="checkout-btn"
+                  disabled={disabled}
+                >
+                  Checkout
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
