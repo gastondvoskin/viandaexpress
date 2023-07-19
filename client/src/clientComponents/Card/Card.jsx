@@ -26,7 +26,7 @@ export default function Card({
   discount,
   status,
   allItems,
-  orderId,
+  orderUser,
   total_score,
 }) {
   const [isItem, setIsItem] = useState(false);

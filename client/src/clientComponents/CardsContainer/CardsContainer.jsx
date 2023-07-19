@@ -21,7 +21,7 @@ export default function CardsContainer({ currentFoods, allItems, orderUser }) {
               category={category}
               diets={diets}
               allItems={allItems}
-              orderId={orderId}
+              orderUser={orderUser}
               total_score={total_score}
             />
           )
