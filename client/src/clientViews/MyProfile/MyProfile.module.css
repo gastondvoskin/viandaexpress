@@ -1,7 +1,7 @@
 .mainContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 5fr; 
+    background-color: white;
 }
 
 .form {

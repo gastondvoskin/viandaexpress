@@ -33,9 +33,9 @@ const Home = () => {
       };
       axios
         .post("/user", body)
-        .then(() => {
+        .then(async () => {
           if (isAuthenticated && !allItems.length) {
-            axios
+            await axios
               .post("/order", { email: body.email })
               .then((r) => r.data)
               .then((data) => {

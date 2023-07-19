@@ -91,7 +91,7 @@ function Nav() {
               {displayProfileOptions && isAuthenticated && (
                 <div className={styles.options}>
                   <LogoutButton />
-                  <NavLink className={styles.option} to="/myprofile">
+                  <NavLink className={styles.option} to="/micuenta/misdatos">
                     MI CUENTA
                   </NavLink>
                 </div>
