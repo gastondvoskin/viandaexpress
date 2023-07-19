@@ -5,6 +5,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import styles from "./MyProfile.module.css";
 import Swal from 'sweetalert2';
+import 'animate.css';
+import logo from "../../assets/logo/LogoViandaExpress.jpeg"
 import { Link } from "react-router-dom";
 
 const MyProfile = () => {
@@ -63,7 +65,18 @@ const MyProfile = () => {
         title: "¡Éxito!",
         text: "Perfil editado correctamente",
         icon: "success",
-        confirmButtonText: "Continuar"
+        confirmButtonText: "Continuar",
+        footer: 'Vianda Express',
+	      imageUrl: logo,
+        timer: 4000,
+        timerProgressBar: true,
+        confirmButtonColor: 'var(--accentColor)',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }        
       });
        
     } catch (error) {
@@ -71,7 +84,18 @@ const MyProfile = () => {
         title: 'Error',
         text: "Error de Sistema",
         icon: 'error',
-        confirmButtonText: 'Cerrar'
+        confirmButtonText: 'Cerrar',
+        footer: 'Vianda Express',
+	      imageUrl: logo,
+        timer: 4000,
+        timerProgressBar: true,
+        confirmButtonColor: 'var(--accentColor)',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
       });
     }
   };
