@@ -19,12 +19,16 @@ const Checkout = ({ onClick }) => {
   const dispatch = useDispatch();
   const [next,setNext]=useState({
     step1: false,
-    steps2: false,
+    step2: false,
   });
   // const userOrder = useSelector(
   //   (state) => state.shopingCartReducer.pendingOrder.Items
   // );
-
+  const dayToday=new Date(Date.now()).getDate()
+  const monthToday=new Date(Date.now()).getMonth()+1
+  const yearToday=new Date(Date.now()).getFullYear()
+  const today=yearToday.toString()+"-"+monthToday.toString()+"-"+dayToday.toString()
+  const [date,setDate]=useState(today)
   const [quantity, setQuantity] = useState(1);
 
   const [isVisible, setIsVisible] = React.useState(true);
@@ -154,6 +158,7 @@ const Checkout = ({ onClick }) => {
     const {name}=e.target;
     if(orderData.length) setNext({...next,[name]:true});
   }
+  console.log(next)
 
   return (
     <section className={shoppingCartClass}>
@@ -310,16 +315,30 @@ const Checkout = ({ onClick }) => {
               </div>
             </div>
           </div>
-          {next?
+          {next.step1?
           <div className="row">
             <div className="col-md-12 col-lg-8">
               <div>
-                <span className="text">Dirección de envío</span>
+                <span className="text">Dirección de envío</span><br/>
                 <input type="text" name="address" value={null} />
+              </div>
+              <div>
+                <span className="text">Fecha de Entrega</span><br />
+                <input type="date" value={date} name="date" />
               </div>
             </div>
             <div className="col-md-12 col-lg-4">
               <div className="summary">
+                {!next.step2?
+                <button
+                  className="btn btn-primary btn-lg btn-block"
+                  name='step2'
+                  onClick={handleClick}
+                  id="next"
+                  disabled={disabled}
+                >
+                  Siguiente
+                </button>:
                 <button
                   className="btn btn-primary btn-lg btn-block"
                   onClick={onClick}
@@ -328,6 +347,7 @@ const Checkout = ({ onClick }) => {
                 >
                   Checkout
                 </button>
+                }
               </div>
             </div>
           </div>
