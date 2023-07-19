@@ -69,7 +69,7 @@ export default function CreateFood() {
     ) {
       //alert(`Llena todos los campos para crear la vianda`);
       Swal.fire({
-        title: "Por favor llenar todos los campos",
+        title: "Por favor llena todos los campos",
         icon: "warning",
         imageUrl: logo,
         footer: 'Vianda Express',
@@ -105,16 +105,18 @@ export default function CreateFood() {
           title: "la Receta!",
           text: `${input.name}`,
           icon: "success",
-          imageUrl: logo,
-          timer: 5000,
+          footer: 'Vianda Express',
+	        imageUrl: logo,
+          timer: 4000,
           timerProgressBar: true,
           confirmButtonColor: 'var(--accentColor)',
           showClass: {
             popup: 'animate__animated animate__fadeInDown'
           },
           hideClass: {
-            popup: 'animate__animated animate__fadeOutUp'},
-          });
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+       });
         setInput({
           name: "",
           description: "",
