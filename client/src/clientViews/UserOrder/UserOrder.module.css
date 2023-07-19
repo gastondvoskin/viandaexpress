@@ -1,5 +1,7 @@
 .divuser {
     padding: 10px;
+    display: flex;
+    flex-direction: row;
   }
   
   .destable {
