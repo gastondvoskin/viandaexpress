@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faListOl, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faListOl, faUser, faHeart } from "@fortawesome/free-solid-svg-icons";
 import styles from "./SidebarUser.module.css";
 import { Link } from "react-router-dom";
 import GoBackHome from "../GoBackHome/GoBackHome.jsx";
@@ -23,6 +23,14 @@ const SidebarUser = () => {
                 <FontAwesomeIcon icon={faListOl} />
               </i>{" "}
               Mis órdenes
+            </Link>
+          </li>
+          <li className={styles.row}>
+            <Link to="/micuenta/misfavoritos" className={styles.links}>
+              <i>
+                <FontAwesomeIcon icon={faHeart} />
+              </i>{" "}
+              Mis favoritos
             </Link>
           </li>
           <li className={styles.row}>
