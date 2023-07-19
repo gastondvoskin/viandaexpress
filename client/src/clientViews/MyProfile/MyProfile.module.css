@@ -4,6 +4,12 @@
     background-color: white;
 }
 
+.contentContainer{
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+}
+
 .form {
     display: flex;
     flex-direction: column;
@@ -16,4 +22,20 @@
 
 .input {
     width: 300px;
+}
+
+.saveButton{
+    width: fit-content;
+    background-color: var(--accentColor);
+    padding: 5px;
+    color: white;
+    margin: 10px;
+}
+
+.editButton {
+    width: fit-content;
+    background-color: var(--accentColor);
+    padding: 5px;
+    color: white;
+    margin: 10px;
 }

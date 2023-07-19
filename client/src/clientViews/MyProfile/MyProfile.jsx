@@ -4,13 +4,13 @@ import { getUserDetailAction } from "../../redux/userSlice";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import styles from "./MyProfile.module.css";
-import Swal from 'sweetalert2';
-import 'animate.css';
-import logo from "../../assets/logo/LogoViandaExpress.jpeg"
+import Swal from "sweetalert2";
+import "animate.css";
+import logo from "../../assets/logo/LogoViandaExpress.jpeg";
 import { Link } from "react-router-dom";
 import SidebarUser from "../../clientComponents/SidebarUser/SidebarUser";
 
-  const MyProfile = () => {
+const MyProfile = () => {
   const dispatch = useDispatch();
   const userDetail = useSelector((state) => state.usersReducer.userDetail);
   const [editableFields, setEditableFields] = useState(false);
@@ -20,18 +20,12 @@ import SidebarUser from "../../clientComponents/SidebarUser/SidebarUser";
     dispatch(getUserDetailAction(email));
   }, [dispatch]);
 
-  console.log("verifica 1", userDetail);
-  //console.log("verifica id", userDetail[0].id )
-
   const [formData, setFormData] = useState({
-    name: "",
-    /* address: "" */
+    address: userDetail[0].address
   });
 
-  /* we get the email from Auth0 */
   const email = user?.email;
 
-  /* we get the info of the user from the db */
   useEffect(() => {
     if (!userDetail) {
       dispatch(getUserDetailAction(email));
@@ -54,63 +48,63 @@ import SidebarUser from "../../clientComponents/SidebarUser/SidebarUser";
   /* submit does a PUT request */
   const handleSave = async () => {
     try {
-      console.log("1");
       console.log("formData ", formData);
       const response = await axios.put(`/user/${email}`, formData);
-      console.log("2");
+      dispatch(getUserDetailAction(email));
+      /* setFormData() */
       console.log(response);
       Swal.fire({
         title: "¡Éxito!",
         text: "Perfil editado correctamente",
         icon: "success",
         confirmButtonText: "Continuar",
-        footer: 'Vianda Express',
-	      imageUrl: logo,
+        footer: "Vianda Express",
+        imageUrl: logo,
         timer: 4000,
         timerProgressBar: true,
-        confirmButtonColor: 'var(--accentColor)',
+        confirmButtonColor: "var(--accentColor)",
         showClass: {
-          popup: 'animate__animated animate__fadeInDown'
+          popup: "animate__animated animate__fadeInDown",
         },
         hideClass: {
-          popup: 'animate__animated animate__fadeOutUp'
-        }        
+          popup: "animate__animated animate__fadeOutUp",
+        },
       });
     } catch (error) {
+      window.alert({error: error.message})
       Swal.fire({
         title: "Error",
         text: "Error de Sistema",
-        icon: 'error',
-        confirmButtonText: 'Cerrar',
-        footer: 'Vianda Express',
-	      imageUrl: logo,
+        icon: "error",
+        confirmButtonText: "Cerrar",
+        footer: "Vianda Express",
+        imageUrl: logo,
         timer: 4000,
         timerProgressBar: true,
-        confirmButtonColor: 'var(--accentColor)',
+        confirmButtonColor: "var(--accentColor)",
         showClass: {
-          popup: 'animate__animated animate__fadeInDown'
+          popup: "animate__animated animate__fadeInDown",
         },
         hideClass: {
-          popup: 'animate__animated animate__fadeOutUp'
-        }
-       });
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
     }
   };
+
+  console.log('userDetail: ', userDetail);
 
   return (
     <main className={styles.mainContainer}>
       <SidebarUser />
-      <section>
+      <div className={styles.contentContainer}>
         <h1>Mis datos</h1>
         <section>
-          <button type="button" onClick={handleCheck}>
-            HABILITAR EDICIÓN
-          </button>
           {/* form */}
           <div className={styles.form}>
             {/* email */}
             <div className={styles.rowContainer}>
-              <label htmlFor="name">Email (no puede ser modificado):</label>
+              <label htmlFor="name">Email (inmodificable):</label>
               <input
                 className={styles.input}
                 type="text"
@@ -121,49 +115,33 @@ import SidebarUser from "../../clientComponents/SidebarUser/SidebarUser";
                 placeholder={userDetail.name}
               />
             </div>
-            {/* name */}
+
+            {/* address */}
             <div className={styles.rowContainer}>
-              <label htmlFor="name">Nombre:</label>
+              <label htmlFor="address">Domicilio:</label>
               <input
                 className={styles.input}
                 type="text"
-                name="name"
-                value={formData.name}
+                name="address"
+                value={formData.address}
                 disabled={!editableFields}
                 onChange={handleChange}
-                placeholder={userDetail.name}
+                placeholder={userDetail.address}
               />
             </div>
-            {/* address */}
-            {/* <div className={styles.rowContainer}>
-            <label htmlFor="address">Domicilio:</label>
-            <input
-              className={styles.input}
-              type="text"
-              name="address"
-              value={formData.address}
-              disabled={!editableFields}
-              onChange={handleChange}
-              placeholder={userDetail.address}
-            />
-          </div> */}
-            <button type="button" onClick={handleSave}>
-              Guardar
+            <button className={styles.editButton} type="button" onClick={handleCheck}>
+              HABILITAR EDICIÓN
+            </button>
+            <button
+              className={styles.saveButton}
+              type="button"
+              onClick={handleSave}
+            >
+              GUARDAR CAMBIOS
             </button>
           </div>
-          <hr></hr>
         </section>
-        {/* <section>
-        <h2>Mis favoritos</h2>
-        <p>Próximamente...</p>
-        <hr></hr>
-      </section> */}
-        {/* <section>
-        <h2>Historial de compras</h2>
-        <p>Próximamente...</p>
-        <hr></hr>
-      </section> */}
-      </section>
+      </div>
     </main>
   );
 };
