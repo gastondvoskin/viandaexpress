@@ -4,11 +4,13 @@ import { getUserDetailAction } from "../../redux/userSlice";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import styles from "./MyProfile.module.css";
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
+import 'animate.css';
+import logo from "../../assets/logo/LogoViandaExpress.jpeg"
 import { Link } from "react-router-dom";
 import SidebarUser from "../../clientComponents/SidebarUser/SidebarUser";
 
-const MyProfile = () => {
+  const MyProfile = () => {
   const dispatch = useDispatch();
   const userDetail = useSelector((state) => state.usersReducer.userDetail);
   const [editableFields, setEditableFields] = useState(false);
@@ -41,7 +43,6 @@ const MyProfile = () => {
     event.preventDefault();
     setEditableFields(!editableFields);
   };
-
   /* we change the value with each change on the form */
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -50,7 +51,6 @@ const MyProfile = () => {
       [name]: value,
     });
   };
-
   /* submit does a PUT request */
   const handleSave = async () => {
     try {
@@ -58,21 +58,42 @@ const MyProfile = () => {
       console.log("formData ", formData);
       const response = await axios.put(`/user/${email}`, formData);
       console.log("2");
-
       console.log(response);
       Swal.fire({
         title: "¡Éxito!",
         text: "Perfil editado correctamente",
         icon: "success",
         confirmButtonText: "Continuar",
+        footer: 'Vianda Express',
+	      imageUrl: logo,
+        timer: 4000,
+        timerProgressBar: true,
+        confirmButtonColor: 'var(--accentColor)',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }        
       });
     } catch (error) {
       Swal.fire({
         title: "Error",
         text: "Error de Sistema",
-        icon: "error",
-        confirmButtonText: "Cerrar",
-      });
+        icon: 'error',
+        confirmButtonText: 'Cerrar',
+        footer: 'Vianda Express',
+	      imageUrl: logo,
+        timer: 4000,
+        timerProgressBar: true,
+        confirmButtonColor: 'var(--accentColor)',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+       });
     }
   };
 
@@ -86,7 +107,6 @@ const MyProfile = () => {
             HABILITAR EDICIÓN
           </button>
           {/* form */}
-
           <div className={styles.form}>
             {/* email */}
             <div className={styles.rowContainer}>
@@ -101,7 +121,6 @@ const MyProfile = () => {
                 placeholder={userDetail.name}
               />
             </div>
-
             {/* name */}
             <div className={styles.rowContainer}>
               <label htmlFor="name">Nombre:</label>
@@ -115,7 +134,6 @@ const MyProfile = () => {
                 placeholder={userDetail.name}
               />
             </div>
-
             {/* address */}
             {/* <div className={styles.rowContainer}>
             <label htmlFor="address">Domicilio:</label>
@@ -129,7 +147,6 @@ const MyProfile = () => {
               placeholder={userDetail.address}
             />
           </div> */}
-
             <button type="button" onClick={handleSave}>
               Guardar
             </button>

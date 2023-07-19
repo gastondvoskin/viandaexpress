@@ -12,6 +12,8 @@ import {
 } from "../../redux/shopingCartSlice.js";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
+import 'animate.css';
+import logo from "../../assets/logo/LogoViandaExpress.jpeg"
 import AddButton from "../../clientComponents/AddButton/AddButton.jsx";
 import GoBackHome from "../../clientComponents/GoBackHome/GoBackHome.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -53,11 +55,22 @@ export default function Detail() {
   const handleClick = (e) => {
     if (!isAuthenticated) {
       //alert('¡Cuidado! Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!')
-      Swal.fire(
-        "¡Cuidado!",
-        "Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!",
-        "error"
-      );
+      Swal.fire({ 
+        title: "¡Cuidado!",
+        text: "Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!",
+        icon: "error",
+        footer: 'Vianda Express',
+	      imageUrl: logo,
+        timer: 4000,
+        timerProgressBar: true,
+        confirmButtonColor: 'var(--accentColor)',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      });
     } else {
       if (isItem) {
         setIsItem(false);
