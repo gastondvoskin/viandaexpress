@@ -25,7 +25,7 @@ export default function AddButton({id,allItems,isItem,setIsItem,Food,quantity,se
             .then((data) => {
               dispatch(setUserOrderCase(data));
               if (data.Items?.length) dispatch(getItems(data.Items));
-              console.log("Order enviado a DB");
+              /* console.log("Order enviado a DB"); */
             })
             .catch((error) => console.log(error));
           /* console.log("userOrder:", userOrder); */
@@ -76,14 +76,14 @@ export default function AddButton({id,allItems,isItem,setIsItem,Food,quantity,se
           }
         }
     };
-    console.log(orderUser.id)
-    
+    /* console.log(orderUser.id) */
+ 
     const updateQuantity = (e) => {
-        console.log("Card: ", allItems);
+        /* console.log("Card: ", allItems); */
         const item = allItems.filter((it) => it.FoodId === id)[0];
         const quantity = parseInt(e.target.value);
         const amount = Food.final_price * quantity;
-        console.log("Card II: ", item);
+        /* console.log("Card II: ", item); */
         setQuantity(quantity);
         dispatch(
           putItemActions({
