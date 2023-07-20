@@ -4,8 +4,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { getUserFavoritesAction } from "../../redux/userSlice";
 import axios from "axios";
 import Swal from "sweetalert2";
-import 'animate.css';
-import logo from "../../assets/logo/LogoViandaExpress.jpeg"
+import "animate.css";
+import logo from "../../assets/logo/LogoViandaExpress.jpeg";
 
 export default function LikeButton({ foodId }) {
   const dispatch = useDispatch();
@@ -21,18 +21,18 @@ export default function LikeButton({ foodId }) {
         title: "¡Ateción!",
         text: "Por favor, loguéate para agregar viandas a tus favoritos.",
         icon: "warning",
-        footer: 'Vianda Express',
-	      imageUrl: logo,
+        footer: "Vianda Express",
+        imageUrl: logo,
         timer: 4000,
         timerProgressBar: true,
-        confirmButtonText: 'Entendido!',
-        confirmButtonColor: 'var(--accentColor)',
+        confirmButtonText: "Entendido!",
+        confirmButtonColor: "var(--accentColor)",
         showClass: {
-          popup: 'animate__animated animate__fadeInDown'
+          popup: "animate__animated animate__fadeInDown",
         },
         hideClass: {
-          popup: 'animate__animated animate__fadeOutUp'
-        }
+          popup: "animate__animated animate__fadeOutUp",
+        },
       });
       // window.alert("Por favor, loguéate para agregar viandas a tus favoritos.");
       return;
@@ -43,66 +43,67 @@ export default function LikeButton({ foodId }) {
       Swal.fire({
         title: "Advertencia",
         text: "Estás seguro de querer eliminar esta vianda de tus favoritos?",
-        icon: 'warning',
-        showCancelButton: true, 
-        confirmButtonText: 'Sí',
-        confirmButtonColor: 'var(--accentColor)',
-        cancelButtonText: 'No, fue un error',
-        cancelButtonColor: '#FA8072',
-        footer: 'Vianda Express',
-	      imageUrl: logo,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí",
+        confirmButtonColor: "var(--accentColor)",
+        cancelButtonText: "No, fue un error",
+        cancelButtonColor: "#FA8072",
+        footer: "Vianda Express",
+        imageUrl: logo,
         showClass: {
-          popup: 'animate__animated animate__fadeInDown'
+          popup: "animate__animated animate__fadeInDown",
         },
         hideClass: {
-          popup: 'animate__animated animate__fadeOutUp'
-        }
-
-      }).then( async (result) => {
-        if(result.isConfirmed) {
-          console.log(result)
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      }).then(async (result) => {
+        if (result.isConfirmed) {
           await axios.delete(`/favorite/${email}/${foodId}`);
           dispatch(getUserFavoritesAction(email));
           Swal.fire({
-            title: 'Se ha eliminado la vianda de tus favoritos.',
-            icon: 'success',
-            confirmButtonColor: 'var(--accentColor)',
-            confirmButtonText: 'Entendido!',
-            footer: 'Vianda Express',
+            title: "Se ha eliminado la vianda de tus favoritos.",
+            icon: "success",
+            confirmButtonColor: "var(--accentColor)",
+            confirmButtonText: "Entendido!",
+            footer: "Vianda Express",
             imageUrl: logo,
             showClass: {
-              popup: 'animate__animated animate__fadeInDown'
+              popup: "animate__animated animate__fadeInDown",
             },
             hideClass: {
-              popup: 'animate__animated animate__fadeOutUp'
-            }
-          })
-        } 
-      })
+              popup: "animate__animated animate__fadeOutUp",
+            },
+          });
+        }
+      });
     } else {
       await axios.post("/favorite", { email, foodId });
       dispatch(getUserFavoritesAction(email));
       Swal.fire({
-        title: 'Se ha agregado la vianda a tus favoritos.',
+        title: "Se ha agregado la vianda a tus favoritos.",
         text: "Accede a tus favoritos en Home.",
-        icon: 'success',
-        confirmButtonColor: '#426b1f',
-        confirmButtonText: 'Entendido!',
-        footer: 'Vianda Express',
+        icon: "success",
+        confirmButtonColor: "#426b1f",
+        confirmButtonText: "Entendido!",
+        footer: "Vianda Express",
         imageUrl: logo,
         showClass: {
-            popup: 'animate__animated animate__fadeInDown'
-           },
+          popup: "animate__animated animate__fadeInDown",
+        },
         hideClass: {
-        popup: 'animate__animated animate__fadeOutUp'
-            }
-      })
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
     }
   };
 
   return (
-    <button title="Agregar o eliminar vianda de tus favoritos"
-      className={`${styles.likeButton} ${isFavorite && styles.isFavoriteButton}`} 
+    <button
+      title="Agregar o eliminar vianda de tus favoritos"
+      className={`${styles.likeButton} ${
+        isFavorite && styles.isFavoriteButton
+      }`}
       onClick={handleLike}
     >
       ♡

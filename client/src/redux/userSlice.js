@@ -84,7 +84,7 @@ export const getUserFavoritesAction = (email) => async (dispatch) => {
   }
 };
 
-export const postUserReviewAction = (foodId, userId, comment, rating,itemId) => async (dispatch) => {
+export const postUserReviewAction = (foodId, userId, comment, rating, itemId) => async (dispatch) => {
   try {
     const newReview = {
       foodId,
@@ -94,7 +94,7 @@ export const postUserReviewAction = (foodId, userId, comment, rating,itemId) => 
       itemId
     };
 
-    const response = await axios.post("http://localhost:3001/review", newReview);
+    const response = await axios.post("/review", newReview);
     const createdReview = response.data;
     dispatch(postUserReviewCase(createdReview));
   } catch (error) {
