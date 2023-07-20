@@ -10,6 +10,7 @@ import 'animate.css';
 import logo from "../../assets/logo/LogoViandaExpress.jpeg"
 import SideBar from "../../adminComponents/SideBar/SideBar";
 import { getAdminFoodsAction } from "../../redux/foodActions.js";
+import { setCategoryByCase, setSearchedCase } from "../../redux/adminSlice.js";
 
 export default function CreateFood() {
   const navigate = useNavigate()
@@ -96,8 +97,11 @@ export default function CreateFood() {
             "Content-Type": "multipart/form-data",
           },
         });
+        
+        dispatch(setSearchedCase(""))
+        dispatch(setCategoryByCase(""))
         dispatch(getAdminFoodsAction());
-        navigate("/admin")
+        
         Swal.fire({
           title: "la Receta!",
           text: `${input.name}`,
@@ -123,6 +127,7 @@ export default function CreateFood() {
           discount: 0,
           image: "",
         });
+        navigate("/admin")
       } catch (error) {
         Swal.fire({
           icon: 'info',
