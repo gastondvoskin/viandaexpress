@@ -4,8 +4,7 @@ const putUserController = async (  /* id,  */ name, email, type, status, address
   let userToUpdate = await User.findOne({
     where: { email: email },
   });
-
-  console.log('userToUpdate: ', userToUpdate)
+  console.log("userToUpdate: ", userToUpdate);
   if (userToUpdate) {
     const updatedUser = await User.update(
       { address },
@@ -13,8 +12,6 @@ const putUserController = async (  /* id,  */ name, email, type, status, address
         where: { email: email },
       }
     );
-    console.log("updatedUser ", updatedUser);
-    
     return updatedUser;
   } else {
     throw new Error(

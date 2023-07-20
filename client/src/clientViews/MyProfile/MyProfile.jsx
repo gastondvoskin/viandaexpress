@@ -7,52 +7,38 @@ import styles from "./MyProfile.module.css";
 import Swal from "sweetalert2";
 import "animate.css";
 import logo from "../../assets/logo/LogoViandaExpress.jpeg";
-import { Link } from "react-router-dom";
 import SidebarUser from "../../clientComponents/SidebarUser/SidebarUser";
 
 const MyProfile = () => {
   const dispatch = useDispatch();
-  const userDetail = useSelector((state) => state.usersReducer.userDetail);
-  const [editableFields, setEditableFields] = useState(false);
+  const userDetailArray = useSelector((state) => state.usersReducer.userDetail);
+  const [editableField, setEditableField] = useState(false);
   const { user, isAuthenticated } = useAuth0();
 
   useEffect(() => {
-    dispatch(getUserDetailAction(email));
-  }, [dispatch]);
-
-  const [formData, setFormData] = useState({
-    address: userDetail[0].address
-  });
-
-  const email = user?.email;
-
-  useEffect(() => {
-    if (!userDetail) {
-      dispatch(getUserDetailAction(email));
+    if (!userDetailArray.length) { /* userDetailArray is an array because the back does a findAll instead of a findOne */
+      dispatch(getUserDetailAction(user?.email));
     }
-  }, [email, dispatch]);
+  }, [user, dispatch]);
 
-  /* we handle wether the form is editable or not */
-  const handleCheck = (event) => {
-    event.preventDefault();
-    setEditableFields(!editableFields);
+  const [address, setAddress] = useState(userDetailArray[0]?.address);
+
+
+  const handleEdit = () => {
+    setEditableField(!editableField);
   };
-  /* we change the value with each change on the form */
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setAddress(e.target.value)
   };
-  /* submit does a PUT request */
+
   const handleSave = async () => {
     try {
-      console.log("formData ", formData);
-      const response = await axios.put(`/user/${email}`, formData);
-      dispatch(getUserDetailAction(email));
-      /* setFormData() */
-      console.log(response);
+      const response = await axios.put(`/user/${user.email}`, {address: address});
+      console.log('response: ', response);
+      dispatch(getUserDetailAction(user.email));
+      handleEdit();
+
       Swal.fire({
         title: "¡Éxito!",
         text: "Perfil editado correctamente",
@@ -92,52 +78,53 @@ const MyProfile = () => {
     }
   };
 
-  console.log('userDetail: ', userDetail);
-
+  /* RETURN */
   return (
     <main className={styles.mainContainer}>
       <SidebarUser />
       <div className={styles.contentContainer}>
         <h1>Mis datos</h1>
         <section>
-          {/* form */}
           <div className={styles.form}>
+            <div className={styles.rowContainer}>
+              <label htmlFor="name">Nombre:</label>
+              <p name="email">{user?.name}</p>
+            </div>
             {/* email */}
             <div className={styles.rowContainer}>
-              <label htmlFor="name">Email (inmodificable):</label>
-              <input
-                className={styles.input}
-                type="text"
-                name="email"
-                value={user?.email}
-                disabled={true}
-                onChange={handleChange}
-                placeholder={userDetail.name}
-              />
+              <label htmlFor="name">Email de contacto:</label>
+              <p name="email">{user?.email}</p>
+            </div>
+
+            <div className={styles.rowContainer}>
+              <img src={user?.picture} alt="Foto de perfil" />
             </div>
 
             {/* address */}
             <div className={styles.rowContainer}>
-              <label htmlFor="address">Domicilio:</label>
+              <label htmlFor="address">Domicilio de entrega:</label>
+              <br />
               <input
                 className={styles.input}
                 type="text"
                 name="address"
-                value={formData.address}
-                disabled={!editableFields}
+                value={address}
+                disabled={!editableField}
                 onChange={handleChange}
-                placeholder={userDetail.address}
+                placeholder={userDetailArray[0]?.address}
               />
             </div>
-            <button className={styles.editButton} type="button" onClick={handleCheck}>
-              HABILITAR EDICIÓN
+
+            <button className={styles.editButton} type="button" onClick={handleEdit}>
+              EDITAR DOMICILIO
             </button>
+
             <button
               className={styles.saveButton}
               type="button"
               onClick={handleSave}
             >
-              GUARDAR CAMBIOS
+              GUARDAR
             </button>
           </div>
         </section>
