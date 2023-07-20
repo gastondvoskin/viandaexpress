@@ -11,12 +11,20 @@ export const adminSlice = createSlice({
         quantityOfBestSellers:3,
         reviews:[],
         users:[],
+        renderFoods:[],
+        categoryBy:'',
+        searched:'',
     },
     reducers: {
         getAllOrdersCase: (state, action) => {
             state.allOrders = action.payload
         },
-
+        setCategoryByCase:(state,action) => {
+            state.categoryBy = action.payload
+        },
+        setRenderFoodsCase:(state,action) => {
+            state.renderFoods = action.payload
+        },
         getBestSellersCase:(state, action) => {
             state.bestSellers = action.payload
         },
@@ -46,10 +54,13 @@ export const adminSlice = createSlice({
             state.users = action.payload
         },
 
+        setSearchedCase:(state,action) => {
+            state.searched = action.payload
+        }
     }
 })
 
-export const { getAllOrdersCase,setSidebarOption, getOrderDetailCase, cleanOrderDetailCase, getBestSellersCase,setQuantityCase, updateOrderStatusCase,getAllReviewsCase,getAllUsersCase } = adminSlice.actions;
+export const { getAllOrdersCase,setSidebarOption, getOrderDetailCase, cleanOrderDetailCase, getBestSellersCase,setQuantityCase, updateOrderStatusCase,getAllReviewsCase,getAllUsersCase,setSearchedCase,setCategoryByCase,setRenderFoodsCase} = adminSlice.actions;
 
 export default adminSlice.reducer;
 

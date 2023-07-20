@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import { getFoods, putFoods } from "../../redux/foodActions.js";
+import { getAdminFoodsAction, getFoods, putFoods } from "../../redux/foodActions.js";
 import { useNavigate } from "react-router-dom";
 import styles from "./EditFood.module.css";
 import Swal from "sweetalert2";
@@ -11,6 +11,7 @@ import 'animate.css';
 import logo from "../../assets/logo/LogoViandaExpress.jpeg"
 import validation from "../CreateFood/validation";
 import SideBar from "../../adminComponents/SideBar/SideBar";
+import { setCategoryByCase, setSearchedCase } from "../../redux/adminSlice.js";
 
 export default function EditFood() {
   const dispatch = useDispatch();
@@ -80,7 +81,6 @@ export default function EditFood() {
       formData.discount < 0 ||
       formData.discount > 100
     ) {
-      //alert(`Llena todos los campos para crear la vianda`);
       Swal.fire({
         title: "Por favor llenar todos los campos",
         icon: "warning",
@@ -98,7 +98,6 @@ export default function EditFood() {
         });
     } else {
       e.preventDefault();
-      //var verificar alert(`Está a punto de modificar la vianda`)
       Swal.fire({
         title: "Estas Seguro?",
         text: "¡Puedes modificar en cualquier momento!",
@@ -116,19 +115,21 @@ export default function EditFood() {
           hideClass: {
         popup: 'animate__animated animate__fadeOutUp'
              }
-      }).then((result) => {
+      }).then(async (result) => {
         if (result.isConfirmed) {
           const form = new FormData();
           for (let key in formData) {
             form.append(key, formData[key]);
           }
           try {
-            axios.put(`/food/${id}`, formData, {
+            await axios.put(`/food/${id}`, formData, {
               headers: {
                 "Content-Type": "multipart/form-data",
               },
             });
-            //alert(`Receta de ${formData.name} modificada`);
+            dispatch(setSearchedCase(""))
+            dispatch(setCategoryByCase(""))
+            dispatch(getAdminFoodsAction())
             Swal.fire({
               title: "Modificada!",
               text: `Receta de ${formData.name} modificada.`,
@@ -146,7 +147,6 @@ export default function EditFood() {
             );
             navigate("/admin");
           } catch (error) {
-            //alert(error.message)
             Swal.fire({
               title: "Error del sistema",
               text: `${error.message}`,
