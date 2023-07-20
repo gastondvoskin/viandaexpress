@@ -9,12 +9,22 @@ export const adminSlice = createSlice({
         orderDetail: null,
         sidebarOption:'dashboard',
         quantityOfBestSellers:3,
+        reviews:[],
+        users:[],
+        renderFoods:[],
+        categoryBy:'',
+        searched:'',
     },
     reducers: {
         getAllOrdersCase: (state, action) => {
             state.allOrders = action.payload
         },
-
+        setCategoryByCase:(state,action) => {
+            state.categoryBy = action.payload
+        },
+        setRenderFoodsCase:(state,action) => {
+            state.renderFoods = action.payload
+        },
         getBestSellersCase:(state, action) => {
             state.bestSellers = action.payload
         },
@@ -36,11 +46,21 @@ export const adminSlice = createSlice({
             if(order){
                 order.state = order_status;
             }
+        },
+        getAllReviewsCase:(state, action) => {
+            state.reviews = action.payload
+        },
+        getAllUsersCase:(state, action) => {
+            state.users = action.payload
+        },
+
+        setSearchedCase:(state,action) => {
+            state.searched = action.payload
         }
     }
 })
 
-export const { getAllOrdersCase,setSidebarOption, getOrderDetailCase, cleanOrderDetailCase, getBestSellersCase,setQuantityCase, updateOrderStatusCase } = adminSlice.actions;
+export const { getAllOrdersCase,setSidebarOption, getOrderDetailCase, cleanOrderDetailCase, getBestSellersCase,setQuantityCase, updateOrderStatusCase,getAllReviewsCase,getAllUsersCase,setSearchedCase,setCategoryByCase,setRenderFoodsCase} = adminSlice.actions;
 
 export default adminSlice.reducer;
 
@@ -92,3 +112,22 @@ export const updateOrderStatusAction = (orderId, order_status) => async (dispatc
     }
   };
 
+  export const getAllReviewsAction = () => async (dispatch) =>{
+    try {
+        const {data} = await axios.get("/review")
+        dispatch(getAllReviewsCase(data))
+    } catch (error) {
+        console.log(error);
+    }
+  }
+
+export const getAllUsersAction = () => async (dispatch) =>{
+try {
+    console.log('en el action');
+    const {data} = await axios.get("/user")
+    console.log(data);
+    dispatch(getAllUsersCase(data))
+} catch (error) {
+    console.log(error);
+}
+}
