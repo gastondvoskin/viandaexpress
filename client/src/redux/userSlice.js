@@ -41,7 +41,9 @@ export default userSlice.reducer;
 
 export const getUserDetailAction = (email) => async (dispatch) => {
   try {
+    console.log('aquí')
     const userById = await axios.get("/user?email=" + email);
+    console.log('userById: ', userById)
     const userData = userById.data;
     dispatch(getUserByNameCase(userData));
   } catch (error) {
