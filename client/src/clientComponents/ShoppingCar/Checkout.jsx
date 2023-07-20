@@ -158,8 +158,13 @@ const Checkout = ({ onClick }) => {
     const {name}=e.target;
     if(orderData.length) setNext({...next,[name]:true});
   }
-  console.log(next)
-
+  
+  const updateDate=(e)=>{
+    e.preventDefault();
+    const {value}=e.target
+    setDate(value)
+  }
+  console.log(date)
   return (
     <section className={shoppingCartClass}>
       <div className="container" id="container">
@@ -324,7 +329,7 @@ const Checkout = ({ onClick }) => {
               </div>
               <div>
                 <span className="text">Fecha de Entrega</span><br />
-                <input type="date" value={date} name="date" />
+                <input type="date" value={date} name="date" onChange={updateDate}/>
               </div>
             </div>
             <div className="col-md-12 col-lg-4">
