@@ -12,18 +12,34 @@ const paymentDataController = async (paymentId) => {
     const url = `https://api.mercadopago.com/v1/payments/${paymentId}?access_token=${accessToken}`;
 
     const { data } = await axios.get(url);
-
+    console.log(data.status);
     const relatedOrderId = data.metadata.related_order_id;
     const paymentStatus = data.status;
-    const payment_status_detail = data.status_detail;
-    const payment_date = data.date_approved;
+    const paymentStatusDetail = data.status_detail;
+    const paymentDate = data.date_approved;
+
+    let paymentStatusToDb = "";
+
+    if (paymentStatus === "approved") {
+      paymentStatusToDb = "APROBADO"
+    };
+
+    if (paymentStatus === "rejected") {
+      paymentStatusToDb = "RECHAZADO"
+    };
+
+    if (paymentStatus === "in_process") {
+      paymentStatusToDb = "EN PROCESO"
+    };
+
+
 
     await putOrderController({
       orderId: relatedOrderId,
-      status: paymentStatus,
-      payment_status_detail,
-      payment_id: paymentId,
-      payment_date,
+      status: paymentStatusToDb,
+      payment_status_detail: paymentStatusDetail || null,
+      payment_id: paymentId || null,
+      payment_date: paymentDate || null,
     });
   } catch (error) {
     console.log(error);
