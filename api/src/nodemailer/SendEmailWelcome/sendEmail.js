@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 const { EMAIL_USER, EMAIL_PASS } = process.env;
 const emailContent = require("./SendEmailHtml.js")
-const fs = require("fs")
+
 
 async function sendEmailWelcome(userEmail) {
   const transporter = nodemailer.createTransport({
@@ -16,16 +16,10 @@ async function sendEmailWelcome(userEmail) {
 
   const mailSend = {
     from: EMAIL_PASS,
-    to: "silviojuarez60@gmail.com",
+    to: userEmail,
     subject: "Vianda Express - ¡Bienvenido!",
     html: emailContent,
-    // attachments: [
-    //   {
-    //     filname: "logo-transparent.png",
-    //     path: "src/assets/logo-transparent.png",
-    //     cid: "logo-transparent"
-    //   }
-    // ]
+
   };
 
   transporter.sendMail(mailSend, (error, info) => {

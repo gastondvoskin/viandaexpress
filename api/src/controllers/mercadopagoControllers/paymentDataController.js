@@ -12,7 +12,6 @@ const paymentDataController = async (paymentId) => {
     const url = `https://api.mercadopago.com/v1/payments/${paymentId}?access_token=${accessToken}`;
 
     const { data } = await axios.get(url);
-    console.log(data.status);
     const relatedOrderId = data.metadata.related_order_id;
     const paymentStatus = data.status;
     const paymentStatusDetail = data.status_detail;
