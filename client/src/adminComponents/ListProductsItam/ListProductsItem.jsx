@@ -71,31 +71,33 @@ const ListProductsItem = ({ name, final_price, status,id,localFoods, setLocalFoo
     })
   }
 
-  /*  
-  const handleDelete = async (e) => {
-        e.preventDefault();
-        var verificar= window.confirm(`Está a punto de eliminar la vianda`)
-        if(verificar){
-          try {
-            await axios.delete(`/food/${id}`);
-            alert(`Vianda: '${name}' eliminada`);
-            const updatedFoods = localFoods.filter(e => e.id !== id);
-            setLocalFoods(updatedFoods);
-          } catch (error) {
-            alert(error.message);
-          }
-        }
-      };
-  */
 
-      const handleStatus = (e) => {
+        const handleStatus = (e) => {
         const { value } = e.target;
       
         const confirmationMessage = `¿Desea ${
           value === "true" ? "habilitar" : "deshabilitar"
         } la vianda?`;
-      
-        if (window.confirm(confirmationMessage)) {
+        
+        Swal.fire({
+          title: "Confirmación",
+          text: confirmationMessage,
+          icon: "success",
+          showCancelButton: true,
+          confirmButtonText: 'Entendido',
+          cancelButtonText: 'Cancelar',
+          dangerMode: true,
+          confirmButtonColor: 'var(--accentColor)',
+          footer: 'Vianda Express',
+          imageUrl: logo,
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+           }
+        }).then((result) => {
+          if (result.isConfirmed) {
           axios
             .put(`/food/${id}`, { status: value })
             .then(() => {
@@ -105,10 +107,11 @@ const ListProductsItem = ({ name, final_price, status,id,localFoods, setLocalFoo
               setLocalFoods(updatedFoods);
             })
             .catch((error) => {
-              alert(error.message);
+              Swal.fire("Error", error.mesage, "error");
             });
         }
-      };
+      });
+    }
 
       return (
         <tr className={styles.tds}> {/* Aplica la clase CSS utilizando la variable styles */}
