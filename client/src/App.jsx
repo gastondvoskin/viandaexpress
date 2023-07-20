@@ -27,7 +27,7 @@ function App() {
   useEffect(() => {
     const searchUserType = async () => {
       try {
-        const response = await axios.get("/user", {
+        const response = await axios.get("/user", { 
           params: {
             type: "Admin",
           },
