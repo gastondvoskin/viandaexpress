@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ListProductsItem.module.css'; // Importa el archivo CSS
+import styles from './ListProductsItem.module.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -35,10 +35,10 @@ const ListProductsItem = ({ name, final_price, status,id}) => {
       hideClass: {
         popup: 'animate__animated animate__fadeOutUp'
        }
-    }).then((result)=>{
+    }).then(async (result)=>{
       if(result.isConfirmed){
         try {
-          axios.delete(`/food/${id}`);
+          await axios.delete(`/food/${id}`);
           Swal.fire({ 
             title: 'Eliminada!',
             text: `La Vianda ${name} fue Eliminada.`,
@@ -47,8 +47,7 @@ const ListProductsItem = ({ name, final_price, status,id}) => {
             footer: 'Vianda Express',
             imageUrl: logo,
             timer: 4000,
-            timerProgressBar: true,
-            
+            timerProgressBar: true, 
           });
           const updatedFoods = allFoods.filter(e => e.id !== id);
           dispatch(setCategoryByCase(""))
@@ -79,33 +78,33 @@ const ListProductsItem = ({ name, final_price, status,id}) => {
 
 
 
-  const handleStatus = async (e) => {
-        const { value } = e.target;
+  const handleStatus =  (e) => {
+    const { value } = e.target;
       
-        const confirmationMessage = `¿Desea ${
-          value === "true" ? "habilitar" : "deshabilitar"
-        } la vianda?`;
+    const confirmationMessage = `¿Desea ${
+      value === "true" ? "habilitar" : "deshabilitar"
+    } la vianda?`;
         
-        Swal.fire({
-          title: "Confirmación",
-          text: confirmationMessage,
-          icon: "success",
-          showCancelButton: true,
-          confirmButtonText: 'Entendido',
-          cancelButtonText: 'Cancelar',
-          dangerMode: true,
-          confirmButtonColor: 'var(--accentColor)',
-          footer: 'Vianda Express',
-          imageUrl: logo,
-          showClass: {
-            popup: 'animate__animated animate__fadeInDown'
-          },
-          hideClass: {
-            popup: 'animate__animated animate__fadeOutUp'
-           }
-        }).then((result) => {
-          if (result.isConfirmed) {
-          await axios
+    Swal.fire({
+      title: "Confirmación",
+      text: confirmationMessage,
+      icon: "success",
+      showCancelButton: true,
+      confirmButtonText: 'Entendido',
+      cancelButtonText: 'Cancelar',
+      dangerMode: true,
+      confirmButtonColor: 'var(--accentColor)',
+      footer: 'Vianda Express',
+      imageUrl: logo,
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+        }
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+        await axios
           .put(`/food/${id}`, { status: value })
           .then(() => {
             const updatedFoods = allFoods.map((food) =>
@@ -115,13 +114,13 @@ const ListProductsItem = ({ name, final_price, status,id}) => {
             })
             .catch((error) => {
               Swal.fire("Error", error.mesage, "error");
-            });
+          });
         }
-      });
-    }
+    });
+  }
 
   return (
-    <tr className={styles.tds}> {/* Aplica la clase CSS utilizando la variable styles */}
+    <tr className={styles.tds}>
         <td className={styles.tbodys}>{name}</td>
         <td className={styles.tbodys}>${final_price}</td>
         <td className={styles.tbodys}>
