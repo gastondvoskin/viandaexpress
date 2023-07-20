@@ -78,26 +78,47 @@ const ListProductsItem = ({ name, final_price, status,id}) => {
   }
 
 
-  const handleStatus = (e) => {
-    const { value } = e.target;
-      const confirmationMessage = `¿Desea ${
-        value === "true" ? "habilitar" : "deshabilitar"
-      } la vianda?`;
-    
-      if (window.confirm(confirmationMessage)) {
-        axios
+
+  const handleStatus = async (e) => {
+        const { value } = e.target;
+      
+        const confirmationMessage = `¿Desea ${
+          value === "true" ? "habilitar" : "deshabilitar"
+        } la vianda?`;
+        
+        Swal.fire({
+          title: "Confirmación",
+          text: confirmationMessage,
+          icon: "success",
+          showCancelButton: true,
+          confirmButtonText: 'Entendido',
+          cancelButtonText: 'Cancelar',
+          dangerMode: true,
+          confirmButtonColor: 'var(--accentColor)',
+          footer: 'Vianda Express',
+          imageUrl: logo,
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+           }
+        }).then((result) => {
+          if (result.isConfirmed) {
+          await axios
           .put(`/food/${id}`, { status: value })
           .then(() => {
             const updatedFoods = allFoods.map((food) =>
               food.id === id ? { ...food, status: value } : food
             );
             dispatch(setRenderFoodsCase(updatedFoods));
-          })
-          .catch((error) => {
-            alert(error.message);
-          });
+            })
+            .catch((error) => {
+              Swal.fire("Error", error.mesage, "error");
+            });
+        }
+      });
     }
-  };
 
   return (
     <tr className={styles.tds}> {/* Aplica la clase CSS utilizando la variable styles */}
