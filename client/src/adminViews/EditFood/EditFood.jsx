@@ -11,6 +11,7 @@ import 'animate.css';
 import logo from "../../assets/logo/LogoViandaExpress.jpeg"
 import validation from "../CreateFood/validation";
 import SideBar from "../../adminComponents/SideBar/SideBar";
+import { setCategoryByCase, setSearchedCase } from "../../redux/adminSlice.js";
 
 export default function EditFood() {
   const dispatch = useDispatch();
@@ -126,6 +127,8 @@ export default function EditFood() {
                 "Content-Type": "multipart/form-data",
               },
             });
+            dispatch(setSearchedCase(""))
+            dispatch(setCategoryByCase(""))
             dispatch(getAdminFoodsAction())
             Swal.fire({
               title: "Modificada!",
