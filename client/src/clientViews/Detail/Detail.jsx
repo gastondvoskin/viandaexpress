@@ -59,6 +59,7 @@ export default function Detail() {
         title: "¡Cuidado!",
         text: "Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!",
         icon: "error",
+        toast: true,
         footer: 'Vianda Express',
 	      imageUrl: logo,
         timer: 4000,

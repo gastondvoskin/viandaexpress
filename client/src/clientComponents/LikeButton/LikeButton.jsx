@@ -23,6 +23,7 @@ export default function LikeButton({ foodId }) {
         icon: "warning",
         footer: "Vianda Express",
         imageUrl: logo,
+        toast: true,
         timer: 4000,
         timerProgressBar: true,
         confirmButtonText: "Entendido!",
@@ -51,6 +52,7 @@ export default function LikeButton({ foodId }) {
         cancelButtonColor: "#FA8072",
         footer: "Vianda Express",
         imageUrl: logo,
+        toast: true,
         showClass: {
           popup: "animate__animated animate__fadeInDown",
         },
@@ -68,6 +70,7 @@ export default function LikeButton({ foodId }) {
             confirmButtonText: "Entendido!",
             footer: "Vianda Express",
             imageUrl: logo,
+            toast: true,
             showClass: {
               popup: "animate__animated animate__fadeInDown",
             },
@@ -88,6 +91,7 @@ export default function LikeButton({ foodId }) {
         confirmButtonText: "Entendido!",
         footer: "Vianda Express",
         imageUrl: logo,
+        toast: true,
         showClass: {
           popup: "animate__animated animate__fadeInDown",
         },
