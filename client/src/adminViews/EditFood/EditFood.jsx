@@ -86,6 +86,7 @@ export default function EditFood() {
         icon: "warning",
         footer: 'Vianda Express',
         imageUrl: logo,
+        toast: true,
         timer: 5000,
         timerProgressBar: true,
         confirmButtonColor: 'var(--accentColor)',
@@ -103,6 +104,7 @@ export default function EditFood() {
         text: "¡Puedes modificar en cualquier momento!",
         icon: "warning",
         imageUrl: logo,
+        toast: true,
         footer: 'Vianda Express',
         showCancelButton: true,
         cancelButtonColor: "#d33",
@@ -135,6 +137,7 @@ export default function EditFood() {
               text: `Receta de ${formData.name} modificada.`,
               icon: "success",
               imageUrl: logo,
+              toast: true,
               footer: 'Vianda Express',
               confirmButtonColor: 'var(--accentColor)',
               showClass: {
@@ -152,6 +155,7 @@ export default function EditFood() {
               text: `${error.message}`,
               icon: "warning",
               imageUrl: logo,
+              toast: true,
               footer: 'Vianda Express',
               confirmButtonColor: 'var(--accentColor)',
               showClass: {
@@ -168,6 +172,7 @@ export default function EditFood() {
             text: "Los cambios no se guardaron",
             icon: "success",
             imageUrl: logo,
+            toast: true,
             footer: 'Vianda Express',
             confirmButtonColor: 'var(--accentColor)',
             showClass: {
