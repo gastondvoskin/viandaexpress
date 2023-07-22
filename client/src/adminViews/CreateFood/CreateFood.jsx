@@ -1,21 +1,24 @@
 // VIEW CREATE PRODUCT
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import validation from "./validation.jsx";
 import styles from "./CreateFood.module.css";
 import axios from "axios";
 import Swal from "sweetalert2";
+import 'animate.css';
+import logo from "../../assets/logo/LogoViandaExpress.jpeg"
 import SideBar from "../../adminComponents/SideBar/SideBar";
+import { getAdminFoodsAction } from "../../redux/foodActions.js";
+import { setCategoryByCase, setSearchedCase } from "../../redux/adminSlice.js";
 
 export default function CreateFood() {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const diets = ["Sin TACC", "Vegetariana", "Vegana", "Sin Lactosa"];
-  const allFoods = useSelector((state) => state.foodsReducer.allFoods);
   const categories = ["Carnes", "Pastas", "Ensaladas"];
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagePreviewUrl, setImagePreviewUrl] = useState("");
-  // console.log(allFoods)
   const [input, setInput] = useState({
     name: "",
     description: "",
@@ -52,7 +55,6 @@ export default function CreateFood() {
     });
   };
   const handleSubmit = async (e) => {
-    // const handleSubmit= async (e)=>{
     e.preventDefault();
     setErrors(validation(input));
     if (
@@ -65,8 +67,23 @@ export default function CreateFood() {
       input.discount < 0 ||
       input.discount > 100
     ) {
-      //alert(`Llena todos los campos para crear la vianda`);
-      Swal.fire("Por favor llenar todos los campos", "warning");
+      Swal.fire({
+        title: "Por favor llena todos los campos",
+        icon: "warning",
+        width: '30%',
+        imageUrl: logo,
+        toast: true,
+        footer: 'Vianda Express',
+        timer: 4000,
+        timerProgressBar: true,
+        confirmButtonColor: 'var(--accentColor)',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      });
     } else {
       try {
         const formData = new FormData();
@@ -77,15 +94,33 @@ export default function CreateFood() {
         formData.append("initial_price", input.initial_price);
         formData.append("discount", input.discount);
         formData.append("image", input.image);
-        console.log(formData);
-        // dispatch(postFood(input));
         await axios.post("/food", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         });
-        //alert(`Receta de ${input.name} creada`);
-        Swal.fire("la Receta!", `${input.name}`, "success");
+        
+        dispatch(setSearchedCase(""))
+        dispatch(setCategoryByCase(""))
+        dispatch(getAdminFoodsAction());
+        
+        Swal.fire({
+          title: "la Receta!",
+          text: `${input.name}`,
+          icon: "success",
+          footer: 'Vianda Express',
+	        imageUrl: logo,
+          toast: true,
+          timer: 4000,
+          timerProgressBar: true,
+          confirmButtonColor: 'var(--accentColor)',
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+       });
         setInput({
           name: "",
           description: "",
@@ -95,8 +130,26 @@ export default function CreateFood() {
           discount: 0,
           image: "",
         });
+        navigate("/admin")
       } catch (error) {
-        alert(error.message);
+        Swal.fire({
+          icon: 'info',
+          title: 'Error de sistema',
+          text: 'Por favor intente mas tarde nuevamente',
+          footer: 'Vianda Express',
+          imageUrl: logo,
+          toast: true,
+          timer: 5000,
+          timerProgressBar: true,
+          confirmButtonColor: 'var(--accentColor)',
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+
+        });
       }
     }
   };
@@ -105,9 +158,9 @@ export default function CreateFood() {
     let updatedDiets = [...input.diets];
 
     if (checked) {
-      updatedDiets.push(value); // Agregar al array si está seleccionado
+      updatedDiets.push(value); 
     } else {
-      updatedDiets = updatedDiets.filter((diet) => diet !== value); // Eliminar del array si está deseleccionado
+      updatedDiets = updatedDiets.filter((diet) => diet !== value);
     }
 
     setInput({

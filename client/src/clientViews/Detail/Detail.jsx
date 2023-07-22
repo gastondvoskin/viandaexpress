@@ -12,7 +12,9 @@ import {
 } from "../../redux/shopingCartSlice.js";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
-import AddButton from "../../clientComponents/AddButton/AddButton.jsx"
+import 'animate.css';
+import logo from "../../assets/logo/LogoViandaExpress.jpeg"
+import AddButton from "../../clientComponents/AddButton/AddButton.jsx";
 import GoBackHome from "../../clientComponents/GoBackHome/GoBackHome.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
@@ -53,11 +55,23 @@ export default function Detail() {
   const handleClick = (e) => {
     if (!isAuthenticated) {
       //alert('¡Cuidado! Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!')
-      Swal.fire(
-        "¡Cuidado!",
-        "Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!",
-        "error"
-      );
+      Swal.fire({ 
+        title: "¡Cuidado!",
+        text: "Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!",
+        icon: "error",
+        toast: true,
+        footer: 'Vianda Express',
+	      imageUrl: logo,
+        timer: 4000,
+        timerProgressBar: true,
+        confirmButtonColor: 'var(--accentColor)',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      });
     } else {
       if (isItem) {
         setIsItem(false);
@@ -189,21 +203,29 @@ export default function Detail() {
                 valoración por parte de los usuarios.
               </p>
             )}
-            <AddButton 
-              id={id}
-              orderId={orderUser.id}
-              allItems={allItems}
-              isItem={isItem}
-              setIsItem={setIsItem}
-              Food={foodDetail}
-              quantity={quantity}
-              setQuantity={setQuantity}
-            />
+            {isItem ? (
+              <input
+                className={styles.detailinput}
+                type="number"
+                min="1"
+                value={quantity}
+                onChange={updateQuantity}
+              />
+            ) : null}
+            <button className={styles.addButton} onClick={handleClick}>
+              {isItem ? (
+                "Agregado"
+              ) : (
+                <p>
+                  <FontAwesomeIcon icon={faCartShopping} /> Agregar
+                </p>
+              )}
+            </button>
+
+            <GoBackHome />
           </div>
-          
         </div>
       )}
-      
     </main>
   );
 }

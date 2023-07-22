@@ -3,12 +3,15 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import { getFoods, putFoods } from "../../redux/foodActions.js";
+import { getAdminFoodsAction, getFoods, putFoods } from "../../redux/foodActions.js";
 import { useNavigate } from "react-router-dom";
 import styles from "./EditFood.module.css";
 import Swal from "sweetalert2";
+import 'animate.css';
+import logo from "../../assets/logo/LogoViandaExpress.jpeg"
 import validation from "../CreateFood/validation";
 import SideBar from "../../adminComponents/SideBar/SideBar";
+import { setCategoryByCase, setSearchedCase } from "../../redux/adminSlice.js";
 
 export default function EditFood() {
   const dispatch = useDispatch();
@@ -78,45 +81,107 @@ export default function EditFood() {
       formData.discount < 0 ||
       formData.discount > 100
     ) {
-      //alert(`Llena todos los campos para crear la vianda`);
-      Swal.fire("Por favor llenar todos los campos", "warning");
+      Swal.fire({
+        title: "Por favor llenar todos los campos",
+        icon: "warning",
+        footer: 'Vianda Express',
+        imageUrl: logo,
+        toast: true,
+        timer: 5000,
+        timerProgressBar: true,
+        confirmButtonColor: 'var(--accentColor)',
+        showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+             },
+          hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+             }
+        });
     } else {
       e.preventDefault();
-      //var verificar= window.confirm(`Está a punto de modificar la vianda`)
       Swal.fire({
         title: "Estas Seguro?",
         text: "¡Puedes modificar en cualquier momento!",
         icon: "warning",
+        imageUrl: logo,
+        toast: true,
+        footer: 'Vianda Express',
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Si, ¡Modificar!",
         cancelButtonText: "Cancelar",
-      }).then((result) => {
+        confirmButtonColor: 'var(--accentColor)',
+        showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+             },
+          hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+             }
+      }).then(async (result) => {
         if (result.isConfirmed) {
           const form = new FormData();
           for (let key in formData) {
             form.append(key, formData[key]);
           }
           try {
-            axios.put(`/food/${id}`, formData, {
+            await axios.put(`/food/${id}`, formData, {
               headers: {
                 "Content-Type": "multipart/form-data",
               },
             });
-            //alert(`Receta de ${formData.name} modificada`);
-            Swal.fire(
-              "Modificada!",
-              `Receta de ${formData.name} modificada.`,
-              "success"
+            dispatch(setSearchedCase(""))
+            dispatch(setCategoryByCase(""))
+            dispatch(getAdminFoodsAction())
+            Swal.fire({
+              title: "Modificada!",
+              text: `Receta de ${formData.name} modificada.`,
+              icon: "success",
+              imageUrl: logo,
+              toast: true,
+              footer: 'Vianda Express',
+              confirmButtonColor: 'var(--accentColor)',
+              showClass: {
+              popup: 'animate__animated animate__fadeInDown'
+                   },
+                hideClass: {
+              popup: 'animate__animated animate__fadeOutUp'
+                   }
+            }
             );
             navigate("/admin");
           } catch (error) {
-            //alert(error.message)
-            Swal.fire("Error del sistema", `${error.message}`, "warning");
+            Swal.fire({
+              title: "Error del sistema",
+              text: `${error.message}`,
+              icon: "warning",
+              imageUrl: logo,
+              toast: true,
+              footer: 'Vianda Express',
+              confirmButtonColor: 'var(--accentColor)',
+              showClass: {
+              popup: 'animate__animated animate__fadeInDown'
+                   },
+                hideClass: {
+              popup: 'animate__animated animate__fadeOutUp'
+                   }
+            });
           }
         } else if (result.dismiss === Swal.DismissReason.cancel) {
-          Swal.fire("Cancelado", "Los cambios no se guardaron", "success");
+          Swal.fire({
+            title: "Cancelado",
+            text: "Los cambios no se guardaron",
+            icon: "success",
+            imageUrl: logo,
+            toast: true,
+            footer: 'Vianda Express',
+            confirmButtonColor: 'var(--accentColor)',
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown'
+                },
+            hideClass: {
+               popup: 'animate__animated animate__fadeOutUp'
+                },
+          });
         }
       });
     }

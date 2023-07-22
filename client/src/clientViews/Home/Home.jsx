@@ -33,9 +33,9 @@ const Home = () => {
       };
       axios
         .post("/user", body)
-        .then(() => {
+        .then(async () => {
           if (isAuthenticated && !allItems.length) {
-            axios
+            await axios
               .post("/order", { email: body.email })
               .then((r) => r.data)
               .then((data) => {
@@ -44,7 +44,7 @@ const Home = () => {
                 console.log("DB Order");
               });
           }
-          console.log("Usuario enviado a DB");
+          /* console.log("Usuario enviado a DB"); */
         })
         .catch((error) => console.log(error));
     }
@@ -66,7 +66,6 @@ const Home = () => {
 
   /* if (isLoading) return <h1>Iniciando sesión...</h1>; */
 
-  console.log("user.given_name: ", user?.given_name);
   return (
     <div className={styles.mainContainer}>
       {!user?.given_name ? "" : (

@@ -43,7 +43,6 @@ const Checkout = ({ onClick }) => {
     setOrderData,
     total,
   } = React.useContext(Context);
-  console.log("Checkout: ", orderData);
 
   const shoppingCartClass = classnames("shopping-cart dark", {
     "shopping-cart--hidden": !isVisible,
