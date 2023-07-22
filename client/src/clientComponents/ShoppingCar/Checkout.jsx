@@ -6,6 +6,7 @@ import {
   setItemsActions,
   putItemActions,
 } from "../../redux/shopingCartSlice";
+import { putUserAddressAction } from "../../redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import {
@@ -17,12 +18,23 @@ import axios from "axios";
 const Checkout = ({ onClick }) => {
   const { user } = useAuth0();
   const dispatch = useDispatch();
-  // const userOrder = useSelector(
-  //   (state) => state.shopingCartReducer.pendingOrder.Items
-  // );
-
-  const [quantity, setQuantity] = useState(1);
-
+  const [next,setNext]=useState({
+    step1: false,
+    step2: false,
+  });
+  const userOrder = useSelector(
+    (state) => state.shopingCartReducer.pendingOrder
+  );
+  const dayToday=new Date(Date.now()).getDate()
+  let monthToday=(new Date(Date.now()).getMonth()+1).toString()
+  if(monthToday.length===1) monthToday='0'+monthToday
+  const yearToday=new Date(Date.now()).getFullYear()
+  const today=yearToday.toString()+"-"+monthToday.toString()+"-"+dayToday.toString()
+  const [input, setInput] = useState({
+    address: "",
+    date: today,
+  });
+  const [isAddress,setIsAddress]=useState(false)
   const [isVisible, setIsVisible] = React.useState(true);
   let {
     preferenceId,
@@ -42,68 +54,42 @@ const Checkout = ({ onClick }) => {
     const name = event.target.name;
     let item = orderData.filter((it) => it.Food.name === name)[0];
     // console.log("updatePrice: ", item);
-    const variation = quantity - parseInt(item.quantity);
-    // console.log(variation);
-    const amount = item.final_price * quantity;
-    // const toActual={
-    //   Food: item.Food,
-    //   FoodId: item.FoodId,
-    //   OrderId: item.OrderId,
-    //   amount: amount,
-    //   final_price: item.final_price,
-    //   id: item.id,
-    //   quantity: quantity,
-    dispatch(
-      putItemActions({
-        orderId: item.OrderId,
+    if(quantity>0){
+      const variation = quantity - parseInt(item.quantity);
+      const amount = item.final_price * quantity;
+      dispatch(
+        putItemActions({
+          orderId: item.OrderId,
+          quantity: quantity,
+          amount: amount,
+          itemId: item.id,
+        })
+      );
+      const updatedItem = {
+        ...item,
         quantity: quantity,
         amount: amount,
-        itemId: item.id,
-      })
-    );
-    // item.quantity = quantity;
-    // item.amount = amount;
-    // setOrderData(
-    //   orderData.map((it) => {
-    //     if (it.id === item.id) {
-    //       return item;
-    //     } else {
-    //       return it;
-    //     }
-    //   })
-    // );
-    const updatedItem = {
-      ...item,
-      quantity: quantity,
-      amount: amount,
-    };
-    // setOrderData(
-    //   orderData.map((it) => {
-    //     if (it.id === item.id) {
-    //       return {
-    //         id: item.id,
-    //         Food: item.Food,
-    //         FoodId: item.FoodId,
-    //         OrderId: item.OrderId,
-    //         final_price: item.final_price,
-    //         amount: amount,
-    //         quantity: quantity,
-    //       };
-    //     } else {
-    //       return it;
-    //     }
-    //   })
-    // );
-    setOrderData(
-      orderData.map((it) => {
-        if (it.id === item.id) {
-          return updatedItem;
-        } else {
-          return it;
-        }
-      })
-    );
-    total = total + variation * parseInt(item.final_price);
+      };
+      setOrderData(
+        orderData.map((it) => {
+          if (it.id === item.id) {
+            return updatedItem;
+          } else {
+            return it;
+          }
+        })
+      );
+      total = total + variation * parseInt(item.final_price);
+    }
+    else{
+      setOrderData(orderData.filter(it=>it.id!==item.id))
+      dispatch(
+        deleteItemActions({
+          OrderId: item.OrderId,
+          id: item.id,
+        })
+      );
+    }
   };
 
   useEffect(() => {
@@ -118,24 +104,7 @@ const Checkout = ({ onClick }) => {
     e.preventDefault();
     const name = e.target.name;
     const item = orderData.filter((it) => it.Food.name === name)[0];
-    setOrderData(orderData.filter((it) => it.id !== item.id));
-    // // console.log(item.id);
-    // // const toActual = orderData.Items.filter((it) => it.id !== item.id);
-    // // const actual = {
-    // //   UserId: orderData.UserId,
-    // //   Items: toActual,
-    // //   createdAt: orderData.createdAt,
-    // //   id: orderData.id,
-    // //   order_status: orderData.order_status,
-    // //   payment_date: orderData.payment_date,
-    // //   payment_id: orderData.payment_id,
-    // //   payment_status_detail: orderData.payment_status_detail,
-    // //   pickup_date: orderData.pickup_date,
-    // //   status: orderData.status,
-    // //   total_price: orderData.total_price,
-    // //   updatedAt: orderData.updatedAt,
-    // // };
-    // // setOrderData(actual);
+    setOrderData(orderData.filter(it=>it.id!==item.id))
     dispatch(
       deleteItemActions({
         OrderId: item.OrderId,
@@ -144,6 +113,27 @@ const Checkout = ({ onClick }) => {
     );
   };
 
+  const handleClick=(e)=>{
+    e.preventDefault();
+    const {name}=e.target;
+    if(orderData.length&& name==='step1') {
+      setNext({...next,[name]:true})
+      if(input.address) setIsAddress(true)
+    };
+    if(name==='step2'&&input.address) setNext({...next,[name]:true})
+  }
+  
+  const handleChange=(e)=>{
+    e.preventDefault();
+    const {value,name}=e.target
+    setInput({...input,[name]:value})
+  }
+
+  const updateAddress=(e)=>{
+    e.preventDefault();
+     dispatch(putUserAddressAction(userOrder.UserId,input.address))
+  }
+ 
   return (
     <section className={shoppingCartClass}>
       <div className="container" id="container">
@@ -289,15 +279,60 @@ const Checkout = ({ onClick }) => {
                 </div>
                 <button
                   className="btn btn-primary btn-lg btn-block"
+                  name='step1'
+                  onClick={handleClick}
+                  id="next"
+                  disabled={disabled}
+                >
+                  Siguiente
+                </button>
+              </div>
+            </div>
+          </div>
+          {next.step1?
+          <div className="row">
+            <div className="col-md-12 col-lg-8">
+              <div className="row justify-content-md-center">
+                <div className="col-md-12 col-lg-6">
+                  <h4 className="text">Dirección de envío</h4>
+                  <input type="text" name="address" className="form-control" value={input.address} onChange={handleChange} disabled={isAddress}/>
+                  <br/>
+                  {!isAddress?
+                    <button onClick={updateAddress} className="btn btn-primary btn-lg btn-block">Agregar</button>
+                    :null
+                  }
+                </div>
+                <div className="col-md-12 col-lg-4">
+                  <h4 className="text">Fecha de Entrega</h4>
+                  <input type="date" value={input.date} name="date" className="form-control" onChange={handleChange} min={today}/>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-12 col-lg-4">
+              <div className="summary">
+                {!next.step2?
+                <button
+                  className="btn btn-primary btn-lg btn-block"
+                  name='step2'
+                  onClick={handleClick}
+                  id="next"
+                  disabled={disabled}
+                >
+                  Siguiente
+                </button>:
+                <button
+                  className="btn btn-primary btn-lg btn-block"
                   onClick={onClick}
                   id="checkout-btn"
                   disabled={disabled}
                 >
                   Checkout
                 </button>
+                }
               </div>
             </div>
           </div>
+          :null}
         </div>
       </div>
     </section>

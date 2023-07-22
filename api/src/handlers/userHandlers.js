@@ -46,8 +46,16 @@ const putUserHandler = async (req, res) => {
     }
 };
 
+const putAddressHandler= async (req,res)=> {
+    try {
+        const {id,address}=req.body;
+        await putAddressController(id,address);
+        res.status(200).send('Modificación exitosa');
+    } catch (error) {
+        res.status(400).send({error: error.message})
+    }
+}
 
 
 
-
-module.exports = { getUserHandler, postUserHandler, putUserHandler };
+module.exports = { getUserHandler, postUserHandler, putUserHandler, putAddressHandler };

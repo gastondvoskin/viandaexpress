@@ -19,6 +19,7 @@ const {
 const {
   getOrderByUserEmailController,
 } = require("../controllers/orderControllers/getOrderByUserEmailController");
+const {putPickupDateController,}=require("../controllers/orderControllers/putPickupDateController");
 const {
   getOrderByIdsController
 } = require("../controllers/orderControllers/getOrderByIdsController");
@@ -99,6 +100,15 @@ const getBestSellersHandler = async (req, res) => {
   }
 };
 
+const putPickupDateHandler= async (req,res)=>{
+  try {
+    const {orderId,pickup_date}=req.body;
+    await putPickupDateController({orderId,pickup_date})
+  } catch (error) {
+    res.status(400).send({error:message})
+  }
+}
+
 const getOrderByIdsHandler = async (req, res) => {
   try {
     const { paymentId } = req.params;
@@ -117,5 +127,6 @@ module.exports = {
   getBestSellersHandler,
   getUserOrdersHandler,
   getOrderDetailHandler,
+  putPickupDateHandler,
   getOrderByIdsHandler,
 };
