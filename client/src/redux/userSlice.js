@@ -29,6 +29,9 @@ export const userSlice = createSlice({
     postUserReviewCase: (state, action) => {
       state
     },
+    putUserAddressCase: (state,action)=>{
+      state
+    }
   },
 });
 
@@ -39,6 +42,7 @@ export const {
   getUserOrderDetailCase,
   getUserFavoritesCase,
   postUserReviewCase,
+  putUserAddressCase,
 } = userSlice.actions;
 
 export default userSlice.reducer;
@@ -113,3 +117,13 @@ export const postUserReviewAction = (foodId, userId, comment, rating,itemId) => 
     console.log(error);
   }
 };
+
+export const putUserAddressAction=(id,address)=>async (dispatch)=>{
+  try {
+    const newAddress={id,address}
+    const response=await axios.put('http://localhost:3001/user/address', newAddress)
+    dispatch(putAddressCase(response.data))
+  } catch (error) {
+    console.log(error)
+  }
+}

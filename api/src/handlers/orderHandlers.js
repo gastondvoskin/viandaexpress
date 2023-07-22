@@ -19,6 +19,7 @@ const {
 const {
   getOrderByUserEmailController,
 } = require("../controllers/orderControllers/getOrderByUserEmailController");
+const {putPickupDateController,}=require("../controllers/orderControllers/putPickupDateController");
 
 //Esta ruta trae todas las ordenes cerradas (sirve para el admin, se deebria modificar proximamente para traer los pedidos ya finalizados )
 const getOrdersHandler = async (req, res) => {
@@ -97,6 +98,15 @@ const getBestSellersHandler = async (req, res) => {
   }
 };
 
+const putPickupDateHandler= async (req,res)=>{
+  try {
+    const {orderId,pickup_date}=req.body;
+    await putPickupDateController({orderId,pickup_date})
+  } catch (error) {
+    res.status(400).send({error:message})
+  }
+}
+
 module.exports = {
   getOrdersHandler,
   getOrderByUserEmailHandler,
@@ -105,4 +115,5 @@ module.exports = {
   getBestSellersHandler,
   getUserOrdersHandler,
   getOrderDetailHandler,
+  putPickupDateHandler,
 };
