@@ -1,5 +1,16 @@
-.app {
+/* .app {
   width: 100vw;
   height: 100vh;
+  margin: 0;
+} */
+.app {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+ .container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
   margin: 0;
 }

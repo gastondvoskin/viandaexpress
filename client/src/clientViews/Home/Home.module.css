@@ -62,9 +62,42 @@
   color: white;
 }
 
-@media screen and (max-width: 780px){
-  .viewAllButton {    
+
+/* Estilos para dispositivos de pantalla pequeña */
+@media screen and (max-width: 768px) {
+  /* Agrega estilos específicos para dispositivos móviles o pantallas pequeñas */
+  .mainContainer {
+    flex-direction: column;
+  }
+   .greetingContainer {
+    flex-direction: column;
+    align-items: center;
+    margin-right: 0;
+  }
+   .greetingContainer h1 {
+    font-size: 24px;
+  }
+   .viewAllButton {
     font-size: 18px;
   }
-  
+   .sectionContainer {
+    margin: 20px 0;
+  }
+   .sectionTitle {
+    font-size: 18px;
+  }
+}
+ /* Estilos para dispositivos de pantalla mediana */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Agrega estilos específicos para tabletas u otros dispositivos de pantalla mediana */
+  .greetingContainer {
+    margin-right: 20%;
+  }
+}
+ /* Estilos para dispositivos de pantalla grande */
+@media screen and (min-width: 1025px) {
+  /* Agrega estilos específicos para pantallas grandes o de escritorio */
+  .greetingContainer {
+    margin-right: 40%;
+  }
 }
