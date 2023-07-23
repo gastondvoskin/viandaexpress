@@ -150,12 +150,27 @@
     color: var(--accentColor2);
     font-size: 33px;
   }
-  .option {
-    margin-left: 335px;
+  .userul{
+    left: 0;
+    width: 100%;
+    padding-left: 30px;
+  }
+
+  .userli{
+    text-align: center;
+    width: 100%;
   }
 
   .options { 
     background-color: rgba(0, 128, 0, 0);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0);
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    padding-left: 80px;
+  }
+  .option {
+    margin-left: 0px;
   }
 }
