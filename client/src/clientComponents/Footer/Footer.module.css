@@ -37,6 +37,9 @@
   .sectionTitle {
     font-size: 18px;
   }
+  .text {
+    font-size: 15px;
+  }
 }
  /* Estilos para dispositivos de pantalla mediana */
 @media screen and (min-width: 769px) and (max-width: 1024px) {

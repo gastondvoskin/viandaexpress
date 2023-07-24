@@ -30,7 +30,6 @@
   padding: 10px;
   border: solid 4px white;
   color: white;
-  margin: 10px;
   font-size: 22px;
   text-decoration: none;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -75,7 +74,7 @@
     margin-right: 0;
   }
    .greetingContainer h1 {
-    font-size: 24px;
+    font-size: 20px;
   }
    .viewAllButton {
     font-size: 18px;
