@@ -14,9 +14,11 @@
 
 @media screen and (max-width: 780px){
   .mainContainer {
-    height: 170px;
+    height: 105px;
+    margin-top: 30px;
   }
   .image {
-    height: 165px;
+    height: 90px;
+    border-radius: 20px;
   }
 }

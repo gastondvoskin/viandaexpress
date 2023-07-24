@@ -36,7 +36,7 @@ ol li {
 }
 @media screen and (max-width: 780px){
   .mainContainer {
-    width: 97%;
+    width: 90%;
     flex-direction: column;
     margin: 30px 0px 0px 0px;
   }
