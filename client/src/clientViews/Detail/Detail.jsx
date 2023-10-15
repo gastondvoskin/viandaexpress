@@ -12,7 +12,7 @@ import {
 } from "../../redux/shopingCartSlice.js";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
-import 'animate.css';
+import "animate.css";
 import logo from "../../assets/logo/LogoViandaExpress.jpeg"
 import AddButton from "../../clientComponents/AddButton/AddButton.jsx";
 import GoBackHome from "../../clientComponents/GoBackHome/GoBackHome.jsx";
@@ -59,6 +59,7 @@ export default function Detail() {
         title: "¡Cuidado!",
         text: "Logueate antes de agregar productos a tu carrito de compras. ¡Gracias!",
         icon: "error",
+        toast: true,
         footer: 'Vianda Express',
 	      imageUrl: logo,
         timer: 4000,

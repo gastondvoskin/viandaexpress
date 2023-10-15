@@ -25,3 +25,12 @@
   margin-top: 20px;
   font-weight: bold;
 }
+
+@media screen and (max-width: 780px){
+  .categoriesAndFiltersAndOrder {
+    flex-direction: column;
+  }
+  .filters {
+    flex-direction: row;
+  }
+}

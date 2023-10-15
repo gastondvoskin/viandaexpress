@@ -34,3 +34,27 @@ ol li {
   width: 80%;
   border-radius: 20px;
 }
+@media screen and (max-width: 780px){
+  .mainContainer {
+    width: 90%;
+    flex-direction: column;
+    margin: 30px 0px 0px 0px;
+  }
+  .leftContainer {
+    width: 100%;
+  }
+  .description {
+    margin: 0px 20px 0px 10px;
+    font-size: 15px;
+    padding: 10px 0px 20px;
+  }
+
+  ol li {
+    font-size: 17px;
+  }
+
+  .foodImage img {
+    width: 60%;
+  }
+  
+}

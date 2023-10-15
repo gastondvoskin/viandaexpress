@@ -21,3 +21,10 @@
   height: 43px;
   margin: 5px;
 }
+
+@media screen and (max-width: 780px){
+  .searchBar {
+  width: 300px;
+  height: 40px;
+  }
+}

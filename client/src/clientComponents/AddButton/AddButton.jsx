@@ -54,6 +54,7 @@ export default function AddButton({
         icon: "error",
         footer: "Vianda Express",
         imageUrl: logo,
+        toast: true,
         timer: 5000,
         timerProgressBar: true,
         confirmButtonColor: "var(--accentColor)",
