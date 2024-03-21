@@ -78,7 +78,7 @@ const Home = () => {
       <section>
         <Link to="viandas">
           <button className={styles.viewAllButton}>
-            VER TODAS LAS VIANDAS
+            VER LAS VIANDAS
           </button>
         </Link>
       </section>
