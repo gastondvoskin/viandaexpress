@@ -12,7 +12,7 @@ const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
 // MIDDLEWARE: CORS CONFIGURATION
-const allowedOrigins = ['https://viandaexpress.vercel.app', 'http://localhost:5173'];
+const allowedOrigins = ['https://viandaexpress.vercel.app', 'http://localhost:5173', '*'];
 
 app.use(cors({
   origin: function(origin, callback){
