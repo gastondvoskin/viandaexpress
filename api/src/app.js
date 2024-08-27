@@ -10,7 +10,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 // CORS
-const allowedOrigins = ['https://viandaexpress.vercel.app', 'http://localhost:5173', '*'];
+const allowedOrigins = ['https://viandaexpress.vercel.app', 'http://localhost:5173'];
 
 app.use(cors({
   origin: function(origin, callback){
@@ -39,18 +39,3 @@ app.use((err, req, res, next) => {
 
 
 module.exports = app;
-
-
-// OLD 
-// app.use(cors());
-
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*'); /* https://viandaexpress.vercel.app, http://localhost:5173 */
-//   res.header("Access-Control-Allow-Credentials", "true");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-//   next();
-// });
